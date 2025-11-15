@@ -252,9 +252,62 @@
           grid-template-columns: 1fr;
         }
       }
+
+      /* Corner logo */
+      .corner-logo {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1000;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: auto;
+      }
+
+      .corner-logo a {
+        display: inline-block;
+        line-height: 0;
+        border-radius: 6px;
+      }
+
+      .corner-logo a:focus {
+        outline: 3px solid rgba(99, 102, 241, 0.6);
+        outline-offset: 2px;
+      }
+
+      .corner-logo svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
     </style>
   </head>
   <body>
+    <!-- Logo (from logo.tsx) - fixed top-left -->
+    <div class="corner-logo" aria-hidden="false">
+      <a href="/" aria-label="ConnectU home">
+        <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+          <defs>
+            <linearGradient id="logo-gradient-color-medium" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3B82F6" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+          </defs>
+
+          <circle cx="50" cy="50" r="45" fill="url(#logo-gradient-color-medium)" />
+          <circle cx="30" cy="35" r="8" fill="#FFFFFF" opacity="0.9" />
+          <circle cx="70" cy="35" r="8" fill="#FFFFFF" opacity="0.9" />
+          <circle cx="50" cy="60" r="8" fill="#FFFFFF" opacity="0.9" />
+          <line x1="30" y1="35" x2="50" y2="60" stroke="#FFFFFF" stroke-width="3" opacity="0.7" />
+          <line x1="70" y1="35" x2="50" y2="60" stroke="#FFFFFF" stroke-width="3" opacity="0.7" />
+          <line x1="30" y1="35" x2="70" y2="35" stroke="#FFFFFF" stroke-width="3" opacity="0.7" />
+        </svg>
+      </a>
+    </div>
+
     <div class="card">
       <section id="signupView" class="signup" aria-live="polite">
         <h1>CONNECTU</h1>
