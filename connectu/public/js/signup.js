@@ -1,4 +1,4 @@
-import { clampDayValue, clampYearValue, validateSignupPayload } from './validation.js';
+import { clampDayValue, clampYearValue, validateSignupPayload } from '../validation.js';
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
