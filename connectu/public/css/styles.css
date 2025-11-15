@@ -182,9 +182,104 @@ input::placeholder {
   transform: translateY(2px) scale(0.995);
 }
 
+.welcome-view {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.welcome-content h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 3px;
+  margin: 0 0 0.5rem;
+}
+
+.welcome-subtitle {
+  font-size: 1.3rem;
+  color: #cbd5e1;
+  margin: 0 0 1.5rem;
+  font-weight: 500;
+}
+
+.welcome-description {
+  color: #a7c1d9;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.welcome-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.feature-item {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.feature-item h3 {
+  margin: 0 0 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.feature-item p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.welcome-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e6eef8;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    border-color 0.3s;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
 @media (max-width: 900px) {
   .tiles {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .welcome-features {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -197,11 +292,19 @@ input::placeholder {
     font-size: 2rem;
   }
 
+  .welcome-content h1 {
+    font-size: 2rem;
+  }
+
   .tiles {
     grid-template-columns: 1fr;
   }
 
   form .field-group {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-features {
     grid-template-columns: 1fr;
   }
 }

@@ -53,6 +53,7 @@ const getSchoolValue = (form) => {
 };
 
 export const initSignupFlow = () => {
+  const welcomeView = document.getElementById('welcomeView');
   const signupForm = document.getElementById('signupForm');
   const signupView = document.getElementById('signupView');
   const mainView = document.getElementById('mainView');
@@ -60,7 +61,56 @@ export const initSignupFlow = () => {
   const dobDayInput = document.getElementById('dobDay');
   const dobYearInput = document.getElementById('dobYear');
 
-  if (!signupForm || !signupView || !mainView) return;
+  // Navigation buttons
+  const learnMoreBtn = document.getElementById('learnMoreBtn');
+  const backToWelcomeBtn = document.getElementById('backToWelcomeBtn');
+  const backToSignupBtn = document.getElementById('backToSignupBtn');
+
+  if (!signupForm || !signupView || !mainView || !welcomeView) return;
+
+  // Navigation function
+  const showPage = (pageName) => {
+    welcomeView.style.display = 'none';
+    welcomeView.setAttribute('aria-hidden', 'true');
+    signupView.style.display = 'none';
+    signupView.setAttribute('aria-hidden', 'true');
+    mainView.style.display = 'none';
+    mainView.setAttribute('aria-hidden', 'true');
+
+    if (pageName === 'welcome') {
+      welcomeView.style.display = 'block';
+      welcomeView.removeAttribute('aria-hidden');
+    } else if (pageName === 'signup') {
+      signupView.style.display = 'block';
+      signupView.removeAttribute('aria-hidden');
+    } else if (pageName === 'main') {
+      mainView.style.display = 'block';
+      mainView.removeAttribute('aria-hidden');
+      animateTiles(tiles);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Learn More button: welcome → signup
+  if (learnMoreBtn) {
+    learnMoreBtn.addEventListener('click', () => {
+      showPage('signup');
+    });
+  }
+
+  // Back button on signup: signup → welcome
+  if (backToWelcomeBtn) {
+    backToWelcomeBtn.addEventListener('click', () => {
+      showPage('welcome');
+    });
+  }
+
+  // Back button on main: main → signup
+  if (backToSignupBtn) {
+    backToSignupBtn.addEventListener('click', () => {
+      showPage('signup');
+    });
+  }
 
   if (dobDayInput) {
     dobDayInput.addEventListener('input', (event) => {
@@ -76,17 +126,11 @@ export const initSignupFlow = () => {
 
   addTileInteractions(tiles);
 
-  const showMainView = () => {
-    signupView.style.display = 'none';
-    signupView.setAttribute('aria-hidden', 'true');
-    mainView.style.display = 'block';
-    mainView.removeAttribute('aria-hidden');
-    animateTiles(tiles);
-  };
-
   const storedUser = loadUserFromSession();
   if (storedUser) {
-    showMainView();
+    showPage('main');
+  } else {
+    showPage('welcome');
   }
 
   signupForm.addEventListener('submit', (event) => {
@@ -112,6 +156,6 @@ export const initSignupFlow = () => {
 
     saveUserToSession(data);
 
-    showMainView();
+    showPage('main');
   });
 };

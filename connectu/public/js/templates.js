@@ -46,6 +46,39 @@ const renderTiles = () =>
     .map(([key, title, copy]) => renderTile(key, title, copy))
     .join('');
 
+const renderWelcomeSection = () => `
+  <section id="welcomeView" class="welcome-view" aria-live="polite">
+    <div class="welcome-content">
+      <h1 class="welcome-title">CONNECTU</h1>
+      <p class="welcome-subtitle">Connect with Your College Community</p>
+      <p class="welcome-description">
+        ConnectU is your all-in-one platform to explore education resources, discover opportunities, build your social network, and engage with your campus community. Join thousands of students already connecting today.
+      </p>
+      <div class="welcome-features">
+        <div class="feature-item">
+          <h3>📚 Education</h3>
+          <p>Access resources, classes, and learning paths</p>
+        </div>
+        <div class="feature-item">
+          <h3>💼 Opportunities</h3>
+          <p>Find jobs, internships, and scholarships</p>
+        </div>
+        <div class="feature-item">
+          <h3>🎉 Social Life</h3>
+          <p>Discover events, clubs, and meetups</p>
+        </div>
+        <div class="feature-item">
+          <h3>🤝 Community</h3>
+          <p>Join forums, groups, and support networks</p>
+        </div>
+      </div>
+      <div class="welcome-actions">
+        <button id="learnMoreBtn" class="btn-primary">Learn More</button>
+      </div>
+    </div>
+  </section>
+`;
+
 const renderSignupSection = () => `
   <section id="signupView" class="signup" aria-live="polite">
     <h1>CONNECTU</h1>
@@ -108,10 +141,6 @@ const renderSignupSection = () => `
             ${renderUniversityOptions()}
           </select>
         </div>
-        <div class="field">
-          <label for="schoolCustom">Other University</label>
-          <input id="schoolCustom" name="schoolCustom" type="text" placeholder="Your school" />
-        </div>
         <div class="field full">
           <label for="email">School Email</label>
           <input id="email" name="email" type="email" placeholder="you@school.edu" autocomplete="email" required />
@@ -121,6 +150,9 @@ const renderSignupSection = () => `
         <button type="submit" class="btn-primary">Sign Up</button>
       </div>
     </form>
+    <div class="nav-controls">
+      <button id="backToWelcomeBtn" class="btn-secondary">← Back</button>
+    </div>
   </section>
 `;
 
@@ -131,11 +163,15 @@ const renderMainSection = () => `
     <div class="tiles" id="tiles">
       ${renderTiles()}
     </div>
+    <div class="nav-controls">
+      <button id="backToSignupBtn" class="btn-secondary">← Back to Sign Up</button>
+    </div>
   </section>
 `;
 
 export const renderConnectUApp = () => `
   <div class="card">
+    ${renderWelcomeSection()}
     ${renderSignupSection()}
     ${renderMainSection()}
   </div>
