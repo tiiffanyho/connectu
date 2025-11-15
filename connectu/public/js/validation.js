@@ -59,6 +59,14 @@ export const validateSignupPayload = (payload) => {
 
   const dob = `${year.toString().padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
+  if (!payload.password || payload.password.length < 8) {
+    return { valid: false, message: 'Password must be at least 8 characters' };
+  }
+
+  if (payload.password !== payload.confirmPassword) {
+    return { valid: false, message: 'Passwords do not match' };
+  }
+
   return {
     valid: true,
     data: {

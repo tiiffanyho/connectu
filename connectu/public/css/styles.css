@@ -273,6 +273,21 @@ input::placeholder {
   margin-top: 2rem;
 }
 
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.field-group input[type="password"] {
+  flex: 1;
+  margin: 0;
+}
+
 @media (max-width: 900px) {
   .tiles {
     grid-template-columns: repeat(2, 1fr);

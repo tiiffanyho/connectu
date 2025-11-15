@@ -141,6 +141,8 @@ export const initSignupFlow = () => {
       firstName: (formData.get('firstName') || '').trim(),
       lastName: (formData.get('lastName') || '').trim(),
       email: (formData.get('email') || '').trim(),
+      password: (formData.get('password') || '').trim(),
+      confirmPassword: (formData.get('confirmPassword') || '').trim(),
       dobDay: (formData.get('dobDay') || '').trim(),
       dobMonth: (formData.get('dobMonth') || '').trim(),
       dobYear: (formData.get('dobYear') || '').trim(),
