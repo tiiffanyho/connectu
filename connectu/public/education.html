@@ -4,25 +4,825 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Education — ConnectU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background:
+          radial-gradient(1200px 600px at 10% 10%, #7b61ff22, transparent),
+          radial-gradient(900px 500px at 90% 90%, #34d39922, transparent),
+          linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+        color: #e6eef8;
+        font-family:
+          'Inter',
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          Roboto,
+          'Helvetica Neue',
+          Arial,
+          sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .education-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .education-header {
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .education-title {
+        font-size: 2rem;
+        font-weight: 900;
+        letter-spacing: 2px;
+        color: #fff;
+      }
+
+      .education-back {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        border: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .education-back:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(2,6,23,0.35);
+      }
+
+      .education-tabs {
+        display: flex;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        overflow-x: auto;
+      }
+
+      .tab-btn {
+        padding: 0.65rem 1rem;
+        background: rgba(255,255,255,0.06);
+        color: #cbd5e1;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        transition: all 0.25s ease;
+      }
+
+      .tab-btn:hover {
+        background: rgba(255,255,255,0.1);
+        border-color: rgba(255,255,255,0.2);
+      }
+
+      .tab-btn.active {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        border-color: transparent;
+      }
+
+      .education-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 2rem;
+      }
+
+      .tab-panel {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .tab-panel.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .feature-box {
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .feature-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .feature-description {
+        color: #a7c1d9;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .feature-highlight {
+        background: rgba(99,102,241,0.1);
+        border-left: 3px solid #6366f1;
+        padding: 1rem;
+        border-radius: 8px;
+        color: #cbd5e1;
+        font-size: 0.95rem;
+        margin: 1rem 0;
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .metric-card {
+        background: rgba(255,255,255,0.03);
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .metric-label {
+        font-size: 0.85rem;
+        color: #94a3b8;
+        margin-bottom: 0.5rem;
+      }
+
+      .metric-value {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .course-combo {
+        background: rgba(255,255,255,0.03);
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 0.75rem 0;
+        border-left: 4px solid #06b6d4;
+      }
+
+      .combo-reaction {
+        display: inline-block;
+        font-size: 1.3rem;
+        margin-right: 0.5rem;
+      }
+
+      .combo-label {
+        color: #cbd5e1;
+        font-weight: 600;
+      }
+
+      .weather-block {
+        background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(6,182,212,0.1));
+        padding: 1.25rem;
+        border-radius: 12px;
+        margin: 1rem 0;
+        border: 1px solid rgba(99,102,241,0.2);
+      }
+
+      .weather-week {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .weather-label {
+        color: #cbd5e1;
+        font-weight: 600;
+      }
+
+      .weather-emoji {
+        font-size: 1.5rem;
+      }
+
+      .energy-bar {
+        background: rgba(255,255,255,0.05);
+        height: 8px;
+        border-radius: 4px;
+        margin: 0.5rem 0;
+        overflow: hidden;
+      }
+
+      .energy-fill {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        height: 100%;
+        border-radius: 4px;
+      }
+
+      .path-option {
+        background: rgba(255,255,255,0.03);
+        padding: 1.25rem;
+        border-radius: 12px;
+        margin: 1rem 0;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        border: 2px solid transparent;
+      }
+
+      .path-option:hover {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(99,102,241,0.4);
+      }
+
+      .path-emoji {
+        font-size: 1.5rem;
+        margin-right: 0.75rem;
+      }
+
+      .path-title {
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.25rem;
+      }
+
+      .path-description {
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+
+      .assignment-input {
+        width: 100%;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 1rem;
+        color: #e6eef8;
+        margin-bottom: 1rem;
+        font-family: inherit;
+      }
+
+      .assignment-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .x-ray-result {
+        background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(6,182,212,0.05));
+        padding: 1.25rem;
+        border-radius: 12px;
+        margin: 1rem 0;
+        border: 1px solid rgba(99,102,241,0.2);
+      }
+
+      .result-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .result-row:last-child {
+        border-bottom: none;
+      }
+
+      .result-label {
+        color: #94a3b8;
+        font-weight: 600;
+      }
+
+      .result-value {
+        color: #fff;
+        font-weight: 700;
+      }
+
+      @media (max-width: 900px) {
+        .education-header {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .education-tabs {
+          padding: 0.75rem 1rem;
+        }
+
+        .tab-btn {
+          padding: 0.5rem 0.8rem;
+          font-size: 0.85rem;
+        }
+
+        .education-content {
+          padding: 1rem;
+        }
+
+        .metric-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .education-title {
+          font-size: 1.5rem;
+        }
+
+        .education-tabs {
+          overflow-x: auto;
+        }
+
+        .metric-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .education-content {
+          padding: 0.75rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <main class="card" style="max-width:820px; margin:3rem auto;">
-      <div style="text-align:left;">
-        <h1 style="font-size:2.25rem; margin:0 0 0.5rem;">Education</h1>
-        <p style="color:#cbd5e1; margin-bottom:1.5rem;">This page will host the detailed Education view. I'll add prompts/content when you provide them.</p>
+    <div class="education-container">
+      <!-- Header -->
+      <div class="education-header">
+        <h1 class="education-title">EDUCATION</h1>
+        <button class="education-back" onclick="window.history.back();">← Back</button>
       </div>
 
-      <section style="margin-top:1.5rem;">
-        <div style="background:rgba(255,255,255,0.02); padding:1.25rem; border-radius:12px;">
-          <h3 style="margin-top:0;">Coming soon</h3>
-          <p style="color:#94a3b8;">Placeholder page. Use the back button below to return to the app.</p>
+      <!-- Tabs -->
+      <div class="education-tabs">
+        <button class="tab-btn active" data-tab="academic-gps">🗺️ Academic GPS</button>
+        <button class="tab-btn" data-tab="course-chemistry">⚗️ Course Chemistry</button>
+        <button class="tab-btn" data-tab="difficulty-weather">🌩️ Difficulty Weather</button>
+        <button class="tab-btn" data-tab="study-energy">⚡ Study Energy</button>
+        <button class="tab-btn" data-tab="multiverse">🌌 Multiverse</button>
+        <button class="tab-btn" data-tab="assignment-xray">🔍 Assignment X-Ray</button>
+      </div>
+
+      <!-- Content -->
+      <div class="education-content">
+        <!-- Academic GPS Tab -->
+        <div id="academic-gps" class="tab-panel active">
+          <div class="feature-box">
+            <div class="feature-title">🗺️ Academic GPS — Your Degree Roadmap</div>
+            <div class="feature-description">
+              Visualize your entire degree as an interactive map. See your current position, prerequisite paths, and multiple tracks to graduation.
+            </div>
+            <div class="feature-highlight">
+              "Imagine Google Maps, but for your degree. Zoom in/out to see the big picture or detailed course connections."
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-title">Available Paths</div>
+            <div class="path-option">
+              <div>
+                <div class="path-title">🚀 Fastest Track to Graduation</div>
+                <div class="path-description">Optimal course sequence | ~2.8 years | 128 credits</div>
+              </div>
+            </div>
+            <div class="path-option">
+              <div>
+                <div class="path-title">😎 Chill Track</div>
+                <div class="path-description">Balanced workload | ~4 years | Room for clubs & life</div>
+              </div>
+            </div>
+            <div class="path-option">
+              <div>
+                <div class="path-title">💼 Max Career Benefit</div>
+                <div class="path-description">Internships + research | ~3.5 years | Industry-ready</div>
+              </div>
+            </div>
+            <div class="path-option">
+              <div>
+                <div class="path-title">🎓 Triple-Minor Insane Track</div>
+                <div class="path-description">Challenge yourself | Flexible timeline | Maximum learning</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric-card">
+              <div class="metric-label">Current Progress</div>
+              <div class="metric-value">28%</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Courses Completed</div>
+              <div class="metric-value">12</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">GPA</div>
+              <div class="metric-value">3.7</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Est. Graduation</div>
+              <div class="metric-value">2026</div>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <div style="margin-top:2rem; text-align:center;">
-        <a href="./index.html" class="btn-secondary cta" style="text-decoration:none;">← Back</a>
+        <!-- Course Chemistry Tab -->
+        <div id="course-chemistry" class="tab-panel">
+          <div class="feature-box">
+            <div class="feature-title">⚗️ Course Chemistry — How Courses React</div>
+            <div class="feature-description">
+              See how course combinations interact. Some explode with workload, others flow perfectly. Chemistry reveals the hidden patterns.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-title">Explosive Combinations ⚠️</div>
+            <div class="course-combo">
+              <span class="combo-reaction">🔥</span>
+              <span class="combo-label">CS 301 + Organic Chem + Physics Lab</span>
+              <div style="color:#94a3b8; font-size:0.9rem; margin-top:0.5rem;">
+                Combined: 28 hrs/week | 7 major assignments overlapping | Avoid in same semester
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-title">Smooth Flow Combinations 🌊</div>
+            <div class="course-combo" style="border-left-color:#06b6d4;">
+              <span class="combo-reaction">🌊</span>
+              <span class="combo-label">Calculus II + Linear Algebra + Data Structures</span>
+              <div style="color:#94a3b8; font-size:0.9rem; margin-top:0.5rem;">
+                Combined: 14 hrs/week | Complementary topics | Great for deep learning
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric-card">
+              <div class="metric-label">Workload Analysis</div>
+              <div class="metric-value" style="font-size:1.25rem;">Moderate</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Assignment Overlap</div>
+              <div class="metric-value" style="font-size:1.25rem;">2 deadlines</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Recommended?</div>
+              <div class="metric-value" style="font-size:1.25rem;">✅ Yes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Difficulty Weather Tab -->
+        <div id="difficulty-weather" class="tab-panel">
+          <div class="feature-box">
+            <div class="feature-title">🌩️ Difficulty Weather Forecast</div>
+            <div class="feature-description">
+              See academic workload as weather patterns. Plan ahead for storms, enjoy calm weeks, and prepare for extreme stress periods.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="weather-block">
+              <div class="weather-week">
+                <div>
+                  <div class="weather-label">Week 2</div>
+                  <div style="color:#94a3b8; font-size:0.9rem;">Settle in period</div>
+                </div>
+                <div class="weather-emoji">🤤</div>
+              </div>
+              <div class="energy-bar">
+                <div class="energy-fill" style="width:20%;"></div>
+              </div>
+            </div>
+
+            <div class="weather-block">
+              <div class="weather-week">
+                <div>
+                  <div class="weather-label">Week 4</div>
+                  <div style="color:#94a3b8; font-size:0.9rem;">Heavy assignment rain</div>
+                </div>
+                <div class="weather-emoji">🌧️</div>
+              </div>
+              <div class="energy-bar">
+                <div class="energy-fill" style="width:60%;"></div>
+              </div>
+            </div>
+
+            <div class="weather-block">
+              <div class="weather-week">
+                <div>
+                  <div class="weather-label">Week 7</div>
+                  <div style="color:#94a3b8; font-size:0.9rem;">Midterms + Labs</div>
+                </div>
+                <div class="weather-emoji">🌩️</div>
+              </div>
+              <div class="energy-bar">
+                <div class="energy-fill" style="width:85%;"></div>
+              </div>
+            </div>
+
+            <div class="weather-block">
+              <div class="weather-week">
+                <div>
+                  <div class="weather-label">Week 10</div>
+                  <div style="color:#94a3b8; font-size:0.9rem;">Extreme heat period</div>
+                </div>
+                <div class="weather-emoji">🔥</div>
+              </div>
+              <div class="energy-bar">
+                <div class="energy-fill" style="width:100%;"></div>
+              </div>
+            </div>
+
+            <div class="weather-block" style="background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.2);">
+              <div class="weather-week">
+                <div>
+                  <div class="weather-label">Winter Break</div>
+                  <div style="color:#94a3b8; font-size:0.9rem;">Chill zone</div>
+                </div>
+                <div class="weather-emoji">❄️</div>
+              </div>
+              <div class="energy-bar">
+                <div class="energy-fill" style="width:5%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Study Energy Tab -->
+        <div id="study-energy" class="tab-panel">
+          <div class="feature-box">
+            <div class="feature-title">⚡ Study Energy Planner — Brain Battery</div>
+            <div class="feature-description">
+              AI predicts your peak study times based on sleep, caffeine, stress, schedule, and your body clock type.
+            </div>
+            <div class="feature-highlight">
+              Your brain operates on a battery. Know when it's charged and when it's drained.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-title">Today's Energy Map</div>
+            <div style="margin-top:1rem;">
+              <div style="margin-bottom:1.5rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                  <span style="color:#cbd5e1; font-weight:600;">6:00 AM - 8:00 AM</span>
+                  <span style="color:#a7c1d9;">⚡⚡⚡⚡ Peak Morning</span>
+                </div>
+                <div class="energy-bar">
+                  <div class="energy-fill" style="width:95%;"></div>
+                </div>
+                <div style="color:#94a3b8; font-size:0.85rem; margin-top:0.25rem;">Best for: Math, Logic, Hard Thinking</div>
+              </div>
+
+              <div style="margin-bottom:1.5rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                  <span style="color:#cbd5e1; font-weight:600;">12:00 PM - 1:00 PM</span>
+                  <span style="color:#a7c1d9;">💤 Post-Lunch Dip</span>
+                </div>
+                <div class="energy-bar">
+                  <div class="energy-fill" style="width:25%;"></div>
+                </div>
+                <div style="color:#94a3b8; font-size:0.85rem; margin-top:0.25rem;">Best for: Light reading, review, admin tasks</div>
+              </div>
+
+              <div style="margin-bottom:1.5rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                  <span style="color:#cbd5e1; font-weight:600;">3:00 PM - 5:00 PM</span>
+                  <span style="color:#a7c1d9;">⚡⚡⚡ Afternoon Surge</span>
+                </div>
+                <div class="energy-bar">
+                  <div class="energy-fill" style="width:75%;"></div>
+                </div>
+                <div style="color:#94a3b8; font-size:0.85rem; margin-top:0.25rem;">Best for: Writing, Coding, Creative Work</div>
+              </div>
+
+              <div style="margin-bottom:1.5rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                  <span style="color:#cbd5e1; font-weight:600;">9:00 PM - 11:00 PM</span>
+                  <span style="color:#a7c1d9;">⚡⚡ Night Mode (You're a Night Owl)</span>
+                </div>
+                <div class="energy-bar">
+                  <div class="energy-fill" style="width:70%;"></div>
+                </div>
+                <div style="color:#94a3b8; font-size:0.85rem; margin-top:0.25rem;">Best for: Focused deep work, problem-solving</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric-card">
+              <div class="metric-label">Body Clock Type</div>
+              <div class="metric-value" style="font-size:1.2rem;">🦉 Night Owl</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Sleep Debt</div>
+              <div class="metric-value" style="font-size:1.2rem;">-3 hrs</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Today's Battery</div>
+              <div class="metric-value" style="font-size:1.2rem;">72%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multiverse Tab -->
+        <div id="multiverse" class="tab-panel">
+          <div class="feature-box">
+            <div class="feature-title">🌌 Education Multiverse — Alternate Realities</div>
+            <div class="feature-description">
+              Choose an alternate path and see how your life changes. Graduation date, stress, GPA, job outcomes, and more.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-title">Explore Alternate Paths</div>
+            <div class="path-option">
+              <div>
+                <div class="path-title">📚 If I Switched Majors</div>
+                <div class="path-description">To Computer Science from Engineering</div>
+              </div>
+              <div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid rgba(255,255,255,0.1);">
+                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.5rem; font-size:0.85rem;">
+                  <div><span style="color:#94a3b8;">New graduation:</span> <span style="color:#fff;">2027</span></div>
+                  <div><span style="color:#94a3b8;">Stress change:</span> <span style="color:#f87171;">+15%</span></div>
+                  <div><span style="color:#94a3b8;">Proj. GPA:</span> <span style="color:#fff;">3.8</span></div>
+                  <div><span style="color:#94a3b8;">Job prospects:</span> <span style="color:#4ade80;">↑ Better</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="path-option">
+              <div>
+                <div class="path-title">✈️ If I Study Abroad</div>
+                <div class="path-description">Semester in Germany</div>
+              </div>
+              <div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid rgba(255,255,255,0.1);">
+                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.5rem; font-size:0.85rem;">
+                  <div><span style="color:#94a3b8;">New graduation:</span> <span style="color:#fff;">2026</span></div>
+                  <div><span style="color:#94a3b8;">Stress change:</span> <span style="color:#4ade80;">-20%</span></div>
+                  <div><span style="color:#94a3b8;">Extracurric time:</span> <span style="color:#f87171;">+40%</span></div>
+                  <div><span style="color:#94a3b8;">Life satisfaction:</span> <span style="color:#fbbf24;">Much better</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="path-option">
+              <div>
+                <div class="path-title">💼 If I Take a Co-Op</div>
+                <div class="path-description">4-month internship at tech company</div>
+              </div>
+              <div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid rgba(255,255,255,0.1);">
+                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.5rem; font-size:0.85rem;">
+                  <div><span style="color:#94a3b8;">New graduation:</span> <span style="color:#fff;">2027</span></div>
+                  <div><span style="color:#94a3b8;">Salary starting:</span> <span style="color:#4ade80;">+$30K</span></div>
+                  <div><span style="color:#94a3b8;">Experience gain:</span> <span style="color:#4ade80;">Excellent</span></div>
+                  <div><span style="color:#94a3b8;">Job-ready:</span> <span style="color:#4ade80;">Yes</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Assignment X-Ray Tab -->
+        <div id="assignment-xray" class="tab-panel">
+          <div class="feature-box">
+            <div class="feature-title">🔍 Assignment X-Ray — Deep Scan</div>
+            <div class="feature-description">
+              Paste any assignment description and get a detailed breakdown: estimated hours, difficulty, required skills, and risk level.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <textarea
+              class="assignment-input"
+              placeholder="Paste your assignment description here... (e.g., 'Write a 5-page essay on Shakespeare, due in 2 weeks...')"
+              rows="5"
+            ></textarea>
+            <button
+              class="education-back"
+              style="width:100%; background:linear-gradient(90deg, #8b5cf6, #06b6d4); margin-bottom:1rem;"
+              onclick="scanAssignment()"
+            >
+              X-Ray This Assignment
+            </button>
+          </div>
+
+          <div class="feature-box" id="xray-results" style="display:none;">
+            <div class="feature-title">📊 X-Ray Results</div>
+            <div class="x-ray-result">
+              <div class="result-row">
+                <span class="result-label">Estimated Time</span>
+                <span class="result-value">8-12 hours</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Difficulty Level</span>
+                <span class="result-value">🔴 Moderate-High</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Skills Required</span>
+                <span class="result-value">Research, Writing, Analysis</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Weak Areas</span>
+                <span class="result-value">Essay structure, Citation format</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Due Date Risk</span>
+                <span class="result-value">⚠️ Moderate (2 weeks)</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Recommended Resources</span>
+                <span class="result-value">Writing Center, MLA Guide, PeerReview</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-title">Sample Analysis</div>
+            <div class="x-ray-result">
+              <div class="result-row">
+                <span class="result-label">Assignment Type</span>
+                <span class="result-value">Essay</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Estimated Time</span>
+                <span class="result-value">6-10 hours</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Difficulty</span>
+                <span class="result-value">🟡 Medium</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Concepts Covered</span>
+                <span class="result-value">Literature Analysis, Critical Thinking</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Your Weak Spots</span>
+                <span class="result-value">Thesis statements, Argument flow</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Best Time to Start</span>
+                <span class="result-value">ASAP (5+ days before deadline)</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
+
+    <script>
+      // Tab switching logic
+      document.querySelectorAll('.tab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          // Remove active class from all buttons and panels
+          document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+          document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+
+          // Add active class to clicked button and corresponding panel
+          btn.classList.add('active');
+          const tabId = btn.dataset.tab;
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+
+      // Assignment X-Ray scan function
+      function scanAssignment() {
+        const textarea = document.querySelector('.assignment-input');
+        if (textarea.value.trim().length > 0) {
+          document.getElementById('xray-results').style.display = 'block';
+          // Scroll to results
+          document.getElementById('xray-results').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert('Please paste an assignment description to scan.');
+        }
+      }
+    </script>
   </body>
 </html>
