@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CONNECTU</title>
+    <title>ConnectU</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,10 +16,7 @@
       *::after {
         box-sizing: border-box;
       }
-      html,
-      body {
-        height: 100%;
-      }
+
       body {
         margin: 0;
         font-family:
@@ -29,7 +26,8 @@
           "Segoe UI",
           Roboto,
           "Helvetica Neue",
-          Arial;
+          Arial,
+          sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background:
@@ -63,15 +61,16 @@
         gap: 2rem;
         align-items: flex-start;
       }
+
       .column {
         flex: 1;
       }
 
-      /* Signup form */
       .signup {
         max-width: 420px;
         margin: 0 auto;
       }
+
       .signup h1 {
         font-size: 2rem;
         margin-bottom: 0.25rem;
@@ -79,92 +78,39 @@
         font-weight: 900;
         color: #fff;
       }
+
       .signup p {
         color: #cbd5e1;
         margin-bottom: 1rem;
       }
 
-      <<<<<<< HEAD form.field-group {
+      form .field-group {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.75rem;
-      }
-      .dob-row {
-        display: flex;
-        gap: 0.5rem;
-      }
-      .dob-row input,
-      .dob-row select {
-        flex: 1;
-      }
-      .field {
-        display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
-      }
-      label {
-        font-size: 0.78rem;
-        color: #9aa8bf;
-      }
-      input,
-      select {
-        padding: 0.6rem 0.75rem;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        background: rgba(255, 255, 255, 0.02);
-        color: #e6eef8;
-      }
-      input::placeholder {
-        color: #94a3b8;
-      }
-      ======= form.field-group {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-      }
-      .dob-row {
-        display: flex;
-        gap: 0.5rem;
-      }
-      .dob-row input,
-      .dob-row select {
-        flex: 1;
-      }
-      .field {
-        display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
-      }
-      label {
-        font-size: 0.78rem;
-        color: #9aa8bf;
-      }
-      input,
-      select {
-        padding: 0.6rem 0.75rem;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        background: rgba(255, 255, 255, 0.02);
-        color: #e6eef8;
-      }
-      input::placeholder {
-        color: #94a3b8;
       }
 
-      >>>>>>>a64bbdbfc7367980a44d4274d1cf759ad6a65f83 form.field-group {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
+      .dob-row {
+        display: flex;
+        gap: 0.5rem;
       }
+
+      .dob-row input,
+      .dob-row select {
+        flex: 1;
+      }
+
       .field {
         display: flex;
         flex-direction: column;
         gap: 0.35rem;
       }
+
       label {
         font-size: 0.78rem;
         color: #9aa8bf;
       }
+
       input,
       select {
         padding: 0.6rem 0.75rem;
@@ -173,6 +119,7 @@
         background: rgba(255, 255, 255, 0.02);
         color: #e6eef8;
       }
+
       input::placeholder {
         color: #94a3b8;
       }
@@ -180,6 +127,7 @@
       .full {
         grid-column: 1 / -1;
       }
+
       .btn-primary {
         display: inline-block;
         padding: 0.75rem 1rem;
@@ -192,11 +140,11 @@
         box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
       }
 
-      /* Main CONNECTU page (hidden initially) */
       .main-page {
         display: none;
         text-align: center;
       }
+
       .brand {
         font-size: 3rem;
         font-weight: 900;
@@ -204,6 +152,7 @@
         letter-spacing: 4px;
         margin-bottom: 1rem;
       }
+
       .subtitle {
         color: #bcd4ea;
         margin-bottom: 1.5rem;
@@ -216,6 +165,7 @@
         max-width: 900px;
         margin: 0 auto;
       }
+
       .tile {
         background: linear-gradient(
           180deg,
@@ -233,11 +183,13 @@
           transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
           opacity 0.35s ease;
       }
+
       .tile h3 {
         margin: 0;
         font-size: 1.05rem;
         font-weight: 700;
       }
+
       .tile p {
         margin: 0.4rem 0 0;
         color: #a7c1d9;
@@ -248,6 +200,7 @@
         transform: translateY(0) scale(1);
         opacity: 1;
       }
+
       .tile:active {
         transform: translateY(2px) scale(0.995);
       }
@@ -257,17 +210,21 @@
           grid-template-columns: repeat(2, 1fr);
         }
       }
+
       @media (max-width: 520px) {
         .card {
           padding: 1rem;
         }
+
         .brand {
           font-size: 2rem;
         }
+
         .tiles {
           grid-template-columns: 1fr;
         }
-        form.field-group {
+
+        form .field-group {
           grid-template-columns: 1fr;
         }
       }
@@ -275,12 +232,11 @@
   </head>
   <body>
     <div class="card">
-      <!-- Signup View -->
-      <section id="signupView" class="signup">
+      <section id="signupView" class="signup" aria-live="polite">
         <h1>CONNECTU</h1>
         <p>
-          Create an account to explore Education, Opportunities, Social Life and
-          Community.
+          Create an account to explore education, opportunities, social life,
+          and community with other students.
         </p>
 
         <form id="signupForm" novalidate>
@@ -292,6 +248,7 @@
                 name="firstName"
                 type="text"
                 placeholder="Jane"
+                autocomplete="given-name"
                 required
               />
             </div>
@@ -302,24 +259,30 @@
                 name="lastName"
                 type="text"
                 placeholder="Doe"
+                autocomplete="family-name"
                 required
               />
             </div>
 
             <div class="field full">
-              <label for="dobYear">Date of Birth</label>
+              <label for="dobDay">Date of Birth</label>
               <div class="dob-row">
                 <input
                   id="dobDay"
                   name="dobDay"
-                  type="number"
+                  type="text"
                   inputmode="numeric"
-                  min="1"
-                  max="31"
+                  maxlength="2"
                   placeholder="DD"
+                  aria-label="Day"
                   required
                 />
-                <select id="dobMonth" name="dobMonth" required>
+                <select
+                  id="dobMonth"
+                  name="dobMonth"
+                  aria-label="Month"
+                  required
+                >
                   <option value="">MM</option>
                   <option value="01">January</option>
                   <option value="02">February</option>
@@ -341,15 +304,15 @@
                   inputmode="numeric"
                   maxlength="4"
                   placeholder="YYYY"
-                  pattern="\d{4}"
+                  aria-label="Year"
                   required
                 />
               </div>
             </div>
 
             <div class="field">
-              <label for="school">School</label>
-              <select id="school" name="school" required>
+              <label for="schoolSelect">University</label>
+              <select id="schoolSelect" name="schoolSelect" required>
                 <option value="">Select your university</option>
                 <option>Algoma University</option>
                 <option>Brock University</option>
@@ -377,21 +340,25 @@
                 <option>Wilfrid Laurier University</option>
                 <option>York University</option>
               </select>
-              <input
-                id="school"
-                name="school"
-                type="text"
-                placeholder="Your school"
-                required
-              />
             </div>
             <div class="field">
+              <label for="schoolCustom">Other University</label>
+              <input
+                id="schoolCustom"
+                name="schoolCustom"
+                type="text"
+                placeholder="Your school"
+              />
+            </div>
+
+            <div class="field full">
               <label for="email">School Email</label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 placeholder="you@school.edu"
+                autocomplete="email"
                 required
               />
             </div>
@@ -403,274 +370,34 @@
         </form>
       </section>
 
-      <!-- Main View (hidden until signup) -->
-      <section id="mainView" class="main-page">
+      <section id="mainView" class="main-page" aria-hidden="true">
         <div class="brand">CONNECTU</div>
         <div class="subtitle">
-          Choose a section to explore — these will become interactive buttons.
+          Choose a section to explore — these tiles will become full features
+          inside the app.
         </div>
 
         <div class="tiles" id="tiles">
-          <div class="tile" data-key="education">
+          <div class="tile" data-key="education" data-tile>
             <h3>Education</h3>
-            <p>Resources, classes and learning paths.</p>
+            <p>Resources, classes, and learning paths.</p>
           </div>
-          <div class="tile" data-key="opportunities">
+          <div class="tile" data-key="opportunities" data-tile>
             <h3>Opportunities</h3>
-            <p>Jobs, internships and scholarships.</p>
+            <p>Jobs, internships, and scholarships.</p>
           </div>
-          <div class="tile" data-key="social">
+          <div class="tile" data-key="social" data-tile>
             <h3>Social Life</h3>
-            <p>Events, clubs and meetups.</p>
+            <p>Events, clubs, and meetups.</p>
           </div>
-          <div class="tile" data-key="community">
+          <div class="tile" data-key="community" data-tile>
             <h3>Community</h3>
-            <p>Forums, groups and support networks.</p>
+            <p>Forums, groups, and support networks.</p>
           </div>
         </div>
       </section>
     </div>
 
-    <script>
-      <<<<<<< HEAD
-            (function () {
-              const signupForm = document.getElementById("signupForm");
-              const signupView = document.getElementById("signupView");
-              const mainView = document.getElementById("mainView");
-              const tiles = Array.from(document.querySelectorAll(".tile"));
-              const dobYearInput = document.getElementById("dobYear");
-              const dobDayInput = document.getElementById("dobDay");
-              const dobMonthSelect = document.getElementById("dobMonth");
-      =======
-            // Simple form validation and view toggle
-            (function(){
-              const signupForm = document.getElementById('signupForm');
-              const signupView = document.getElementById('signupView');
-              const mainView = document.getElementById('mainView');
-              const tiles = Array.from(document.querySelectorAll('.tile'));
-              const dobYearInput = document.getElementById('dobYear');
-              const dobDayInput = document.getElementById('dobDay');
-              const dobMonthSelect = document.getElementById('dobMonth');
-      >>>>>>> a64bbdbfc7367980a44d4274d1cf759ad6a65f83
-
-              // Enforce numeric-only and max 4 characters on DOB year
-              if (dobYearInput) {
-                dobYearInput.addEventListener("input", (e) => {
-                  const digits = (e.target.value || "").replace(/[^0-9]/g, "");
-                  e.target.value = digits.slice(0, 4);
-                });
-              }
-
-              // Enforce numeric-only and 2-digit limit for day
-              if (dobDayInput) {
-                // ensure attributes
-                dobDayInput.min = 1;
-                dobDayInput.max = 31;
-                dobDayInput.addEventListener("input", (e) => {
-                  const digits = (e.target.value || "").replace(/[^0-9]/g, "");
-                  e.target.value = digits.slice(0, 2);
-                  // clamp to valid range if possible
-                  let n = Number(e.target.value);
-                  if (!n) return;
-                  if (n > 31) n = 31;
-                  if (n < 1) n = "";
-                  e.target.value = n;
-                });
-              }
-
-              // Safety: ensure month value stays within 1..12 (select already restricts this, but guard anyway)
-              if (dobMonthSelect) {
-                dobMonthSelect.addEventListener("change", (e) => {
-                  const v =
-                    (e.target.value || "").replace(/^0+/, "") || e.target.value;
-                  const n = Number(v);
-                  if (n > 12) {
-                    e.target.value = "12";
-                  }
-                  if (n < 1) {
-                    e.target.value = "";
-                  }
-                });
-              }
-      <<<<<<< HEAD
-              (function () {
-                const signupForm = document.getElementById("signupForm");
-                const signupView = document.getElementById("signupView");
-                const mainView = document.getElementById("mainView");
-                const tiles = Array.from(document.querySelectorAll(".tile"));
-      =======
-
-            (function () {
-              const signupForm = document.getElementById("signupForm");
-              const signupView = document.getElementById("signupView");
-              const mainView = document.getElementById("mainView");
-              const tiles = Array.from(document.querySelectorAll(".tile"));
-      >>>>>>> a64bbdbfc7367980a44d4274d1cf759ad6a65f83
-
-                function showMain() {
-                  signupView.style.display = "none";
-                  mainView.style.display = "block";
-                  // animate tiles sequentially
-                  tiles.forEach((el, i) => {
-                    setTimeout(() => el.classList.add("visible"), i * 130);
-                  });
-                }
-
-                signupForm.addEventListener("submit", function (e) {
-                  e.preventDefault();
-                  const fd = new FormData(signupForm);
-
-                  const firstName = fd.get("firstName")?.trim();
-                  const lastName = fd.get("lastName")?.trim();
-                  const day = (fd.get("dobDay") || "").trim();
-                  const month = (fd.get("dobMonth") || "").trim();
-                  const year = (fd.get("dobYear") || "").trim();
-                  const school = fd.get("school")?.trim();
-                  const email = fd.get("email")?.trim();
-
-                  // Validate required fields
-                  if (
-                    !firstName ||
-                    !lastName ||
-                    !day ||
-                    !month ||
-                    !year ||
-                    !school ||
-                    !email
-                  ) {
-                    alert("Please fill out all fields.");
-                    return;
-                  }
-
-                  // Ensure year is a 4-digit number
-                  if (!/^[0-9]{4}$/.test(year)) {
-                    alert(
-                      "Please enter a valid 4-digit year for Date of Birth (YYYY)."
-                    );
-                    return;
-                  }
-
-                  // Validate day/month combination
-                  const m = Number(month);
-                  const d = Number(day);
-                  const y = Number(year);
-                  if (!(m >= 1 && m <= 12)) {
-                    alert("Please select a valid month.");
-                    return;
-                  }
-                  const daysInMonth = (y, m) => new Date(y, m, 0).getDate();
-                  const maxDay = daysInMonth(y, m);
-                  if (!(d >= 1 && d <= maxDay)) {
-                    alert(
-                      `Please enter a valid day for the selected month (1-${maxDay}).`
-                    );
-                    return;
-                  }
-
-                  // For now we just store the user's first name + dob in sessionStorage and show main page
-                  const dobCombined = `${year.padStart(4, "0")}-${month}-${day.padStart(2, "0")}`;
-                  try {
-                    sessionStorage.setItem(
-                      "connectu_user",
-                      JSON.stringify({
-                        firstName,
-                        lastName,
-                        email,
-                        school,
-                        dob: dobCombined,
-                      })
-                    );
-                  } catch (err) {}
-
-                  showMain();
-                });
-      <<<<<<< HEAD
-      =======
-              }
-
-              signupForm.addEventListener("submit", function (e) {
-                e.preventDefault();
-                const fd = new FormData(signupForm);
-                const firstName = fd.get('firstName')?.trim();
-                const lastName = fd.get('lastName')?.trim();
-                const day = (fd.get('dobDay') || '').trim();
-                const month = (fd.get('dobMonth') || '').trim();
-                const year = (fd.get('dobYear') || '').trim();
-                const school = fd.get('school')?.trim();
-                const email = fd.get('email')?.trim();
-
-                // Validate required fields
-                if (!firstName || !lastName || !day || !month || !year || !school || !email) {
-                  alert('Please fill out all fields.');
-                  return;
-                }
-
-                // Ensure year is a 4-digit number
-                if (!/^[0-9]{4}$/.test(year)) {
-                  alert('Please enter a valid 4-digit year for Date of Birth (YYYY).');
-                  return;
-                }
-
-                // Validate day/month combination
-                const m = Number(month);
-                const d = Number(day);
-                const y = Number(year);
-                if (!(m >= 1 && m <= 12)) {
-                  alert('Please select a valid month.');
-                  return;
-                }
-                const daysInMonth = (y, m) => new Date(y, m, 0).getDate();
-                const maxDay = daysInMonth(y, m);
-                if (!(d >= 1 && d <= maxDay)) {
-                  alert(`Please enter a valid day for the selected month (1-${maxDay}).`);
-                  return;
-                }
-
-                // For now we just store the user's first name + dob in sessionStorage and show main page
-                const dobCombined = `${year.padStart(4,'0')}-${month}-${day.padStart(2,'0')}`;
-                try { sessionStorage.setItem('connectu_user', JSON.stringify({ firstName, lastName, email, school, dob: dobCombined })); } catch (err) {}
-      >>>>>>> a64bbdbfc7367980a44d4274d1cf759ad6a65f83
-                const firstName = fd.get("firstName")?.trim();
-                const lastName = fd.get("lastName")?.trim();
-                const dob = fd.get("dob");
-                const school = fd.get("school")?.trim();
-                const email = fd.get("email")?.trim();
-
-                if (!firstName || !lastName || !dob || !school || !email) {
-                  alert("Please fill out all fields.");
-                  return;
-                }
-
-                // For now we just store the user's first name in sessionStorage and show main page
-                try {
-                  sessionStorage.setItem(
-                    "connectu_user",
-                    JSON.stringify({ firstName, lastName, email, school, dob })
-                  );
-                } catch (err) {}
-
-                showMain();
-              });
-
-              // Prepare tiles for future interactions (currently log)
-              tiles.forEach((tile) => {
-                tile.addEventListener("click", () => {
-                  const key = tile.dataset.key;
-                  console.log("Tile clicked:", key);
-                  // temporary visual pulse
-                  tile.animate(
-                    [{ transform: "scale(1.02)" }, { transform: "scale(1)" }],
-                    { duration: 220 }
-                  );
-                });
-              });
-
-              // If user already signed up earlier in session, show main directly
-              try {
-                const u = sessionStorage.getItem("connectu_user");
-                if (u) showMain();
-              } catch (e) {}
-            })();
-    </script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
