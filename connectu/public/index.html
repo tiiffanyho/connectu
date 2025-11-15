@@ -84,6 +84,7 @@
         margin-bottom: 1rem;
       }
 
+<<<<<<< HEAD
       form.field-group {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -117,6 +118,16 @@
       input::placeholder {
         color: #94a3b8;
       }
+=======
+      form.field-group { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+      .dob-row { display:flex; gap:.5rem; }
+      .dob-row input, .dob-row select { flex:1; }
+      .field { display:flex; flex-direction:column; gap:.35rem; }
+      label { font-size:0.78rem; color:#9aa8bf; }
+      input, select { padding:.6rem .75rem; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color: #e6eef8; }
+      input::placeholder { color: #94a3b8; }
+      
+>>>>>>> a64bbdbfc7367980a44d4274d1cf759ad6a65f83
       form.field-group {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -398,6 +409,7 @@
     </div>
 
     <script>
+<<<<<<< HEAD
       (function () {
         const signupForm = document.getElementById("signupForm");
         const signupView = document.getElementById("signupView");
@@ -406,6 +418,17 @@
         const dobYearInput = document.getElementById("dobYear");
         const dobDayInput = document.getElementById("dobDay");
         const dobMonthSelect = document.getElementById("dobMonth");
+=======
+      // Simple form validation and view toggle
+      (function(){
+        const signupForm = document.getElementById('signupForm');
+        const signupView = document.getElementById('signupView');
+        const mainView = document.getElementById('mainView');
+        const tiles = Array.from(document.querySelectorAll('.tile'));
+        const dobYearInput = document.getElementById('dobYear');
+        const dobDayInput = document.getElementById('dobDay');
+        const dobMonthSelect = document.getElementById('dobMonth');
+>>>>>>> a64bbdbfc7367980a44d4274d1cf759ad6a65f83
 
         // Enforce numeric-only and max 4 characters on DOB year
         if (dobYearInput) {
@@ -446,11 +469,20 @@
             }
           });
         }
+<<<<<<< HEAD
         (function () {
           const signupForm = document.getElementById("signupForm");
           const signupView = document.getElementById("signupView");
           const mainView = document.getElementById("mainView");
           const tiles = Array.from(document.querySelectorAll(".tile"));
+=======
+
+      (function () {
+        const signupForm = document.getElementById("signupForm");
+        const signupView = document.getElementById("signupView");
+        const mainView = document.getElementById("mainView");
+        const tiles = Array.from(document.querySelectorAll(".tile"));
+>>>>>>> a64bbdbfc7367980a44d4274d1cf759ad6a65f83
 
           function showMain() {
             signupView.style.display = "none";
@@ -529,6 +561,52 @@
 
             showMain();
           });
+<<<<<<< HEAD
+=======
+        }
+
+        signupForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const fd = new FormData(signupForm);
+          const firstName = fd.get('firstName')?.trim();
+          const lastName = fd.get('lastName')?.trim();
+          const day = (fd.get('dobDay') || '').trim();
+          const month = (fd.get('dobMonth') || '').trim();
+          const year = (fd.get('dobYear') || '').trim();
+          const school = fd.get('school')?.trim();
+          const email = fd.get('email')?.trim();
+
+          // Validate required fields
+          if (!firstName || !lastName || !day || !month || !year || !school || !email) {
+            alert('Please fill out all fields.');
+            return;
+          }
+
+          // Ensure year is a 4-digit number
+          if (!/^[0-9]{4}$/.test(year)) {
+            alert('Please enter a valid 4-digit year for Date of Birth (YYYY).');
+            return;
+          }
+
+          // Validate day/month combination
+          const m = Number(month);
+          const d = Number(day);
+          const y = Number(year);
+          if (!(m >= 1 && m <= 12)) {
+            alert('Please select a valid month.');
+            return;
+          }
+          const daysInMonth = (y, m) => new Date(y, m, 0).getDate();
+          const maxDay = daysInMonth(y, m);
+          if (!(d >= 1 && d <= maxDay)) {
+            alert(`Please enter a valid day for the selected month (1-${maxDay}).`);
+            return;
+          }
+
+          // For now we just store the user's first name + dob in sessionStorage and show main page
+          const dobCombined = `${year.padStart(4,'0')}-${month}-${day.padStart(2,'0')}`;
+          try { sessionStorage.setItem('connectu_user', JSON.stringify({ firstName, lastName, email, school, dob: dobCombined })); } catch (err) {}
+>>>>>>> a64bbdbfc7367980a44d4274d1cf759ad6a65f83
           const firstName = fd.get("firstName")?.trim();
           const lastName = fd.get("lastName")?.trim();
           const dob = fd.get("dob");
