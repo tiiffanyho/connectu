@@ -29,12 +29,24 @@ const universityList = [
 const renderUniversityOptions = () =>
   ['<option value="">Select your university</option>', ...universityList.map((school) => `<option>${school}</option>`)].join('');
 
-const renderTile = (key, title, copy) => `
-  <div class="tile" data-key="${key}" data-tile>
-    <h3>${title}</h3>
-    <p>${copy}</p>
-  </div>
-`;
+const renderTile = (key, title, copy) => {
+  // Make the 'education' tile a real button so it can open a detailed education page
+  if (key === 'education') {
+    return `
+      <button id="educationBtn" class="tile" data-key="${key}" data-tile aria-label="Open Education">
+        <h3>${title}</h3>
+        <p>${copy}</p>
+      </button>
+    `;
+  }
+
+  return `
+    <div class="tile" data-key="${key}" data-tile>
+      <h3>${title}</h3>
+      <p>${copy}</p>
+    </div>
+  `;
+};
 
 const renderTiles = () =>
   [
