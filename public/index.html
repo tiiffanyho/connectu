@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -17,354 +17,352 @@
         box-sizing: border-box;
       }
 
-      :root {
-        color-scheme: light dark;
-      }
-
       body {
         margin: 0;
+        font-family:
+          'Inter',
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          Roboto,
+          'Helvetica Neue',
+          Arial,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background:
+          radial-gradient(1200px 600px at 10% 10%, #7b61ff22, transparent),
+          radial-gradient(900px 500px at 90% 90%, #34d39922, transparent),
+          linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+        color: #e6eef8;
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 4rem 1rem 1rem;
-        font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-        background-color: #ffffff;
-        color: #111827;
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-
-      @media (max-width: 600px) {
-        body {
-          padding-top: 3rem;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          background-color: #020617;
-          color: #f8fafc;
-        }
-      }
-
-      main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4rem;
-        width: min(500px, 100%);
-      }
-
-      header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2.25rem;
-        width: 100%;
-      }
-
-      .logo-wrapper {
-        width: min(500px, 100%);
-        padding: 1rem;
-      }
-
-      .logo-wrapper img {
-        display: block;
-        width: 100%;
-        height: auto;
-      }
-
-      .logo-dark {
-        display: none;
-      }
-
-      nav {
-        width: min(300px, 100%);
-        border-radius: 1.5rem;
-        border: 1px solid #e5e7eb;
-        padding: 1.5rem;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(6px);
-      }
-
-      nav p {
-        margin: 0 0 1.5rem;
-        text-align: center;
-        font-size: 1rem;
-        line-height: 1.5rem;
-        color: #374151;
-      }
-
-      ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      a.link {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.75rem;
-        border-radius: 0.75rem;
-        text-decoration: none;
-        color: #1d4ed8;
-        font-weight: 500;
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-
-      a.link:hover,
-      a.link:focus {
-        background-color: rgba(59, 130, 246, 0.08);
-        text-decoration: underline;
-        outline: none;
-      }
-
-      svg.icon {
-        width: 24px;
-        height: 20px;
-        stroke: #4b5563;
-        stroke-width: 1.5;
-        fill: none;
-        flex-shrink: 0;
-        transition: stroke 0.3s ease;
-      }
-
-      a.link:hover svg.icon,
-      a.link:focus svg.icon {
-        stroke: currentColor;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        nav {
-          border-color: #374151;
-          background: rgba(2, 6, 23, 0.7);
-        }
-
-        nav p {
-          color: #e5e7eb;
-        }
-
-        a.link {
-          color: #60a5fa;
-        }
-
-        svg.icon {
-          stroke: #d1d5db;
-        }
-
-        .logo-light {
-          display: none;
-        }
-
-        .logo-dark {
-          display: block;
-        }
-      }
-
-      @media (prefers-color-scheme: light) {
-        .logo-dark {
-          display: none;
-        }
-
-        .logo-light {
-          display: block;
-        }
-      }
-
-      .experience-card {
-        width: min(620px, 100%);
-        border-radius: 1.75rem;
-        border: 1px solid rgba(15, 23, 42, 0.12);
         padding: 2rem;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 960px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.02)
+        );
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 40px rgba(2, 6, 23, 0.6);
+        backdrop-filter: blur(6px) saturate(120%);
+      }
+
+      .container-row {
         display: flex;
-        flex-direction: column;
-        gap: 1.75rem;
-        background: rgba(248, 250, 252, 0.9);
-        box-shadow: 0 40px 120px rgba(15, 23, 42, 0.1);
+        gap: 2rem;
+        align-items: flex-start;
       }
 
-      .experience-copy h2 {
-        margin: 0 0 0.5rem;
-        font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+      .column {
+        flex: 1;
       }
 
-      .experience-copy p {
-        margin: 0;
-        color: #4b5563;
-        line-height: 1.6;
+      .signup {
+        max-width: 420px;
+        margin: 0 auto;
       }
 
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
-      }
-
-      .stat {
-        border-radius: 1rem;
-        padding: 1rem;
-        background: white;
-        border: 1px solid rgba(15, 23, 42, 0.08);
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-      }
-
-      .stat-value {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #111827;
-      }
-
-      .stat-label {
-        font-size: 0.9rem;
-        color: #6b7280;
-      }
-
-      .story-panel {
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
-        border-radius: 1rem;
-        border: 1px dashed rgba(59, 130, 246, 0.5);
-        padding: 1rem 1.25rem 1.25rem;
-        background: rgba(59, 130, 246, 0.04);
-      }
-
-      .story-button {
-        align-self: flex-start;
-        border: none;
-        border-radius: 999px;
-        padding: 0.65rem 1.5rem;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+      .signup h1 {
+        font-size: 2rem;
+        margin-bottom: 0.25rem;
+        letter-spacing: 2px;
+        font-weight: 900;
         color: #fff;
-        font-weight: 600;
+      }
+
+      .signup p {
+        color: #cbd5e1;
+        margin-bottom: 1rem;
+      }
+
+      form .field-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+
+      .dob-row {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .dob-row input,
+      .dob-row select {
+        flex: 1;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      label {
+        font-size: 0.78rem;
+        color: #9aa8bf;
+      }
+
+      input,
+      select {
+        padding: 0.6rem 0.75rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+        color: #e6eef8;
+      }
+
+      input::placeholder {
+        color: #94a3b8;
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        font-weight: 700;
+        border: none;
         cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
       }
 
-      .story-button:hover,
-      .story-button:focus {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35);
-        outline: none;
+      .main-page {
+        display: none;
+        text-align: center;
       }
 
-      .story-text {
+      .brand {
+        font-size: 3rem;
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: 4px;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        color: #bcd4ea;
+        margin-bottom: 1.5rem;
+      }
+
+      .tiles {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .tile {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.015)
+        );
+        padding: 1.25rem;
+        border-radius: 12px;
+        color: #fff;
+        cursor: pointer;
+        transform: translateY(8px) scale(0.98);
+        opacity: 0;
+        box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+        transition:
+          transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+          opacity 0.35s ease;
+      }
+
+      .tile h3 {
         margin: 0;
-        font-style: italic;
-        color: #1f2937;
+        font-size: 1.05rem;
+        font-weight: 700;
       }
 
-      .story-step {
-        font-size: 0.85rem;
-        color: #475569;
+      .tile p {
+        margin: 0.4rem 0 0;
+        color: #a7c1d9;
+        font-size: 0.88rem;
       }
 
-      @media (prefers-color-scheme: dark) {
-        .experience-card {
-          border-color: rgba(248, 250, 252, 0.15);
-          background: rgba(2, 6, 23, 0.85);
-          box-shadow: 0 40px 120px rgba(2, 6, 23, 0.65);
+      .tile.visible {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+
+      .tile:active {
+        transform: translateY(2px) scale(0.995);
+      }
+
+      @media (max-width: 900px) {
+        .tiles {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 520px) {
+        .card {
+          padding: 1rem;
         }
 
-        .experience-copy p,
-        .story-text {
-          color: #cbd5f5;
+        .brand {
+          font-size: 2rem;
         }
 
-        .stat {
-          background: rgba(15, 23, 42, 0.7);
-          border-color: rgba(248, 250, 252, 0.08);
+        .tiles {
+          grid-template-columns: 1fr;
         }
 
-        .stat-value {
-          color: #f8fafc;
-        }
-
-        .stat-label,
-        .story-step {
-          color: #a5b4fc;
-        }
-
-        .story-panel {
-          border-color: rgba(96, 165, 250, 0.5);
-          background: rgba(30, 64, 175, 0.25);
+        form .field-group {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <main>
-      <header>
-        <div class="logo-wrapper">
-          <img src="../app/welcome/logo-light.svg" alt="ConnectU" class="logo-light" />
-          <img src="../app/welcome/logo-dark.svg" alt="ConnectU" class="logo-dark" />
-        </div>
-      </header>
-      <nav>
-        <p>What's next?</p>
-        <ul>
-          <li>
-            <a class="link" href="https://reactrouter.com/docs" target="_blank" rel="noreferrer">
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path
-                  d="M10 10.075v-.075m7.469 7.469c-1.58 1.579-6.205-.484-10.33-4.609C3.014 8.735.951 4.111 2.531 2.531 4.11.951 8.735 3.015 12.86 7.14c4.125 4.125 6.188 8.749 4.609 10.329zm-14.937 0C.952 15.889 3.015 11.265 7.14 7.14 11.265 3.015 15.889.951 17.469 2.53c1.58 1.58-.484 6.205-4.609 10.33C8.735 16.985 4.111 19.049 2.531 17.469z"
-                  stroke-linecap="round"
-                ></path>
-              </svg>
-              React Router Docs
-            </a>
-          </li>
-          <li>
-            <a class="link" href="https://rmx.as/discord" target="_blank" rel="noreferrer">
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 20">
-                <path
-                  d="M15.069 1.26l-.521-.086-.256.462c-.116.208-.237.447-.349.683a29.12 29.12 0 00-3.898.039c-.116-.238-.239-.47-.37-.696L9.414 1.176 8.903 1.26C7.335 1.518 5.807 1.994 4.377 2.669l-.188.089-.115.172C1.239 7.164.463 11.305.838 15.392l.031.334.27.2a17.51 17.51 0 005.586 2.793l.503.15.313-.421a12.43 12.43 0 00.705-1.952v-.004a17.52 17.52 0 006.571-.004c.344.688.747 1.332 1.207 1.952l.316.426.507-.156a17.51 17.51 0 005.544-2.794l.267-.2.031-.332c.435-4.74-.794-8.86-3.257-12.607l-.119-.175-.193-.087A18.15 18.15 0 0015.069 1.26zm1.539 9.516c-.014.865-.586 1.368-1.129 1.368-.548 0-1.128-.527-1.128-1.356 0-.84.588-1.377 1.128-1.377.569 0 1.143.526 1.13 1.363zM8.494 12.144c-.549 0-1.129-.527-1.129-1.356 0-.839.588-1.376 1.129-1.376.566 0 1.145.525 1.148 1.37-.017.842-.587 1.362-1.148 1.362z"
-                ></path>
-              </svg>
-              Join Discord
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <section class="experience-card" aria-live="polite">
-        <div class="experience-copy">
-          <h2>See what ConnectU offers</h2>
-          <p>
-            Connect with mentors, discover student-led events, and build the network you'll
-            lean on throughout campus life. These live stats simulate the energy of the platform.
-          </p>
-        </div>
-        <div class="stats-grid">
-          <article class="stat">
-            <span class="stat-value" data-count-target="3400">0</span>
-            <span class="stat-label">Active students</span>
-          </article>
-          <article class="stat">
-            <span class="stat-value" data-count-target="128">0</span>
-            <span class="stat-label">Mentor matches weekly</span>
-          </article>
-          <article class="stat">
-            <span class="stat-value" data-count-target="42">0</span>
-            <span class="stat-label">Campus events shared</span>
-          </article>
-        </div>
-        <div class="story-panel">
-          <button type="button" class="story-button" data-story-button>
-            Show student story
-          </button>
-          <p class="story-text" data-story>
-            Tap the button to hear how other students rely on ConnectU.
-          </p>
-          <span class="story-step" data-story-step>Story 0 / 3</span>
+    <div class="card">
+      <section id="signupView" class="signup" aria-live="polite">
+        <h1>CONNECTU</h1>
+        <p>
+          Create an account to explore education, opportunities, social life, and community with other students.
+        </p>
+
+        <form id="signupForm" novalidate>
+          <div class="field-group">
+            <div class="field">
+              <label for="firstName">First Name</label>
+              <input id="firstName" name="firstName" type="text" placeholder="Jane" autocomplete="given-name" required />
+            </div>
+            <div class="field">
+              <label for="lastName">Last Name</label>
+              <input id="lastName" name="lastName" type="text" placeholder="Doe" autocomplete="family-name" required />
+            </div>
+
+            <div class="field full">
+              <label for="dobDay">Date of Birth</label>
+              <div class="dob-row">
+                <input
+                  id="dobDay"
+                  name="dobDay"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="2"
+                  placeholder="DD"
+                  aria-label="Day"
+                  required
+                />
+                <select id="dobMonth" name="dobMonth" aria-label="Month" required>
+                  <option value="">MM</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <input
+                  id="dobYear"
+                  name="dobYear"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="4"
+                  placeholder="YYYY"
+                  aria-label="Year"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="schoolSelect">University</label>
+              <select id="schoolSelect" name="schoolSelect" required>
+                <option value="">Select your university</option>
+                <option>Algoma University</option>
+                <option>Brock University</option>
+                <option>Carleton University</option>
+                <option>King's University College (Western)</option>
+                <option>Lakehead University</option>
+                <option>Laurentian University</option>
+                <option>McMaster University</option>
+                <option>Nipissing University</option>
+                <option>OCAD University</option>
+                <option>Ontario Tech University</option>
+                <option>Queen's University</option>
+                <option>Royal Military College of Canada</option>
+                <option>Toronto Metropolitan University</option>
+                <option>Trent University</option>
+                <option>Université de Hearst</option>
+                <option>Université de Sudbury</option>
+                <option>University of Guelph</option>
+                <option>University of Ottawa</option>
+                <option>University of Sudbury</option>
+                <option>University of Toronto</option>
+                <option>University of Waterloo</option>
+                <option>University of Windsor</option>
+                <option>Western University</option>
+                <option>Wilfrid Laurier University</option>
+                <option>York University</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="schoolCustom">Other University</label>
+              <input id="schoolCustom" name="schoolCustom" type="text" placeholder="Your school" />
+            </div>
+
+            <div class="field full">
+              <label for="email">School Email</label>
+              <input id="email" name="email" type="email" placeholder="you@school.edu" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div style="margin-top: 1rem; text-align: center">
+            <button type="submit" class="btn-primary">Sign Up</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="mainView" class="main-page" aria-hidden="true">
+        <div class="brand">CONNECTU</div>
+        <div class="subtitle">Choose a section to explore — these tiles will become full features inside the app.</div>
+
+        <div class="tiles" id="tiles">
+          <div class="tile" data-key="education" data-tile>
+            <h3>Education</h3>
+            <p>Resources, classes, and learning paths.</p>
+          </div>
+          <div class="tile" data-key="opportunities" data-tile>
+            <h3>Opportunities</h3>
+            <p>Jobs, internships, and scholarships.</p>
+          </div>
+          <div class="tile" data-key="social" data-tile>
+            <h3>Social Life</h3>
+            <p>Events, clubs, and meetups.</p>
+          </div>
+          <div class="tile" data-key="community" data-tile>
+            <h3>Community</h3>
+            <p>Forums, groups, and support networks.</p>
+          </div>
         </div>
       </section>
-    </main>
+    </div>
+
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>

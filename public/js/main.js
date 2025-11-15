@@ -1,5 +1,5 @@
-import { initCounters } from './counters.js';
-import { initStories } from './stories.js';
+import { initSignupFlow } from './signup.js';
 
-initCounters();
-initStories();
+document.addEventListener('DOMContentLoaded', () => {
+  initSignupFlow();
+});
