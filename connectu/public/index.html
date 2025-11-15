@@ -84,7 +84,6 @@
         margin-bottom: 1rem;
       }
 
-<<<<<<< HEAD
       form.field-group { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
       .dob-row { display:flex; gap:.5rem; }
       .dob-row input, .dob-row select { flex:1; }
@@ -92,7 +91,7 @@
       label { font-size:0.78rem; color:#9aa8bf; }
       input, select { padding:.6rem .75rem; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color: #e6eef8; }
       input::placeholder { color: #94a3b8; }
-=======
+      
       form.field-group {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -118,7 +117,6 @@
       input::placeholder {
         color: #94a3b8;
       }
->>>>>>> 97dd615f4cc8c1e106b4b666018ec6e9b00f53bf
 
       .full {
         grid-column: 1 / -1;
@@ -274,7 +272,6 @@
 
             <div class="field">
               <label for="school">School</label>
-<<<<<<< HEAD
               <select id="school" name="school" required>
                 <option value="">Select your university</option>
                 <option>Algoma University</option>
@@ -303,7 +300,6 @@
                 <option>Wilfrid Laurier University</option>
                 <option>York University</option>
               </select>
-=======
               <input
                 id="school"
                 name="school"
@@ -311,7 +307,6 @@
                 placeholder="Your school"
                 required
               />
->>>>>>> 97dd615f4cc8c1e106b4b666018ec6e9b00f53bf
             </div>
             <div class="field">
               <label for="email">School Email</label>
@@ -361,7 +356,6 @@
 
     <script>
       // Simple form validation and view toggle
-<<<<<<< HEAD
       (function(){
         const signupForm = document.getElementById('signupForm');
         const signupView = document.getElementById('signupView');
@@ -409,13 +403,12 @@
             }
           });
         }
-=======
+
       (function () {
         const signupForm = document.getElementById("signupForm");
         const signupView = document.getElementById("signupView");
         const mainView = document.getElementById("mainView");
         const tiles = Array.from(document.querySelectorAll(".tile"));
->>>>>>> 97dd615f4cc8c1e106b4b666018ec6e9b00f53bf
 
         function showMain() {
           signupView.style.display = "none";
@@ -429,7 +422,6 @@
         signupForm.addEventListener("submit", function (e) {
           e.preventDefault();
           const fd = new FormData(signupForm);
-<<<<<<< HEAD
           const firstName = fd.get('firstName')?.trim();
           const lastName = fd.get('lastName')?.trim();
           const day = (fd.get('dobDay') || '').trim();
@@ -468,7 +460,6 @@
           // For now we just store the user's first name + dob in sessionStorage and show main page
           const dobCombined = `${year.padStart(4,'0')}-${month}-${day.padStart(2,'0')}`;
           try { sessionStorage.setItem('connectu_user', JSON.stringify({ firstName, lastName, email, school, dob: dobCombined })); } catch (err) {}
-=======
           const firstName = fd.get("firstName")?.trim();
           const lastName = fd.get("lastName")?.trim();
           const dob = fd.get("dob");
@@ -487,7 +478,6 @@
               JSON.stringify({ firstName, lastName, email, school, dob })
             );
           } catch (err) {}
->>>>>>> 97dd615f4cc8c1e106b4b666018ec6e9b00f53bf
 
           showMain();
         });
