@@ -161,6 +161,21 @@ input::placeholder {
     opacity 0.35s ease;
 }
 
+/* Ensure tile buttons look the same and remove native button chrome */
+button.tile {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  padding: 1.25rem;
+  text-align: left;
+}
+
+button.tile:focus {
+  outline: 3px solid rgba(99,102,241,0.18);
+  outline-offset: 4px;
+}
+
 .tile h3 {
   margin: 0;
   font-size: 1.05rem;

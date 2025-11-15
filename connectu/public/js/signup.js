@@ -22,6 +22,33 @@ const animateTiles = (tiles) => {
 
 const addTileInteractions = (tiles) => {
   tiles.forEach((tile) => {
+    const key = tile.dataset.key;
+
+    // If the tile is the education tile, navigate to a dedicated page
+    if (key === 'education') {
+      tile.addEventListener('click', () => {
+        // play a quick feedback animation, then navigate
+        if (!prefersReducedMotion) {
+          tile.animate(
+            [
+              { transform: 'scale(1)', opacity: 1 },
+              { transform: 'scale(1.03)', opacity: 1 },
+              { transform: 'scale(1)', opacity: 1 },
+            ],
+            { duration: 220, easing: 'ease-out' }
+          );
+          // small timeout so the animation is felt before navigation
+          window.setTimeout(() => {
+            window.location.href = './education.html';
+          }, 180);
+        } else {
+          window.location.href = './education.html';
+        }
+      });
+      return;
+    }
+
+    // Default interaction for other tiles: subtle click animation
     tile.addEventListener('click', () => {
       tile.animate(
         [
