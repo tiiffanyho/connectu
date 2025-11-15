@@ -1,3 +1,5 @@
+import { renderLogoBadge } from './logo.js';
+
 const universityList = [
   'Algoma University',
   'Brock University',
@@ -136,6 +138,7 @@ const renderMainSection = () => `
 
 export const renderConnectUApp = () => `
   <div class="card">
+    ${renderLogoBadge()}
     ${renderSignupSection()}
     ${renderMainSection()}
   </div>
