@@ -11,16 +11,31 @@
       rel="stylesheet"
     />
     <style>
-      *, *::before, *::after { box-sizing: border-box; }
-      html, body { height: 100%; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
       body {
         margin: 0;
-        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        background: radial-gradient(1200px 600px at 10% 10%, #7b61ff22, transparent),
-                    radial-gradient(900px 500px at 90% 90%, #34d39922, transparent),
-                    linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+        background:
+          radial-gradient(1200px 600px at 10% 10%, #7b61ff22, transparent),
+          radial-gradient(900px 500px at 90% 90%, #34d39922, transparent),
+          linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
         color: #e6eef8;
         min-height: 100vh;
         display: flex;
@@ -32,21 +47,44 @@
       .card {
         width: 100%;
         max-width: 960px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.02)
+        );
         border-radius: 16px;
         padding: 2rem;
-        box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+        box-shadow: 0 10px 40px rgba(2, 6, 23, 0.6);
         backdrop-filter: blur(6px) saturate(120%);
       }
 
-      .container-row { display:flex; gap:2rem; align-items:flex-start; }
-      .column { flex:1; }
+      .container-row {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+      .column {
+        flex: 1;
+      }
 
       /* Signup form */
-      .signup { max-width: 420px; margin: 0 auto; }
-      .signup h1 { font-size: 2rem; margin-bottom: 0.25rem; letter-spacing: 2px; font-weight:900; color:#fff; }
-      .signup p { color:#cbd5e1; margin-bottom:1rem; }
+      .signup {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .signup h1 {
+        font-size: 2rem;
+        margin-bottom: 0.25rem;
+        letter-spacing: 2px;
+        font-weight: 900;
+        color: #fff;
+      }
+      .signup p {
+        color: #cbd5e1;
+        margin-bottom: 1rem;
+      }
 
+<<<<<<< HEAD
       form.field-group { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
       .dob-row { display:flex; gap:.5rem; }
       .dob-row input, .dob-row select { flex:1; }
@@ -54,31 +92,127 @@
       label { font-size:0.78rem; color:#9aa8bf; }
       input, select { padding:.6rem .75rem; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color: #e6eef8; }
       input::placeholder { color: #94a3b8; }
+=======
+      form.field-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      label {
+        font-size: 0.78rem;
+        color: #9aa8bf;
+      }
+      input,
+      select {
+        padding: 0.6rem 0.75rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+        color: #e6eef8;
+      }
+      input::placeholder {
+        color: #94a3b8;
+      }
+>>>>>>> 97dd615f4cc8c1e106b4b666018ec6e9b00f53bf
 
-      .full { grid-column: 1 / -1; }
-      .btn-primary { display:inline-block; padding:.75rem 1rem; border-radius:10px; background: linear-gradient(90deg,#8b5cf6,#06b6d4); color:#021124; font-weight:700; border:none; cursor:pointer; box-shadow: 0 8px 24px rgba(99,102,241,0.2); }
+      .full {
+        grid-column: 1 / -1;
+      }
+      .btn-primary {
+        display: inline-block;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+      }
 
       /* Main CONNECTU page (hidden initially) */
-      .main-page { display:none; text-align:center; }
-      .brand { font-size:3rem; font-weight:900; color: #fff; letter-spacing:4px; margin-bottom:1rem; }
-      .subtitle { color:#bcd4ea; margin-bottom:1.5rem; }
+      .main-page {
+        display: none;
+        text-align: center;
+      }
+      .brand {
+        font-size: 3rem;
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: 4px;
+        margin-bottom: 1rem;
+      }
+      .subtitle {
+        color: #bcd4ea;
+        margin-bottom: 1.5rem;
+      }
 
-      .tiles { display:grid; grid-template-columns: repeat(4, 1fr); gap:1rem; max-width:900px; margin:0 auto; }
-      .tile { background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)); padding:1.25rem; border-radius:12px; color:#fff; cursor:pointer; transform: translateY(8px) scale(.98); opacity:0; box-shadow: 0 6px 20px rgba(2,6,23,0.6); transition: transform .35s cubic-bezier(.2,.9,.3,1), opacity .35s ease; }
-      .tile h3 { margin:0; font-size:1.05rem; font-weight:700; }
-      .tile p { margin:.4rem 0 0; color:#a7c1d9; font-size:0.88rem; }
+      .tiles {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .tile {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.015)
+        );
+        padding: 1.25rem;
+        border-radius: 12px;
+        color: #fff;
+        cursor: pointer;
+        transform: translateY(8px) scale(0.98);
+        opacity: 0;
+        box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+        transition:
+          transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+          opacity 0.35s ease;
+      }
+      .tile h3 {
+        margin: 0;
+        font-size: 1.05rem;
+        font-weight: 700;
+      }
+      .tile p {
+        margin: 0.4rem 0 0;
+        color: #a7c1d9;
+        font-size: 0.88rem;
+      }
 
-      .tile.visible { transform: translateY(0) scale(1); opacity:1; }
-      .tile:active { transform: translateY(2px) scale(.995); }
+      .tile.visible {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      .tile:active {
+        transform: translateY(2px) scale(0.995);
+      }
 
       @media (max-width: 900px) {
-        .tiles { grid-template-columns: repeat(2,1fr); }
+        .tiles {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
       @media (max-width: 520px) {
-        .card { padding:1rem; }
-        .brand { font-size:2rem; }
-        .tiles { grid-template-columns: 1fr; }
-        form.field-group { grid-template-columns: 1fr; }
+        .card {
+          padding: 1rem;
+        }
+        .brand {
+          font-size: 2rem;
+        }
+        .tiles {
+          grid-template-columns: 1fr;
+        }
+        form.field-group {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -87,17 +221,32 @@
       <!-- Signup View -->
       <section id="signupView" class="signup">
         <h1>CONNECTU</h1>
-        <p>Create an account to explore Education, Opportunities, Social Life and Community.</p>
+        <p>
+          Create an account to explore Education, Opportunities, Social Life and
+          Community.
+        </p>
 
         <form id="signupForm" novalidate>
           <div class="field-group">
             <div class="field">
               <label for="firstName">First Name</label>
-              <input id="firstName" name="firstName" type="text" placeholder="Jane" required />
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                placeholder="Jane"
+                required
+              />
             </div>
             <div class="field">
               <label for="lastName">Last Name</label>
-              <input id="lastName" name="lastName" type="text" placeholder="Doe" required />
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                placeholder="Doe"
+                required
+              />
             </div>
 
             <div class="field full">
@@ -125,6 +274,7 @@
 
             <div class="field">
               <label for="school">School</label>
+<<<<<<< HEAD
               <select id="school" name="school" required>
                 <option value="">Select your university</option>
                 <option>Algoma University</option>
@@ -153,14 +303,29 @@
                 <option>Wilfrid Laurier University</option>
                 <option>York University</option>
               </select>
+=======
+              <input
+                id="school"
+                name="school"
+                type="text"
+                placeholder="Your school"
+                required
+              />
+>>>>>>> 97dd615f4cc8c1e106b4b666018ec6e9b00f53bf
             </div>
             <div class="field">
               <label for="email">School Email</label>
-              <input id="email" name="email" type="email" placeholder="you@school.edu" required />
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@school.edu"
+                required
+              />
             </div>
           </div>
 
-          <div style="margin-top:1rem; text-align:center;">
+          <div style="margin-top: 1rem; text-align: center">
             <button type="submit" class="btn-primary">Sign Up</button>
           </div>
         </form>
@@ -169,7 +334,9 @@
       <!-- Main View (hidden until signup) -->
       <section id="mainView" class="main-page">
         <div class="brand">CONNECTU</div>
-        <div class="subtitle">Choose a section to explore — these will become interactive buttons.</div>
+        <div class="subtitle">
+          Choose a section to explore — these will become interactive buttons.
+        </div>
 
         <div class="tiles" id="tiles">
           <div class="tile" data-key="education">
@@ -194,6 +361,7 @@
 
     <script>
       // Simple form validation and view toggle
+<<<<<<< HEAD
       (function(){
         const signupForm = document.getElementById('signupForm');
         const signupView = document.getElementById('signupView');
@@ -241,19 +409,27 @@
             }
           });
         }
+=======
+      (function () {
+        const signupForm = document.getElementById("signupForm");
+        const signupView = document.getElementById("signupView");
+        const mainView = document.getElementById("mainView");
+        const tiles = Array.from(document.querySelectorAll(".tile"));
+>>>>>>> 97dd615f4cc8c1e106b4b666018ec6e9b00f53bf
 
         function showMain() {
-          signupView.style.display = 'none';
-          mainView.style.display = 'block';
+          signupView.style.display = "none";
+          mainView.style.display = "block";
           // animate tiles sequentially
           tiles.forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 130);
+            setTimeout(() => el.classList.add("visible"), i * 130);
           });
         }
 
-        signupForm.addEventListener('submit', function(e){
+        signupForm.addEventListener("submit", function (e) {
           e.preventDefault();
           const fd = new FormData(signupForm);
+<<<<<<< HEAD
           const firstName = fd.get('firstName')?.trim();
           const lastName = fd.get('lastName')?.trim();
           const day = (fd.get('dobDay') || '').trim();
@@ -292,23 +468,46 @@
           // For now we just store the user's first name + dob in sessionStorage and show main page
           const dobCombined = `${year.padStart(4,'0')}-${month}-${day.padStart(2,'0')}`;
           try { sessionStorage.setItem('connectu_user', JSON.stringify({ firstName, lastName, email, school, dob: dobCombined })); } catch (err) {}
+=======
+          const firstName = fd.get("firstName")?.trim();
+          const lastName = fd.get("lastName")?.trim();
+          const dob = fd.get("dob");
+          const school = fd.get("school")?.trim();
+          const email = fd.get("email")?.trim();
+
+          if (!firstName || !lastName || !dob || !school || !email) {
+            alert("Please fill out all fields.");
+            return;
+          }
+
+          // For now we just store the user's first name in sessionStorage and show main page
+          try {
+            sessionStorage.setItem(
+              "connectu_user",
+              JSON.stringify({ firstName, lastName, email, school, dob })
+            );
+          } catch (err) {}
+>>>>>>> 97dd615f4cc8c1e106b4b666018ec6e9b00f53bf
 
           showMain();
         });
 
         // Prepare tiles for future interactions (currently log)
-        tiles.forEach(tile => {
-          tile.addEventListener('click', () => {
+        tiles.forEach((tile) => {
+          tile.addEventListener("click", () => {
             const key = tile.dataset.key;
-            console.log('Tile clicked:', key);
+            console.log("Tile clicked:", key);
             // temporary visual pulse
-            tile.animate([{ transform: 'scale(1.02)' }, { transform: 'scale(1)' }], { duration: 220 });
+            tile.animate(
+              [{ transform: "scale(1.02)" }, { transform: "scale(1)" }],
+              { duration: 220 }
+            );
           });
         });
 
         // If user already signed up earlier in session, show main directly
         try {
-          const u = sessionStorage.getItem('connectu_user');
+          const u = sessionStorage.getItem("connectu_user");
           if (u) showMain();
         } catch (e) {}
       })();
