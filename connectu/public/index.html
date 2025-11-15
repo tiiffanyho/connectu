@@ -10,11 +10,474 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap"
       rel="stylesheet"
     />
+<<<<<<< HEAD
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this experience.</noscript>
     <div id="app"></div>
+=======
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background:
+          radial-gradient(1200px 600px at 10% 10%, #7b61ff22, transparent),
+          radial-gradient(900px 500px at 90% 90%, #34d39922, transparent),
+          linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+        color: #e6eef8;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 960px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.02)
+        );
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 40px rgba(2, 6, 23, 0.6);
+        backdrop-filter: blur(6px) saturate(120%);
+      }
+
+      .container-row {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+
+      .column {
+        flex: 1;
+      }
+
+      .signup {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .signup h1 {
+        font-size: 2rem;
+        margin-bottom: 0.25rem;
+        letter-spacing: 2px;
+        font-weight: 900;
+        color: #fff;
+      }
+
+      .signup p {
+        color: #cbd5e1;
+        margin-bottom: 1rem;
+      }
+
+      form .field-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+
+      .dob-row {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .dob-row input,
+      .dob-row select {
+        flex: 1;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      label {
+        font-size: 0.78rem;
+        color: #9aa8bf;
+      }
+
+      input,
+      select {
+        padding: 0.6rem 0.75rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+        color: #e6eef8;
+      }
+
+      input::placeholder {
+        color: #94a3b8;
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+      }
+
+      .btn-secondary {
+        display: inline-block;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #e6eef8;
+        font-weight: 500;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: background 0.3s, border-color 0.3s;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .nav-controls {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .main-page {
+        display: none;
+        text-align: center;
+      }
+
+      .brand {
+        font-size: 3rem;
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: 4px;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        color: #bcd4ea;
+        margin-bottom: 1.5rem;
+      }
+
+      .tiles {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .tile {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.015)
+        );
+        padding: 1.25rem;
+        border-radius: 12px;
+        color: #fff;
+        cursor: pointer;
+        transform: translateY(8px) scale(0.98);
+        opacity: 0;
+        box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+        transition:
+          transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+          opacity 0.35s ease;
+      }
+
+      .tile h3 {
+        margin: 0;
+        font-size: 1.05rem;
+        font-weight: 700;
+      }
+
+      .tile p {
+        margin: 0.4rem 0 0;
+        color: #a7c1d9;
+        font-size: 0.88rem;
+      }
+
+      .tile.visible {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+
+      .tile:active {
+        transform: translateY(2px) scale(0.995);
+      }
+
+      @media (max-width: 900px) {
+        .tiles {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 520px) {
+        .card {
+          padding: 1rem;
+        }
+
+        .brand {
+          font-size: 2rem;
+        }
+
+        .tiles {
+          grid-template-columns: 1fr;
+        }
+
+        form .field-group {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Corner logo */
+      .corner-logo {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1000;
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: auto;
+      }
+
+      .corner-logo a {
+        display: inline-block;
+        line-height: 0;
+        border-radius: 8px;
+      }
+
+      .corner-logo a:focus {
+        outline: 3px solid rgba(99, 102, 241, 0.6);
+        outline-offset: 2px;
+      }
+
+      .corner-logo svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Logo (from logo.tsx) - fixed top-left -->
+    <div class="corner-logo" aria-hidden="false">
+      <a href="/" aria-label="ConnectU home">
+        <svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+          <defs>
+            <linearGradient id="logo-gradient-color-medium" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3B82F6" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+          </defs>
+
+          <circle cx="50" cy="50" r="45" fill="url(#logo-gradient-color-medium)" />
+          <circle cx="30" cy="35" r="8" fill="#FFFFFF" opacity="0.9" />
+          <circle cx="70" cy="35" r="8" fill="#FFFFFF" opacity="0.9" />
+          <circle cx="50" cy="60" r="8" fill="#FFFFFF" opacity="0.9" />
+          <line x1="30" y1="35" x2="50" y2="60" stroke="#FFFFFF" stroke-width="3" opacity="0.7" />
+          <line x1="70" y1="35" x2="50" y2="60" stroke="#FFFFFF" stroke-width="3" opacity="0.7" />
+          <line x1="30" y1="35" x2="70" y2="35" stroke="#FFFFFF" stroke-width="3" opacity="0.7" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="card">
+      <section id="signupView" class="signup" aria-live="polite">
+        <h1>CONNECTU</h1>
+        <p>
+          Create an account to explore education, opportunities, social life,
+          and community with other students.
+        </p>
+
+        <form id="signupForm" novalidate>
+          <div class="field-group">
+            <div class="field">
+              <label for="firstName">First Name</label>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                placeholder="Jane"
+                autocomplete="given-name"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="lastName">Last Name</label>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                placeholder="Doe"
+                autocomplete="family-name"
+                required
+              />
+            </div>
+
+            <div class="field full">
+              <label for="dobDay">Date of Birth</label>
+              <div class="dob-row">
+                <input
+                  id="dobDay"
+                  name="dobDay"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="2"
+                  placeholder="DD"
+                  aria-label="Day"
+                  required
+                />
+                <select
+                  id="dobMonth"
+                  name="dobMonth"
+                  aria-label="Month"
+                  required
+                >
+                  <option value="">MM</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <input
+                  id="dobYear"
+                  name="dobYear"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="4"
+                  placeholder="YYYY"
+                  aria-label="Year"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="schoolSelect">University</label>
+              <select id="schoolSelect" name="schoolSelect" required>
+                <option value="">Select your university</option>
+                <option>Algoma University</option>
+                <option>Brock University</option>
+                <option>Carleton University</option>
+                <option>King's University College (Western)</option>
+                <option>Lakehead University</option>
+                <option>Laurentian University</option>
+                <option>McMaster University</option>
+                <option>Nipissing University</option>
+                <option>OCAD University</option>
+                <option>Ontario Tech University</option>
+                <option>Queen's University</option>
+                <option>Royal Military College of Canada</option>
+                <option>Toronto Metropolitan University</option>
+                <option>Trent University</option>
+                <option>Université de Hearst</option>
+                <option>Université de Sudbury</option>
+                <option>University of Guelph</option>
+                <option>University of Ottawa</option>
+                <option>University of Sudbury</option>
+                <option>University of Toronto</option>
+                <option>University of Waterloo</option>
+                <option>University of Windsor</option>
+                <option>Western University</option>
+                <option>Wilfrid Laurier University</option>
+                <option>York University</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="email">School Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@school.edu"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+
+          <div style="margin-top: 1rem; text-align: center">
+            <button type="submit" class="btn-primary">Sign Up</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="mainView" class="main-page" aria-hidden="true">
+        <div class="brand">CONNECTU</div>
+        <div class="subtitle">
+          Choose a section to explore — these tiles will become full features
+          inside the app.
+        </div>
+
+        <div class="tiles" id="tiles">
+          <div class="tile" data-key="education" data-tile>
+            <h3>Education</h3>
+            <p>Resources, classes, and learning paths.</p>
+          </div>
+          <div class="tile" data-key="opportunities" data-tile>
+            <h3>Opportunities</h3>
+            <p>Jobs, internships, and scholarships.</p>
+          </div>
+          <div class="tile" data-key="social" data-tile>
+            <h3>Social Life</h3>
+            <p>Events, clubs, and meetups.</p>
+          </div>
+          <div class="tile" data-key="community" data-tile>
+            <h3>Community</h3>
+            <p>Forums, groups, and support networks.</p>
+          </div>
+        </div>
+
+        <div class="nav-controls">
+          <button id="backBtn" class="btn-secondary">← Back to Sign Up</button>
+        </div>
+      </section>
+    </div>
+
+>>>>>>> 0375c48656db67ad9ab9d7a9a25d1292746e1149
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>
