@@ -105,16 +105,35 @@ input::placeholder {
   grid-column: 1 / -1;
 }
 
-.btn-primary {
+.cta {
   display: inline-block;
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.2px;
+  font-size: 1rem;
+  line-height: 1;
+  min-width: 140px;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+/* Primary gradient used for the main CTA (Sign Up) and shared for welcome CTAs */
+.btn-primary {
   background: linear-gradient(90deg, #8b5cf6, #06b6d4);
   color: #021124;
-  font-weight: 700;
   border: none;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.18);
+}
+
+/* Make the welcome secondary buttons adopt the same primary look when marked as .cta */
+.btn-secondary.cta {
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+  color: #021124;
+  border: none;
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.12);
 }
 
 .main-page {
@@ -266,11 +285,32 @@ input::placeholder {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(2, 6, 23, 0.35);
+  opacity: 0.98;
+}
+
 .nav-controls {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-top: 2rem;
+}
+
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.field-group input[type="password"] {
+  flex: 1;
+  margin: 0;
 }
 
 @media (max-width: 900px) {
@@ -307,4 +347,52 @@ input::placeholder {
   .welcome-features {
     grid-template-columns: 1fr;
   }
+}
+
+/* Improved signup layout and visual polish */
+.signup {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.signup form {
+  background: rgba(255,255,255,0.02);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.45);
+}
+
+form .field-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.field { width: 100%; }
+
+/* Make inputs fill their grid cell */
+input, select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.98rem;
+}
+
+.dob-row input, .dob-row select { padding: 0.6rem 0.75rem; }
+
+label { margin-bottom: 0.4rem; }
+
+.btn-primary { padding: 0.85rem 1.25rem; font-size: 1rem; border-radius: 10px; }
+
+/* Make the full-width rows look centered and spacious */
+.field.full { grid-column: 1 / -1; }
+
+/* Small tweak so the welcome and main content don't feel cramped */
+.welcome-view, .main-page { padding: 0 0.5rem; }
+
+@media (max-width: 720px) {
+  .signup { max-width: 100%; padding: 0 0.5rem; }
+  form .field-group { grid-template-columns: 1fr; }
+  .welcome-features { grid-template-columns: 1fr; }
 }
