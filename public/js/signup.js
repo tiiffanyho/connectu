@@ -1,6 +1,14 @@
 import { clampDayValue, clampYearValue, validateSignupPayload } from './validation.js';
+import { loadUserFromSession, saveUserToSession } from './storage.js';
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const getPrefersReducedMotion = () => {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+    return false;
+  }
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
+
+const prefersReducedMotion = getPrefersReducedMotion();
 
 const animateTiles = (tiles) => {
   tiles.forEach((tile, index) => {
@@ -30,9 +38,17 @@ const addTileInteractions = (tiles) => {
   });
 };
 
+const fieldValue = (form, name) => {
+  const element = form.elements.namedItem(name);
+  if (!element || typeof element.value !== 'string') {
+    return '';
+  }
+  return element.value.trim();
+};
+
 const getSchoolValue = (form) => {
-  const selectValue = form.elements.namedItem('schoolSelect')?.value.trim() ?? '';
-  const customValue = form.elements.namedItem('schoolCustom')?.value.trim() ?? '';
+  const selectValue = fieldValue(form, 'schoolSelect');
+  const customValue = fieldValue(form, 'schoolCustom');
   return customValue || selectValue;
 };
 
@@ -68,7 +84,7 @@ export const initSignupFlow = () => {
     animateTiles(tiles);
   };
 
-  const storedUser = sessionStorage.getItem('connectu_user');
+  const storedUser = loadUserFromSession();
   if (storedUser) {
     showMainView();
   }
@@ -94,11 +110,7 @@ export const initSignupFlow = () => {
       return;
     }
 
-    try {
-      sessionStorage.setItem('connectu_user', JSON.stringify(data));
-    } catch (error) {
-      // Ignore storage errors in private browsing
-    }
+    saveUserToSession(data);
 
     showMainView();
   });
