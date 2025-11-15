@@ -1,0 +1,207 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(1200px 600px at 10% 10%, #7b61ff22, transparent),
+    radial-gradient(900px 500px at 90% 90%, #34d39922, transparent),
+    linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+  color: #e6eef8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 960px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.02)
+  );
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(2, 6, 23, 0.6);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+.signup {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.signup h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: 2px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.signup p {
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+form .field-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.dob-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dob-row input,
+.dob-row select {
+  flex: 1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+label {
+  font-size: 0.78rem;
+  color: #9aa8bf;
+}
+
+input,
+select {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+  color: #e6eef8;
+}
+
+input::placeholder {
+  color: #94a3b8;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+  color: #021124;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+}
+
+.main-page {
+  display: none;
+  text-align: center;
+}
+
+.brand {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  color: #bcd4ea;
+  margin-bottom: 1.5rem;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tile {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.015)
+  );
+  padding: 1.25rem;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transform: translateY(8px) scale(0.98);
+  opacity: 0;
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+    opacity 0.35s ease;
+}
+
+.tile h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.tile p {
+  margin: 0.4rem 0 0;
+  color: #a7c1d9;
+  font-size: 0.88rem;
+}
+
+.tile.visible {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.tile:active {
+  transform: translateY(2px) scale(0.995);
+}
+
+@media (max-width: 900px) {
+  .tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .card {
+    padding: 1rem;
+  }
+
+  .brand {
+    font-size: 2rem;
+  }
+
+  .tiles {
+    grid-template-columns: 1fr;
+  }
+
+  form .field-group {
+    grid-template-columns: 1fr;
+  }
+}
