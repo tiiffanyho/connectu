@@ -323,3 +323,51 @@ input[type="password"] {
     grid-template-columns: 1fr;
   }
 }
+
+/* Improved signup layout and visual polish */
+.signup {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.signup form {
+  background: rgba(255,255,255,0.02);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.45);
+}
+
+form .field-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.field { width: 100%; }
+
+/* Make inputs fill their grid cell */
+input, select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.98rem;
+}
+
+.dob-row input, .dob-row select { padding: 0.6rem 0.75rem; }
+
+label { margin-bottom: 0.4rem; }
+
+.btn-primary { padding: 0.85rem 1.25rem; font-size: 1rem; border-radius: 10px; }
+
+/* Make the full-width rows look centered and spacious */
+.field.full { grid-column: 1 / -1; }
+
+/* Small tweak so the welcome and main content don't feel cramped */
+.welcome-view, .main-page { padding: 0 0.5rem; }
+
+@media (max-width: 720px) {
+  .signup { max-width: 100%; padding: 0 0.5rem; }
+  form .field-group { grid-template-columns: 1fr; }
+  .welcome-features { grid-template-columns: 1fr; }
+}

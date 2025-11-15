@@ -141,6 +141,14 @@ const renderSignupSection = () => `
             ${renderUniversityOptions()}
           </select>
         </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="At least 8 characters" required />
+        </div>
+        <div class="field">
+          <label for="confirmPassword">Confirm Password</label>
+          <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm password" required />
+        </div>
         <div class="field full">
           <label for="email">School Email</label>
           <input id="email" name="email" type="email" placeholder="you@school.edu" autocomplete="email" required />
