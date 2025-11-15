@@ -2,42 +2,250 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
+    <title>ConnectU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+      :root {
+        color-scheme: light dark;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem 1rem 1rem;
+        font-family:
+          "Inter",
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+        background-color: #ffffff;
+        color: #111827;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding-top: 3rem;
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #020617;
+          color: #f8fafc;
+        }
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+        width: min(500px, 100%);
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.25rem;
+        width: 100%;
+      }
+
+      .logo-wrapper {
+        width: min(500px, 100%);
+        padding: 1rem;
+      }
+
+      .logo-wrapper img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .logo-dark {
+        display: none;
+      }
+
+      nav {
+        width: min(300px, 100%);
+        border-radius: 1.5rem;
+        border: 1px solid #e5e7eb;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(6px);
+      }
+
+      nav p {
+        margin: 0 0 1.5rem;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: #374151;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      a.link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        color: #1d4ed8;
+        font-weight: 500;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      a.link:hover,
+      a.link:focus {
+        background-color: rgba(59, 130, 246, 0.08);
+        text-decoration: underline;
+        outline: none;
+      }
+
+      svg.icon {
+        width: 24px;
+        height: 20px;
+        stroke: #4b5563;
+        stroke-width: 1.5;
+        fill: none;
+        flex-shrink: 0;
+        transition: stroke 0.3s ease;
+      }
+
+      a.link:hover svg.icon,
+      a.link:focus svg.icon {
+        stroke: currentColor;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        nav {
+          border-color: #374151;
+          background: rgba(2, 6, 23, 0.7);
+        }
+
+        nav p {
+          color: #e5e7eb;
+        }
+
+        a.link {
+          color: #60a5fa;
+        }
+
+        svg.icon {
+          stroke: #d1d5db;
+        }
+
+        .logo-light {
+          display: none;
+        }
+
+        .logo-dark {
+          display: block;
+        }
+      }
+
+      @media (prefers-color-scheme: light) {
+        .logo-dark {
+          display: none;
+        }
+
+        .logo-light {
+          display: block;
+        }
+      }
+    </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <main>
+      <header>
+        <div class="logo-wrapper">
+          <img
+            src="../app/welcome/logo-light.svg"
+            alt="ConnectU"
+            class="logo-light"
+          />
+          <img
+            src="../app/welcome/logo-dark.svg"
+            alt="ConnectU"
+            class="logo-dark"
+          />
+        </div>
+      </header>
+      <nav>
+        <p>What's next?</p>
+        <ul>
+          <li>
+            <a
+              class="link"
+              href="https://reactrouter.com/docs"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg
+                class="icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M10 10.075v-.075m7.469 7.469c-1.58 1.579-6.205-.484-10.33-4.609C3.014 8.735.951 4.111 2.531 2.531 4.11.951 8.735 3.015 12.86 7.14c4.125 4.125 6.188 8.749 4.609 10.329zm-14.937 0C.952 15.889 3.015 11.265 7.14 7.14 11.265 3.015 15.889.951 17.469 2.53c1.58 1.58-.484 6.205-4.609 10.33C8.735 16.985 4.111 19.049 2.531 17.469z"
+                  stroke-linecap="round"
+                ></path>
+              </svg>
+              React Router Docs
+            </a>
+          </li>
+          <li>
+            <a
+              class="link"
+              href="https://rmx.as/discord"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg
+                class="icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 20"
+              >
+                <path
+                  d="M15.069 1.26l-.521-.086-.256.462c-.116.208-.237.447-.349.683a29.12 29.12 0 00-3.898.039c-.116-.238-.239-.47-.37-.696L9.414 1.176 8.903 1.26C7.335 1.518 5.807 1.994 4.377 2.669l-.188.089-.115.172C1.239 7.164.463 11.305.838 15.392l.031.334.27.2a17.51 17.51 0 005.586 2.793l.503.15.313-.421a12.43 12.43 0 00.705-1.952v-.004a17.52 17.52 0 006.571-.004c.344.688.747 1.332 1.207 1.952l.316.426.507-.156a17.51 17.51 0 005.544-2.794l.267-.2.031-.332c.435-4.74-.794-8.86-3.257-12.607l-.119-.175-.193-.087A18.15 18.15 0 0015.069 1.26zm1.539 9.516c-.014.865-.586 1.368-1.129 1.368-.548 0-1.128-.527-1.128-1.356 0-.84.588-1.377 1.128-1.377.569 0 1.143.526 1.13 1.363zM8.494 12.144c-.549 0-1.129-.527-1.129-1.356 0-.839.588-1.376 1.129-1.376.566 0 1.145.525 1.148 1.37-.017.842-.587 1.362-1.148 1.362z"
+                ></path>
+              </svg>
+              Join Discord
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </main>
   </body>
 </html>
