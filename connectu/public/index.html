@@ -140,6 +140,30 @@
         box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
       }
 
+      .btn-secondary {
+        display: inline-block;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #e6eef8;
+        font-weight: 500;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: background 0.3s, border-color 0.3s;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .nav-controls {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
       .main-page {
         display: none;
         text-align: center;
@@ -341,15 +365,6 @@
                 <option>York University</option>
               </select>
             </div>
-            <div class="field">
-              <label for="schoolCustom">Other University</label>
-              <input
-                id="schoolCustom"
-                name="schoolCustom"
-                type="text"
-                placeholder="Your school"
-              />
-            </div>
 
             <div class="field full">
               <label for="email">School Email</label>
@@ -394,6 +409,10 @@
             <h3>Community</h3>
             <p>Forums, groups, and support networks.</p>
           </div>
+        </div>
+
+        <div class="nav-controls">
+          <button id="backBtn" class="btn-secondary">← Back to Sign Up</button>
         </div>
       </section>
     </div>
