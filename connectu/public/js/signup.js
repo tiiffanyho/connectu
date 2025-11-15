@@ -1,5 +1,6 @@
 import { clampDayValue, clampYearValue, validateSignupPayload } from './validation.js';
 import { loadUserFromSession, saveUserToSession } from './storage.js';
+import { renderSignInSection } from './templates.js';
 
 const getPrefersReducedMotion = () => {
   if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -65,6 +66,10 @@ export const initSignupFlow = () => {
   const learnMoreBtn = document.getElementById('learnMoreBtn');
   const backToWelcomeBtn = document.getElementById('backToWelcomeBtn');
   const backToSignupBtn = document.getElementById('backToSignupBtn');
+  const signInBtn = document.getElementById('signInBtn');
+  let signInView = document.getElementById('signInView');
+  let signinForm = document.getElementById('signinForm');
+  let backToWelcomeFromSignInBtn = document.getElementById('backToWelcomeFromSignInBtn');
 
   if (!signupForm || !signupView || !mainView || !welcomeView) return;
 
@@ -76,6 +81,11 @@ export const initSignupFlow = () => {
     signupView.setAttribute('aria-hidden', 'true');
     mainView.style.display = 'none';
     mainView.setAttribute('aria-hidden', 'true');
+    // hide sign-in view if it exists; it will be shown only for 'signin'
+    if (signInView) {
+      signInView.style.display = 'none';
+      signInView.setAttribute('aria-hidden', 'true');
+    }
 
     if (pageName === 'welcome') {
       welcomeView.style.display = 'block';
@@ -87,6 +97,13 @@ export const initSignupFlow = () => {
       mainView.style.display = 'block';
       mainView.removeAttribute('aria-hidden');
       animateTiles(tiles);
+    } else if (pageName === 'signin') {
+      // create and show sign-in view on demand
+      ensureSignInViewExists();
+      if (signInView) {
+        signInView.style.display = 'block';
+        signInView.removeAttribute('aria-hidden');
+      }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -98,9 +115,33 @@ export const initSignupFlow = () => {
     });
   }
 
+  // Sign In button on welcome: welcome → signin
+  if (signInBtn) {
+    signInBtn.addEventListener('click', () => {
+      // create sign-in section on demand (so it's not present until user requests it)
+      ensureSignInViewExists();
+      showPage('signin');
+    });
+  }
+
+  // Sign Up CTA on welcome: welcome → signup
+  const signUpCtaBtn = document.getElementById('signUpCtaBtn');
+  if (signUpCtaBtn) {
+    signUpCtaBtn.addEventListener('click', () => {
+      showPage('signup');
+    });
+  }
+
   // Back button on signup: signup → welcome
   if (backToWelcomeBtn) {
     backToWelcomeBtn.addEventListener('click', () => {
+      showPage('welcome');
+    });
+  }
+
+  // Back button on sign-in: signin → welcome
+  if (backToWelcomeFromSignInBtn) {
+    backToWelcomeFromSignInBtn.addEventListener('click', () => {
       showPage('welcome');
     });
   }
@@ -160,4 +201,61 @@ export const initSignupFlow = () => {
 
     showPage('main');
   });
+
+  // helper to attach signin handlers once the signin form exists
+  function attachSigninHandlers() {
+    if (!signinForm) return;
+    // avoid attaching multiple times
+    if (signinForm.__attached) return;
+    signinForm.__attached = true;
+
+    signinForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(signinForm);
+      const email = (fd.get('signinEmail') || '').trim();
+      const password = (fd.get('signinPassword') || '').trim();
+
+      if (!email || !password) {
+        window.alert('Please enter email and password to sign in.');
+        return;
+      }
+
+      const stored = loadUserFromSession();
+      if (!stored) {
+        window.alert('No account found. Please sign up first.');
+        return;
+      }
+
+      if (stored.email === email && stored.password === password) {
+        window.alert(`Welcome back, ${stored.firstName || 'user'}!`);
+        showPage('main');
+      } else {
+        window.alert('Invalid email or password.');
+      }
+    });
+  }
+
+  // create the sign-in section and attach handlers if it doesn't exist yet
+  function ensureSignInViewExists() {
+    if (signInView) return;
+    const signupViewElem = document.getElementById('signupView');
+    if (!signupViewElem) return;
+    signupViewElem.insertAdjacentHTML('afterend', renderSignInSection());
+    signInView = document.getElementById('signInView');
+    // keep it hidden until explicitly shown by showPage('signin')
+    if (signInView) {
+      signInView.style.display = 'none';
+      signInView.setAttribute('aria-hidden', 'true');
+    }
+    signinForm = document.getElementById('signinForm');
+    backToWelcomeFromSignInBtn = document.getElementById('backToWelcomeFromSignInBtn');
+
+    if (backToWelcomeFromSignInBtn) {
+      backToWelcomeFromSignInBtn.addEventListener('click', () => {
+        showPage('welcome');
+      });
+    }
+
+    attachSigninHandlers();
+  }
 };

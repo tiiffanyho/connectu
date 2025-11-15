@@ -11,102 +11,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/styles.css" />
-    <style>
-      .signin-btn {
-        position: fixed;
-        top: 1.5rem;
-        right: 1.5rem;
-        z-index: 999;
-        padding: 0.5rem 1.5rem;
-        background: linear-gradient(135deg, #3B82F6, #8B5CF6);
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-weight: 500;
-        cursor: pointer;
-        font-size: 0.95rem;
-      }
-      
-      .signin-btn:hover {
-        opacity: 0.9;
-      }
-    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this experience.</noscript>
-    
-    <button class="signin-btn" id="signin-btn">Sign In</button>
-    
-    <div id="app">
-      <!-- Welcome View -->
-      <div id="welcomeView" class="card">
-        <h1 class="brand">connect<span style="background: linear-gradient(135deg, #3B82F6, #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">U</span></h1>
-        <p>Connect with students and professionals in your network.</p>
-        <button id="learnMoreBtn" class="btn">Learn More</button>
-      </div>
-
-      <!-- Signup View -->
-      <div id="signupView" class="card" style="display: none;">
-        <h2>Create Account</h2>
-        <form id="signupForm">
-          <div class="field-group">
-            <input type="text" name="firstName" placeholder="First Name" required />
-            <input type="text" name="lastName" placeholder="Last Name" required />
-          </div>
-          
-          <input type="email" name="email" placeholder="Email" required />
-          
-          <div class="field-group">
-            <input type="password" name="password" placeholder="Password" required />
-            <input type="password" name="confirmPassword" placeholder="Confirm Password" required />
-          </div>
-
-          <div class="field-group">
-            <input type="number" name="dobDay" id="dobDay" placeholder="Day" min="1" max="31" required />
-            <select name="dobMonth" required>
-              <option value="">Month</option>
-              <option value="01">January</option>
-              <option value="02">February</option>
-              <option value="03">March</option>
-              <option value="04">April</option>
-              <option value="05">May</option>
-              <option value="06">June</option>
-              <option value="07">July</option>
-              <option value="08">August</option>
-              <option value="09">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-            <input type="number" name="dobYear" id="dobYear" placeholder="Year" min="1900" required />
-          </div>
-
-          <select name="schoolSelect" required>
-            <option value="">Select School</option>
-            <option value="MIT">MIT</option>
-            <option value="Stanford">Stanford</option>
-            <option value="Harvard">Harvard</option>
-            <option value="Other">Other</option>
-          </select>
-
-          <input type="text" name="schoolCustom" placeholder="Enter your school" style="display: none;" />
-
-          <button type="submit" class="btn">Sign Up</button>
-          <button type="button" id="backToWelcomeBtn" class="btn-secondary">Back</button>
-        </form>
-      </div>
-
-      <!-- Main View -->
-      <div id="mainView" class="card" style="display: none;">
-        <h2>Welcome!</h2>
-        <div class="tiles">
-          <div class="tile" data-tile>Feature 1</div>
-          <div class="tile" data-tile>Feature 2</div>
-          <div class="tile" data-tile>Feature 3</div>
-        </div>
-        <button type="button" id="backToSignupBtn" class="btn-secondary">Back</button>
-      </div>
-    </div>
+    <div id="app"></div>
 
     <script type="module" src="./js/main.js"></script>
   </body>

@@ -73,8 +73,35 @@ const renderWelcomeSection = () => `
         </div>
       </div>
       <div class="welcome-actions">
-        <button id="learnMoreBtn" class="btn-primary">Learn More</button>
+        <button id="learnMoreBtn" class="btn-secondary cta">Learn More</button>
+        <button id="signInBtn" class="btn-secondary cta">Sign In</button>
+        <button id="signUpCtaBtn" class="btn-primary cta">Sign Up</button>
       </div>
+    </div>
+  </section>
+`;
+
+export const renderSignInSection = () => `
+  <section id="signInView" class="signup" aria-live="polite">
+    <h1>Welcome Back</h1>
+    <p>Sign in with your school email and password.</p>
+    <form id="signinForm" novalidate>
+      <div class="field-group">
+        <div class="field full">
+          <label for="signinEmail">School Email</label>
+          <input id="signinEmail" name="signinEmail" type="email" placeholder="you@school.edu" autocomplete="email" required />
+        </div>
+        <div class="field full">
+          <label for="signinPassword">Password</label>
+          <input id="signinPassword" name="signinPassword" type="password" placeholder="Your password" required />
+        </div>
+      </div>
+      <div style="margin-top: 1rem; text-align: center">
+        <button type="submit" class="btn-primary">Sign In</button>
+      </div>
+    </form>
+    <div class="nav-controls">
+      <button id="backToWelcomeFromSignInBtn" class="btn-secondary">← Back</button>
     </div>
   </section>
 `;
@@ -172,7 +199,7 @@ const renderMainSection = () => `
       ${renderTiles()}
     </div>
     <div class="nav-controls">
-      <button id="backToSignupBtn" class="btn-secondary">← Back to Sign Up</button>
+      <button id="backToSignupBtn" class="btn-secondary" aria-label="Back">←</button>
     </div>
   </section>
 `;
