@@ -48,6 +48,8 @@
       .signup p { color:#cbd5e1; margin-bottom:1rem; }
 
       form.field-group { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+      .dob-row { display:flex; gap:.5rem; }
+      .dob-row input, .dob-row select { flex:1; }
       .field { display:flex; flex-direction:column; gap:.35rem; }
       label { font-size:0.78rem; color:#9aa8bf; }
       input, select { padding:.6rem .75rem; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color: #e6eef8; }
@@ -99,13 +101,58 @@
             </div>
 
             <div class="field full">
-              <label for="dob">Date of Birth</label>
-              <input id="dob" name="dob" type="date" required />
+              <label for="dobYear">Date of Birth</label>
+              <div class="dob-row">
+                <input id="dobDay" name="dobDay" type="number" inputmode="numeric" min="1" max="31" placeholder="DD" required />
+                <select id="dobMonth" name="dobMonth" required>
+                  <option value="">MM</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <input id="dobYear" name="dobYear" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" pattern="\d{4}" required />
+              </div>
             </div>
 
             <div class="field">
               <label for="school">School</label>
-              <input id="school" name="school" type="text" placeholder="Your school" required />
+              <select id="school" name="school" required>
+                <option value="">Select your university</option>
+                <option>Algoma University</option>
+                <option>Brock University</option>
+                <option>Carleton University</option>
+                <option>King's University College (Western)</option>
+                <option>Lakehead University</option>
+                <option>Laurentian University</option>
+                <option>McMaster University</option>
+                <option>Nipissing University</option>
+                <option>OCAD University</option>
+                <option>Ontario Tech University</option>
+                <option>Queen's University</option>
+                <option>Royal Military College of Canada</option>
+                <option>Toronto Metropolitan University</option>
+                <option>Trent University</option>
+                <option>Université de Hearst</option>
+                <option>Université de Sudbury</option>
+                <option>University of Guelph</option>
+                <option>University of Ottawa</option>
+                <option>University of Sudbury</option>
+                <option>University of Toronto</option>
+                <option>University of Waterloo</option>
+                <option>University of Windsor</option>
+                <option>Western University</option>
+                <option>Wilfrid Laurier University</option>
+                <option>York University</option>
+              </select>
             </div>
             <div class="field">
               <label for="email">School Email</label>
@@ -152,6 +199,48 @@
         const signupView = document.getElementById('signupView');
         const mainView = document.getElementById('mainView');
         const tiles = Array.from(document.querySelectorAll('.tile'));
+        const dobYearInput = document.getElementById('dobYear');
+        const dobDayInput = document.getElementById('dobDay');
+        const dobMonthSelect = document.getElementById('dobMonth');
+
+        // Enforce numeric-only and max 4 characters on DOB year
+        if (dobYearInput) {
+          dobYearInput.addEventListener('input', (e) => {
+            const digits = (e.target.value || '').replace(/[^0-9]/g, '');
+            e.target.value = digits.slice(0, 4);
+          });
+        }
+
+        // Enforce numeric-only and 2-digit limit for day
+        if (dobDayInput) {
+          // ensure attributes
+          dobDayInput.min = 1;
+          dobDayInput.max = 31;
+          dobDayInput.addEventListener('input', (e) => {
+            const digits = (e.target.value || '').replace(/[^0-9]/g, '');
+            e.target.value = digits.slice(0, 2);
+            // clamp to valid range if possible
+            let n = Number(e.target.value);
+            if (!n) return;
+            if (n > 31) n = 31;
+            if (n < 1) n = '';
+            e.target.value = n;
+          });
+        }
+
+        // Safety: ensure month value stays within 1..12 (select already restricts this, but guard anyway)
+        if (dobMonthSelect) {
+          dobMonthSelect.addEventListener('change', (e) => {
+            const v = (e.target.value || '').replace(/^0+/, '') || e.target.value;
+            const n = Number(v);
+            if (n > 12) {
+              e.target.value = '12';
+            }
+            if (n < 1) {
+              e.target.value = '';
+            }
+          });
+        }
 
         function showMain() {
           signupView.style.display = 'none';
@@ -167,17 +256,42 @@
           const fd = new FormData(signupForm);
           const firstName = fd.get('firstName')?.trim();
           const lastName = fd.get('lastName')?.trim();
-          const dob = fd.get('dob');
+          const day = (fd.get('dobDay') || '').trim();
+          const month = (fd.get('dobMonth') || '').trim();
+          const year = (fd.get('dobYear') || '').trim();
           const school = fd.get('school')?.trim();
           const email = fd.get('email')?.trim();
 
-          if (!firstName || !lastName || !dob || !school || !email) {
+          // Validate required fields
+          if (!firstName || !lastName || !day || !month || !year || !school || !email) {
             alert('Please fill out all fields.');
             return;
           }
 
-          // For now we just store the user's first name in sessionStorage and show main page
-          try { sessionStorage.setItem('connectu_user', JSON.stringify({ firstName, lastName, email, school, dob })); } catch (err) {}
+          // Ensure year is a 4-digit number
+          if (!/^[0-9]{4}$/.test(year)) {
+            alert('Please enter a valid 4-digit year for Date of Birth (YYYY).');
+            return;
+          }
+
+          // Validate day/month combination
+          const m = Number(month);
+          const d = Number(day);
+          const y = Number(year);
+          if (!(m >= 1 && m <= 12)) {
+            alert('Please select a valid month.');
+            return;
+          }
+          const daysInMonth = (y, m) => new Date(y, m, 0).getDate();
+          const maxDay = daysInMonth(y, m);
+          if (!(d >= 1 && d <= maxDay)) {
+            alert(`Please enter a valid day for the selected month (1-${maxDay}).`);
+            return;
+          }
+
+          // For now we just store the user's first name + dob in sessionStorage and show main page
+          const dobCombined = `${year.padStart(4,'0')}-${month}-${day.padStart(2,'0')}`;
+          try { sessionStorage.setItem('connectu_user', JSON.stringify({ firstName, lastName, email, school, dob: dobCombined })); } catch (err) {}
 
           showMain();
         });
