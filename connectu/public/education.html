@@ -25,12 +25,12 @@
           linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
         color: #e6eef8;
         font-family:
-          'Inter',
+          "Inter",
           system-ui,
           -apple-system,
-          'Segoe UI',
+          "Segoe UI",
           Roboto,
-          'Helvetica Neue',
+          "Helvetica Neue",
           Arial,
           sans-serif;
         min-height: 100vh;
@@ -50,8 +50,12 @@
       }
 
       .education-header {
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-        border-bottom: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         padding: 1.5rem 2rem;
         display: flex;
         justify-content: space-between;
@@ -74,28 +78,30 @@
         font-weight: 700;
         cursor: pointer;
         font-size: 0.95rem;
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
       }
 
       .education-back:hover {
         transform: translateY(-2px);
-        box-shadow: 0 14px 36px rgba(2,6,23,0.35);
+        box-shadow: 0 14px 36px rgba(2, 6, 23, 0.35);
       }
 
       .education-tabs {
         display: flex;
         gap: 0.5rem;
         padding: 1rem 2rem;
-        background: rgba(255,255,255,0.02);
-        border-bottom: 1px solid rgba(255,255,255,0.06);
+        background: rgba(255, 255, 255, 0.02);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         overflow-x: auto;
       }
 
       .tab-btn {
         padding: 0.65rem 1rem;
-        background: rgba(255,255,255,0.06);
+        background: rgba(255, 255, 255, 0.06);
         color: #cbd5e1;
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
@@ -105,8 +111,8 @@
       }
 
       .tab-btn:hover {
-        background: rgba(255,255,255,0.1);
-        border-color: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
       }
 
       .tab-btn.active {
@@ -131,13 +137,23 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .feature-box {
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-        border: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 16px;
         padding: 1.5rem;
         margin-bottom: 1.5rem;
@@ -160,7 +176,7 @@
       }
 
       .feature-highlight {
-        background: rgba(99,102,241,0.1);
+        background: rgba(99, 102, 241, 0.1);
         border-left: 3px solid #6366f1;
         padding: 1rem;
         border-radius: 8px;
@@ -177,10 +193,10 @@
       }
 
       .metric-card {
-        background: rgba(255,255,255,0.03);
+        background: rgba(255, 255, 255, 0.03);
         padding: 1rem;
         border-radius: 10px;
-        border: 1px solid rgba(255,255,255,0.05);
+        border: 1px solid rgba(255, 255, 255, 0.05);
       }
 
       .metric-label {
@@ -196,7 +212,7 @@
       }
 
       .course-combo {
-        background: rgba(255,255,255,0.03);
+        background: rgba(255, 255, 255, 0.03);
         padding: 1rem;
         border-radius: 10px;
         margin: 0.75rem 0;
@@ -215,11 +231,15 @@
       }
 
       .weather-block {
-        background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(6,182,212,0.1));
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.15),
+          rgba(6, 182, 212, 0.1)
+        );
         padding: 1.25rem;
         border-radius: 12px;
         margin: 1rem 0;
-        border: 1px solid rgba(99,102,241,0.2);
+        border: 1px solid rgba(99, 102, 241, 0.2);
       }
 
       .weather-week {
@@ -239,7 +259,7 @@
       }
 
       .energy-bar {
-        background: rgba(255,255,255,0.05);
+        background: rgba(255, 255, 255, 0.05);
         height: 8px;
         border-radius: 4px;
         margin: 0.5rem 0;
@@ -253,7 +273,7 @@
       }
 
       .path-option {
-        background: rgba(255,255,255,0.03);
+        background: rgba(255, 255, 255, 0.03);
         padding: 1.25rem;
         border-radius: 12px;
         margin: 1rem 0;
@@ -263,8 +283,8 @@
       }
 
       .path-option:hover {
-        background: rgba(255,255,255,0.05);
-        border-color: rgba(99,102,241,0.4);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(99, 102, 241, 0.4);
       }
 
       .path-emoji {
@@ -285,8 +305,8 @@
 
       .assignment-input {
         width: 100%;
-        background: rgba(255,255,255,0.02);
-        border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 10px;
         padding: 1rem;
         color: #e6eef8;
@@ -299,18 +319,22 @@
       }
 
       .x-ray-result {
-        background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(6,182,212,0.05));
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.1),
+          rgba(6, 182, 212, 0.05)
+        );
         padding: 1.25rem;
         border-radius: 12px;
         margin: 1rem 0;
-        border: 1px solid rgba(99,102,241,0.2);
+        border: 1px solid rgba(99, 102, 241, 0.2);
       }
 
       .result-row {
         display: flex;
         justify-content: space-between;
         padding: 0.75rem 0;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
 
       .result-row:last-child {
@@ -376,17 +400,27 @@
       <!-- Header -->
       <div class="education-header">
         <h1 class="education-title">EDUCATION</h1>
-        <button class="education-back" onclick="window.history.back();">← Back</button>
+        <button class="education-back" onclick="window.history.back();">
+          ← Back
+        </button>
       </div>
 
       <!-- Tabs -->
       <div class="education-tabs">
-        <button class="tab-btn active" data-tab="academic-gps">🗺️ Academic GPS</button>
-        <button class="tab-btn" data-tab="course-chemistry">⚗️ Course Chemistry</button>
-        <button class="tab-btn" data-tab="difficulty-weather">🌩️ Difficulty Weather</button>
-        <button class="tab-btn" data-tab="study-energy">⚡ Study Energy</button>
-        <button class="tab-btn" data-tab="multiverse">🌌 Multiverse</button>
-        <button class="tab-btn" data-tab="assignment-xray">🔍 Assignment X-Ray</button>
+        <button class="tab-btn active" data-tab="academic-gps">
+          Academic Planner
+        </button>
+        <button class="tab-btn" data-tab="course-chemistry">
+          Course Workload
+        </button>
+        <button class="tab-btn" data-tab="difficulty-weather">
+          Difficulty Weather
+        </button>
+        <button class="tab-btn" data-tab="study-energy">Efficiency</button>
+        <button class="tab-btn" data-tab="multiverse">Future Options</button>
+        <button class="tab-btn" data-tab="assignment-xray">
+          Assignment Predictor
+        </button>
       </div>
 
       <!-- Content -->
@@ -394,12 +428,15 @@
         <!-- Academic GPS Tab -->
         <div id="academic-gps" class="tab-panel active">
           <div class="feature-box">
-            <div class="feature-title">🗺️ Academic GPS — Your Degree Roadmap</div>
+            <div class="feature-title">Academic GPS — Your Degree Roadmap</div>
             <div class="feature-description">
-              Visualize your entire degree as an interactive map. See your current position, prerequisite paths, and multiple tracks to graduation.
+              Visualize your entire degree as an interactive map. See your
+              current position, prerequisite paths, and multiple tracks to
+              graduation.
             </div>
             <div class="feature-highlight">
-              "Imagine Google Maps, but for your degree. Zoom in/out to see the big picture or detailed course connections."
+              "Imagine Google Maps, but for your degree. Zoom in/out to see the
+              big picture or detailed course connections."
             </div>
           </div>
 
@@ -407,26 +444,34 @@
             <div class="feature-title">Available Paths</div>
             <div class="path-option">
               <div>
-                <div class="path-title">🚀 Fastest Track to Graduation</div>
-                <div class="path-description">Optimal course sequence | ~2.8 years | 128 credits</div>
+                <div class="path-title">Fastest Track to Graduation</div>
+                <div class="path-description">
+                  Optimal course sequence | ~2.8 years | 128 credits
+                </div>
               </div>
             </div>
             <div class="path-option">
               <div>
-                <div class="path-title">😎 Chill Track</div>
-                <div class="path-description">Balanced workload | ~4 years | Room for clubs & life</div>
+                <div class="path-title">Chill Track</div>
+                <div class="path-description">
+                  Balanced workload | ~4 years | Room for clubs & life
+                </div>
               </div>
             </div>
             <div class="path-option">
               <div>
-                <div class="path-title">💼 Max Career Benefit</div>
-                <div class="path-description">Internships + research | ~3.5 years | Industry-ready</div>
+                <div class="path-title">Max Career Benefit</div>
+                <div class="path-description">
+                  Internships + research | ~3.5 years | Industry-ready
+                </div>
               </div>
             </div>
             <div class="path-option">
               <div>
                 <div class="path-title">🎓 Triple-Minor Insane Track</div>
-                <div class="path-description">Challenge yourself | Flexible timeline | Maximum learning</div>
+                <div class="path-description">
+                  Challenge yourself | Flexible timeline | Maximum learning
+                </div>
               </div>
             </div>
           </div>
@@ -454,30 +499,43 @@
         <!-- Course Chemistry Tab -->
         <div id="course-chemistry" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">⚗️ Course Chemistry — How Courses React</div>
+            <div class="feature-title">
+              Course Chemistry — How Courses React
+            </div>
             <div class="feature-description">
-              See how course combinations interact. Some explode with workload, others flow perfectly. Chemistry reveals the hidden patterns.
+              See how course combinations interact. Some explode with workload,
+              others flow perfectly. Chemistry reveals the hidden patterns.
             </div>
           </div>
 
           <div class="feature-box">
-            <div class="feature-title">Explosive Combinations ⚠️</div>
+            <div class="feature-title">Explosive Combinations</div>
             <div class="course-combo">
-              <span class="combo-reaction">🔥</span>
-              <span class="combo-label">CS 301 + Organic Chem + Physics Lab</span>
-              <div style="color:#94a3b8; font-size:0.9rem; margin-top:0.5rem;">
-                Combined: 28 hrs/week | 7 major assignments overlapping | Avoid in same semester
+              <span class="combo-reaction"></span>
+              <span class="combo-label"
+                >CS 301 + Organic Chem + Physics Lab</span
+              >
+              <div
+                style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem"
+              >
+                Combined: 28 hrs/week | 7 major assignments overlapping | Avoid
+                in same semester
               </div>
             </div>
           </div>
 
           <div class="feature-box">
-            <div class="feature-title">Smooth Flow Combinations 🌊</div>
-            <div class="course-combo" style="border-left-color:#06b6d4;">
-              <span class="combo-reaction">🌊</span>
-              <span class="combo-label">Calculus II + Linear Algebra + Data Structures</span>
-              <div style="color:#94a3b8; font-size:0.9rem; margin-top:0.5rem;">
-                Combined: 14 hrs/week | Complementary topics | Great for deep learning
+            <div class="feature-title">Smooth Flow Combinations</div>
+            <div class="course-combo" style="border-left-color: #06b6d4">
+              <span class="combo-reaction"></span>
+              <span class="combo-label"
+                >Calculus II + Linear Algebra + Data Structures</span
+              >
+              <div
+                style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem"
+              >
+                Combined: 14 hrs/week | Complementary topics | Great for deep
+                learning
               </div>
             </div>
           </div>
@@ -485,15 +543,19 @@
           <div class="metric-grid">
             <div class="metric-card">
               <div class="metric-label">Workload Analysis</div>
-              <div class="metric-value" style="font-size:1.25rem;">Moderate</div>
+              <div class="metric-value" style="font-size: 1.25rem">
+                Moderate
+              </div>
             </div>
             <div class="metric-card">
               <div class="metric-label">Assignment Overlap</div>
-              <div class="metric-value" style="font-size:1.25rem;">2 deadlines</div>
+              <div class="metric-value" style="font-size: 1.25rem">
+                2 deadlines
+              </div>
             </div>
             <div class="metric-card">
               <div class="metric-label">Recommended?</div>
-              <div class="metric-value" style="font-size:1.25rem;">✅ Yes</div>
+              <div class="metric-value" style="font-size: 1.25rem">Yes</div>
             </div>
           </div>
         </div>
@@ -501,9 +563,10 @@
         <!-- Difficulty Weather Tab -->
         <div id="difficulty-weather" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">🌩️ Difficulty Weather Forecast</div>
+            <div class="feature-title">Difficulty Weather Forecast</div>
             <div class="feature-description">
-              See academic workload as weather patterns. Plan ahead for storms, enjoy calm weeks, and prepare for extreme stress periods.
+              See academic workload as weather patterns. Plan ahead for storms,
+              enjoy calm weeks, and prepare for extreme stress periods.
             </div>
           </div>
 
@@ -512,12 +575,14 @@
               <div class="weather-week">
                 <div>
                   <div class="weather-label">Week 2</div>
-                  <div style="color:#94a3b8; font-size:0.9rem;">Settle in period</div>
+                  <div style="color: #94a3b8; font-size: 0.9rem">
+                    Settle in period
+                  </div>
                 </div>
-                <div class="weather-emoji">🤤</div>
+                <div class="weather-emoji"></div>
               </div>
               <div class="energy-bar">
-                <div class="energy-fill" style="width:20%;"></div>
+                <div class="energy-fill" style="width: 20%"></div>
               </div>
             </div>
 
@@ -525,12 +590,14 @@
               <div class="weather-week">
                 <div>
                   <div class="weather-label">Week 4</div>
-                  <div style="color:#94a3b8; font-size:0.9rem;">Heavy assignment rain</div>
+                  <div style="color: #94a3b8; font-size: 0.9rem">
+                    Heavy assignment rain
+                  </div>
                 </div>
-                <div class="weather-emoji">🌧️</div>
+                <div class="weather-emoji"></div>
               </div>
               <div class="energy-bar">
-                <div class="energy-fill" style="width:60%;"></div>
+                <div class="energy-fill" style="width: 60%"></div>
               </div>
             </div>
 
@@ -538,12 +605,14 @@
               <div class="weather-week">
                 <div>
                   <div class="weather-label">Week 7</div>
-                  <div style="color:#94a3b8; font-size:0.9rem;">Midterms + Labs</div>
+                  <div style="color: #94a3b8; font-size: 0.9rem">
+                    Midterms + Labs
+                  </div>
                 </div>
-                <div class="weather-emoji">🌩️</div>
+                <div class="weather-emoji"></div>
               </div>
               <div class="energy-bar">
-                <div class="energy-fill" style="width:85%;"></div>
+                <div class="energy-fill" style="width: 85%"></div>
               </div>
             </div>
 
@@ -551,25 +620,35 @@
               <div class="weather-week">
                 <div>
                   <div class="weather-label">Week 10</div>
-                  <div style="color:#94a3b8; font-size:0.9rem;">Extreme heat period</div>
+                  <div style="color: #94a3b8; font-size: 0.9rem">
+                    Extreme heat period
+                  </div>
                 </div>
-                <div class="weather-emoji">🔥</div>
+                <div class="weather-emoji"></div>
               </div>
               <div class="energy-bar">
-                <div class="energy-fill" style="width:100%;"></div>
+                <div class="energy-fill" style="width: 100%"></div>
               </div>
             </div>
 
-            <div class="weather-block" style="background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.2);">
+            <div
+              class="weather-block"
+              style="
+                background: rgba(6, 182, 212, 0.1);
+                border: 1px solid rgba(6, 182, 212, 0.2);
+              "
+            >
               <div class="weather-week">
                 <div>
                   <div class="weather-label">Winter Break</div>
-                  <div style="color:#94a3b8; font-size:0.9rem;">Chill zone</div>
+                  <div style="color: #94a3b8; font-size: 0.9rem">
+                    Chill zone
+                  </div>
                 </div>
-                <div class="weather-emoji">❄️</div>
+                <div class="weather-emoji"></div>
               </div>
               <div class="energy-bar">
-                <div class="energy-fill" style="width:5%;"></div>
+                <div class="energy-fill" style="width: 5%"></div>
               </div>
             </div>
           </div>
@@ -578,60 +657,130 @@
         <!-- Study Energy Tab -->
         <div id="study-energy" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">⚡ Study Energy Planner — Brain Battery</div>
+            <div class="feature-title">
+              ⚡ Study Energy Planner — Brain Battery
+            </div>
             <div class="feature-description">
-              AI predicts your peak study times based on sleep, caffeine, stress, schedule, and your body clock type.
+              AI predicts your peak study times based on sleep, caffeine,
+              stress, schedule, and your body clock type.
             </div>
             <div class="feature-highlight">
-              Your brain operates on a battery. Know when it's charged and when it's drained.
+              Your brain operates on a battery. Know when it's charged and when
+              it's drained.
             </div>
           </div>
 
           <div class="feature-box">
             <div class="feature-title">Today's Energy Map</div>
-            <div style="margin-top:1rem;">
-              <div style="margin-bottom:1.5rem;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
-                  <span style="color:#cbd5e1; font-weight:600;">6:00 AM - 8:00 AM</span>
-                  <span style="color:#a7c1d9;">⚡⚡⚡⚡ Peak Morning</span>
+            <div style="margin-top: 1rem">
+              <div style="margin-bottom: 1.5rem">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span style="color: #cbd5e1; font-weight: 600"
+                    >6:00 AM - 8:00 AM</span
+                  >
+                  <span style="color: #a7c1d9">⚡⚡⚡⚡ Peak Morning</span>
                 </div>
                 <div class="energy-bar">
-                  <div class="energy-fill" style="width:95%;"></div>
+                  <div class="energy-fill" style="width: 95%"></div>
                 </div>
-                <div style="color:#94a3b8; font-size:0.85rem; margin-top:0.25rem;">Best for: Math, Logic, Hard Thinking</div>
+                <div
+                  style="
+                    color: #94a3b8;
+                    font-size: 0.85rem;
+                    margin-top: 0.25rem;
+                  "
+                >
+                  Best for: Math, Logic, Hard Thinking
+                </div>
               </div>
 
-              <div style="margin-bottom:1.5rem;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
-                  <span style="color:#cbd5e1; font-weight:600;">12:00 PM - 1:00 PM</span>
-                  <span style="color:#a7c1d9;">💤 Post-Lunch Dip</span>
+              <div style="margin-bottom: 1.5rem">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span style="color: #cbd5e1; font-weight: 600"
+                    >12:00 PM - 1:00 PM</span
+                  >
+                  <span style="color: #a7c1d9">Post-Lunch Dip</span>
                 </div>
                 <div class="energy-bar">
-                  <div class="energy-fill" style="width:25%;"></div>
+                  <div class="energy-fill" style="width: 25%"></div>
                 </div>
-                <div style="color:#94a3b8; font-size:0.85rem; margin-top:0.25rem;">Best for: Light reading, review, admin tasks</div>
+                <div
+                  style="
+                    color: #94a3b8;
+                    font-size: 0.85rem;
+                    margin-top: 0.25rem;
+                  "
+                >
+                  Best for: Light reading, review, admin tasks
+                </div>
               </div>
 
-              <div style="margin-bottom:1.5rem;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
-                  <span style="color:#cbd5e1; font-weight:600;">3:00 PM - 5:00 PM</span>
-                  <span style="color:#a7c1d9;">⚡⚡⚡ Afternoon Surge</span>
+              <div style="margin-bottom: 1.5rem">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span style="color: #cbd5e1; font-weight: 600"
+                    >3:00 PM - 5:00 PM</span
+                  >
+                  <span style="color: #a7c1d9">⚡⚡⚡ Afternoon Surge</span>
                 </div>
                 <div class="energy-bar">
-                  <div class="energy-fill" style="width:75%;"></div>
+                  <div class="energy-fill" style="width: 75%"></div>
                 </div>
-                <div style="color:#94a3b8; font-size:0.85rem; margin-top:0.25rem;">Best for: Writing, Coding, Creative Work</div>
+                <div
+                  style="
+                    color: #94a3b8;
+                    font-size: 0.85rem;
+                    margin-top: 0.25rem;
+                  "
+                >
+                  Best for: Writing, Coding, Creative Work
+                </div>
               </div>
 
-              <div style="margin-bottom:1.5rem;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
-                  <span style="color:#cbd5e1; font-weight:600;">9:00 PM - 11:00 PM</span>
-                  <span style="color:#a7c1d9;">⚡⚡ Night Mode (You're a Night Owl)</span>
+              <div style="margin-bottom: 1.5rem">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span style="color: #cbd5e1; font-weight: 600"
+                    >9:00 PM - 11:00 PM</span
+                  >
+                  <span style="color: #a7c1d9"
+                    >⚡⚡ Night Mode (You're a Night Owl)</span
+                  >
                 </div>
                 <div class="energy-bar">
-                  <div class="energy-fill" style="width:70%;"></div>
+                  <div class="energy-fill" style="width: 70%"></div>
                 </div>
-                <div style="color:#94a3b8; font-size:0.85rem; margin-top:0.25rem;">Best for: Focused deep work, problem-solving</div>
+                <div
+                  style="
+                    color: #94a3b8;
+                    font-size: 0.85rem;
+                    margin-top: 0.25rem;
+                  "
+                >
+                  Best for: Focused deep work, problem-solving
+                </div>
               </div>
             </div>
           </div>
@@ -639,15 +788,17 @@
           <div class="metric-grid">
             <div class="metric-card">
               <div class="metric-label">Body Clock Type</div>
-              <div class="metric-value" style="font-size:1.2rem;">🦉 Night Owl</div>
+              <div class="metric-value" style="font-size: 1.2rem">
+                🦉 Night Owl
+              </div>
             </div>
             <div class="metric-card">
               <div class="metric-label">Sleep Debt</div>
-              <div class="metric-value" style="font-size:1.2rem;">-3 hrs</div>
+              <div class="metric-value" style="font-size: 1.2rem">-3 hrs</div>
             </div>
             <div class="metric-card">
               <div class="metric-label">Today's Battery</div>
-              <div class="metric-value" style="font-size:1.2rem;">72%</div>
+              <div class="metric-value" style="font-size: 1.2rem">72%</div>
             </div>
           </div>
         </div>
@@ -655,9 +806,12 @@
         <!-- Multiverse Tab -->
         <div id="multiverse" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">🌌 Education Multiverse — Alternate Realities</div>
+            <div class="feature-title">
+              Education Multiverse — Alternate Realities
+            </div>
             <div class="feature-description">
-              Choose an alternate path and see how your life changes. Graduation date, stress, GPA, job outcomes, and more.
+              Choose an alternate path and see how your life changes. Graduation
+              date, stress, GPA, job outcomes, and more.
             </div>
           </div>
 
@@ -665,45 +819,124 @@
             <div class="feature-title">Explore Alternate Paths</div>
             <div class="path-option">
               <div>
-                <div class="path-title">📚 If I Switched Majors</div>
-                <div class="path-description">To Computer Science from Engineering</div>
+                <div class="path-title">If I Switched Majors</div>
+                <div class="path-description">
+                  To Computer Science from Engineering
+                </div>
               </div>
-              <div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid rgba(255,255,255,0.1);">
-                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.5rem; font-size:0.85rem;">
-                  <div><span style="color:#94a3b8;">New graduation:</span> <span style="color:#fff;">2027</span></div>
-                  <div><span style="color:#94a3b8;">Stress change:</span> <span style="color:#f87171;">+15%</span></div>
-                  <div><span style="color:#94a3b8;">Proj. GPA:</span> <span style="color:#fff;">3.8</span></div>
-                  <div><span style="color:#94a3b8;">Job prospects:</span> <span style="color:#4ade80;">↑ Better</span></div>
+              <div
+                style="
+                  margin-top: 0.75rem;
+                  padding-top: 0.75rem;
+                  border-top: 1px solid rgba(255, 255, 255, 0.1);
+                "
+              >
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 0.5rem;
+                    font-size: 0.85rem;
+                  "
+                >
+                  <div>
+                    <span style="color: #94a3b8">New graduation:</span>
+                    <span style="color: #fff">2027</span>
+                  </div>
+                  <div>
+                    <span style="color: #94a3b8">Stress change:</span>
+                    <span style="color: #f87171">+15%</span>
+                  </div>
+                  <div>
+                    <span style="color: #94a3b8">Proj. GPA:</span>
+                    <span style="color: #fff">3.8</span>
+                  </div>
+                  <div>
+                    <span style="color: #94a3b8">Job prospects:</span>
+                    <span style="color: #4ade80">↑ Better</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="path-option">
               <div>
-                <div class="path-title">✈️ If I Study Abroad</div>
+                <div class="path-title">If I Study Abroad</div>
                 <div class="path-description">Semester in Germany</div>
               </div>
-              <div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid rgba(255,255,255,0.1);">
-                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.5rem; font-size:0.85rem;">
-                  <div><span style="color:#94a3b8;">New graduation:</span> <span style="color:#fff;">2026</span></div>
-                  <div><span style="color:#94a3b8;">Stress change:</span> <span style="color:#4ade80;">-20%</span></div>
-                  <div><span style="color:#94a3b8;">Extracurric time:</span> <span style="color:#f87171;">+40%</span></div>
-                  <div><span style="color:#94a3b8;">Life satisfaction:</span> <span style="color:#fbbf24;">Much better</span></div>
+              <div
+                style="
+                  margin-top: 0.75rem;
+                  padding-top: 0.75rem;
+                  border-top: 1px solid rgba(255, 255, 255, 0.1);
+                "
+              >
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 0.5rem;
+                    font-size: 0.85rem;
+                  "
+                >
+                  <div>
+                    <span style="color: #94a3b8">New graduation:</span>
+                    <span style="color: #fff">2026</span>
+                  </div>
+                  <div>
+                    <span style="color: #94a3b8">Stress change:</span>
+                    <span style="color: #4ade80">-20%</span>
+                  </div>
+                  <div>
+                    <span style="color: #94a3b8">Extracurric time:</span>
+                    <span style="color: #f87171">+40%</span>
+                  </div>
+                  <div>
+                    <span style="color: #94a3b8">Life satisfaction:</span>
+                    <span style="color: #fbbf24">Much better</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="path-option">
               <div>
-                <div class="path-title">💼 If I Take a Co-Op</div>
-                <div class="path-description">4-month internship at tech company</div>
+                <div class="path-title">If I Take a Co-Op</div>
+                <div class="path-description">
+                  4-month internship at tech company
+                </div>
               </div>
-              <div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid rgba(255,255,255,0.1);">
-                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.5rem; font-size:0.85rem;">
-                  <div><span style="color:#94a3b8;">New graduation:</span> <span style="color:#fff;">2027</span></div>
-                  <div><span style="color:#94a3b8;">Salary starting:</span> <span style="color:#4ade80;">+$30K</span></div>
-                  <div><span style="color:#94a3b8;">Experience gain:</span> <span style="color:#4ade80;">Excellent</span></div>
-                  <div><span style="color:#94a3b8;">Job-ready:</span> <span style="color:#4ade80;">Yes</span></div>
+              <div
+                style="
+                  margin-top: 0.75rem;
+                  padding-top: 0.75rem;
+                  border-top: 1px solid rgba(255, 255, 255, 0.1);
+                "
+              >
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 0.5rem;
+                    font-size: 0.85rem;
+                  "
+                >
+                  <div>
+                    <span style="color: #94a3b8">New graduation:</span>
+                    <span style="color: #fff">2027</span>
+                  </div>
+                  <div>
+                    <span style="color: #94a3b8">Salary starting:</span>
+                    <span style="color: #4ade80">+$30K</span>
+                  </div>
+                  <div>
+                    <span style="color: #94a3b8">Experience gain:</span>
+                    <span style="color: #4ade80">Excellent</span>
+                  </div>
+                  <div>
+                    <span style="color: #94a3b8">Job-ready:</span>
+                    <span style="color: #4ade80">Yes</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -713,9 +946,10 @@
         <!-- Assignment X-Ray Tab -->
         <div id="assignment-xray" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">🔍 Assignment X-Ray — Deep Scan</div>
+            <div class="feature-title">Assignment X-Ray — Deep Scan</div>
             <div class="feature-description">
-              Paste any assignment description and get a detailed breakdown: estimated hours, difficulty, required skills, and risk level.
+              Paste any assignment description and get a detailed breakdown:
+              estimated hours, difficulty, required skills, and risk level.
             </div>
           </div>
 
@@ -727,15 +961,19 @@
             ></textarea>
             <button
               class="education-back"
-              style="width:100%; background:linear-gradient(90deg, #8b5cf6, #06b6d4); margin-bottom:1rem;"
+              style="
+                width: 100%;
+                background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+                margin-bottom: 1rem;
+              "
               onclick="scanAssignment()"
             >
               X-Ray This Assignment
             </button>
           </div>
 
-          <div class="feature-box" id="xray-results" style="display:none;">
-            <div class="feature-title">📊 X-Ray Results</div>
+          <div class="feature-box" id="xray-results" style="display: none">
+            <div class="feature-title">X-Ray Results</div>
             <div class="x-ray-result">
               <div class="result-row">
                 <span class="result-label">Estimated Time</span>
@@ -743,7 +981,7 @@
               </div>
               <div class="result-row">
                 <span class="result-label">Difficulty Level</span>
-                <span class="result-value">🔴 Moderate-High</span>
+                <span class="result-value">Moderate-High</span>
               </div>
               <div class="result-row">
                 <span class="result-label">Skills Required</span>
@@ -751,15 +989,19 @@
               </div>
               <div class="result-row">
                 <span class="result-label">Weak Areas</span>
-                <span class="result-value">Essay structure, Citation format</span>
+                <span class="result-value"
+                  >Essay structure, Citation format</span
+                >
               </div>
               <div class="result-row">
                 <span class="result-label">Due Date Risk</span>
-                <span class="result-value">⚠️ Moderate (2 weeks)</span>
+                <span class="result-value">Moderate (2 weeks)</span>
               </div>
               <div class="result-row">
                 <span class="result-label">Recommended Resources</span>
-                <span class="result-value">Writing Center, MLA Guide, PeerReview</span>
+                <span class="result-value"
+                  >Writing Center, MLA Guide, PeerReview</span
+                >
               </div>
             </div>
           </div>
@@ -777,15 +1019,19 @@
               </div>
               <div class="result-row">
                 <span class="result-label">Difficulty</span>
-                <span class="result-value">🟡 Medium</span>
+                <span class="result-value">Medium</span>
               </div>
               <div class="result-row">
                 <span class="result-label">Concepts Covered</span>
-                <span class="result-value">Literature Analysis, Critical Thinking</span>
+                <span class="result-value"
+                  >Literature Analysis, Critical Thinking</span
+                >
               </div>
               <div class="result-row">
                 <span class="result-label">Your Weak Spots</span>
-                <span class="result-value">Thesis statements, Argument flow</span>
+                <span class="result-value"
+                  >Thesis statements, Argument flow</span
+                >
               </div>
               <div class="result-row">
                 <span class="result-label">Best Time to Start</span>
@@ -799,28 +1045,34 @@
 
     <script>
       // Tab switching logic
-      document.querySelectorAll('.tab-btn').forEach((btn) => {
-        btn.addEventListener('click', () => {
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
           // Remove active class from all buttons and panels
-          document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
-          document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-panel")
+            .forEach((p) => p.classList.remove("active"));
 
           // Add active class to clicked button and corresponding panel
-          btn.classList.add('active');
+          btn.classList.add("active");
           const tabId = btn.dataset.tab;
-          document.getElementById(tabId).classList.add('active');
+          document.getElementById(tabId).classList.add("active");
         });
       });
 
       // Assignment X-Ray scan function
       function scanAssignment() {
-        const textarea = document.querySelector('.assignment-input');
+        const textarea = document.querySelector(".assignment-input");
         if (textarea.value.trim().length > 0) {
-          document.getElementById('xray-results').style.display = 'block';
+          document.getElementById("xray-results").style.display = "block";
           // Scroll to results
-          document.getElementById('xray-results').scrollIntoView({ behavior: 'smooth' });
+          document
+            .getElementById("xray-results")
+            .scrollIntoView({ behavior: "smooth" });
         } else {
-          alert('Please paste an assignment description to scan.');
+          alert("Please paste an assignment description to scan.");
         }
       }
     </script>

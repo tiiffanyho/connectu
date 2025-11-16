@@ -49,6 +49,31 @@ const addTileInteractions = (tiles) => {
       return;
     }
 
+    // If the tile is the social tile, navigate to the social life page
+    if (key === 'social') {
+      tile.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link navigation to use our animation
+        // play a quick feedback animation, then navigate
+        if (!prefersReducedMotion) {
+          tile.animate(
+            [
+              { transform: 'scale(1)', opacity: 1 },
+              { transform: 'scale(1.03)', opacity: 1 },
+              { transform: 'scale(1)', opacity: 1 },
+            ],
+            { duration: 220, easing: 'ease-out' }
+          );
+          // small timeout so the animation is felt before navigation
+          window.setTimeout(() => {
+            window.location.href = './social-life.html';
+          }, 180);
+        } else {
+          window.location.href = './social-life.html';
+        }
+      });
+      return;
+    }
+
     // Default interaction for other tiles: subtle click animation
     tile.addEventListener('click', () => {
       tile.animate(
