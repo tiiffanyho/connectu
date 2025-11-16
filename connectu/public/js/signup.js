@@ -246,6 +246,7 @@ export const initSignupFlow = () => {
       dobMonth: (formData.get('dobMonth') || '').trim(),
       dobYear: (formData.get('dobYear') || '').trim(),
       school: getSchoolValue(signupForm),
+      linkedinUrl: (formData.get('linkedinUrl') || '').trim(),
     };
 
     const { valid, message, data } = validateSignupPayload(payload);

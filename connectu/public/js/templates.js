@@ -227,6 +227,10 @@ const renderSignupSection = () => `
           <label for="email">School Email</label>
           <input id="email" name="email" type="email" placeholder="you@school.edu" autocomplete="email" required />
         </div>
+        <div class="field full">
+          <label for="linkedinUrl">LinkedIn Profile URL</label>
+          <input id="linkedinUrl" name="linkedinUrl" type="url" placeholder="https://linkedin.com/in/yourprofile" autocomplete="url" />
+        </div>
       </div>
       <div style="margin-top: 1rem; text-align: center">
         <button type="submit" class="btn-primary">Sign Up</button>
