@@ -155,12 +155,12 @@
       <a href="./index.html" class="cta btn-secondary back-btn">← Home</a>
     </div>
     <div class="tab-header" id="tabHeader">
-      <button class="active" data-tab="heatmap">🗺️ Campus Heat Map</button>
-      <button data-tab="housing">🏠 Housing Marketplace</button>
-      <button data-tab="roommate">👥 Roommate Finder</button>
-      <button data-tab="community">🎉 Community Events</button>
-      <button data-tab="resources">📍 Local Resources</button>
-      <button data-tab="support">🛡️ Support & Safety</button>
+      <button class="active" data-tab="heatmap"> Campus Heat Map</button>
+      <button data-tab="housing"> Housing Marketplace</button>
+      <button data-tab="roommate"> Roommate Finder</button>
+      <button data-tab="community"> Community Events</button>
+      <button data-tab="resources"> Local Resources</button>
+      <button data-tab="support"> Support & Safety</button>
     </div>
     <div class="tab-content" id="tabContent">
       <!-- Tab content will be injected here -->
@@ -169,7 +169,7 @@
   <script type="module">
     const tabData = {
       heatmap: `
-        <h2>🗺️ Campus Heat Map — Live Activity Visualization</h2>
+        <h2> Campus Heat Map — Live Activity Visualization</h2>
         <div id="heatMapContainer"></div>
         <p style="margin-top: 1rem; color: #94a3b8; font-size: 0.95rem; text-align: center;">Real-time campus activity visualization — darker/denser areas indicate higher student presence</p>
         <ul class="feature-list">
@@ -181,7 +181,7 @@
         </ul>
       `,
       housing: `
-        <h2>🏠 Housing Marketplace</h2>
+        <h2>Housing Marketplace</h2>
         <ul class="feature-list">
           <li><strong>Browse Listings:</strong> Search for on-campus and off-campus housing, sublets, and short-term rentals posted by students and landlords. Filter by price range, number of bedrooms, amenities (laundry, parking, pet-friendly), and proximity to campus.</li>
           <li><strong>Post a Listing:</strong> List your own room, apartment, or house for rent. Add up to 20 photos, detailed amenities, lease terms, move-in dates, and contact info. Verified listings get priority visibility.</li>
@@ -192,7 +192,7 @@
         </ul>
       `,
       roommate: `
-        <h2>👥 Roommate Finder</h2>
+        <h2> Roommate Finder</h2>
         <ul class="feature-list">
           <li><strong>Matchmaking Quiz:</strong> Fill out a detailed lifestyle and preferences quiz covering sleep schedule, study habits, cleanliness level, social preferences, pet allergies, and more. Get a compatibility score with every potential roommate.</li>
           <li><strong>Profile Cards:</strong> View detailed profiles with bios, interests, major/year, social links, lifestyle photos, and mutual connections. See verified student status and background check options.</li>
@@ -203,7 +203,7 @@
         </ul>
       `,
       community: `
-        <h2>🎉 Community Events</h2>
+        <h2> Community Events</h2>
         <ul class="feature-list">
           <li><strong>Event Calendar:</strong> Discover upcoming campus and local events, workshops, concerts, game nights, and meetups. Filter by category (social, academic, cultural, sports), popularity, date range, and location. Sync with your personal calendar.</li>
           <li><strong>Host an Event:</strong> Create and promote your own events to the student community. Set event details, upload photos/flyers, manage RSVPs, send updates and reminders to attendees, and track attendance.</li>
@@ -214,7 +214,7 @@
         </ul>
       `,
       resources: `
-        <h2>📍 Local Resources</h2>
+        <h2> Local Resources</h2>
         <ul class="feature-list">
           <li><strong>Essential Services:</strong> Find comprehensive info on grocery stores, pharmacies, healthcare clinics, banks, post offices, gyms, and public transport near campus. See hours, reviews, distance from campus, and real-time availability.</li>
           <li><strong>Student Discounts:</strong> Access an updated database of exclusive deals and discounts for students at local businesses (restaurants, retail, entertainment, services). Show your student ID to redeem. Save hundreds per semester.</li>
@@ -224,7 +224,7 @@
         </ul>
       `,
       support: `
-        <h2>🛡️ Support & Safety</h2>
+        <h2> Support & Safety</h2>
         <ul class="feature-list">
           <li><strong>Emergency Contacts:</strong> Quick one-tap access to campus security, health services, counseling center, Title IX office, and local emergency services. Tap to call, message, or share your location for immediate assistance.</li>
           <li><strong>Report Issues:</strong> Anonymously report housing concerns, roommate conflicts, safety issues, or harassment for confidential mediation and support. Track the status of your report and receive updates.</li>
@@ -332,11 +332,11 @@
 
             // Add custom markers for key locations
             const locations = [
-              { name: '📚 Library', coords: [43.6645, -79.3995] },
-              { name: '🏢 Student Center', coords: [43.6620, -79.3950] },
-              { name: '🍽️ Dining Hall', coords: [43.6635, -79.3980] },
-              { name: '☕ Coffee Shop', coords: [43.6658, -79.3940] },
-              { name: '🏋️ Gym', coords: [43.6615, -79.3965] }
+              { name: 'Library', coords: [43.6645, -79.3995] },
+              { name: 'Student Center', coords: [43.6620, -79.3950] },
+              { name: 'Dining Hall', coords: [43.6635, -79.3980] },
+              { name: 'Coffee Shop', coords: [43.6658, -79.3940] },
+              { name: ' Gym', coords: [43.6615, -79.3965] }
             ];
 
             locations.forEach(loc => {
