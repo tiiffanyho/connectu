@@ -39,15 +39,20 @@
       width: 100%;
       height: 100vh;
       overflow: hidden;
+      position: relative;
+      z-index: 1;
     }
 
     .community-header {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.99));
+      border-bottom: 1px solid rgba(255,255,255,0.2);
       padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      backdrop-filter: blur(16px);
+      position: relative;
+      z-index: 2;
     }
 
     .community-title {
@@ -55,6 +60,7 @@
       font-weight: 900;
       letter-spacing: 2px;
       color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .back-btn {
@@ -79,16 +85,19 @@
       display: flex;
       gap: 0.5rem;
       padding: 1rem 2rem;
-      background: rgba(255,255,255,0.02);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(15, 23, 42, 0.98);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
       overflow-x: auto;
+      backdrop-filter: blur(16px);
+      position: relative;
+      z-index: 2;
     }
 
     .tab-header button {
       padding: 0.65rem 1rem;
-      background: rgba(255,255,255,0.06);
-      color: #cbd5e1;
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(15, 23, 42, 0.85);
+      color: #e6eef8;
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
@@ -96,11 +105,13 @@
       white-space: nowrap;
       transition: all 0.25s ease;
       flex: 1;
+      backdrop-filter: blur(8px);
     }
 
     .tab-header button:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.2);
+      background: rgba(15, 23, 42, 0.92);
+      border-color: rgba(255,255,255,0.25);
+      color: #fff;
     }
 
     .tab-header button.active {
@@ -113,8 +124,10 @@
       flex: 1;
       overflow-y: auto;
       padding: 2.5rem 2rem 2rem 2rem;
-      background: none;
+      background: rgba(15, 23, 42, 0.95);
       animation: fadeIn 0.3s;
+      position: relative;
+      z-index: 1;
     }
 
     @keyframes fadeIn {
@@ -123,13 +136,14 @@
     }
 
     .feature-list {
-      color: #cbd5e1;
+      color: #e6eef8;
       font-size: 1.08rem;
       line-height: 1.7;
       margin-top: 1.2rem;
     }
     .feature-list strong {
       color: #fff;
+      font-weight: 700;
     }
 
     #heatMapContainer {
@@ -288,12 +302,12 @@
       <a href="./index.html" class="cta btn-secondary back-btn">← Home</a>
     </div>
     <div class="tab-header" id="tabHeader">
-      <button class="active" data-tab="heatmap">🗺️ Campus Heat Map</button>
-      <button data-tab="housing">🏠 Housing Marketplace</button>
-      <button data-tab="roommate">👥 Roommate Finder</button>
-      <button data-tab="community">🎉 Community Events</button>
-      <button data-tab="resources">📍 Local Resources</button>
-      <button data-tab="support">🛡️ Support & Safety</button>
+      <button class="active" data-tab="heatmap"> Campus Heat Map</button>
+      <button data-tab="housing"> Housing Marketplace</button>
+      <button data-tab="roommate"> Roommate Finder</button>
+      <button data-tab="community"> Community Events</button>
+      <button data-tab="resources"> Local Resources</button>
+      <button data-tab="support"> Support & Safety</button>
     </div>
     <div class="tab-content" id="tabContent">
       <!-- Tab content will be injected here -->
@@ -346,7 +360,7 @@
 
     const tabData = {
       heatmap: `
-        <h2>🗺️ Campus Heat Map — Live Activity Visualization</h2>
+        <h2> Campus Heat Map — Live Activity Visualization</h2>
         <div id="heatMapContainer"></div>
         <p style="margin-top: 1rem; color: #94a3b8; font-size: 0.95rem; text-align: center;">Real-time campus activity visualization — darker/denser areas indicate higher student presence</p>
         <ul class="feature-list">
@@ -359,63 +373,17 @@
       `,
       housing: `
         <h2>🏠 Housing Marketplace</h2>
-        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-          <button onclick="handleFindRealListings()" style="
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(90deg, #10b981, #059669);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-            min-width: 200px;
-          " onmouseover="this.style.boxShadow='0 8px 24px rgba(16, 185, 129, 0.4)'" onmouseout="this.style.boxShadow='none'">
-            🔍 Find Real Listings
-          </button>
-          <button onclick="handleShowSampleListings()" style="
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(90deg, #8b5cf6, #06b6d4);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-            min-width: 200px;
-          " onmouseover="this.style.boxShadow='0 8px 24px rgba(139, 92, 246, 0.4)'" onmouseout="this.style.boxShadow='none'">
-            📋 Show Sample Listings
-          </button>
-        </div>
-        <div class="housing-filters">
-          <select id="budgetFilter">
-            <option value="">All Budgets</option>
-            <option value="budget">💰 Budget Friendly ($500-$800)</option>
-            <option value="moderate">💵 Moderate ($800-$1200)</option>
-            <option value="premium">💎 Premium ($1200+)</option>
-          </select>
-          <select id="typeFilter">
-            <option value="">All Types</option>
-            <option value="dorm">🏢 Dorm</option>
-            <option value="apartment">🏠 Apartment</option>
-            <option value="house">🏡 House</option>
-            <option value="room">🛏️ Room Only</option>
-          </select>
-          <input type="number" id="bedroomFilter" placeholder="Bedrooms" min="1" max="5">
-          <input type="number" id="maxPriceFilter" placeholder="Max Price ($)">
-        </div>
-        <div id="loadingIndicator" style="display: none; text-align: center; padding: 2rem; color: #94a3b8;">
-          <div style="font-size: 1.2rem; margin-bottom: 1rem;">🔄 Finding real listings near you...</div>
-          <div style="font-size: 0.9rem;">Searching Zillow, Airbnb, Kijiji, and student housing sites</div>
-        </div>
-        <div id="housingListings"></div>
+        <ul class="feature-list">
+          <li><strong>Browse Listings:</strong> Search for on-campus and off-campus housing, sublets, and short-term rentals posted by students and landlords. Filter by price range, number of bedrooms, amenities (laundry, parking, pet-friendly), and proximity to campus.</li>
+          <li><strong>Post a Listing:</strong> List your own room, apartment, or house for rent. Add up to 20 photos, detailed amenities, lease terms, move-in dates, and contact info. Verified listings get priority visibility.</li>
+          <li><strong>Interactive Map View:</strong> See all available housing on an interactive map with overlays for safety ratings, walkability scores, public transit access, and student density. Pin your favorite locations.</li>
+          <li><strong>Verified Listings:</strong> Look for verified badges indicating landlord verification, lease validation, and photo authenticity to ensure safe, scam-free options. Report suspicious listings with one tap.</li>
+          <li><strong>Favorites & Alerts:</strong> Save listings to your favorites for easy comparison. Set up custom alerts to get notified when new listings match your criteria (price, location, move-in date).</li>
+          <li><strong>Reviews & Ratings:</strong> Read reviews from previous tenants about landlords, properties, and neighborhoods. Leave your own reviews to help the community.</li>
+        </ul>
       `,
       roommate: `
-        <h2>👥 Roommate Finder</h2>
+        <h2> Roommate Finder</h2>
         <ul class="feature-list">
           <li><strong>Matchmaking Quiz:</strong> Fill out a detailed lifestyle and preferences quiz covering sleep schedule, study habits, cleanliness level, social preferences, pet allergies, and more. Get a compatibility score with every potential roommate.</li>
           <li><strong>Profile Cards:</strong> View detailed profiles with bios, interests, major/year, social links, lifestyle photos, and mutual connections. See verified student status and background check options.</li>
@@ -426,7 +394,7 @@
         </ul>
       `,
       community: `
-        <h2>🎉 Community Events</h2>
+        <h2> Community Events</h2>
         <ul class="feature-list">
           <li><strong>Event Calendar:</strong> Discover upcoming campus and local events, workshops, concerts, game nights, and meetups. Filter by category (social, academic, cultural, sports), popularity, date range, and location. Sync with your personal calendar.</li>
           <li><strong>Host an Event:</strong> Create and promote your own events to the student community. Set event details, upload photos/flyers, manage RSVPs, send updates and reminders to attendees, and track attendance.</li>
@@ -437,7 +405,7 @@
         </ul>
       `,
       resources: `
-        <h2>📍 Local Resources</h2>
+        <h2> Local Resources</h2>
         <ul class="feature-list">
           <li><strong>Essential Services:</strong> Find comprehensive info on grocery stores, pharmacies, healthcare clinics, banks, post offices, gyms, and public transport near campus. See hours, reviews, distance from campus, and real-time availability.</li>
           <li><strong>Student Discounts:</strong> Access an updated database of exclusive deals and discounts for students at local businesses (restaurants, retail, entertainment, services). Show your student ID to redeem. Save hundreds per semester.</li>
@@ -447,7 +415,7 @@
         </ul>
       `,
       support: `
-        <h2>🛡️ Support & Safety</h2>
+        <h2> Support & Safety</h2>
         <ul class="feature-list">
           <li><strong>Emergency Contacts:</strong> Quick one-tap access to campus security, health services, counseling center, Title IX office, and local emergency services. Tap to call, message, or share your location for immediate assistance.</li>
           <li><strong>Report Issues:</strong> Anonymously report housing concerns, roommate conflicts, safety issues, or harassment for confidential mediation and support. Track the status of your report and receive updates.</li>
@@ -555,11 +523,11 @@
 
             // Add custom markers for key locations
             const locations = [
-              { name: '📚 Library', coords: [43.6645, -79.3995] },
-              { name: '🏢 Student Center', coords: [43.6620, -79.3950] },
-              { name: '🍽️ Dining Hall', coords: [43.6635, -79.3980] },
-              { name: '☕ Coffee Shop', coords: [43.6658, -79.3940] },
-              { name: '🏋️ Gym', coords: [43.6615, -79.3965] }
+              { name: 'Library', coords: [43.6645, -79.3995] },
+              { name: 'Student Center', coords: [43.6620, -79.3950] },
+              { name: 'Dining Hall', coords: [43.6635, -79.3980] },
+              { name: 'Coffee Shop', coords: [43.6658, -79.3940] },
+              { name: ' Gym', coords: [43.6615, -79.3965] }
             ];
 
             locations.forEach(loc => {
@@ -880,5 +848,6 @@
     // Initial render
     renderTab(activeTab);
   </script>
+  <script src="./js/animated-background.js"></script>
 </body>
 </html>

@@ -47,15 +47,20 @@
         width: 100%;
         min-height: 100vh;
         overflow: hidden;
+        position: relative;
+        z-index: 1;
       }
 
       .social-header {
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-        border-bottom: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.99));
+        border-bottom: 1px solid rgba(255,255,255,0.2);
         padding: 1.5rem 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 2;
       }
 
       .social-title {
@@ -63,6 +68,7 @@
         font-weight: 900;
         letter-spacing: 2px;
         color: #fff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
 
       .social-back {
@@ -86,27 +92,32 @@
         display: flex;
         gap: 0.5rem;
         padding: 1rem 2rem;
-        background: rgba(255,255,255,0.02);
-        border-bottom: 1px solid rgba(255,255,255,0.06);
+        background: rgba(15, 23, 42, 0.98);
+        border-bottom: 1px solid rgba(255,255,255,0.2);
         overflow-x: auto;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 2;
       }
 
       .tab-btn {
         padding: 0.65rem 1rem;
-        background: rgba(255,255,255,0.06);
-        color: #cbd5e1;
-        border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(15, 23, 42, 0.85);
+        color: #e6eef8;
+        border: 1px solid rgba(255,255,255,0.15);
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
         font-size: 0.9rem;
         white-space: nowrap;
         transition: all 0.25s ease;
+        backdrop-filter: blur(8px);
       }
 
       .tab-btn:hover {
-        background: rgba(255,255,255,0.1);
-        border-color: rgba(255,255,255,0.2);
+        background: rgba(15, 23, 42, 0.92);
+        border-color: rgba(255,255,255,0.25);
+        color: #fff;
       }
 
       .tab-btn.active {
@@ -119,6 +130,9 @@
         flex: 1;
         overflow-y: auto;
         padding: 2rem;
+        background: rgba(15, 23, 42, 0.95);
+        position: relative;
+        z-index: 1;
       }
 
       .tab-panel {
@@ -136,11 +150,14 @@
       }
 
       .feature-box {
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-        border: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.99));
+        border: 1px solid rgba(255,255,255,0.2);
         border-radius: 16px;
         padding: 1.5rem;
         margin-bottom: 1.5rem;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 1;
       }
 
       .feature-title {
@@ -154,19 +171,22 @@
       }
 
       .feature-description {
-        color: #a7c1d9;
+        color: #e6eef8;
         line-height: 1.6;
         margin-bottom: 1rem;
       }
 
       .feature-highlight {
-        background: rgba(99,102,241,0.1);
+        background: rgba(15, 23, 42, 0.98);
         border-left: 3px solid #6366f1;
         padding: 1rem;
         border-radius: 8px;
-        color: #cbd5e1;
+        color: #fff;
         font-size: 0.95rem;
         margin: 1rem 0;
+        backdrop-filter: blur(12px);
+        position: relative;
+        z-index: 1;
       }
 
       .event-grid {
@@ -177,7 +197,8 @@
       }
 
       .event-card {
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        backdrop-filter: blur(12px);
         border: 1px solid rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1.25rem;
@@ -186,7 +207,8 @@
       }
 
       .event-card:hover {
-        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.95));
+        backdrop-filter: blur(12px);
         border-color: rgba(99,102,241,0.3);
         transform: translateY(-4px);
       }
@@ -213,7 +235,7 @@
       .event-category {
         display: inline-block;
         background: rgba(99,102,241,0.2);
-        color: #a7c1d9;
+        color: #e6eef8;
         font-size: 0.75rem;
         padding: 0.35rem 0.6rem;
         border-radius: 4px;
@@ -222,7 +244,7 @@
 
       .event-details {
         font-size: 0.85rem;
-        color: #a7c1d9;
+        color: #e6eef8;
         line-height: 1.5;
         margin-bottom: 1rem;
       }
@@ -286,7 +308,8 @@
       }
 
       .club-card {
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        backdrop-filter: blur(12px);
         border: 1px solid rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1.25rem;
@@ -297,7 +320,8 @@
       }
 
       .club-card:hover {
-        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.95));
+        backdrop-filter: blur(12px);
         border-color: rgba(99,102,241,0.3);
         transform: translateY(-4px);
       }
@@ -309,7 +333,7 @@
       }
 
       .club-desc {
-        color: #a7c1d9;
+        color: #e6eef8;
         font-size: 0.85rem;
         line-height: 1.5;
       }
@@ -329,12 +353,13 @@
       }
 
       .club-members {
-        color: #94a3b8;
+        color: #cbd5e1;
         font-size: 0.85rem;
       }
 
       .meetup-card {
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        backdrop-filter: blur(12px);
         border: 1px solid rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1.25rem;
@@ -343,7 +368,8 @@
       }
 
       .meetup-card:hover {
-        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.95));
+        backdrop-filter: blur(12px);
         border-color: rgba(99,102,241,0.3);
       }
 
@@ -356,13 +382,14 @@
 
       .meetup-details {
         font-size: 0.85rem;
-        color: #a7c1d9;
+        color: #e6eef8;
         line-height: 1.6;
         margin-bottom: 1rem;
       }
 
       .progress-bar {
-        background: rgba(255,255,255,0.05);
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(8px);
         height: 8px;
         border-radius: 4px;
         overflow: hidden;
@@ -376,7 +403,8 @@
       }
 
       .chat-card {
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        backdrop-filter: blur(12px);
         border: 1px solid rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1.25rem;
@@ -385,7 +413,8 @@
       }
 
       .chat-card:hover {
-        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.95));
+        backdrop-filter: blur(12px);
         border-color: rgba(99,102,241,0.3);
       }
 
@@ -398,14 +427,14 @@
 
       .chat-info {
         font-size: 0.85rem;
-        color: #a7c1d9;
+        color: #e6eef8;
         margin-bottom: 0.75rem;
       }
 
       .chat-vibe {
         display: inline-block;
         background: rgba(6,182,212,0.2);
-        color: #a7c1d9;
+        color: #e6eef8;
         font-size: 0.75rem;
         padding: 0.35rem 0.6rem;
         border-radius: 4px;
@@ -419,7 +448,8 @@
       }
 
       .wellness-card {
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        backdrop-filter: blur(12px);
         border: 1px solid rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1.5rem;
@@ -438,7 +468,7 @@
       }
 
       .wellness-desc {
-        color: #a7c1d9;
+        color: #e6eef8;
         font-size: 0.85rem;
         line-height: 1.5;
       }
@@ -451,7 +481,8 @@
       }
 
       .metric-card {
-        background: rgba(255,255,255,0.03);
+        background: rgba(15, 23, 42, 0.92);
+        backdrop-filter: blur(8px);
         padding: 1rem;
         border-radius: 10px;
         border: 1px solid rgba(255,255,255,0.05);
@@ -459,7 +490,7 @@
 
       .metric-label {
         font-size: 0.85rem;
-        color: #94a3b8;
+        color: #cbd5e1;
         margin-bottom: 0.5rem;
       }
 
@@ -584,11 +615,11 @@
 
       <!-- Tabs -->
       <div class="social-tabs">
-        <button class="tab-btn active" data-tab="smart-events">📅 Smart Events</button>
-        <button class="tab-btn" data-tab="clubs-communities">🎯 Clubs & Communities</button>
-        <button class="tab-btn" data-tab="meetups">🤝 Meetups & Hangouts</button>
-        <button class="tab-btn" data-tab="group-chats">💬 Group Chats</button>
-        <button class="tab-btn" data-tab="wellness">💚 Social Wellness</button>
+        <button class="tab-btn active" data-tab="smart-events"> Smart Events</button>
+        <button class="tab-btn" data-tab="clubs-communities"> Clubs & Communities</button>
+        <button class="tab-btn" data-tab="meetups"> Meetups & Hangouts</button>
+        <button class="tab-btn" data-tab="group-chats"> Group Chats</button>
+        <button class="tab-btn" data-tab="wellness"> Social Wellness</button>
       </div>
 
       <!-- Content -->
@@ -596,7 +627,7 @@
         <!-- Smart Events Tab -->
         <div id="smart-events" class="tab-panel active">
           <div class="feature-box">
-            <div class="feature-title">📅 Smart Events — Personalized for You</div>
+            <div class="feature-title"> Smart Events — Personalized for You</div>
             <div class="feature-description">
               Discover events tailored to your interests. See what's trending, what your friends are attending, and what matches your vibe.
             </div>
@@ -616,13 +647,13 @@
 
           <div class="event-grid">
             <div class="event-card">
-              <div class="event-badge">✨ For You</div>
+              <div class="event-badge"> For You</div>
               <div class="event-title">Tech Meetup & Pizza Night</div>
               <span class="event-category">Social</span>
               <div class="event-details">
-                <div>📅 Today at 7:00 PM</div>
-                <div>📍 Student Center</div>
-                <div>👥 24 interested</div>
+                <div> Today at 7:00 PM</div>
+                <div> Student Center</div>
+                <div> 24 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -631,21 +662,21 @@
               <div class="event-title">Study Group Session</div>
               <span class="event-category">Study</span>
               <div class="event-details">
-                <div>📅 Today at 6:30 PM</div>
-                <div>📍 Library</div>
-                <div>👥 18 interested</div>
+                <div> Today at 6:30 PM</div>
+                <div> Library</div>
+                <div> 18 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
 
             <div class="event-card">
-              <div class="event-badge">✨ For You</div>
+              <div class="event-badge"> For You</div>
               <div class="event-title">Weekend Social Hangout</div>
               <span class="event-category">Party</span>
               <div class="event-details">
-                <div>📅 Friday at 10:00 PM</div>
-                <div>📍 Campus Venue</div>
-                <div>👥 156 interested</div>
+                <div> Friday at 10:00 PM</div>
+                <div> Campus Venue</div>
+                <div> 156 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -654,9 +685,9 @@
               <div class="event-title">Yoga & Wellness Circle</div>
               <span class="event-category">Wellness</span>
               <div class="event-details">
-                <div>📅 Tomorrow at 5:30 PM</div>
-                <div>📍 Gym Studio</div>
-                <div>👥 12 interested</div>
+                <div> Tomorrow at 5:30 PM</div>
+                <div> Gym Studio</div>
+                <div> 12 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -665,9 +696,9 @@
               <div class="event-title">Cultural Potluck Dinner</div>
               <span class="event-category">Social</span>
               <div class="event-details">
-                <div>📅 This Week at 6:00 PM</div>
-                <div>📍 Community Space</div>
-                <div>👥 42 interested</div>
+                <div> This Week at 6:00 PM</div>
+                <div> Community Space</div>
+                <div> 42 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -676,9 +707,9 @@
               <div class="event-title">Gaming Tournament</div>
               <span class="event-category">Gaming</span>
               <div class="event-details">
-                <div>📅 Saturday at 8:00 PM</div>
-                <div>📍 Online (Discord)</div>
-                <div>👥 87 interested</div>
+                <div> Saturday at 8:00 PM</div>
+                <div> Online (Discord)</div>
+                <div> 87 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -695,7 +726,7 @@
             </div>
             <div class="metric-card">
               <div class="metric-label">Popular Right Now</div>
-              <div class="metric-value">🎉 Parties</div>
+              <div class="metric-value"> Parties</div>
             </div>
             <div class="metric-card">
               <div class="metric-label">Your Attendance</div>
@@ -707,7 +738,7 @@
         <!-- Clubs & Communities Tab -->
         <div id="clubs-communities" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">🎯 Clubs & Communities — Find Your People</div>
+            <div class="feature-title"> Clubs & Communities — Find Your People</div>
             <div class="feature-description">
               Join communities based on your interests. From tech to fitness to cultural exchanges, find where you belong.
             </div>
@@ -725,7 +756,7 @@
                 <span class="club-tag">#Coding</span>
                 <span class="club-tag">#Startups</span>
               </div>
-              <div class="club-members">👥 324 members</div>
+              <div class="club-members"> 324 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
@@ -737,7 +768,7 @@
                 <span class="club-tag">#Casual</span>
                 <span class="club-tag">#Fun</span>
               </div>
-              <div class="club-members">👥 89 members</div>
+              <div class="club-members"> 89 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
@@ -749,7 +780,7 @@
                 <span class="club-tag">#Wellness</span>
                 <span class="club-tag">#Morning</span>
               </div>
-              <div class="club-members">👥 156 members</div>
+              <div class="club-members"> 156 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
@@ -761,7 +792,7 @@
                 <span class="club-tag">#Culture</span>
                 <span class="club-tag">#Food</span>
               </div>
-              <div class="club-members">👥 203 members</div>
+              <div class="club-members"> 203 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
@@ -773,7 +804,7 @@
                 <span class="club-tag">#Business</span>
                 <span class="club-tag">#Mentorship</span>
               </div>
-              <div class="club-members">👥 112 members</div>
+              <div class="club-members"> 112 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
@@ -785,7 +816,7 @@
                 <span class="club-tag">#Support</span>
                 <span class="club-tag">#Friends</span>
               </div>
-              <div class="club-members">👥 1.2K members</div>
+              <div class="club-members"> 1.2K members</div>
               <button class="event-btn">Join Chat</button>
             </div>
           </div>
@@ -794,7 +825,7 @@
         <!-- Meetups Tab -->
         <div id="meetups" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">🤝 Meetups & Hangouts — Casual Plans</div>
+            <div class="feature-title"> Meetups & Hangouts — Casual Plans</div>
             <div class="feature-description">
               Find casual plans: coffee runs, late-night food, study sessions, gym buddies, or just chilling with no agenda.
             </div>
@@ -809,11 +840,11 @@
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Late-night food run 🍕</div>
+            <div class="meetup-title">Late-night food run </div>
             <div class="meetup-details">
-              <div>⏰ Tonight, 11:30 PM</div>
-              <div>📍 Campus Area</div>
-              <div>👥 4/8 joined</div>
+              <div> Tonight, 11:30 PM</div>
+              <div> Campus Area</div>
+              <div> 4/8 joined</div>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width:50%;"></div>
@@ -822,11 +853,11 @@
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Study group session 📚</div>
+            <div class="meetup-title">Study group session </div>
             <div class="meetup-details">
-              <div>⏰ Tomorrow, 7:00 PM</div>
-              <div>📍 Library</div>
-              <div>👥 3/6 joined</div>
+              <div> Tomorrow, 7:00 PM</div>
+              <div> Library</div>
+              <div> 3/6 joined</div>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width:50%;"></div>
@@ -835,11 +866,11 @@
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Pickup sports game 🏀</div>
+            <div class="meetup-title">Pickup sports game </div>
             <div class="meetup-details">
-              <div>⏰ Saturday, 6:00 PM</div>
-              <div>📍 Athletic Center</div>
-              <div>👥 6/10 joined</div>
+              <div> Saturday, 6:00 PM</div>
+              <div> Athletic Center</div>
+              <div> 6/10 joined</div>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width:60%;"></div>
@@ -848,11 +879,11 @@
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Coffee & chill (no agenda) ☕</div>
+            <div class="meetup-title">Coffee & chill (no agenda) </div>
             <div class="meetup-details">
-              <div>⏰ Tomorrow, 3:00 PM</div>
-              <div>📍 Campus Café</div>
-              <div>👥 2/5 joined</div>
+              <div> Tomorrow, 3:00 PM</div>
+              <div> Campus Café</div>
+              <div> 2/5 joined</div>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width:40%;"></div>
@@ -861,11 +892,11 @@
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Movie night 🎬</div>
+            <div class="meetup-title">Movie night </div>
             <div class="meetup-details">
-              <div>⏰ Friday, 8:00 PM</div>
-              <div>📍 Common Room</div>
-              <div>👥 7/12 joined</div>
+              <div> Friday, 8:00 PM</div>
+              <div> Common Room</div>
+              <div> 7/12 joined</div>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width:58%;"></div>
@@ -877,7 +908,7 @@
         <!-- Group Chats Tab -->
         <div id="group-chats" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">💬 Group Chats — No Limits, Unlimited Growth</div>
+            <div class="feature-title"> Group Chats — No Limits, Unlimited Growth</div>
             <div class="feature-description">
               Join or create group chats for any interest. Courses, hobbies, events, wellness — all in one place with no member limits.
             </div>
@@ -888,42 +919,42 @@
 
           <div class="chat-card">
             <div class="chat-name">First Year Students</div>
-            <div class="chat-info">👥 412 members</div>
+            <div class="chat-info"> 412 members</div>
             <span class="chat-vibe">Supportive & helpful</span>
             <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
           <div class="chat-card">
             <div class="chat-name">Weekend Plans</div>
-            <div class="chat-info">👥 187 members</div>
+            <div class="chat-info"> 187 members</div>
             <span class="chat-vibe">Chaotic & fun</span>
             <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
           <div class="chat-card">
             <div class="chat-name">Study Accountability Group</div>
-            <div class="chat-info">👥 94 members</div>
+            <div class="chat-info"> 94 members</div>
             <span class="chat-vibe">Focused & motivating</span>
             <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
           <div class="chat-card">
             <div class="chat-name">Intramural Sports Squad</div>
-            <div class="chat-info">👥 23 members</div>
+            <div class="chat-info"> 23 members</div>
             <span class="chat-vibe">Competitive & friendly</span>
             <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
           <div class="chat-card">
             <div class="chat-name">Dorm Friends & Hangouts</div>
-            <div class="chat-info">👥 156 members</div>
+            <div class="chat-info"> 156 members</div>
             <span class="chat-vibe">Chaotic & chill</span>
             <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
           <div class="chat-card">
             <div class="chat-name">Mental Health & Wellness</div>
-            <div class="chat-info">👥 67 members</div>
+            <div class="chat-info"> 67 members</div>
             <span class="chat-vibe">Safe & supportive</span>
             <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
@@ -932,7 +963,7 @@
         <!-- Social Wellness Tab -->
         <div id="wellness" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">💚 Social Wellness — Healthy Connections</div>
+            <div class="feature-title"> Social Wellness — Healthy Connections</div>
             <div class="feature-description">
               Build authentic friendships and balance your social life with self-care. We encourage quality connections over quantity.
             </div>
@@ -943,25 +974,25 @@
 
           <div class="wellness-grid">
             <div class="wellness-card">
-              <div class="wellness-emoji">🔥</div>
+              <div class="wellness-emoji"></div>
               <div class="wellness-title">Social Streaks</div>
               <div class="wellness-desc">Track how many events you've attended this week. Build consistent, healthy social habits.</div>
             </div>
 
             <div class="wellness-card">
-              <div class="wellness-emoji">⚖️</div>
+              <div class="wellness-emoji"></div>
               <div class="wellness-title">Balance Matters</div>
               <div class="wellness-desc">Smart suggestions help you balance social time with study sessions, sleep, and personal time.</div>
             </div>
 
             <div class="wellness-card">
-              <div class="wellness-emoji">💚</div>
+              <div class="wellness-emoji"></div>
               <div class="wellness-title">Quality Over Quantity</div>
               <div class="wellness-desc">Meet people with shared goals & values. Build deep friendships, not just surface connections.</div>
             </div>
 
             <div class="wellness-card">
-              <div class="wellness-emoji">🤝</div>
+              <div class="wellness-emoji"></div>
               <div class="wellness-title">Safe Spaces</div>
               <div class="wellness-desc">All communities have conduct guidelines to keep everyone safe, inclusive, and respected.</div>
             </div>
@@ -1023,5 +1054,6 @@
         });
       });
     </script>
+    <script src="./js/animated-background.js"></script>
   </body>
 </html>

@@ -125,6 +125,246 @@ export const initSignupFlow = () => {
 
   if (!signupForm || !signupView || !mainView || !welcomeView) return;
 
+  // Function to load LinkedIn profile picture
+  const loadLinkedInProfile = () => {
+    try {
+      const userData = sessionStorage.getItem('connectu_user');
+      if (userData) {
+        const user = JSON.parse(userData);
+        const linkedinUrl = user.linkedinUrl;
+        
+        if (linkedinUrl) {
+          // Extract profile ID or username from LinkedIn URL
+          function extractLinkedInProfileId(url) {
+            const match = url.match(/linkedin\.com\/in\/([^\/\?]+)/i);
+            if (match && match[1]) {
+              return match[1];
+            }
+            return null;
+          }
+
+          // Function to test if an image URL is valid
+          function testImageUrl(url) {
+            return new Promise((resolve) => {
+              const img = new Image();
+              img.crossOrigin = 'anonymous';
+              let resolved = false;
+              
+              img.onload = () => {
+                if (!resolved) {
+                  resolved = true;
+                  resolve(true);
+                }
+              };
+              
+              img.onerror = () => {
+                if (!resolved) {
+                  resolved = true;
+                  resolve(false);
+                }
+              };
+              
+              const timeout = setTimeout(() => {
+                if (!resolved) {
+                  resolved = true;
+                  resolve(false);
+                }
+              }, 3000);
+              
+              img.src = url;
+            });
+          }
+
+          // Function to get LinkedIn profile picture URL
+          async function fetchLinkedInProfilePicture(profileId) {
+            if (!profileId) return null;
+
+            const methods = [
+              // Method 1: Try using CORS proxy to fetch og:image from LinkedIn page
+              async () => {
+                try {
+                  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
+                  const response = await fetch(proxyUrl);
+                  const data = await response.json();
+                  
+                  if (data.contents) {
+                    // Pattern 1: Look for og:image meta tag (most reliable)
+                    const ogImageMatch = data.contents.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+                    if (ogImageMatch && ogImageMatch[1]) {
+                      const imageUrl = ogImageMatch[1].replace(/&amp;/g, '&');
+                      const isValid = await testImageUrl(imageUrl);
+                      if (isValid) return imageUrl;
+                    }
+
+                    // Pattern 2: Look for LinkedIn CDN image URLs
+                    const cdnMatches = data.contents.match(/https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s<>]+/gi);
+                    if (cdnMatches && cdnMatches.length > 0) {
+                      for (const url of cdnMatches.slice(0, 3)) {
+                        const cleanUrl = url.replace(/[<>"']/g, '').split('?')[0];
+                        const isValid = await testImageUrl(cleanUrl);
+                        if (isValid) return cleanUrl;
+                      }
+                    }
+                  }
+                } catch (error) {
+                  console.log('Method 1 failed:', error);
+                }
+                return null;
+              },
+              
+              // Method 2: Try alternative proxy services
+              async () => {
+                try {
+                  const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
+                  const response = await fetch(proxyUrl);
+                  const html = await response.text();
+                  
+                  if (html) {
+                    const ogImageMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+                    if (ogImageMatch && ogImageMatch[1]) {
+                      const imageUrl = ogImageMatch[1].replace(/&amp;/g, '&');
+                      const isValid = await testImageUrl(imageUrl);
+                      if (isValid) return imageUrl;
+                    }
+                  }
+                } catch (error) {
+                  console.log('Method 2 failed:', error);
+                }
+                return null;
+              }
+            ];
+
+            // Try each method in sequence
+            for (const method of methods) {
+              try {
+                const result = await method();
+                if (result) {
+                  return result;
+                }
+              } catch (error) {
+                console.log('Method failed:', error);
+                continue;
+              }
+            }
+
+            return null;
+          }
+
+          const profileId = extractLinkedInProfileId(linkedinUrl);
+          
+          if (profileId) {
+            // Extract name from LinkedIn URL or use profile ID
+            const displayName = profileId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            
+            fetchLinkedInProfilePicture(profileId)
+              .then(profilePictureUrl => {
+                const profileImg = document.getElementById('linkedinProfile');
+                const profileSection = document.getElementById('profileSection');
+                const profileBanner = document.getElementById('profileBanner');
+                const nameDisplay = document.getElementById('profileNameDisplay');
+
+                if (nameDisplay) {
+                  nameDisplay.textContent = displayName;
+                }
+
+                // Only display if we have a valid profile picture URL
+                if (profilePictureUrl) {
+                  if (profileImg) {
+                    profileImg.src = profilePictureUrl;
+                    profileImg.alt = `${displayName} LinkedIn Profile`;
+                    profileImg.onload = function() {
+                      // Only show section if profile picture loaded successfully
+                      if (profileSection) {
+                        profileSection.style.display = 'block';
+                      }
+                    };
+                    profileImg.onerror = function() {
+                      console.log('Profile picture failed to load from URL:', profilePictureUrl);
+                      if (profileSection) {
+                        profileSection.style.display = 'none';
+                      }
+                    };
+                  }
+                  
+                  // Also add to banner if it exists
+                  if (profileBanner) {
+                    // Clear any existing content
+                    profileBanner.innerHTML = '';
+                    const bannerImg = document.createElement('img');
+                    bannerImg.src = profilePictureUrl;
+                    bannerImg.alt = `${displayName} banner`;
+                    bannerImg.style.width = '100%';
+                    bannerImg.style.height = '100%';
+                    bannerImg.style.objectFit = 'cover';
+                    bannerImg.onerror = function() {
+                      // If banner image fails, remove it
+                      profileBanner.innerHTML = '';
+                      profileBanner.style.display = 'none';
+                    };
+                    bannerImg.onload = function() {
+                      profileBanner.style.display = 'block';
+                    };
+                    profileBanner.appendChild(bannerImg);
+                    profileBanner.classList.add('loaded');
+                  }
+                } else {
+                  console.log('No valid profile picture URL found for:', profileId);
+                  // Don't show profile section if no valid URL
+                  if (profileSection) {
+                    profileSection.style.display = 'none';
+                  }
+                  if (profileBanner) {
+                    profileBanner.style.display = 'none';
+                  }
+                }
+              })
+              .catch(error => {
+                console.error('Error loading LinkedIn profile picture:', error);
+                const profileSection = document.getElementById('profileSection');
+                const profileBanner = document.getElementById('profileBanner');
+                if (profileSection) {
+                  profileSection.style.display = 'none';
+                }
+                if (profileBanner) {
+                  profileBanner.style.display = 'none';
+                }
+              });
+          } else {
+            console.log('Could not extract profile ID from LinkedIn URL:', linkedinUrl);
+            const profileSection = document.getElementById('profileSection');
+            const profileBanner = document.getElementById('profileBanner');
+            if (profileSection) {
+              profileSection.style.display = 'none';
+            }
+            if (profileBanner) {
+              profileBanner.style.display = 'none';
+            }
+          }
+        } else {
+          // No LinkedIn URL provided
+          const profileSection = document.getElementById('profileSection');
+          const profileBanner = document.getElementById('profileBanner');
+          if (profileSection) {
+            profileSection.style.display = 'none';
+          }
+          if (profileBanner) {
+            profileBanner.style.display = 'none';
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error loading LinkedIn profile:', error);
+      const profileSection = document.getElementById('profileSection');
+      const profileBanner = document.getElementById('profileBanner');
+      if (profileSection) {
+        profileSection.style.display = 'none';
+      }
+      if (profileBanner) {
+        profileBanner.style.display = 'none';
+      }
+    }
+  };
+
   // Navigation function
   const showPage = (pageName) => {
     welcomeView.style.display = 'none';
@@ -149,6 +389,8 @@ export const initSignupFlow = () => {
       mainView.style.display = 'block';
       mainView.removeAttribute('aria-hidden');
       animateTiles(tiles);
+      // Load LinkedIn profile picture when main view is shown
+      loadLinkedInProfile();
     } else if (pageName === 'signin') {
       // create and show sign-in view on demand
       ensureSignInViewExists();
@@ -160,10 +402,10 @@ export const initSignupFlow = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Learn More button: welcome → signup
+  // Learn More button: welcome → brochure page
   if (learnMoreBtn) {
     learnMoreBtn.addEventListener('click', () => {
-      showPage('signup');
+      window.location.href = './brochure.html';
     });
   }
 
@@ -223,7 +465,13 @@ export const initSignupFlow = () => {
   if (storedUser) {
     showPage('main');
   } else {
-    showPage('welcome');
+    // Check if coming from brochure with signup action
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('action') === 'signup') {
+      showPage('signup');
+    } else {
+      showPage('welcome');
+    }
   }
 
   signupForm.addEventListener('submit', (event) => {
@@ -240,6 +488,7 @@ export const initSignupFlow = () => {
       dobMonth: (formData.get('dobMonth') || '').trim(),
       dobYear: (formData.get('dobYear') || '').trim(),
       school: getSchoolValue(signupForm),
+      linkedinUrl: (formData.get('linkedinUrl') || '').trim(),
     };
 
     const { valid, message, data } = validateSignupPayload(payload);

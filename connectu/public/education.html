@@ -47,19 +47,33 @@
         width: 100%;
         height: 100vh;
         overflow: hidden;
+        position: relative;
+        z-index: 1;
       }
 
       .education-header {
         background: linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.01)
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
         );
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding: 1.5rem 2rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        position: relative;
+      }
+
+      .education-header .school-banner {
+        display: none;
+      }
+
+      .header-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 1rem;
       }
 
       .education-title {
@@ -67,6 +81,11 @@
         font-weight: 900;
         letter-spacing: 2px;
         color: #fff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        grid-column: 1;
+        margin: 0;
+        width: 100%;
       }
 
       .education-back {
@@ -81,6 +100,8 @@
         transition:
           transform 0.15s ease,
           box-shadow 0.15s ease;
+        grid-column: 2;
+        white-space: nowrap;
       }
 
       .education-back:hover {
@@ -92,27 +113,32 @@
         display: flex;
         gap: 0.5rem;
         padding: 1rem 2rem;
-        background: rgba(255, 255, 255, 0.02);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(15, 23, 42, 0.98);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         overflow-x: auto;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 2;
       }
 
       .tab-btn {
         padding: 0.65rem 1rem;
-        background: rgba(255, 255, 255, 0.06);
-        color: #cbd5e1;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.85);
+        color: #e6eef8;
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
         font-size: 0.9rem;
         white-space: nowrap;
         transition: all 0.25s ease;
+        backdrop-filter: blur(8px);
       }
 
       .tab-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(15, 23, 42, 0.92);
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #fff;
       }
 
       .tab-btn.active {
@@ -125,6 +151,9 @@
         flex: 1;
         overflow-y: auto;
         padding: 2rem;
+        background: rgba(15, 23, 42, 0.95);
+        position: relative;
+        z-index: 1;
       }
 
       .tab-panel {
@@ -150,13 +179,16 @@
       .feature-box {
         background: linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.01)
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
         );
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
         padding: 1.5rem;
         margin-bottom: 1.5rem;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 1;
       }
 
       .feature-title {
@@ -170,19 +202,22 @@
       }
 
       .feature-description {
-        color: #a7c1d9;
+        color: #e6eef8;
         line-height: 1.6;
         margin-bottom: 1rem;
       }
 
       .feature-highlight {
-        background: rgba(99, 102, 241, 0.1);
+        background: rgba(15, 23, 42, 0.98);
         border-left: 3px solid #6366f1;
         padding: 1rem;
         border-radius: 8px;
-        color: #cbd5e1;
+        color: #fff;
         font-size: 0.95rem;
         margin: 1rem 0;
+        backdrop-filter: blur(12px);
+        position: relative;
+        z-index: 1;
       }
 
       .metric-grid {
@@ -193,15 +228,16 @@
       }
 
       .metric-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(15, 23, 42, 0.92);
         padding: 1rem;
         border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
       }
 
       .metric-label {
         font-size: 0.85rem;
-        color: #94a3b8;
+        color: #cbd5e1;
         margin-bottom: 0.5rem;
       }
 
@@ -212,11 +248,12 @@
       }
 
       .course-combo {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(15, 23, 42, 0.92);
         padding: 1rem;
         border-radius: 10px;
         margin: 0.75rem 0;
         border-left: 4px solid #06b6d4;
+        backdrop-filter: blur(8px);
       }
 
       .combo-reaction {
@@ -259,7 +296,7 @@
       }
 
       .energy-bar {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(15, 23, 42, 0.95);
         height: 8px;
         border-radius: 4px;
         margin: 0.5rem 0;
@@ -273,18 +310,37 @@
       }
 
       .path-option {
-        background: rgba(255, 255, 255, 0.03);
-        padding: 1.25rem;
-        border-radius: 12px;
-        margin: 1rem 0;
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        padding: 1.75rem;
+        border-radius: 14px;
+        margin: 0.75rem 0;
         cursor: pointer;
-        transition: all 0.25s ease;
-        border: 2px solid transparent;
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+        border: 2.5px solid rgba(99, 102, 241, 0.4);
+        backdrop-filter: blur(8px);
+        display: block;
+        width: 100%;
+        text-align: left;
+        font-family: inherit;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       }
 
       .path-option:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(99, 102, 241, 0.4);
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.12));
+        border-color: rgba(139, 92, 246, 0.8);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(139, 92, 246, 0.3);
+      }
+
+      .path-option:active {
+        transform: translateY(-2px);
+      }
+
+      .path-option.selected {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(6, 182, 212, 0.25));
+        border-color: rgba(139, 92, 246, 1);
+        box-shadow: 0 0 25px rgba(139, 92, 246, 0.5), inset 0 0 20px rgba(139, 92, 246, 0.1);
       }
 
       .path-emoji {
@@ -293,25 +349,63 @@
       }
 
       .path-title {
-        font-weight: 700;
+        font-weight: 800;
         color: #fff;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
+        font-size: 1.15rem;
       }
 
       .path-description {
-        color: #94a3b8;
+        color: #a7c1d9;
         font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .dropbox-container {
+        width: 100%;
+        border: 2px dashed rgba(139, 92, 246, 0.5);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05));
+        margin-bottom: 1rem;
+        position: relative;
+      }
+
+      .dropbox-container:hover {
+        border-color: rgba(139, 92, 246, 0.8);
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+      }
+
+      .dropbox-container.drag-over {
+        border-color: #8b5cf6;
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(6, 182, 212, 0.15));
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        transform: scale(1.02);
+      }
+
+      .dropbox-content {
+        pointer-events: none;
+      }
+
+      .dropbox-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
       }
 
       .assignment-input {
         width: 100%;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 10px;
         padding: 1rem;
         color: #e6eef8;
         margin-bottom: 1rem;
         font-family: inherit;
+        backdrop-filter: blur(8px);
       }
 
       .assignment-input::placeholder {
@@ -358,6 +452,46 @@
           text-align: center;
         }
 
+        .school-banner {
+          width: 100%;
+          height: 120px;
+          border-radius: 0;
+          position: relative;
+        }
+
+        .school-banner::after {
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
+        }
+      }
+
+      .university-logo-section {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.05));
+        border: 2px solid rgba(139, 92, 246, 0.3);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 0 2rem 2rem 2rem;
+        text-align: center;
+        display: none;
+      }
+
+      .university-logo {
+        max-width: 200px;
+        max-height: 200px;
+        width: auto;
+        height: auto;
+        display: inline-block;
+        filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.3));
+        margin-bottom: 1rem;
+      }
+
+      .university-name-display {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 900px) {
         .education-tabs {
           padding: 0.75rem 1rem;
         }
@@ -393,21 +527,199 @@
           padding: 0.75rem;
         }
       }
+
+      /* Course Tracker Styles */
+      .program-section {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .program-input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0.75rem;
+        color: #e6eef8;
+        font-family: inherit;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+      }
+
+      .program-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .course-count-section {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .course-count-input {
+        width: 100px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0.75rem;
+        color: #e6eef8;
+        font-family: inherit;
+        font-size: 0.95rem;
+      }
+
+      .course-count-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .courses-grid {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .course-item {
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 1rem;
+        align-items: end;
+      }
+
+      .course-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .course-input-group label {
+        font-size: 0.8rem;
+        color: #94a3b8;
+        font-weight: 600;
+      }
+
+      .course-input {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 0.6rem 0.75rem;
+        color: #e6eef8;
+        font-family: inherit;
+        font-size: 0.9rem;
+      }
+
+      .course-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .remove-course-btn {
+        background: rgba(239, 68, 68, 0.2);
+        border: 1px solid rgba(239, 68, 68, 0.4);
+        color: #fca5a5;
+        padding: 0.6rem 0.9rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
+      }
+
+      .remove-course-btn:hover {
+        background: rgba(239, 68, 68, 0.3);
+        border-color: rgba(239, 68, 68, 0.6);
+      }
+
+      .add-course-btn {
+        background: rgba(34, 197, 94, 0.2);
+        border: 1px solid rgba(34, 197, 94, 0.4);
+        color: #86efac;
+        padding: 0.75rem 1.25rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        margin-top: 1rem;
+      }
+
+      .add-course-btn:hover {
+        background: rgba(34, 197, 94, 0.3);
+        border-color: rgba(34, 197, 94, 0.6);
+      }
+
+      .save-tracker-btn {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 0.95rem;
+        margin-top: 1.5rem;
+        transition: all 0.2s ease;
+      }
+
+      .save-tracker-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+      }
+
+      .success-message {
+        background: rgba(34, 197, 94, 0.15);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        color: #86efac;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+        display: none;
+        animation: slideIn 0.3s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
   <body>
     <div class="education-container">
       <!-- Header -->
       <div class="education-header">
-        <h1 class="education-title">EDUCATION</h1>
-        <button class="education-back" onclick="window.history.back();">
-          ← Back
-        </button>
+        <div id="schoolBanner" class="school-banner"></div>
+        <div class="header-content">
+          <h1 class="education-title">EDUCATION</h1>
+          <button class="education-back" onclick="window.history.back();">
+            ← Back
+          </button>
+        </div>
+      </div>
+
+      <!-- University Logo Section -->
+      <div class="university-logo-section" id="logoSection">
+        <img id="universityLogo" class="university-logo" alt="University Logo" />
+        <div class="university-name-display" id="universityNameDisplay"></div>
       </div>
 
       <!-- Tabs -->
       <div class="education-tabs">
-        <button class="tab-btn active" data-tab="academic-gps">
+        <button class="tab-btn active" data-tab="course-tracker">
+          Course Tracker
+        </button>
+        <button class="tab-btn" data-tab="academic-gps">
           Academic Planner
         </button>
         <button class="tab-btn" data-tab="course-chemistry">
@@ -425,7 +737,68 @@
 
       <!-- Content -->
       <div class="education-content">
-        <!-- Academic GPS Tab -->
+        <!-- Course Tracker Tab -->
+        <div id="course-tracker" class="tab-panel active">
+          <div class="feature-box">
+            <div class="feature-title">📚 Course Tracker</div>
+            <div class="feature-description">
+              Track your current courses, their grades, and keep everything organized in one place.
+            </div>
+          </div>
+
+          <!-- Program Section -->
+          <div class="program-section">
+            <div class="feature-title" style="font-size: 1.1rem; margin-bottom: 1rem">
+              Your Program
+            </div>
+            <input
+              type="text"
+              id="programInput"
+              class="program-input"
+              placeholder="e.g., Computer Science, Business Administration, Mechanical Engineering"
+            />
+          </div>
+
+          <!-- Course Count Section -->
+          <div class="course-count-section">
+            <div class="feature-title" style="font-size: 1.1rem; margin-bottom: 1rem">
+              Number of Current Courses
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: end">
+              <div>
+                <label style="color: #94a3b8; font-size: 0.8rem; display: block; margin-bottom: 0.5rem">
+                  How many courses are you taking?
+                </label>
+                <input
+                  type="number"
+                  id="courseCount"
+                  class="course-count-input"
+                  min="1"
+                  max="20"
+                  placeholder="0"
+                />
+              </div>
+              <button id="generateCoursesBtn" class="add-course-btn" style="margin-top: 0">
+                Generate
+              </button>
+            </div>
+          </div>
+
+          <!-- Courses Grid -->
+          <div id="coursesContainer" class="courses-grid" style="display: none">
+            <!-- Course items will be dynamically added here -->
+          </div>
+
+          <!-- Save Button -->
+          <button id="saveTrackerBtn" class="save-tracker-btn" style="display: none">
+            Save Course Information
+          </button>
+
+          <!-- Success Message -->
+          <div id="successMessage" class="success-message">
+            ✓ Your courses have been saved successfully!
+          </div>
+        </div>
         <div id="academic-gps" class="tab-panel active">
           <div class="feature-box">
             <div class="feature-title">Academic GPS — Your Degree Roadmap</div>
@@ -442,56 +815,61 @@
 
           <div class="feature-box">
             <div class="feature-title">Available Paths</div>
-            <div class="path-option">
-              <div>
-                <div class="path-title">Fastest Track to Graduation</div>
-                <div class="path-description">
-                  Optimal course sequence | ~2.8 years | 128 credits
+            <div id="pathsContainer">
+              <div class="path-option" data-path="fastest">
+                <div>
+                  <div class="path-title">Fastest Track to Graduation</div>
+                  <div class="path-description path-desc-fastest">
+                    Optimal course sequence | ~2.8 years | 128 credits
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="path-option">
-              <div>
-                <div class="path-title">Chill Track</div>
-                <div class="path-description">
-                  Balanced workload | ~4 years | Room for clubs & life
+              <div class="path-option" data-path="chill">
+                <div>
+                  <div class="path-title">Chill Track</div>
+                  <div class="path-description path-desc-chill">
+                    Balanced workload | ~4 years | Room for clubs & life
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="path-option">
-              <div>
-                <div class="path-title">Max Career Benefit</div>
-                <div class="path-description">
-                  Internships + research | ~3.5 years | Industry-ready
+              <div class="path-option" data-path="career">
+                <div>
+                  <div class="path-title">Max Career Benefit</div>
+                  <div class="path-description path-desc-career">
+                    Internships + research | ~3.5 years | Industry-ready
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="path-option">
-              <div>
-                <div class="path-title">🎓 Triple-Minor Insane Track</div>
-                <div class="path-description">
-                  Challenge yourself | Flexible timeline | Maximum learning
+              <div class="path-option" data-path="insane">
+                <div>
+                  <div class="path-title">Triple-Minor Insane Track</div>
+                  <div class="path-description path-desc-insane">
+                    Challenge yourself | Flexible timeline | Maximum learning
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="metric-grid">
-            <div class="metric-card">
-              <div class="metric-label">Current Progress</div>
-              <div class="metric-value">28%</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-label">Courses Completed</div>
-              <div class="metric-value">12</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-label">GPA</div>
-              <div class="metric-value">3.7</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-label">Est. Graduation</div>
-              <div class="metric-value">2026</div>
+          <div class="feature-box">
+            <div class="feature-title">Your Academic Profile</div>
+            <div id="profileMetrics" class="metric-grid">
+              <div class="metric-card">
+                <div class="metric-label">Current Progress</div>
+                <div class="metric-value" id="progressValue">0%</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Courses Completed</div>
+                <div class="metric-value" id="coursesCompletedValue">0</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">GPA</div>
+                <div class="metric-value" id="gpaValue">N/A</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Recommended Path</div>
+                <div class="metric-value" id="recommendedPathValue" style="font-size: 0.9rem">Not yet determined</div>
+              </div>
             </div>
           </div>
         </div>
@@ -954,8 +1332,27 @@
           </div>
 
           <div class="feature-box">
+            <div class="dropbox-container" id="dropbox">
+              <input 
+                type="file" 
+                id="fileInput" 
+                accept=".txt,.pdf,.doc,.docx" 
+                style="display: none"
+              />
+              <div class="dropbox-content">
+                <div class="dropbox-icon">📄</div>
+                <h3 style="color: #fff; margin: 0.5rem 0; font-size: 1.1rem;">Drag & drop your assignment file</h3>
+                <p style="color: #a7c1d9; margin: 0.25rem 0; font-size: 0.9rem;">or click to browse</p>
+                <p style="color: #64748b; margin-top: 0.5rem; font-size: 0.85rem;">Supports: TXT, PDF, DOC, DOCX</p>
+              </div>
+              <div id="fileInfo" style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; border-radius: 4px; color: #6ee7b7;">
+                <strong id="fileName"></strong> loaded successfully
+              </div>
+            </div>
+            
             <textarea
               class="assignment-input"
+              id="assignmentTextarea"
               placeholder="Paste your assignment description here... (e.g., 'Write a 5-page essay on Shakespeare, due in 2 weeks...')"
               rows="5"
             ></textarea>
@@ -1007,35 +1404,38 @@
           </div>
 
           <div class="feature-box">
-            <div class="feature-title">Sample Analysis</div>
-            <div class="x-ray-result">
+            <div class="feature-title">📚 Example: Literary Analysis Essay</div>
+            <div style="color: #a7c1d9; font-size: 0.9rem; margin-bottom: 1rem; padding: 0.75rem; background: rgba(139, 92, 246, 0.1); border-left: 3px solid #8b5cf6; border-radius: 4px;">
+              Try pasting an assignment like: "Write a 5-page essay analyzing Shakespeare's use of metaphor in Hamlet. Include at least 5 academic sources. Due in 2 weeks."
+            </div>
+            <div class="x-ray-result" id="sample-analysis">
               <div class="result-row">
                 <span class="result-label">Assignment Type</span>
                 <span class="result-value">Essay</span>
               </div>
               <div class="result-row">
                 <span class="result-label">Estimated Time</span>
-                <span class="result-value">6-10 hours</span>
+                <span class="result-value">8-12 hours</span>
               </div>
               <div class="result-row">
                 <span class="result-label">Difficulty</span>
-                <span class="result-value">Medium</span>
+                <span class="result-value">High</span>
               </div>
               <div class="result-row">
-                <span class="result-label">Concepts Covered</span>
-                <span class="result-value"
-                  >Literature Analysis, Critical Thinking</span
-                >
+                <span class="result-label">Skills Required</span>
+                <span class="result-value">Literary Analysis, Research, Critical Writing</span>
               </div>
               <div class="result-row">
-                <span class="result-label">Your Weak Spots</span>
-                <span class="result-value"
-                  >Thesis statements, Argument flow</span
-                >
+                <span class="result-label">Weak Areas to Watch</span>
+                <span class="result-value">Thesis development, Source integration</span>
               </div>
               <div class="result-row">
-                <span class="result-label">Best Time to Start</span>
-                <span class="result-value">ASAP (5+ days before deadline)</span>
+                <span class="result-label">Timeline Risk</span>
+                <span class="result-value">Moderate (14 days)</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Recommended Resources</span>
+                <span class="result-value">Writing Center, Library Database, Citation Manager</span>
               </div>
             </div>
           </div>
@@ -1044,7 +1444,282 @@
     </div>
 
     <script>
-      // Tab switching logic
+            // Load and display university logo from local JSON
+      (function loadUniversityLogo() {
+        try {
+          const userData = sessionStorage.getItem('connectu_user');
+          if (userData) {
+            const user = JSON.parse(userData);
+            const schoolName = user.school;
+            
+            if (schoolName) {
+              // Update page title to include school name
+              const titleElement = document.querySelector('.education-title');
+              if (titleElement) {
+                titleElement.textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
+              }
+              
+              const nameDisplay = document.getElementById('universityNameDisplay');
+              if (nameDisplay) {
+                nameDisplay.textContent = schoolName;
+              }
+              
+              // Helper function to get university domain and logo URLs
+              function getUniversityLogoUrls(school) {
+                const logoMap = {
+                  'University of Toronto': [
+                    'https://logo.clearbit.com/utoronto.ca',
+                    'https://www.utoronto.ca/sites/default/files/uoft-logo.png',
+                    'https://www.utoronto.ca/sites/default/files/uoft-logo.svg'
+                  ],
+                  'University of Waterloo': [
+                    'https://logo.clearbit.com/uwaterloo.ca',
+                    'https://uwaterloo.ca/brand/sites/ca.brand/files/uploads/images/university-of-waterloo-vertical-logo.png'
+                  ],
+                  'McMaster University': [
+                    'https://logo.clearbit.com/mcmaster.ca',
+                    'https://www.mcmaster.ca/brand/images/mcmaster-logo.png'
+                  ],
+                  'Western University': [
+                    'https://logo.clearbit.com/uwo.ca',
+                    'https://communications.uwo.ca/img/logo_teasers/western_logo.png'
+                  ],
+                  'Queen\'s University': [
+                    'https://logo.clearbit.com/queensu.ca',
+                    'https://www.queensu.ca/sites/default/files/assets/pages/QueensLogo_colour.png'
+                  ],
+                  'University of Ottawa': [
+                    'https://logo.clearbit.com/uottawa.ca',
+                    'https://www.uottawa.ca/brand/sites/www.uottawa.ca.brand/files/uottawa-logo.png'
+                  ],
+                  'York University': [
+                    'https://logo.clearbit.com/yorku.ca',
+                    'https://www.yorku.ca/brand/wp-content/uploads/sites/4/2019/08/yorku-logo.png'
+                  ],
+                  'Carleton University': [
+                    'https://logo.clearbit.com/carleton.ca',
+                    'https://carleton.ca/brand/wp-content/uploads/cu-logo.png'
+                  ],
+                  'University of Guelph': [
+                    'https://logo.clearbit.com/uoguelph.ca',
+                    'https://www.uoguelph.ca/brand/sites/uoguelph.ca.brand/files/uog-logo.png'
+                  ],
+                  'Toronto Metropolitan University': [
+                    'https://logo.clearbit.com/torontomu.ca',
+                    'https://www.torontomu.ca/content/dam/brand/logo/tmu-logo.png'
+                  ],
+                  'Brock University': [
+                    'https://logo.clearbit.com/brocku.ca',
+                    'https://brocku.ca/brand/wp-content/uploads/sites/131/Brock-University-Logo.png'
+                  ],
+                  'Trent University': [
+                    'https://logo.clearbit.com/trentu.ca',
+                    'https://www.trentu.ca/brand/sites/www.trentu.ca.brand/files/trent-logo.png'
+                  ],
+                  'Lakehead University': [
+                    'https://logo.clearbit.com/lakeheadu.ca',
+                    'https://www.lakeheadu.ca/sites/default/files/lakehead-logo.png'
+                  ],
+                  'Laurentian University': [
+                    'https://logo.clearbit.com/laurentian.ca',
+                    'https://laurentian.ca/sites/default/files/laurentian-logo.png'
+                  ],
+                  'Nipissing University': [
+                    'https://logo.clearbit.com/nipissingu.ca',
+                    'https://www.nipissingu.ca/sites/default/files/nipissing-logo.png'
+                  ],
+                  'Algoma University': [
+                    'https://logo.clearbit.com/algomau.ca',
+                    'https://www.algomau.ca/sites/default/files/algoma-logo.png'
+                  ],
+                  'OCAD University': [
+                    'https://logo.clearbit.com/ocadu.ca',
+                    'https://www.ocadu.ca/sites/default/files/ocad-logo.png'
+                  ],
+                  'Ontario Tech University': [
+                    'https://logo.clearbit.com/ontariotechu.ca',
+                    'https://ontariotechu.ca/sites/default/files/ontariotech-logo.png'
+                  ],
+                  'King\'s University College (Western)': [
+                    'https://logo.clearbit.com/kings.uwo.ca',
+                    'https://www.kings.uwo.ca/sites/default/files/kings-logo.png'
+                  ],
+                  'Royal Military College of Canada': [
+                    'https://logo.clearbit.com/rmc-cmr.ca',
+                    'https://www.rmc-cmr.ca/sites/default/files/rmc-logo.png'
+                  ],
+                  'University of Sudbury': [
+                    'https://logo.clearbit.com/usudbury.ca',
+                    'https://usudbury.ca/sites/default/files/usudbury-logo.png'
+                  ],
+                };
+                
+                // Return array of URLs to try, or generate from domain
+                if (logoMap[school]) {
+                  return logoMap[school];
+                }
+                
+                // Try to construct domain-based URLs
+                const domainMap = {
+                  'University of Toronto': 'utoronto.ca',
+                  'University of Waterloo': 'uwaterloo.ca',
+                  'McMaster University': 'mcmaster.ca',
+                  'Western University': 'uwo.ca',
+                  'Queen\'s University': 'queensu.ca',
+                  'University of Ottawa': 'uottawa.ca',
+                  'York University': 'yorku.ca',
+                  'Carleton University': 'carleton.ca',
+                  'University of Guelph': 'uoguelph.ca',
+                  'Toronto Metropolitan University': 'torontomu.ca',
+                  'Brock University': 'brocku.ca',
+                  'Trent University': 'trentu.ca',
+                  'Lakehead University': 'lakeheadu.ca',
+                  'Laurentian University': 'laurentian.ca',
+                  'Nipissing University': 'nipissingu.ca',
+                  'Algoma University': 'algomau.ca',
+                  'OCAD University': 'ocadu.ca',
+                  'Ontario Tech University': 'ontariotechu.ca',
+                  'King\'s University College (Western)': 'kings.uwo.ca',
+                  'Royal Military College of Canada': 'rmc-cmr.ca',
+                  'University of Sudbury': 'usudbury.ca',
+                };
+                
+                const domain = domainMap[school];
+                if (domain) {
+                  return [`https://logo.clearbit.com/${domain}`];
+                }
+                
+                return [];
+              }
+              
+              // Function to test if an image URL is valid
+              function testImageUrl(url) {
+                return new Promise((resolve) => {
+                  const img = new Image();
+                  img.crossOrigin = 'anonymous';
+                  let resolved = false;
+                  
+                  const cleanup = () => {
+                    if (!resolved) {
+                      resolved = true;
+                    }
+                  };
+                  
+                  img.onload = () => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(true);
+                    }
+                  };
+                  
+                  img.onerror = () => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(false);
+                    }
+                  };
+                  
+                  // Set timeout to avoid hanging
+                  const timeout = setTimeout(() => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(false);
+                    }
+                  }, 3000);
+                  
+                  img.src = url;
+                });
+              }
+              
+              // Function to fetch university logo from online sources
+              async function fetchUniversityLogo(school) {
+                const logoUrls = getUniversityLogoUrls(school);
+                
+                // Try each URL in sequence until one works
+                for (const url of logoUrls) {
+                  try {
+                    const isValid = await testImageUrl(url);
+                    if (isValid) {
+                      return url;
+                    }
+                  } catch (error) {
+                    console.log(`Failed to load logo from ${url}`);
+                    continue;
+                  }
+                }
+                
+                // If all direct URLs fail, try using a CORS proxy with Google Images search
+                // This will get actual logos from the web
+                const searchQuery = encodeURIComponent(`${school} university logo official`);
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.google.com/search?q=${searchQuery}&tbm=isch&tbs=isz:m`)}`;
+                
+                // Return null if we can't find a logo - we'll handle this in the display logic
+                return null;
+              }
+              
+              // Fetch and display the logo
+              fetchUniversityLogo(schoolName)
+                .then(logoUrl => {
+                  const logoImg = document.getElementById('universityLogo');
+                  const logoSection = document.getElementById('logoSection');
+                  const schoolBanner = document.getElementById('schoolBanner');
+                  
+                  // Only display if we have a valid logo URL
+                  if (logoUrl && logoImg) {
+                    logoImg.src = logoUrl;
+                    logoImg.alt = `${schoolName} logo`;
+                    logoImg.onload = function() {
+                      // Only show section if logo loaded successfully
+                      if (logoSection) {
+                        logoSection.style.display = 'block';
+                      }
+                      // Also add to banner if it exists
+                      if (schoolBanner) {
+                        // Clear any existing content
+                        schoolBanner.innerHTML = '';
+                        const bannerImg = document.createElement('img');
+                        bannerImg.src = logoUrl;
+                        bannerImg.alt = `${schoolName} banner`;
+                        bannerImg.style.width = '100%';
+                        bannerImg.style.height = '100%';
+                        bannerImg.style.objectFit = 'cover';
+                        bannerImg.onerror = function() {
+                          // If banner image fails, remove it
+                          schoolBanner.innerHTML = '';
+                        };
+                        schoolBanner.appendChild(bannerImg);
+                        schoolBanner.classList.add('loaded');
+                      }
+                    };
+                    logoImg.onerror = function() {
+                      console.log('Logo failed to load from URL:', logoUrl);
+                      // Don't show section if logo fails to load
+                      if (logoSection) {
+                        logoSection.style.display = 'none';
+                      }
+                    };
+                  } else {
+                    console.log('No valid logo URL found for:', schoolName);
+                    // Don't show logo section if no valid URL
+                    if (logoSection) {
+                      logoSection.style.display = 'none';
+                    }
+                  }
+                })
+                .catch(error => {
+                  console.error('Error loading university logo:', error);
+                  // Don't show section if there's an error
+                  const logoSection = document.getElementById('logoSection');
+                  if (logoSection) {
+                    logoSection.style.display = 'none';
+                  }
+                });
+            }
+          }
+        } catch (error) {
+          console.error('Error loading university logo:', error);
+        }
+      })();      // Tab switching logic
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           // Remove active class from all buttons and panels
@@ -1062,19 +1737,719 @@
         });
       });
 
-      // Assignment X-Ray scan function
-      function scanAssignment() {
-        const textarea = document.querySelector(".assignment-input");
-        if (textarea.value.trim().length > 0) {
-          document.getElementById("xray-results").style.display = "block";
-          // Scroll to results
-          document
-            .getElementById("xray-results")
-            .scrollIntoView({ behavior: "smooth" });
+      // File Upload and Drag-Drop Handler
+      const dropbox = document.getElementById('dropbox');
+      const fileInput = document.getElementById('fileInput');
+      const textarea = document.getElementById('assignmentTextarea');
+      const fileInfo = document.getElementById('fileInfo');
+      const fileName = document.getElementById('fileName');
+
+      // Click to browse
+      dropbox.addEventListener('click', () => fileInput.click());
+
+      // Drag over
+      dropbox.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropbox.classList.add('drag-over');
+      });
+
+      dropbox.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropbox.classList.remove('drag-over');
+      });
+
+      // Drop
+      dropbox.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropbox.classList.remove('drag-over');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          handleFileUpload(files[0]);
+        }
+      });
+
+      // File input change
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+          handleFileUpload(e.target.files[0]);
+        }
+      });
+
+      // Handle file upload and extraction
+      function handleFileUpload(file) {
+        const validTypes = ['text/plain', 'application/pdf', 'application/msword', 
+                          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        
+        if (!validTypes.includes(file.type) && !file.name.endsWith('.txt') && 
+            !file.name.endsWith('.pdf') && !file.name.endsWith('.doc') && !file.name.endsWith('.docx')) {
+          alert('Please upload a TXT, PDF, or DOCX file.');
+          return;
+        }
+
+        const reader = new FileReader();
+        
+        reader.onload = (e) => {
+          let text = '';
+          
+          if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
+            // Plain text files
+            text = e.target.result;
+          } else if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
+            // PDF parsing - basic extraction
+            text = extractTextFromPDF(e.target.result);
+          } else {
+            // Word documents - basic text extraction
+            text = extractTextFromWord(e.target.result);
+          }
+          
+          // Put text in textarea
+          textarea.value = text;
+          
+          // Show file info
+          fileName.textContent = file.name;
+          fileInfo.style.display = 'block';
+          
+          // Auto-scroll to textarea
+          textarea.scrollIntoView({ behavior: 'smooth' });
+        };
+        
+        reader.onerror = () => {
+          alert('Error reading file. Please try again.');
+        };
+        
+        // Read based on file type
+        if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
+          reader.readAsText(file);
         } else {
-          alert("Please paste an assignment description to scan.");
+          reader.readAsArrayBuffer(file);
+        }
+      }
+
+      // Basic PDF text extraction (simplified)
+      function extractTextFromPDF(arrayBuffer) {
+        try {
+          const bytes = new Uint8Array(arrayBuffer);
+          let text = '';
+          
+          // Convert bytes to string (simplified extraction)
+          for (let i = 0; i < bytes.length; i++) {
+            const byte = bytes[i];
+            if (byte >= 32 && byte <= 126) {
+              text += String.fromCharCode(byte);
+            } else if (byte === 10 || byte === 13) {
+              text += '\n';
+            }
+          }
+          
+          return text.replace(/\x00/g, '').trim() || 'PDF content extracted. Please review and edit if needed.';
+        } catch (err) {
+          return 'Unable to extract PDF content. Please paste the assignment description manually.';
+        }
+      }
+
+      // Basic Word document text extraction (simplified)
+      function extractTextFromWord(arrayBuffer) {
+        try {
+          const bytes = new Uint8Array(arrayBuffer);
+          let text = '';
+          
+          // Convert bytes to string (simplified extraction)
+          for (let i = 0; i < bytes.length; i++) {
+            const byte = bytes[i];
+            if (byte >= 32 && byte <= 126) {
+              text += String.fromCharCode(byte);
+            } else if (byte === 10 || byte === 13) {
+              text += '\n';
+            }
+          }
+          
+          return text.replace(/\x00/g, '').trim() || 'Word document content extracted. Please review and edit if needed.';
+        } catch (err) {
+          return 'Unable to extract Word document content. Please paste the assignment description manually.';
+        }
+      }
+
+      // Assignment X-Ray scan function with actual analysis
+      function scanAssignment() {
+        const textarea = document.getElementById('assignmentTextarea');
+        const assignmentText = textarea.value.trim();
+        
+        if (assignmentText.length === 0) {
+          alert("Please paste an assignment description or upload a file to scan.");
+          return;
+        }
+
+        // Analyze the assignment
+        const analysis = analyzeAssignment(assignmentText);
+        
+        // Update results display with analyzed data
+        updateXRayResults(analysis);
+        
+        // Show results
+        document.getElementById("xray-results").style.display = "block";
+        document.getElementById("xray-results").scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Analyze assignment text and extract key information
+      function analyzeAssignment(text) {
+        const lowercaseText = text.toLowerCase();
+        
+        // Detect assignment type
+        let assignmentType = "General Assignment";
+        if (lowercaseText.includes("essay")) assignmentType = "Essay";
+        else if (lowercaseText.includes("project")) assignmentType = "Project";
+        else if (lowercaseText.includes("presentation")) assignmentType = "Presentation";
+        else if (lowercaseText.includes("code") || lowercaseText.includes("program")) assignmentType = "Programming";
+        else if (lowercaseText.includes("lab")) assignmentType = "Lab Report";
+        else if (lowercaseText.includes("research")) assignmentType = "Research Paper";
+        else if (lowercaseText.includes("quiz") || lowercaseText.includes("test")) assignmentType = "Quiz/Test";
+
+        // Detect page/word count requirements
+        let pageCount = 0;
+        let wordCount = 0;
+        const pageMatch = text.match(/(\d+)\s*(?:page|page|pg|p\.)/i);
+        const wordMatch = text.match(/(\d+)\s*(?:word|words|w\.)/i);
+        if (pageMatch) pageCount = parseInt(pageMatch[1]);
+        if (wordMatch) wordCount = parseInt(wordMatch[1]);
+
+        // Detect deadlines
+        let daysUntilDue = 999;
+        const datePatterns = [
+          /due\s+(?:in\s+)?(\d+)\s*(?:day|week|month)s?/i,
+          /(?:deadline|due):\s*(\d+)\s+(?:day|week)s?/i,
+          /due\s+(\w+day)/i
+        ];
+        
+        for (const pattern of datePatterns) {
+          const match = text.match(pattern);
+          if (match) {
+            const timeStr = match[1].toLowerCase();
+            if (timeStr.includes("week")) daysUntilDue = parseInt(timeStr) * 7;
+            else if (timeStr.includes("day")) daysUntilDue = parseInt(timeStr);
+            else if (timeStr.includes("day")) daysUntilDue = 1;
+            break;
+          }
+        }
+
+        // Calculate estimated time based on type and requirements
+        let estimatedHours = calculateEstimatedTime(assignmentType, pageCount, wordCount);
+        
+        // Detect difficulty based on keywords
+        let difficulty = "Medium";
+        if (lowercaseText.includes("advanced") || lowercaseText.includes("complex") || 
+            lowercaseText.includes("comprehensive") || pageCount > 10 || wordCount > 3000) {
+          difficulty = "High";
+        } else if (lowercaseText.includes("simple") || lowercaseText.includes("basic") || 
+                   pageCount <= 2 || wordCount <= 500) {
+          difficulty = "Low";
+        }
+
+        // Extract required skills
+        let requiredSkills = extractSkills(text, assignmentType);
+
+        // Detect risk level based on deadline
+        let riskLevel = "Low";
+        if (daysUntilDue <= 3) riskLevel = "Critical";
+        else if (daysUntilDue <= 7) riskLevel = "High";
+        else if (daysUntilDue <= 14) riskLevel = "Moderate";
+
+        return {
+          type: assignmentType,
+          estimatedHours: estimatedHours,
+          difficulty: difficulty,
+          skills: requiredSkills,
+          daysUntilDue: daysUntilDue,
+          riskLevel: riskLevel,
+          pageCount: pageCount,
+          wordCount: wordCount,
+          weakAreas: detectWeakAreas(assignmentType, text),
+          resources: recommendResources(assignmentType)
+        };
+      }
+
+      function calculateEstimatedTime(type, pageCount, wordCount) {
+        let baseHours = {
+          "Essay": 6,
+          "Project": 10,
+          "Presentation": 5,
+          "Programming": 8,
+          "Lab Report": 4,
+          "Research Paper": 12,
+          "Quiz/Test": 3,
+          "General Assignment": 4
+        };
+
+        let hours = baseHours[type] || 4;
+        
+        // Add time for page/word requirements
+        if (pageCount > 0) hours += (pageCount * 0.5);
+        if (wordCount > 0) hours += (wordCount / 500); // ~500 words per hour
+
+        return Math.round(hours) + "-" + Math.round(hours + 4);
+      }
+
+      function extractSkills(text, type) {
+        const skillKeywords = {
+          "Research": /research|literature|sources|references/i,
+          "Writing": /essay|paper|report|writing/i,
+          "Analysis": /analyze|critical|evaluate|interpret/i,
+          "Coding": /code|program|implement|algorithm/i,
+          "Presentation": /present|slide|speak|oral/i,
+          "Design": /design|create|build|develop/i,
+          "Collaboration": /group|team|partner|collaborate/i,
+          "Problem Solving": /solve|problem|troubleshoot|debug/i
+        };
+
+        let skills = [];
+        for (const [skill, pattern] of Object.entries(skillKeywords)) {
+          if (pattern.test(text)) skills.push(skill);
+        }
+
+        return skills.length > 0 ? skills.join(", ") : "General Academic Skills";
+      }
+
+      function detectWeakAreas(type, text) {
+        const weakAreas = {
+          "Essay": "Essay structure, Thesis development",
+          "Project": "Project scope management, Timeline planning",
+          "Presentation": "Public speaking, Slide design",
+          "Programming": "Debugging, Code optimization",
+          "Lab Report": "Data interpretation, Scientific writing",
+          "Research Paper": "Citation format, Source evaluation",
+          "Quiz/Test": "Test anxiety, Time management",
+          "General Assignment": "Organization, Attention to detail"
+        };
+
+        return weakAreas[type] || "Task management, Time allocation";
+      }
+
+      function recommendResources(type) {
+        const resources = {
+          "Essay": "Writing Center, Grammar Checker, Citation Guides",
+          "Project": "Project Management Tools, Collaboration Platforms",
+          "Presentation": "Presentation Templates, Public Speaking Guides",
+          "Programming": "Stack Overflow, Code Review Tools, IDE Debuggers",
+          "Lab Report": "Lab Manual, Scientific Writing Guides, Data Analysis Tools",
+          "Research Paper": "Library Database, Citation Manager, Plagiarism Checker",
+          "Quiz/Test": "Study Groups, Practice Tests, Tutoring Services",
+          "General Assignment": "Tutoring Center, Peer Review, Time Management Tools"
+        };
+
+        return resources[type] || "Academic Support Services";
+      }
+
+      // Update X-Ray results with analyzed data
+      function updateXRayResults(analysis) {
+        const resultsDiv = document.getElementById("xray-results").querySelector(".x-ray-result");
+        resultsDiv.innerHTML = `
+          <div class="result-row">
+            <span class="result-label">Assignment Type</span>
+            <span class="result-value">${analysis.type}</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Estimated Time</span>
+            <span class="result-value">${analysis.estimatedHours} hours</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Difficulty Level</span>
+            <span class="result-value">${analysis.difficulty}</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Skills Required</span>
+            <span class="result-value">${analysis.skills}</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Weak Areas to Watch</span>
+            <span class="result-value">${analysis.weakAreas}</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Timeline Risk</span>
+            <span class="result-value">${analysis.riskLevel} ${analysis.daysUntilDue < 999 ? '(' + analysis.daysUntilDue + ' days)' : ''}</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Recommended Resources</span>
+            <span class="result-value">${analysis.resources}</span>
+          </div>
+        `;
+      }
+
+      // Course Tracker Functionality
+      const courseCountInput = document.getElementById('courseCount');
+      const generateCoursesBtn = document.getElementById('generateCoursesBtn');
+      const coursesContainer = document.getElementById('coursesContainer');
+      const saveTrackerBtn = document.getElementById('saveTrackerBtn');
+      const successMessage = document.getElementById('successMessage');
+      const programInput = document.getElementById('programInput');
+
+      // Generate course input fields as dropdown/collapsible sections
+      generateCoursesBtn.addEventListener('click', () => {
+        const count = parseInt(courseCountInput.value) || 0;
+        
+        if (count < 1 || count > 20) {
+          alert('Please enter a number between 1 and 20');
+          return;
+        }
+
+        // Clear existing courses
+        coursesContainer.innerHTML = '';
+
+        // Create course input fields
+        for (let i = 1; i <= count; i++) {
+          const courseItem = document.createElement('div');
+          courseItem.className = 'course-item';
+          courseItem.innerHTML = `
+            <div class="course-input-group">
+              <label>Course ${i} Name</label>
+              <input
+                type="text"
+                class="course-input course-name"
+                placeholder="e.g., CS 101, MATH 150"
+                data-course-index="${i - 1}"
+              />
+            </div>
+            <div class="course-input-group">
+              <label>Current Grade</label>
+              <input
+                type="text"
+                class="course-input course-grade"
+                placeholder="e.g., A-, 87%, N/A"
+                data-course-index="${i - 1}"
+              />
+            </div>
+            <button type="button" class="remove-course-btn" data-course-index="${i - 1}">
+              Remove
+            </button>
+          `;
+          coursesContainer.appendChild(courseItem);
+        }
+
+        // Add remove functionality
+        document.querySelectorAll('.remove-course-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.target.closest('.course-item').remove();
+          });
+        });
+
+        // Show save button and container
+        coursesContainer.style.display = 'grid';
+        saveTrackerBtn.style.display = 'block';
+      });
+
+      // Save courses to session storage
+      if (saveTrackerBtn) {
+        saveTrackerBtn.addEventListener('click', () => {
+          const program = programInput.value.trim();
+          const courses = [];
+
+          document.querySelectorAll('.course-item').forEach((item, index) => {
+            const nameInput = item.querySelector('.course-name');
+            const gradeInput = item.querySelector('.course-grade');
+            
+            if (nameInput.value.trim() || gradeInput.value.trim()) {
+              courses.push({
+                name: nameInput.value.trim() || `Course ${index + 1}`,
+                grade: gradeInput.value.trim() || 'N/A'
+              });
+            }
+          });
+
+          // Update user session with course data
+          try {
+            const userData = sessionStorage.getItem('connectu_user');
+            const user = JSON.parse(userData) || {};
+            user.program = program || 'Not specified';
+            user.courses = courses;
+            sessionStorage.setItem('connectu_user', JSON.stringify(user));
+
+            // Show success message
+            if (successMessage) {
+              successMessage.style.display = 'block';
+              setTimeout(() => {
+                successMessage.style.display = 'none';
+              }, 3000);
+            }
+
+            // Update the academic profile with new course data
+            updateAcademicProfile();
+          } catch (error) {
+            alert('Error saving courses. Please try again.');
+            console.error('Error:', error);
+          }
+        });
+      }
+
+      // Load existing data on page load
+      window.addEventListener('load', () => {
+        try {
+          const userData = sessionStorage.getItem('connectu_user');
+          if (userData) {
+            const user = JSON.parse(userData);
+            if (user.program && programInput) {
+              programInput.value = user.program;
+            }
+            if (user.courses && user.courses.length > 0 && courseCountInput && coursesContainer) {
+              courseCountInput.value = user.courses.length;
+              // Trigger generation and populate
+              const count = user.courses.length;
+              coursesContainer.innerHTML = '';
+              
+              for (let i = 0; i < count; i++) {
+                const courseItem = document.createElement('div');
+                courseItem.className = 'course-item';
+                const course = user.courses[i];
+                courseItem.innerHTML = `
+                  <div class="course-input-group">
+                    <label>Course ${i + 1} Name</label>
+                    <input
+                      type="text"
+                      class="course-input course-name"
+                      placeholder="e.g., CS 101, MATH 150"
+                      value="${course.name}"
+                      data-course-index="${i}"
+                    />
+                  </div>
+                  <div class="course-input-group">
+                    <label>Current Grade</label>
+                    <input
+                      type="text"
+                      class="course-input course-grade"
+                      placeholder="e.g., A-, 87%, N/A"
+                      value="${course.grade}"
+                      data-course-index="${i}"
+                    />
+                  </div>
+                  <button type="button" class="remove-course-btn" data-course-index="${i}">
+                    Remove
+                  </button>
+                `;
+                coursesContainer.appendChild(courseItem);
+              }
+
+              // Add remove functionality
+              document.querySelectorAll('.remove-course-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                  e.target.closest('.course-item').remove();
+                });
+              });
+
+              if (coursesContainer && saveTrackerBtn) {
+                coursesContainer.style.display = 'grid';
+                saveTrackerBtn.style.display = 'block';
+              }
+            }
+          }
+
+          // Update academic profile and path recommendations
+          updateAcademicProfile();
+        } catch (error) {
+          console.error('Error loading course data:', error);
+        }
+      });
+
+      // Function to calculate GPA from grades
+      function calculateGPA(courses) {
+        if (!courses || courses.length === 0) return null;
+
+        const gradeMap = {
+          'A+': 4.0, 'A': 3.9, 'A-': 3.7,
+          'B+': 3.3, 'B': 3.0, 'B-': 2.7,
+          'C+': 2.3, 'C': 2.0, 'C-': 1.7,
+          'D+': 1.3, 'D': 1.0, 'F': 0.0
+        };
+
+        let totalGrade = 0;
+        let validGrades = 0;
+
+        courses.forEach(course => {
+          const gradeStr = course.grade.toUpperCase().trim();
+          
+          // Skip N/A or empty grades
+          if (gradeStr === 'N/A' || gradeStr === '' || gradeStr === 'NA') {
+            return;
+          }
+          
+          // Try to match letter grade
+          if (gradeMap[gradeStr]) {
+            totalGrade += gradeMap[gradeStr];
+            validGrades++;
+          } else if (gradeStr.includes('%')) {
+            // Convert percentage to GPA (0-100 -> 0-4.0)
+            const percentage = parseFloat(gradeStr);
+            if (!isNaN(percentage) && percentage >= 0 && percentage <= 100) {
+              const gpa = (percentage / 100) * 4.0;
+              totalGrade += gpa;
+              validGrades++;
+            }
+          } else {
+            // Try to parse as plain number (e.g., "87" or "3.5")
+            const numValue = parseFloat(gradeStr);
+            if (!isNaN(numValue)) {
+              if (numValue > 4) {
+                // Assume it's a percentage (0-100)
+                const gpa = (numValue / 100) * 4.0;
+                totalGrade += gpa;
+                validGrades++;
+              } else if (numValue >= 0 && numValue <= 4) {
+                // Assume it's already a GPA
+                totalGrade += numValue;
+                validGrades++;
+              }
+            }
+          }
+        });
+
+        return validGrades > 0 ? (totalGrade / validGrades).toFixed(2) : null;
+      }
+
+      // Function to recommend path based on GPA
+      function getRecommendedPath(gpa) {
+        const gpaNum = parseFloat(gpa);
+        if (isNaN(gpaNum)) return null;
+        
+        if (gpaNum >= 3.7) return 'fastest';
+        if (gpaNum >= 3.3) return 'career';
+        if (gpaNum >= 3.0) return 'chill';
+        return 'chill';
+      }
+
+      // Function to generate path descriptions based on GPA and courses
+      function generatePathDescriptions(gpa, courseCount) {
+        const gpaNum = parseFloat(gpa) || 0;
+        const coursesRemaining = Math.max(0, 20 - courseCount);
+        
+        const descriptions = {
+          fastest: {
+            stress: gpaNum >= 3.7 ? 'High stress, high reward' : 'Very high stress',
+            timeline: gpaNum >= 3.7 ? '~2.8 years' : '~3.2 years',
+            focus: 'Max focus on studies',
+            workload: `${15 + courseCount} hrs/week`,
+            fit: gpaNum >= 3.7 ? '✓ Perfect fit for you' : '⚠ Challenging for your current GPA'
+          },
+          chill: {
+            stress: 'Balanced, manageable stress',
+            timeline: '~4 years',
+            focus: 'Balance work, life & school',
+            workload: `${10 + Math.floor(courseCount / 2)} hrs/week`,
+            fit: gpaNum < 3.7 ? '✓ Recommended for you' : '○ Too easy for your performance'
+          },
+          career: {
+            stress: gpaNum >= 3.3 ? 'Moderate stress' : 'High stress',
+            timeline: '~3.5 years',
+            focus: 'Internships + learning',
+            workload: `${12 + courseCount} hrs/week`,
+            fit: gpaNum >= 3.3 ? '✓ Great choice for you' : '⚠ May be challenging'
+          },
+          insane: {
+            stress: 'Extreme focus required',
+            timeline: 'Flexible (3-5 years)',
+            focus: 'Maximum learning',
+            workload: `${20 + courseCount} hrs/week`,
+            fit: gpaNum >= 3.7 ? '✓ You could do this' : '⚠ Very challenging'
+          }
+        };
+
+        return descriptions;
+      }
+
+      // Function to update path descriptions
+      function updatePathDescriptions(gpa, courseCount) {
+        const descriptions = generatePathDescriptions(gpa, courseCount);
+
+        Object.keys(descriptions).forEach(path => {
+          const desc = descriptions[path];
+          const descElement = document.querySelector(`.path-desc-${path}`);
+          if (descElement) {
+            descElement.innerHTML = `
+              Stress: ${desc.stress} | Timeline: ${desc.timeline}<br>
+              Workload: ${desc.workload} | ${desc.fit}
+            `;
+          }
+        });
+      }
+
+      // Function to update academic profile based on saved courses
+      function updateAcademicProfile() {
+        try {
+          const userData = sessionStorage.getItem('connectu_user');
+          if (userData) {
+            const user = JSON.parse(userData);
+            if (user.courses && user.courses.length > 0) {
+              const courses = user.courses;
+              const gpa = calculateGPA(courses);
+              const progress = (courses.length / 20) * 100; // Assuming 20 courses for degree
+
+              console.log('Courses:', courses);
+              console.log('Calculated GPA:', gpa);
+
+              // Update metrics
+              const progressValue = document.getElementById('progressValue');
+              const coursesCompletedValue = document.getElementById('coursesCompletedValue');
+              const gpaValue = document.getElementById('gpaValue');
+              const recommendedPathValue = document.getElementById('recommendedPathValue');
+
+              if (progressValue) progressValue.textContent = Math.min(100, progress).toFixed(0) + '%';
+              if (coursesCompletedValue) coursesCompletedValue.textContent = courses.length;
+              if (gpaValue) {
+                gpaValue.textContent = gpa || 'N/A';
+              }
+
+              // Update path descriptions with dynamic info
+              if (gpa) {
+                updatePathDescriptions(gpa, courses.length);
+
+                const recommendedPath = getRecommendedPath(gpa);
+                if (recommendedPathValue) {
+                  const pathNames = {
+                    'fastest': 'Fastest Track',
+                    'career': 'Max Career Benefit',
+                    'chill': 'Chill Track',
+                    'insane': 'Insane Track'
+                  };
+                  recommendedPathValue.textContent = pathNames[recommendedPath] || 'Chill Track';
+                }
+
+                // Highlight the recommended path
+                const pathOptions = document.querySelectorAll('[data-path]');
+                pathOptions.forEach(option => {
+                  option.classList.remove('selected');
+                  if (option.dataset.path === recommendedPath) {
+                    option.classList.add('selected');
+                  }
+                });
+
+                // Add click handlers to path options (remove old listeners first)
+                pathOptions.forEach(option => {
+                  // Clone and replace to remove old event listeners
+                  const newOption = option.cloneNode(true);
+                  option.parentNode.replaceChild(newOption, option);
+                  
+                  newOption.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const allPaths = document.querySelectorAll('[data-path]');
+                    allPaths.forEach(p => p.classList.remove('selected'));
+                    newOption.classList.add('selected');
+                    const pathName = newOption.dataset.path;
+                    const pathNames = {
+                      'fastest': 'Fastest Track to Graduation',
+                      'career': 'Max Career Benefit',
+                      'chill': 'Chill Track',
+                      'insane': 'Triple-Minor Insane Track'
+                    };
+                    console.log('Selected path:', pathNames[pathName]);
+                  });
+                });
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Error updating academic profile:', error);
         }
       }
     </script>
+    <script src="./js/animated-background.js"></script>
   </body>
 </html>

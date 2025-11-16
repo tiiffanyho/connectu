@@ -52,19 +52,35 @@
         width: 100%;
         height: 100vh;
         overflow: hidden;
+        position: relative;
+        z-index: 1;
       }
 
       .opportunities-header {
         background: linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.01)
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
         );
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding: 1.5rem 2rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 2;
+      }
+
+      .opportunities-header .profile-banner {
+        display: none;
+      }
+
+      .header-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 1rem;
       }
 
       .opportunities-title {
@@ -72,6 +88,11 @@
         font-weight: 900;
         letter-spacing: 2px;
         color: #fff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        grid-column: 1;
+        margin: 0;
+        width: 100%;
       }
 
       .opportunities-back {
@@ -86,6 +107,8 @@
         transition:
           transform 0.15s ease,
           box-shadow 0.15s ease;
+        grid-column: 2;
+        white-space: nowrap;
       }
 
       .opportunities-back:hover {
@@ -97,27 +120,32 @@
         display: flex;
         gap: 0.5rem;
         padding: 1rem 2rem;
-        background: rgba(255, 255, 255, 0.02);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(15, 23, 42, 0.98);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         overflow-x: auto;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 2;
       }
 
       .tab-btn {
         padding: 0.65rem 1rem;
-        background: rgba(255, 255, 255, 0.06);
-        color: #cbd5e1;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.85);
+        color: #e6eef8;
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
         font-size: 0.9rem;
         white-space: nowrap;
         transition: all 0.25s ease;
+        backdrop-filter: blur(8px);
       }
 
       .tab-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(15, 23, 42, 0.92);
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #fff;
       }
 
       .tab-btn.active {
@@ -130,6 +158,9 @@
         flex: 1;
         overflow-y: auto;
         padding: 2rem;
+        background: rgba(15, 23, 42, 0.95);
+        position: relative;
+        z-index: 1;
       }
 
       .tab-panel {
@@ -155,13 +186,16 @@
       .feature-box {
         background: linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.01)
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
         );
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
         padding: 1.5rem;
         margin-bottom: 1.5rem;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 1;
       }
 
       .feature-title {
@@ -175,19 +209,22 @@
       }
 
       .feature-description {
-        color: #a7c1d9;
+        color: #e6eef8;
         line-height: 1.6;
         margin-bottom: 1rem;
       }
 
       .feature-highlight {
-        background: rgba(99, 102, 241, 0.1);
+        background: rgba(15, 23, 42, 0.98);
         border-left: 3px solid #6366f1;
         padding: 1rem;
         border-radius: 8px;
-        color: #cbd5e1;
+        color: #fff;
         font-size: 0.95rem;
         margin: 1rem 0;
+        backdrop-filter: blur(12px);
+        position: relative;
+        z-index: 1;
       }
 
       .metric-grid {
@@ -198,15 +235,16 @@
       }
 
       .metric-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(15, 23, 42, 0.92);
         padding: 1rem;
         border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
       }
 
       .metric-label {
         font-size: 0.85rem;
-        color: #94a3b8;
+        color: #cbd5e1;
         margin-bottom: 0.5rem;
       }
 
@@ -217,17 +255,18 @@
       }
 
       .opportunity-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(15, 23, 42, 0.92);
         padding: 1.25rem;
         border-radius: 12px;
         margin: 0.75rem 0;
         border-left: 4px solid #06b6d4;
         cursor: pointer;
         transition: all 0.25s ease;
+        backdrop-filter: blur(8px);
       }
 
       .opportunity-card:hover {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(15, 23, 42, 0.95);
         border-left-color: #8b5cf6;
       }
 
@@ -238,7 +277,7 @@
       }
 
       .opportunity-label {
-        color: #cbd5e1;
+        color: #e6eef8;
         font-weight: 600;
       }
 
@@ -267,7 +306,7 @@
       }
 
       .score-label {
-        color: #cbd5e1;
+        color: #e6eef8;
         font-weight: 600;
       }
 
@@ -279,7 +318,7 @@
       .score-bar {
         width: 100px;
         height: 8px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.95);
         border-radius: 4px;
         overflow: hidden;
       }
@@ -292,13 +331,14 @@
 
       .opportunity-input {
         width: 100%;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 10px;
         padding: 1rem;
         color: #e6eef8;
         margin-bottom: 1rem;
         font-family: inherit;
+        backdrop-filter: blur(8px);
       }
 
       .opportunity-input::placeholder {
@@ -391,34 +431,98 @@
           padding: 0.75rem;
         }
       }
+
+      .profile-banner {
+        width: 100%;
+        height: 120px;
+        border-radius: 0;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: none;
+        margin-bottom: 1rem;
+        overflow: hidden;
+      }
+      
+      .profile-banner.loaded {
+        display: block;
+      }
+
+      .profile-banner::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
+        border-radius: inherit;
+      }
+
+      .linkedin-profile-section {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.05));
+        border: 2px solid rgba(139, 92, 246, 0.3);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 0 2rem 2rem 2rem;
+        text-align: center;
+        display: none;
+      }
+
+      .linkedin-profile {
+        max-width: 200px;
+        max-height: 200px;
+        width: auto;
+        height: auto;
+        display: inline-block;
+        border-radius: 50%;
+        filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.3));
+        margin-bottom: 1rem;
+        border: 4px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .profile-name-display {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 1rem;
+      }
     </style>
   </head>
   <body>
     <div class="opportunities-container">
       <!-- Header -->
       <div class="opportunities-header">
-        <h1 class="opportunities-title">OPPORTUNITIES</h1>
-        <button class="opportunities-back" onclick="window.history.back();">
-          ← Back
-        </button>
+        <div id="profileBanner" class="profile-banner"></div>
+        <div class="header-content">
+          <h1 class="opportunities-title">OPPORTUNITIES</h1>
+          <button class="opportunities-back" onclick="window.history.back();">
+            ← Back
+          </button>
+        </div>
+      </div>
+
+      <!-- LinkedIn Profile Picture Section -->
+      <div class="linkedin-profile-section" id="profileSection">
+        <img id="linkedinProfile" class="linkedin-profile" alt="LinkedIn Profile" />
+        <div class="profile-name-display" id="profileNameDisplay"></div>
       </div>
 
       <!-- Tabs -->
       <div class="opportunities-tabs">
         <button class="tab-btn active" data-tab="study-map">
-          🗺️ Study & Venue Map
+          Study & Venue Map
         </button>
-        <button class="tab-btn" data-tab="match-scanner">
-          🎯 Match Scanner
-        </button>
+        <button class="tab-btn" data-tab="match-scanner">Match Scanner</button>
         <button class="tab-btn" data-tab="live-aggregator">
-          📡 Live Aggregator
+          Live Aggregator
         </button>
         <button class="tab-btn" data-tab="opportunity-weather">
-          🌤️ Opportunity Weather
+          Opportunity Weather
         </button>
         <button class="tab-btn" data-tab="events-and-clubs">
-          🚀 Events & Clubs
+          Events & Clubs
         </button>
       </div>
 
@@ -427,7 +531,7 @@
         <!-- Study & Venue Map Tab -->
         <div id="study-map" class="tab-panel active">
           <div class="feature-box">
-            <div class="feature-title">🗺️ Study Spots & Featured Venues</div>
+            <div class="feature-title">Study Spots & Featured Venues</div>
             <div class="feature-description">
               Discover the best places to study, network, and attend events.
               Find quiet corners, collaborative spaces, and venues hosting
@@ -442,7 +546,7 @@
           <div class="feature-box">
             <div class="feature-title">Featured Study Spots</div>
             <div class="opportunity-card">
-              <span class="opportunity-emoji">📚</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label"
                 >Central Library — Quiet Zone</span
               >
@@ -455,7 +559,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #8b5cf6">
-              <span class="opportunity-emoji">☕</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label"
                 >Campus Brew Café — Collab Space</span
               >
@@ -468,7 +572,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #06b6d4">
-              <span class="opportunity-emoji">💻</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label"
                 >Tech Hub — Innovation Lounge</span
               >
@@ -484,7 +588,7 @@
           <div class="feature-box">
             <div class="feature-title">Featured Venues Hosting Events</div>
             <div class="opportunity-card">
-              <span class="opportunity-emoji">🏢</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label"
                 >Convention Center — TechCrunch Disrupt</span
               >
@@ -497,7 +601,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #8b5cf6">
-              <span class="opportunity-emoji">🎪</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label">Grand Hall — Career Fair</span>
               <div
                 style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem"
@@ -507,7 +611,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #06b6d4">
-              <span class="opportunity-emoji">🎭</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label"
                 >Performing Arts Center — Club Showcases</span
               >
@@ -524,9 +628,7 @@
         <!-- Match Scanner Tab -->
         <div id="match-scanner" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title">
-              🎯 Match Scanner — Personal Fit Score
-            </div>
+            <div class="feature-title">Match Scanner — Personal Fit Score</div>
             <div class="feature-description">
               Every opportunity gets a personalized match score based on your
               major, skills, projects, and goals. Quick way to know if something
@@ -610,7 +712,7 @@
         <div id="live-aggregator" class="tab-panel">
           <div class="feature-box">
             <div class="feature-title">
-              📡 Live Aggregator — All Listings in One Place
+              Live Aggregator — All Listings in One Place
             </div>
             <div class="feature-description">
               Continuously pulls from LinkedIn, Handshake, Indeed, university
@@ -622,7 +724,7 @@
           <div class="feature-box">
             <div class="feature-title">Fresh Listings (Last 24 Hours)</div>
             <div class="opportunity-card">
-              <span class="opportunity-emoji">🆕</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label"
                 >Junior Full-Stack Developer — Thoughtworks</span
               >
@@ -634,7 +736,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #8b5cf6">
-              <span class="opportunity-emoji">🆕</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label"
                 >Marketing Analyst Internship — Hootsuite</span
               >
@@ -646,7 +748,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #06b6d4">
-              <span class="opportunity-emoji">🆕</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label"
                 >Scholarship — Women in Tech Fund</span
               >
@@ -678,7 +780,7 @@
         <div id="opportunity-weather" class="tab-panel">
           <div class="feature-box">
             <div class="feature-title">
-              🌤️ Opportunity Weather — Daily Forecast
+              Opportunity Weather — Daily Forecast
             </div>
             <div class="feature-description">
               See the daily density of opportunities. Light days are great for
@@ -695,7 +797,7 @@
                   <div style="color: #cbd5e1; font-weight: 600">Monday</div>
                   <div style="color: #94a3b8; font-size: 0.9rem">Light day</div>
                 </div>
-                <div style="font-size: 1.5rem">🤤</div>
+                <div style="font-size: 1.5rem"></div>
               </div>
             </div>
 
@@ -707,7 +809,7 @@
                     3 applications due + 2 events
                   </div>
                 </div>
-                <div style="font-size: 1.5rem">🌧️</div>
+                <div style="font-size: 1.5rem"></div>
               </div>
             </div>
 
@@ -719,7 +821,7 @@
                     Career fair + networking
                   </div>
                 </div>
-                <div style="font-size: 1.5rem">🔥</div>
+                <div style="font-size: 1.5rem"></div>
               </div>
             </div>
 
@@ -741,7 +843,7 @@
         <div id="events-and-clubs" class="tab-panel">
           <div class="feature-box">
             <div class="feature-title">
-              🚀 Events & Clubs — Hackathons, Events & Community
+              Events & Clubs — Hackathons, Events & Community
             </div>
             <div class="feature-description">
               Discover hackathons, competitions, and clubs all in one place.
@@ -753,7 +855,7 @@
           <div class="feature-box">
             <div class="feature-title">Upcoming Hackathons & Events</div>
             <div class="opportunity-card">
-              <span class="opportunity-emoji">🏆</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label"
                 >HackTO 2025 — Toronto's Biggest Hackathon</span
               >
@@ -766,7 +868,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #8b5cf6">
-              <span class="opportunity-emoji">💻</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label">AI/ML Hackathon — Virtual</span>
               <div
                 style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem"
@@ -776,7 +878,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #06b6d4">
-              <span class="opportunity-emoji">🎨</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label">Design Sprint — UX Track</span>
               <div
                 style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem"
@@ -790,7 +892,7 @@
           <div class="feature-box">
             <div class="feature-title">Featured Clubs</div>
             <div class="opportunity-card">
-              <span class="opportunity-emoji">💡</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label">Entrepreneurship Club</span>
               <div
                 style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem"
@@ -801,7 +903,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #8b5cf6">
-              <span class="opportunity-emoji">🤖</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label">AI/ML Student Group</span>
               <div
                 style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem"
@@ -812,7 +914,7 @@
             </div>
 
             <div class="opportunity-card" style="border-left-color: #06b6d4">
-              <span class="opportunity-emoji">🎸</span>
+              <span class="opportunity-emoji"></span>
               <span class="opportunity-label">Music & Performance Society</span>
               <div
                 style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem"
@@ -966,5 +1068,331 @@
         map.invalidateSize();
       }, 100);
     </script>
+
+    <script>
+      // Load and display LinkedIn profile picture
+      function loadLinkedInProfile() {
+        try {
+          console.log('Loading LinkedIn profile...');
+          const userData = sessionStorage.getItem('connectu_user');
+          if (!userData) {
+            console.log('No user data found in sessionStorage');
+            return;
+          }
+          
+          const user = JSON.parse(userData);
+          const linkedinUrl = user.linkedinUrl;
+          
+          console.log('LinkedIn URL from user data:', linkedinUrl);
+            
+            if (linkedinUrl) {
+              // Extract profile ID or username from LinkedIn URL
+              function extractLinkedInProfileId(url) {
+                // Handle various LinkedIn URL formats:
+                // https://www.linkedin.com/in/username/
+                // https://linkedin.com/in/username
+                // https://www.linkedin.com/in/username/?originalSubdomain=ca
+                const match = url.match(/linkedin\.com\/in\/([^\/\?]+)/i);
+                if (match && match[1]) {
+                  return match[1];
+                }
+                return null;
+              }
+
+              // Function to test if an image URL is valid
+              function testImageUrl(url) {
+                return new Promise((resolve) => {
+                  const img = new Image();
+                  img.crossOrigin = 'anonymous';
+                  let resolved = false;
+                  
+                  const cleanup = () => {
+                    if (!resolved) {
+                      resolved = true;
+                    }
+                  };
+                  
+                  img.onload = () => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(true);
+                    }
+                  };
+                  
+                  img.onerror = () => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(false);
+                    }
+                  };
+                  
+                  // Set timeout to avoid hanging
+                  const timeout = setTimeout(() => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(false);
+                    }
+                  }, 3000);
+                  
+                  img.src = url;
+                });
+              }
+
+              // Function to get LinkedIn profile picture URL
+              async function fetchLinkedInProfilePicture(profileId) {
+                if (!profileId) return null;
+
+                // Try multiple methods to get the profile picture
+                const methods = [
+                  // Method 1: Try using CORS proxy to fetch og:image from LinkedIn page
+                  async () => {
+                    try {
+                      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
+                      const response = await fetch(proxyUrl);
+                      const data = await response.json();
+                      
+                      if (data.contents) {
+                        // Pattern 1: Look for og:image meta tag (most reliable)
+                        const ogImageMatch = data.contents.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+                        if (ogImageMatch && ogImageMatch[1]) {
+                          const imageUrl = ogImageMatch[1].replace(/&amp;/g, '&');
+                          const isValid = await testImageUrl(imageUrl);
+                          if (isValid) return imageUrl;
+                        }
+
+                        // Pattern 2: Look for LinkedIn CDN image URLs
+                        const cdnMatches = data.contents.match(/https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s<>]+/gi);
+                        if (cdnMatches && cdnMatches.length > 0) {
+                          // Try the first few CDN URLs
+                          for (const url of cdnMatches.slice(0, 3)) {
+                            const cleanUrl = url.replace(/[<>"']/g, '').split('?')[0];
+                            const isValid = await testImageUrl(cleanUrl);
+                            if (isValid) return cleanUrl;
+                          }
+                        }
+                      }
+                    } catch (error) {
+                      console.log('Method 1 failed:', error);
+                    }
+                    return null;
+                  },
+                  
+                  // Method 2: Try alternative proxy services
+                  async () => {
+                    try {
+                      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
+                      const response = await fetch(proxyUrl);
+                      const html = await response.text();
+                      
+                      if (html) {
+                        const ogImageMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+                        if (ogImageMatch && ogImageMatch[1]) {
+                          const imageUrl = ogImageMatch[1].replace(/&amp;/g, '&');
+                          const isValid = await testImageUrl(imageUrl);
+                          if (isValid) return imageUrl;
+                        }
+                      }
+                    } catch (error) {
+                      console.log('Method 2 failed:', error);
+                    }
+                    return null;
+                  },
+                  
+                  // Method 3: Try using LinkedIn's public profile image endpoint pattern
+                  async () => {
+                    try {
+                      // Try to construct a potential profile image URL
+                      // This is a fallback that might work for some profiles
+                      const potentialUrls = [
+                        `https://media.licdn.com/dms/image/C4E03AQ${profileId}/profile-displayphoto-shrink_200_200/0/1234567890?e=1234567890&v=beta&t=abc123`,
+                      ];
+                      
+                      // This method is less reliable, so we'll skip it for now
+                      // and rely on the proxy methods above
+                    } catch (error) {
+                      console.log('Method 3 failed:', error);
+                    }
+                    return null;
+                  },
+                  
+                  // Method 4: Try using another CORS proxy
+                  async () => {
+                    try {
+                      const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
+                      const response = await fetch(proxyUrl);
+                      const html = await response.text();
+                      
+                      if (html) {
+                        // Look for og:image
+                        const ogImageMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+                        if (ogImageMatch && ogImageMatch[1]) {
+                          const imageUrl = ogImageMatch[1].replace(/&amp;/g, '&');
+                          const isValid = await testImageUrl(imageUrl);
+                          if (isValid) {
+                            console.log('Method 4 succeeded with URL:', imageUrl);
+                            return imageUrl;
+                          }
+                        }
+                        
+                        // Also try to find any LinkedIn CDN images
+                        const cdnMatches = html.match(/https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s<>]+/gi);
+                        if (cdnMatches && cdnMatches.length > 0) {
+                          for (const url of cdnMatches.slice(0, 5)) {
+                            const cleanUrl = url.replace(/[<>"']/g, '').split('?')[0];
+                            // Check if it looks like a profile picture (contains profile-displayphoto)
+                            if (cleanUrl.includes('profile-displayphoto') || cleanUrl.includes('profile')) {
+                              const isValid = await testImageUrl(cleanUrl);
+                              if (isValid) {
+                                console.log('Method 4 found profile image:', cleanUrl);
+                                return cleanUrl;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    } catch (error) {
+                      console.log('Method 4 failed:', error);
+                    }
+                    return null;
+                  }
+                ];
+
+                // Try each method in sequence
+                for (const method of methods) {
+                  try {
+                    const result = await method();
+                    if (result) {
+                      return result;
+                    }
+                  } catch (error) {
+                    console.log('Method failed:', error);
+                    continue;
+                  }
+                }
+
+                return null;
+              }
+
+              const profileId = extractLinkedInProfileId(linkedinUrl);
+              
+              console.log('Extracted profile ID:', profileId);
+              
+              if (profileId) {
+                // Extract name from LinkedIn URL or use profile ID
+                const displayName = profileId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                
+                console.log('Fetching profile picture for:', profileId);
+                
+                fetchLinkedInProfilePicture(profileId)
+                  .then(profilePictureUrl => {
+                    const profileImg = document.getElementById('linkedinProfile');
+                    const profileSection = document.getElementById('profileSection');
+                    const profileBanner = document.getElementById('profileBanner');
+                    const nameDisplay = document.getElementById('profileNameDisplay');
+
+                    if (nameDisplay) {
+                      nameDisplay.textContent = displayName;
+                    }
+
+                    // Only display if we have a valid profile picture URL
+                    if (profilePictureUrl) {
+                      console.log('Found profile picture URL:', profilePictureUrl);
+                      
+                      // Set up the profile image in the section
+                      if (profileImg) {
+                        profileImg.src = profilePictureUrl;
+                        profileImg.alt = `${displayName} LinkedIn Profile`;
+                        profileImg.onload = function() {
+                          console.log('Profile image loaded successfully');
+                          // Only show section if profile picture loaded successfully
+                          if (profileSection) {
+                            profileSection.style.display = 'block';
+                          }
+                        };
+                        profileImg.onerror = function() {
+                          console.log('Profile picture failed to load from URL:', profilePictureUrl);
+                          // Don't show section if profile picture fails to load
+                          if (profileSection) {
+                            profileSection.style.display = 'none';
+                          }
+                        };
+                      }
+                      
+                      // Also add to banner if it exists
+                      if (profileBanner) {
+                        // Clear any existing content
+                        profileBanner.innerHTML = '';
+                        const bannerImg = document.createElement('img');
+                        bannerImg.src = profilePictureUrl;
+                        bannerImg.alt = `${displayName} banner`;
+                        bannerImg.style.width = '100%';
+                        bannerImg.style.height = '100%';
+                        bannerImg.style.objectFit = 'cover';
+                        bannerImg.style.borderRadius = '0';
+                        bannerImg.onload = function() {
+                          console.log('Banner image loaded successfully');
+                          profileBanner.style.display = 'block';
+                          profileBanner.classList.add('loaded');
+                        };
+                        bannerImg.onerror = function() {
+                          console.log('Banner image failed to load');
+                          // If banner image fails, remove it
+                          profileBanner.innerHTML = '';
+                          profileBanner.style.display = 'none';
+                        };
+                        profileBanner.appendChild(bannerImg);
+                      }
+                    } else {
+                      console.log('No valid profile picture URL found for:', profileId);
+                      // Don't show profile section if no valid URL
+                      if (profileSection) {
+                        profileSection.style.display = 'none';
+                      }
+                      if (profileBanner) {
+                        profileBanner.style.display = 'none';
+                      }
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error loading LinkedIn profile picture:', error);
+                    // Don't show section if there's an error
+                    const profileSection = document.getElementById('profileSection');
+                    if (profileSection) {
+                      profileSection.style.display = 'none';
+                    }
+                  });
+              } else {
+                console.log('Could not extract profile ID from LinkedIn URL:', linkedinUrl);
+                const profileSection = document.getElementById('profileSection');
+                if (profileSection) {
+                  profileSection.style.display = 'none';
+                }
+              }
+            } else {
+              // No LinkedIn URL provided
+              const profileSection = document.getElementById('profileSection');
+              if (profileSection) {
+                profileSection.style.display = 'none';
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Error loading LinkedIn profile:', error);
+          const profileSection = document.getElementById('profileSection');
+          if (profileSection) {
+            profileSection.style.display = 'none';
+          }
+        }
+      }
+      
+      // Run when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadLinkedInProfile);
+      } else {
+        // DOM is already ready
+        loadLinkedInProfile();
+      }
+    </script>
+    <script src="./js/animated-background.js"></script>
   </body>
 </html>
