@@ -52,19 +52,24 @@
         width: 100%;
         height: 100vh;
         overflow: hidden;
+        position: relative;
+        z-index: 1;
       }
 
       .opportunities-header {
         background: linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.01)
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
         );
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding: 1.5rem 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 2;
       }
 
       .opportunities-title {
@@ -72,6 +77,7 @@
         font-weight: 900;
         letter-spacing: 2px;
         color: #fff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
 
       .opportunities-back {
@@ -97,27 +103,32 @@
         display: flex;
         gap: 0.5rem;
         padding: 1rem 2rem;
-        background: rgba(255, 255, 255, 0.02);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(15, 23, 42, 0.98);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         overflow-x: auto;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 2;
       }
 
       .tab-btn {
         padding: 0.65rem 1rem;
-        background: rgba(255, 255, 255, 0.06);
-        color: #cbd5e1;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.85);
+        color: #e6eef8;
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
         font-size: 0.9rem;
         white-space: nowrap;
         transition: all 0.25s ease;
+        backdrop-filter: blur(8px);
       }
 
       .tab-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(15, 23, 42, 0.92);
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #fff;
       }
 
       .tab-btn.active {
@@ -130,6 +141,9 @@
         flex: 1;
         overflow-y: auto;
         padding: 2rem;
+        background: rgba(15, 23, 42, 0.95);
+        position: relative;
+        z-index: 1;
       }
 
       .tab-panel {
@@ -155,13 +169,16 @@
       .feature-box {
         background: linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.01)
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
         );
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
         padding: 1.5rem;
         margin-bottom: 1.5rem;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 1;
       }
 
       .feature-title {
@@ -175,19 +192,22 @@
       }
 
       .feature-description {
-        color: #a7c1d9;
+        color: #e6eef8;
         line-height: 1.6;
         margin-bottom: 1rem;
       }
 
       .feature-highlight {
-        background: rgba(99, 102, 241, 0.1);
+        background: rgba(15, 23, 42, 0.98);
         border-left: 3px solid #6366f1;
         padding: 1rem;
         border-radius: 8px;
-        color: #cbd5e1;
+        color: #fff;
         font-size: 0.95rem;
         margin: 1rem 0;
+        backdrop-filter: blur(12px);
+        position: relative;
+        z-index: 1;
       }
 
       .metric-grid {
@@ -198,15 +218,16 @@
       }
 
       .metric-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(15, 23, 42, 0.92);
         padding: 1rem;
         border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
       }
 
       .metric-label {
         font-size: 0.85rem;
-        color: #94a3b8;
+        color: #cbd5e1;
         margin-bottom: 0.5rem;
       }
 
@@ -217,17 +238,18 @@
       }
 
       .opportunity-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(15, 23, 42, 0.92);
         padding: 1.25rem;
         border-radius: 12px;
         margin: 0.75rem 0;
         border-left: 4px solid #06b6d4;
         cursor: pointer;
         transition: all 0.25s ease;
+        backdrop-filter: blur(8px);
       }
 
       .opportunity-card:hover {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(15, 23, 42, 0.95);
         border-left-color: #8b5cf6;
       }
 
@@ -238,7 +260,7 @@
       }
 
       .opportunity-label {
-        color: #cbd5e1;
+        color: #e6eef8;
         font-weight: 600;
       }
 
@@ -267,7 +289,7 @@
       }
 
       .score-label {
-        color: #cbd5e1;
+        color: #e6eef8;
         font-weight: 600;
       }
 
@@ -279,7 +301,7 @@
       .score-bar {
         width: 100px;
         height: 8px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.95);
         border-radius: 4px;
         overflow: hidden;
       }
@@ -292,13 +314,14 @@
 
       .opportunity-input {
         width: 100%;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 10px;
         padding: 1rem;
         color: #e6eef8;
         margin-bottom: 1rem;
         font-family: inherit;
+        backdrop-filter: blur(8px);
       }
 
       .opportunity-input::placeholder {
@@ -962,5 +985,6 @@
         map.invalidateSize();
       }, 100);
     </script>
+    <script src="./js/animated-background.js"></script>
   </body>
 </html>
