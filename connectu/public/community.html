@@ -309,12 +309,11 @@
       <a href="./index.html" class="cta btn-secondary back-btn">← Home</a>
     </div>
     <div class="tab-header" id="tabHeader">
-      <button class="active" data-tab="heatmap"> Campus Heat Map</button>
-      <button data-tab="housing"> Housing Marketplace</button>
-      <button data-tab="roommate"> Roommate Finder</button>
-      <button data-tab="community"> Community Events</button>
-      <button data-tab="resources"> Local Resources</button>
-      <button data-tab="support"> Support & Safety</button>
+      <button class="active" data-tab="heatmap">Campus Heat Map</button>
+      <button data-tab="housing">Housing Marketplace</button>
+      <button data-tab="roommate">Roommate Finder</button>
+      <button data-tab="community">Community Events</button>
+      <button data-tab="resources">Local Resources</button>
     </div>
     <div class="tab-content" id="tabContent">
       <!-- Tab content will be injected here -->
@@ -375,36 +374,115 @@
         </div>
       `,
       community: `
-        <h2> Community Events</h2>
-        <ul class="feature-list">
-          <li><strong>Event Calendar:</strong> Discover upcoming campus and local events, workshops, concerts, game nights, and meetups. Filter by category (social, academic, cultural, sports), popularity, date range, and location. Sync with your personal calendar.</li>
-          <li><strong>Host an Event:</strong> Create and promote your own events to the student community. Set event details, upload photos/flyers, manage RSVPs, send updates and reminders to attendees, and track attendance.</li>
-          <li><strong>RSVP & Reminders:</strong> RSVP to events with one tap and get push notifications and email reminders before events start. Get directions, parking info, and last-minute updates directly.</li>
-          <li><strong>Interest Groups:</strong> Join or create groups based on hobbies (photography, hiking, gaming), causes (sustainability, mental health), or academic interests (coding club, debate team). Group chat, event planning tools, and shared resources included.</li>
-          <li><strong>Event Discovery:</strong> Get personalized event recommendations based on your interests and past attendance. See what your friends are attending and trending events on campus.</li>
-          <li><strong>Check-In & Rewards:</strong> Check in at events to earn points and badges. Unlock exclusive perks and early access to popular events.</li>
-        </ul>
+        <h2>Community Events</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 3rem; max-width: 1200px;">
+          <button onclick="window.viewEventCalendar()" style="padding: 2.5rem; background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(99, 102, 241, 0.1)); border: 2px solid rgba(139, 92, 246, 0.4); color: white; border-radius: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(139, 92, 246, 0.3)'; this.style.borderColor='#a78bfa'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(139, 92, 246, 0.4)'">
+            <div style="font-size: 3.5rem; margin-bottom: 1.2rem;">📅</div>
+            <div style="font-weight: 700; margin-bottom: 0.6rem; font-size: 1.3rem;">Event Calendar</div>
+            <div style="font-size: 1rem; color: rgba(255,255,255,0.85); line-height: 1.5;">Browse all upcoming events and add them to your schedule</div>
+          </button>
+          <button onclick="window.createEvent()" style="padding: 2.5rem; background: linear-gradient(135deg, rgba(217, 70, 239, 0.15), rgba(236, 72, 153, 0.1)); border: 2px solid rgba(217, 70, 239, 0.4); color: white; border-radius: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(217, 70, 239, 0.3)'; this.style.borderColor='#f472b6'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(217, 70, 239, 0.4)'">
+            <div style="font-size: 3.5rem; margin-bottom: 1.2rem;">✨</div>
+            <div style="font-weight: 700; margin-bottom: 0.6rem; font-size: 1.3rem;">Host an Event</div>
+            <div style="font-size: 1rem; color: rgba(255,255,255,0.85); line-height: 1.5;">Create and promote your own event to the community</div>
+          </button>
+          <button onclick="window.viewEventGroups()" style="padding: 2.5rem; background: linear-gradient(135deg, rgba(8, 145, 178, 0.15), rgba(6, 182, 212, 0.1)); border: 2px solid rgba(8, 145, 178, 0.4); color: white; border-radius: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(8, 145, 178, 0.3)'; this.style.borderColor='#22d3ee'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(8, 145, 178, 0.4)'">
+            <div style="font-size: 3.5rem; margin-bottom: 1.2rem;">👥</div>
+            <div style="font-weight: 700; margin-bottom: 0.6rem; font-size: 1.3rem;">Interest Groups</div>
+            <div style="font-size: 1rem; color: rgba(255,255,255,0.85); line-height: 1.5;">Find and join clubs based on your interests and hobbies</div>
+          </button>
+          <button onclick="window.viewRecommended()" style="padding: 2.5rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(249, 115, 22, 0.1)); border: 2px solid rgba(245, 158, 11, 0.4); color: white; border-radius: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(245, 158, 11, 0.3)'; this.style.borderColor='#fbbf24'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(245, 158, 11, 0.4)'">
+            <div style="font-size: 3.5rem; margin-bottom: 1.2rem;">🎯</div>
+            <div style="font-weight: 700; margin-bottom: 0.6rem; font-size: 1.3rem;">For You</div>
+            <div style="font-size: 1rem; color: rgba(255,255,255,0.85); line-height: 1.5;">Get personalized recommendations based on your preferences</div>
+          </button>
+        </div>
+        <div id="eventContent" style="min-height: 400px;">
+          <div style="text-align: center; padding: 3rem; color: #94a3b8;">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">Browse events, create gatherings, and connect with your community</p>
+            <p style="font-size: 0.9rem;">Pick a section above to get started</p>
+          </div>
+        </div>
       `,
       resources: `
-        <h2> Local Resources</h2>
-        <ul class="feature-list">
-          <li><strong>Essential Services:</strong> Find comprehensive info on grocery stores, pharmacies, healthcare clinics, banks, post offices, gyms, and public transport near campus. See hours, reviews, distance from campus, and real-time availability.</li>
-          <li><strong>Student Discounts:</strong> Access an updated database of exclusive deals and discounts for students at local businesses (restaurants, retail, entertainment, services). Show your student ID to redeem. Save hundreds per semester.</li>
-          <li><strong>Moving Guides:</strong> Get detailed tips, checklists, and video tutorials for moving in/out, setting up utilities (internet, electricity, water), buying furniture on a budget, and settling into your new place. Download printable guides and access a moving day checklist.</li>
-          <li><strong>Transportation Hub:</strong> View bus routes, train schedules, bike-sharing locations, and ride-sharing options. Get real-time transit updates and plan your commute.</li>
-          <li><strong>Local Favorites:</strong> Discover hidden gems and student-favorite spots for food, coffee, study spaces, and entertainment recommended by the community.</li>
-        </ul>
+        <h2>Local Resources</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+          <div onclick="window.showResourceDetails('essential')" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.08)); border: 1.5px solid rgba(59, 130, 246, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(59, 130, 246, 0.25)'; this.style.borderColor='rgba(59, 130, 246, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(59, 130, 246, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #60a5fa;">01</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Essential Services</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">Find comprehensive information on grocery stores, pharmacies, healthcare clinics, banks, post offices, gyms, and public transport near campus with real-time availability.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('discounts')" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(74, 222, 128, 0.08)); border: 1.5px solid rgba(34, 197, 94, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(34, 197, 94, 0.25)'; this.style.borderColor='rgba(34, 197, 94, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(34, 197, 94, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #4ade80;">02</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Student Discounts</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">Access an exclusive database of deals and discounts at local restaurants, retail stores, and entertainment venues. Show your student ID to redeem and save hundreds per semester.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('moving')" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.08)); border: 1.5px solid rgba(245, 158, 11, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(245, 158, 11, 0.25)'; this.style.borderColor='rgba(245, 158, 11, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(245, 158, 11, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #fbbf24;">03</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Moving Guides</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">Get detailed tips, checklists, and video tutorials for moving in/out and setting up utilities. Download printable guides and access a comprehensive moving day checklist.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('transportation')" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(192, 132, 250, 0.08)); border: 1.5px solid rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(168, 85, 247, 0.25)'; this.style.borderColor='rgba(168, 85, 247, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(168, 85, 247, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #c084fc;">04</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Transportation Hub</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">View bus routes, train schedules, bike-sharing locations, and ride-sharing options. Get real-time transit updates and plan your commute efficiently.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('favorites')" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(248, 113, 113, 0.08)); border: 1.5px solid rgba(239, 68, 68, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(239, 68, 68, 0.25)'; this.style.borderColor='rgba(239, 68, 68, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(239, 68, 68, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #f87171;">05</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Local Favorites</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">Discover hidden gems and student-recommended spots for food, coffee, study spaces, and entertainment. Find community favorites based on authentic student reviews.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('info')" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(34, 211, 238, 0.08)); border: 1.5px solid rgba(14, 165, 233, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(14, 165, 233, 0.25)'; this.style.borderColor='rgba(14, 165, 233, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(14, 165, 233, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #22d3ee;">INFO</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">What's This About</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">ConnectU's Local Resources is your complete guide to navigating student life around campus. Find everything you need in one place—from essential services to hidden local gems.</p>
+          </div>
+        </div>
       `,
-      support: `
-        <h2> Support & Safety</h2>
-        <ul class="feature-list">
-          <li><strong>Emergency Contacts:</strong> Quick one-tap access to campus security, health services, counseling center, Title IX office, and local emergency services. Tap to call, message, or share your location for immediate assistance.</li>
-          <li><strong>Report Issues:</strong> Anonymously report housing concerns, roommate conflicts, safety issues, or harassment for confidential mediation and support. Track the status of your report and receive updates.</li>
-          <li><strong>Safety Tips & Resources:</strong> Read up on best practices for safe renting, living alone, walking at night, recognizing scams, and protecting your personal information. Get notified of campus safety alerts and local crime reports.</li>
-          <li><strong>Support Groups:</strong> Connect with mental health resources, peer-led support groups (anxiety, depression, LGBTQ+, first-gen students), and confidential counseling services. Join chat groups and access crisis hotlines 24/7.</li>
-          <li><strong>Wellness Check-Ins:</strong> Use mood tracking tools, set wellness goals, and access self-care resources. Get reminders to take breaks and connect with support when needed.</li>
-          <li><strong>Community Guidelines:</strong> Review community standards, anti-harassment policies, and reporting procedures to foster a safe and inclusive environment for all students.</li>
-        </ul>
+      resources: `
+        <h2>Local Resources</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+          <div onclick="window.showResourceDetails('essential')" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.08)); border: 1.5px solid rgba(59, 130, 246, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(59, 130, 246, 0.25)'; this.style.borderColor='rgba(59, 130, 246, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(59, 130, 246, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #60a5fa;">01</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Essential Services</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">Find comprehensive information on grocery stores, pharmacies, healthcare clinics, banks, post offices, gyms, and public transport near campus with real-time availability.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('discounts')" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(74, 222, 128, 0.08)); border: 1.5px solid rgba(34, 197, 94, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(34, 197, 94, 0.25)'; this.style.borderColor='rgba(34, 197, 94, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(34, 197, 94, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #4ade80;">02</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Student Discounts</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">Access an exclusive database of deals and discounts at local restaurants, retail stores, and entertainment venues. Show your student ID to redeem and save hundreds per semester.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('moving')" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.08)); border: 1.5px solid rgba(245, 158, 11, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(245, 158, 11, 0.25)'; this.style.borderColor='rgba(245, 158, 11, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(245, 158, 11, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #fbbf24;">03</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Moving Guides</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">Get detailed tips, checklists, and video tutorials for moving in/out and setting up utilities. Download printable guides and access a comprehensive moving day checklist.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('transportation')" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(192, 132, 250, 0.08)); border: 1.5px solid rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(168, 85, 247, 0.25)'; this.style.borderColor='rgba(168, 85, 247, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(168, 85, 247, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #c084fc;">04</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Transportation Hub</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">View bus routes, train schedules, bike-sharing locations, and ride-sharing options. Get real-time transit updates and plan your commute efficiently.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('favorites')" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(248, 113, 113, 0.08)); border: 1.5px solid rgba(239, 68, 68, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(239, 68, 68, 0.25)'; this.style.borderColor='rgba(239, 68, 68, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(239, 68, 68, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #f87171;">05</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">Local Favorites</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">Discover hidden gems and student-recommended spots for food, coffee, study spaces, and entertainment. Find community favorites based on authentic student reviews.</p>
+          </div>
+
+          <div onclick="window.showResourceDetails('info')" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(34, 211, 238, 0.08)); border: 1.5px solid rgba(14, 165, 233, 0.3); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease;\" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(14, 165, 233, 0.25)'; this.style.borderColor='rgba(14, 165, 233, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(14, 165, 233, 0.3)'">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; color: #22d3ee;">INFO</div>
+            <h3 style="color: #fff; margin: 0 0 1rem 0; font-size: 1.3rem;">What's This About</h3>
+            <p style="color: #cbd5e1; margin: 0; line-height: 1.6; font-size: 0.95rem;">ConnectU's Local Resources is your complete guide to navigating student life around campus. Find everything you need in one place—from essential services to hidden local gems.</p>
+          </div>
+        </div>
       `
     };
 
@@ -1028,6 +1106,285 @@
       `;
       
       container.innerHTML = html;
+    };
+
+    // Community Events Functions
+    const upcomingEvents = [
+      { id: 1, title: 'Game Night at the Quad', category: 'Social', date: 'Nov 20', time: '7:00 PM', location: 'Student Center', attendees: 24, type: 'Board Games' },
+      { id: 2, title: 'Jazz Concert - Campus Tour', category: 'Cultural', date: 'Nov 22', time: '8:00 PM', location: 'Auditorium', attendees: 156, type: 'Live Music' },
+      { id: 3, title: 'Coding Workshop: React Basics', category: 'Academic', date: 'Nov 23', time: '3:00 PM', location: 'CS Lab', attendees: 45, type: 'Workshop' },
+      { id: 4, title: 'Outdoor Hiking Trip', category: 'Sports', date: 'Nov 25', time: '9:00 AM', location: 'Mountain Trail', attendees: 32, type: 'Hiking' },
+      { id: 5, title: 'Sustainability Panel Discussion', category: 'Academic', date: 'Nov 26', time: '6:00 PM', location: 'Hall B', attendees: 67, type: 'Panel' },
+      { id: 6, title: 'Photography Walk & Share', category: 'Social', date: 'Nov 27', time: '5:00 PM', location: 'Downtown', attendees: 18, type: 'Photography' },
+      { id: 7, title: 'Food Truck Festival', category: 'Social', date: 'Nov 21', time: '12:00 PM', location: 'Campus Lawn', attendees: 89, type: 'Food' },
+      { id: 8, title: 'Machine Learning Seminar', category: 'Academic', date: 'Nov 24', time: '2:00 PM', location: 'Tech Building', attendees: 38, type: 'Seminar' },
+      { id: 9, title: 'Volleyball Tournament', category: 'Sports', date: 'Nov 28', time: '4:00 PM', location: 'Sports Complex', attendees: 52, type: 'Sports' },
+      { id: 10, title: 'Cultural Showcase - International Foods', category: 'Cultural', date: 'Nov 30', time: '6:30 PM', location: 'Dining Hall', attendees: 112, type: 'Cultural' },
+      { id: 11, title: 'Mental Health Wellness Workshop', category: 'Wellness', date: 'Nov 18', time: '5:00 PM', location: 'Health Center', attendees: 43, type: 'Workshop' },
+      { id: 12, title: 'Startup Pitch Competition', category: 'Academic', date: 'Dec 1', time: '7:00 PM', location: 'Innovation Hub', attendees: 67, type: 'Competition' },
+    ];
+
+    const interestGroups = [
+      { id: 1, name: 'Photography Club', members: 128, interests: 'Photography, Visual Arts', active: true },
+      { id: 2, name: 'Coding Club', members: 245, interests: 'Programming, Web Dev', active: true },
+      { id: 3, name: 'Outdoor Enthusiasts', members: 89, interests: 'Hiking, Camping, Nature', active: true },
+      { id: 4, name: 'Sustainability Alliance', members: 156, interests: 'Environment, Social Good', active: true },
+      { id: 5, name: 'Debate Team', members: 42, interests: 'Public Speaking, Debate', active: true },
+      { id: 6, name: 'Gaming Guild', members: 203, interests: 'Video Games, Board Games', active: true },
+    ];
+
+    let calendarDisplayMonth = new Date().getMonth();
+    let calendarDisplayYear = new Date().getFullYear();
+
+    window.previousMonth = function() {
+      calendarDisplayMonth--;
+      if (calendarDisplayMonth < 0) {
+        calendarDisplayMonth = 11;
+        calendarDisplayYear--;
+      }
+      window.viewEventCalendar();
+    };
+
+    window.nextMonth = function() {
+      calendarDisplayMonth++;
+      if (calendarDisplayMonth > 11) {
+        calendarDisplayMonth = 0;
+        calendarDisplayYear++;
+      }
+      window.viewEventCalendar();
+    };
+
+    window.viewEventCalendar = function() {
+      const container = document.getElementById('eventContent');
+      
+      const today = new Date();
+      const currentMonth = calendarDisplayMonth;
+      const currentYear = calendarDisplayYear;
+      const firstDay = new Date(currentYear, currentMonth, 1);
+      const lastDay = new Date(currentYear, currentMonth + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      const startingDayOfWeek = firstDay.getDay();
+      
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+      const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const dayAbbr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      
+      // Map events to dates
+      const eventsByDate = {};
+      upcomingEvents.forEach(event => {
+        const dateParts = event.date.split(' ');
+        const day = parseInt(dateParts[1]);
+        if (!eventsByDate[day]) eventsByDate[day] = [];
+        eventsByDate[day].push(event);
+      });
+      
+      let html = `
+        <div style="width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
+          <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem;">
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+              <h3 style="color: #fff; margin: 0 0 1.5rem 0; font-size: 2rem; font-weight: 700;">${monthNames[currentMonth]} ${currentYear}</h3>
+              <div style="display: flex; justify-content: center; gap: 1rem;">
+                <button onclick="window.previousMonth()" style="padding: 0.8rem 1.5rem; background: rgba(139, 92, 246, 0.25); color: #c4b5fd; border: 1.5px solid rgba(139, 92, 246, 0.4); border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(139, 92, 246, 0.35)'; this.style.color='#e9d5ff'" onmouseout="this.style.background='rgba(139, 92, 246, 0.25)'; this.style.color='#c4b5fd'">← Previous Month</button>
+                <button onclick="window.nextMonth()" style="padding: 0.8rem 1.5rem; background: rgba(139, 92, 246, 0.25); color: #c4b5fd; border: 1.5px solid rgba(139, 92, 246, 0.4); border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(139, 92, 246, 0.35)'; this.style.color='#e9d5ff'" onmouseout="this.style.background='rgba(139, 92, 246, 0.25)'; this.style.color='#c4b5fd'">Next Month →</button>
+              </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 1rem; width: 100%;">
+      `;
+      
+      // Day headers
+      dayAbbr.forEach(day => {
+        html += `<div style="text-align: center; color: #a78bfa; font-weight: 700; padding: 1rem 0.5rem; border-bottom: 2px solid rgba(139, 92, 246, 0.3); font-size: 1rem;">${day}</div>`;
+      });
+      
+      // Empty cells before month starts
+      for (let i = 0; i < startingDayOfWeek; i++) {
+        html += `<div style="aspect-ratio: 1; border-radius: 8px;"></div>`;
+      }
+      
+      // Calendar days
+      for (let day = 1; day <= daysInMonth; day++) {
+        const isToday = day === today.getDate() && currentMonth === today.getMonth();
+        const hasEvents = eventsByDate[day];
+        const bgColor = isToday ? 'rgba(139, 92, 246, 0.25)' : 'rgba(255, 255, 255, 0.03)';
+        const borderColor = isToday ? '2px solid #a78bfa' : '1px solid rgba(255, 255, 255, 0.1)';
+        
+        html += `
+          <div style="aspect-ratio: 1; background: ${bgColor}; border: ${borderColor}; border-radius: 10px; padding: 0.75rem; cursor: pointer; display: flex; flex-direction: column; position: relative;" onmouseover="this.style.background='rgba(139, 92, 246, 0.2)'" onmouseout="this.style.background='${bgColor}'">
+            <div style="font-weight: 700; color: ${isToday ? '#fbbf24' : '#cbd5e1'}; font-size: 1.1rem; margin-bottom: 0.5rem;">${day}</div>
+        `;
+        
+        if (hasEvents) {
+          html += `<div style="flex: 1; overflow: hidden;">`;
+          hasEvents.forEach((event, idx) => {
+            if (idx < 1) {
+              const timeShort = event.time.split(':')[0] + ':' + event.time.split(':')[1];
+              html += `
+                <div style="background: rgba(139, 92, 246, 0.5); padding: 0.35rem 0.4rem; border-radius: 4px; margin-bottom: 0.3rem; font-size: 0.65rem; color: #f3e8ff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${event.title}">
+                  ${timeShort}
+                </div>
+              `;
+            }
+          });
+          if (hasEvents.length > 1) {
+            html += `<div style="font-size: 0.65rem; color: #a78bfa; padding-top: 0.2rem;">+${hasEvents.length - 1}</div>`;
+          }
+          html += `</div>`;
+        }
+        
+        html += `</div>`;
+      }
+      
+      html += `
+            </div>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+      `;
+      
+      // Show all events below calendar
+      upcomingEvents.forEach(event => {
+        html += `
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1.5rem; cursor: pointer;" onmouseover="this.style.background='rgba(255, 255, 255, 0.08)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+              <div>
+                <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">${event.title}</div>
+                <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.3rem;">${event.type}</div>
+              </div>
+              <div style="background: rgba(139, 92, 246, 0.2); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; color: #c4b5fd;">${event.category}</div>
+            </div>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1rem; color: #cbd5e1; font-size: 0.9rem;">
+              <div style="margin-bottom: 0.5rem;"><strong>Date:</strong> ${event.date} at ${event.time}</div>
+              <div style="margin-bottom: 0.5rem;"><strong>Location:</strong> ${event.location}</div>
+              <div style="margin-bottom: 1rem;"><strong>Going:</strong> ${event.attendees} people</div>
+            </div>
+            <button onclick="alert('RSVP feature coming soon!')" style="width: 100%; padding: 0.6rem; background: #8b5cf6; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">RSVP</button>
+          </div>
+        `;
+      });
+      
+      html += `
+          </div>
+        </div>
+      `;
+      container.innerHTML = html;
+    };
+
+    window.createEvent = function() {
+      const container = document.getElementById('eventContent');
+      const html = `
+        <div style="max-width: 600px; margin: 0 auto;">
+          <div style="background: rgba(217, 70, 239, 0.1); border: 1px solid rgba(217, 70, 239, 0.2); border-radius: 12px; padding: 2rem;">
+            <h3 style="color: #fff; margin-bottom: 1.5rem;">Create Your Event</h3>
+            
+            <div style="margin-bottom: 1rem;">
+              <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">Event Title</label>
+              <input type="text" placeholder="What's your event about?" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(217, 70, 239, 0.3); border-radius: 6px; box-sizing: border-box;">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">Category</label>
+              <select style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(217, 70, 239, 0.3); border-radius: 6px;">
+                <option value="">Select Category</option>
+                <option value="social">Social</option>
+                <option value="academic">Academic</option>
+                <option value="cultural">Cultural</option>
+                <option value="sports">Sports</option>
+              </select>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div>
+                <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">Date</label>
+                <input type="date" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(217, 70, 239, 0.3); border-radius: 6px; box-sizing: border-box;">
+              </div>
+              <div>
+                <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">Time</label>
+                <input type="time" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(217, 70, 239, 0.3); border-radius: 6px; box-sizing: border-box;">
+              </div>
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">Location</label>
+              <input type="text" placeholder="Where will it be?" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(217, 70, 239, 0.3); border-radius: 6px; box-sizing: border-box;">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+              <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">Description</label>
+              <textarea placeholder="Tell people about your event..." style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(217, 70, 239, 0.3); border-radius: 6px; box-sizing: border-box; height: 100px; resize: none;"></textarea>
+            </div>
+
+            <button onclick="alert('Event created! It will be live shortly.')" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #d946ef, #ec4899); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Publish Event</button>
+          </div>
+        </div>
+      `;
+      container.innerHTML = html;
+    };
+
+    window.viewEventGroups = function() {
+      const container = document.getElementById('eventContent');
+      let html = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+      `;
+      
+      interestGroups.forEach(group => {
+        html += `
+          <div style="background: rgba(8, 145, 178, 0.1); border: 1px solid rgba(8, 145, 178, 0.2); border-radius: 12px; padding: 1.5rem; cursor: pointer;" onmouseover="this.style.background='rgba(8, 145, 178, 0.15)'" onmouseout="this.style.background='rgba(8, 145, 178, 0.1)'">
+            <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">${group.name}</div>
+            <div style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 1rem;">${group.interests}</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid rgba(8, 145, 178, 0.2);">
+              <div style="font-size: 0.85rem; color: #cbd5e1;"><strong>${group.members}</strong> members</div>
+              <button onclick="alert('Joined group!')" style="padding: 0.5rem 1rem; background: #0891b2; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">Join</button>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += '</div>';
+      container.innerHTML = html;
+    };
+
+    window.viewRecommended = function() {
+      const container = document.getElementById('eventContent');
+      let html = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+      `;
+      
+      const recommended = upcomingEvents.slice(0, 3).reverse();
+      
+      recommended.forEach(event => {
+        const score = Math.floor(Math.random() * 30) + 70;
+        html += `
+          <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(249, 115, 22, 0.1)); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 12px; padding: 1.5rem; cursor: pointer;" onmouseover="this.style.background='linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(249, 115, 22, 0.15))'" onmouseout="this.style.background='linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(249, 115, 22, 0.1))'">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+              <div style="flex: 1;">
+                <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">${event.title}</div>
+                <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.3rem;">${event.type}</div>
+              </div>
+              <div style="text-align: center; background: rgba(245, 158, 11, 0.2); padding: 0.5rem 0.8rem; border-radius: 8px;">
+                <div style="font-size: 1.2rem; font-weight: 700; color: #fbbf24;">${score}%</div>
+                <div style="font-size: 0.7rem; color: #f59e0b;">Match</div>
+              </div>
+            </div>
+            <div style="border-top: 1px solid rgba(245, 158, 11, 0.2); padding-top: 1rem; color: #cbd5e1; font-size: 0.9rem;">
+              <div style="margin-bottom: 0.5rem;">${event.date} at ${event.time}</div>
+              <div style="margin-bottom: 1rem;">${event.location}</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                <button onclick="alert('RSVP feature coming soon!')" style="padding: 0.6rem; background: #f59e0b; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem;">RSVP</button>
+                <button onclick="alert('Saving event...')" style="padding: 0.6rem; background: rgba(245, 158, 11, 0.2); color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem;">Save</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += '</div>';
+      container.innerHTML = html;
+    };
+
+    window.showResourceDetails = function(resource) {
+      alert('Resource details for: ' + resource + ' - Coming soon with full integration!');
     };
 
     // Initial render
