@@ -223,7 +223,13 @@ export const initSignupFlow = () => {
   if (storedUser) {
     showPage('main');
   } else {
-    showPage('welcome');
+    // Check if coming from brochure with signup action
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('action') === 'signup') {
+      showPage('signup');
+    } else {
+      showPage('welcome');
+    }
   }
 
   signupForm.addEventListener('submit', (event) => {
