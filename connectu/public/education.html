@@ -1143,7 +1143,7 @@
     </div>
 
     <script>
-            // Load and display university logo from local JSON
+      // Load and display university logo from online source
       (function loadUniversityLogo() {
         try {
           const userData = sessionStorage.getItem('connectu_user');
@@ -1153,27 +1153,117 @@
             
             if (schoolName) {
               // Update page title to include school name
-              document.querySelector('.education-title').textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
-              document.getElementById('universityNameDisplay').textContent = schoolName;
+              const titleElement = document.querySelector('.education-title');
+              if (titleElement) {
+                titleElement.textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
+              }
               
-              // Fetch logos from local JSON file
-              fetch('/university-logos.json')
-                .then(response => response.json())
-                .then(logos => {
-                  const logoUrl = logos[schoolName];
-                  if (logoUrl) {
-                    const logoImg = document.getElementById('universityLogo');
+              const nameDisplay = document.getElementById('universityNameDisplay');
+              if (nameDisplay) {
+                nameDisplay.textContent = schoolName;
+              }
+              
+              // Helper function to get university domain for Clearbit
+              function getUniversityDomain(school) {
+                const domainMap = {
+                  'University of Toronto': 'utoronto.ca',
+                  'University of Waterloo': 'uwaterloo.ca',
+                  'McMaster University': 'mcmaster.ca',
+                  'Western University': 'uwo.ca',
+                  'Queen\'s University': 'queensu.ca',
+                  'University of Ottawa': 'uottawa.ca',
+                  'York University': 'yorku.ca',
+                  'Carleton University': 'carleton.ca',
+                  'University of Guelph': 'uoguelph.ca',
+                  'Toronto Metropolitan University': 'torontomu.ca',
+                  'Brock University': 'brocku.ca',
+                  'Trent University': 'trentu.ca',
+                  'Lakehead University': 'lakeheadu.ca',
+                  'Laurentian University': 'laurentian.ca',
+                  'Nipissing University': 'nipissingu.ca',
+                  'Algoma University': 'algomau.ca',
+                  'OCAD University': 'ocadu.ca',
+                  'Ontario Tech University': 'ontariotechu.ca',
+                  'King\'s University College (Western)': 'kings.uwo.ca',
+                  'Royal Military College of Canada': 'rmc-cmr.ca',
+                  'University of Sudbury': 'usudbury.ca',
+                };
+                
+                return domainMap[school] || null;
+              }
+              
+              // Function to test if an image URL is valid
+              function testImageUrl(url) {
+                return new Promise((resolve) => {
+                  const img = new Image();
+                  img.onload = () => resolve(true);
+                  img.onerror = () => resolve(false);
+                  img.src = url;
+                });
+              }
+              
+              // Function to fetch university logo from online sources
+              async function fetchUniversityLogo(school) {
+                // Try Clearbit logo service first (most reliable for known universities)
+                const domain = getUniversityDomain(school);
+                if (domain) {
+                  const clearbitUrl = `https://logo.clearbit.com/${domain}`;
+                  const isValid = await testImageUrl(clearbitUrl);
+                  if (isValid) {
+                    return clearbitUrl;
+                  }
+                }
+                
+                // Fallback: Use a service that generates logos with school name/initials
+                const encodedSchool = encodeURIComponent(school);
+                return `https://ui-avatars.com/api/?name=${encodedSchool}&size=200&background=8b5cf6&color=fff&bold=true&font-size=0.4`;
+              }
+              
+              // Fetch and display the logo
+              fetchUniversityLogo(schoolName)
+                .then(logoUrl => {
+                  const logoImg = document.getElementById('universityLogo');
+                  const logoSection = document.getElementById('logoSection');
+                  const schoolBanner = document.getElementById('schoolBanner');
+                  
+                  if (logoUrl && logoImg) {
                     logoImg.src = logoUrl;
                     logoImg.alt = `${schoolName} logo`;
-                    logoImg.onerror = function() {
-                      console.log('Logo failed to load for:', schoolName);
+                    logoImg.onload = function() {
+                      if (logoSection) {
+                        logoSection.style.display = 'block';
+                      }
+                      // Also add to banner if it exists
+                      if (schoolBanner) {
+                        // Clear any existing content
+                        schoolBanner.innerHTML = '';
+                        const bannerImg = document.createElement('img');
+                        bannerImg.src = logoUrl;
+                        bannerImg.alt = `${schoolName} banner`;
+                        bannerImg.style.width = '100%';
+                        bannerImg.style.height = '100%';
+                        bannerImg.style.objectFit = 'cover';
+                        schoolBanner.appendChild(bannerImg);
+                        schoolBanner.classList.add('loaded');
+                      }
                     };
-                    document.getElementById('logoSection').style.display = 'block';
-                  } else {
-                    console.log('Logo not found for:', schoolName);
+                    logoImg.onerror = function() {
+                      console.log('Logo failed to load');
+                      // Still show the section with fallback
+                      if (logoSection) {
+                        logoSection.style.display = 'block';
+                      }
+                    };
                   }
                 })
-                .catch(error => console.error('Error loading logos:', error));
+                .catch(error => {
+                  console.error('Error loading university logo:', error);
+                  // Show section anyway
+                  const logoSection = document.getElementById('logoSection');
+                  if (logoSection) {
+                    logoSection.style.display = 'block';
+                  }
+                });
             }
           }
         } catch (error) {
