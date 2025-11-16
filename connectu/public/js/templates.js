@@ -50,6 +50,20 @@ const renderTile = (key, title, copy) => {
     `;
   }
 
+  // Make the 'social' tile a real link to open the Social Life page
+  if (key === 'social') {
+    return `
+      <a href="./social-life.html" class="tile" data-key="${key}" data-tile aria-label="Open Social Life">
+        <h3>${title}</h3>
+        <p>${copy}</p>
+      </a>
+    `;
+  }
+
+
+
+
+  
   return `
     <div class="tile" data-key="${key}" data-tile>
       <h3>${title}</h3>
