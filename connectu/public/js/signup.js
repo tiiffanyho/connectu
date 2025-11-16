@@ -160,10 +160,10 @@ export const initSignupFlow = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Learn More button: welcome → signup
+  // Learn More button: welcome → brochure page
   if (learnMoreBtn) {
     learnMoreBtn.addEventListener('click', () => {
-      showPage('signup');
+      window.location.href = './brochure.html';
     });
   }
 
