@@ -30,6 +30,7 @@ const renderUniversityOptions = () =>
   ['<option value="">Select your university</option>', ...universityList.map((school) => `<option>${school}</option>`)].join('');
 
 const renderTile = (key, title, copy) => {
+
   // Make the 'education' tile a real button so it can open a detailed education page
   if (key === 'education') {
     return `
@@ -44,6 +45,16 @@ const renderTile = (key, title, copy) => {
   if (key === 'opportunities') {
     return `
       <a href="./opportunities.html" class="tile" data-key="${key}" data-tile aria-label="Open Opportunities">
+        <h3>${title}</h3>
+        <p>${copy}</p>
+      </a>
+    `;
+  }
+
+  // Make the 'community' tile a real link to open the Community detail page
+  if (key === 'community') {
+    return `
+      <a href="./community.html" class="tile" data-key="${key}" data-tile aria-label="Open Community">
         <h3>${title}</h3>
         <p>${copy}</p>
       </a>

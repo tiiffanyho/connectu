@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConnectU | Community & Housing</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="icon" href="./favicon.ico" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <style>
+    body {
+      background:
+        radial-gradient(1200px 600px at 10% 10%, #7b61ff22, transparent),
+        radial-gradient(900px 500px at 90% 90%, #34d39922, transparent),
+        linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+      color: #e6eef8;
+      font-family:
+        'Inter',
+        system-ui,
+        -apple-system,
+        'Segoe UI',
+        Roboto,
+        'Helvetica Neue',
+        Arial,
+        sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .fullscreen-tabs {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .community-header {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .community-title {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .back-btn {
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      color: #021124;
+      border: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      position: static;
+      margin-left: 1rem;
+    }
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(2,6,23,0.35);
+    }
+
+    .tab-header {
+      display: flex;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.02);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow-x: auto;
+    }
+
+    .tab-header button {
+      padding: 0.65rem 1rem;
+      background: rgba(255,255,255,0.06);
+      color: #cbd5e1;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      flex: 1;
+    }
+
+    .tab-header button:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .tab-header button.active {
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      color: #021124;
+      border-color: transparent;
+    }
+
+    .tab-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2.5rem 2rem 2rem 2rem;
+      background: none;
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .feature-list {
+      color: #cbd5e1;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      margin-top: 1.2rem;
+    }
+    .feature-list strong {
+      color: #fff;
+    }
+
+    #heatMapContainer {
+      width: 100%;
+      height: 500px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+      margin: 1.5rem 0;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 600px) {
+      .tab-content { padding: 1.2rem 0.5rem; }
+      .tab-header button { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="fullscreen-tabs">
+    <div class="community-header">
+      <h1 class="community-title">COMMUNITY</h1>
+      <a href="./index.html" class="cta btn-secondary back-btn">← Home</a>
+    </div>
+    <div class="tab-header" id="tabHeader">
+      <button class="active" data-tab="heatmap">🗺️ Campus Heat Map</button>
+      <button data-tab="housing">🏠 Housing Marketplace</button>
+      <button data-tab="roommate">👥 Roommate Finder</button>
+      <button data-tab="community">🎉 Community Events</button>
+      <button data-tab="resources">📍 Local Resources</button>
+      <button data-tab="support">🛡️ Support & Safety</button>
+    </div>
+    <div class="tab-content" id="tabContent">
+      <!-- Tab content will be injected here -->
+    </div>
+  </div>
+  <script type="module">
+    const tabData = {
+      heatmap: `
+        <h2>🗺️ Campus Heat Map — Live Activity Visualization</h2>
+        <div id="heatMapContainer"></div>
+        <p style="margin-top: 1rem; color: #94a3b8; font-size: 0.95rem; text-align: center;">Real-time campus activity visualization — darker/denser areas indicate higher student presence</p>
+        <ul class="feature-list">
+          <li><strong>Live Activity Tracking:</strong> See where students are most active on campus in real time. Darker, denser color overlays indicate higher student presence and activity.</li>
+          <li><strong>Event Hotspots:</strong> Identify trending locations for events, study groups, pop-up markets, and social gatherings. Discover new spots based on community activity.</li>
+          <li><strong>Time-Based Insights:</strong> View activity patterns by time of day, day of week, and semester. Find the best times to visit popular locations.</li>
+          <li><strong>Privacy-First Design:</strong> All location data is anonymized and aggregated to protect student privacy. No individual tracking.</li>
+          <li><strong>Personalized Recommendations:</strong> Get suggestions for places to study, eat, or hang out based on your preferences and current crowd levels.</li>
+        </ul>
+      `,
+      housing: `
+        <h2>🏠 Housing Marketplace</h2>
+        <ul class="feature-list">
+          <li><strong>Browse Listings:</strong> Search for on-campus and off-campus housing, sublets, and short-term rentals posted by students and landlords. Filter by price range, number of bedrooms, amenities (laundry, parking, pet-friendly), and proximity to campus.</li>
+          <li><strong>Post a Listing:</strong> List your own room, apartment, or house for rent. Add up to 20 photos, detailed amenities, lease terms, move-in dates, and contact info. Verified listings get priority visibility.</li>
+          <li><strong>Interactive Map View:</strong> See all available housing on an interactive map with overlays for safety ratings, walkability scores, public transit access, and student density. Pin your favorite locations.</li>
+          <li><strong>Verified Listings:</strong> Look for verified badges indicating landlord verification, lease validation, and photo authenticity to ensure safe, scam-free options. Report suspicious listings with one tap.</li>
+          <li><strong>Favorites & Alerts:</strong> Save listings to your favorites for easy comparison. Set up custom alerts to get notified when new listings match your criteria (price, location, move-in date).</li>
+          <li><strong>Reviews & Ratings:</strong> Read reviews from previous tenants about landlords, properties, and neighborhoods. Leave your own reviews to help the community.</li>
+        </ul>
+      `,
+      roommate: `
+        <h2>👥 Roommate Finder</h2>
+        <ul class="feature-list">
+          <li><strong>Matchmaking Quiz:</strong> Fill out a detailed lifestyle and preferences quiz covering sleep schedule, study habits, cleanliness level, social preferences, pet allergies, and more. Get a compatibility score with every potential roommate.</li>
+          <li><strong>Profile Cards:</strong> View detailed profiles with bios, interests, major/year, social links, lifestyle photos, and mutual connections. See verified student status and background check options.</li>
+          <li><strong>Direct Messaging:</strong> Chat securely with potential roommates in-app before making a decision. Share documents like lease agreements, schedule video calls, and exchange references.</li>
+          <li><strong>Roommate Groups:</strong> Form or join groups for shared housing arrangements (2-4+ roommates). Group chat, shared calendar, chore rotation planner, and expense splitting tools included.</li>
+          <li><strong>Compatibility Insights:</strong> See detailed breakdowns of your compatibility with potential roommates based on habits, schedules, and values. Get tips for successful cohabitation.</li>
+          <li><strong>Safety Features:</strong> Report concerns anonymously, verify student status, and access mediation resources if conflicts arise.</li>
+        </ul>
+      `,
+      community: `
+        <h2>🎉 Community Events</h2>
+        <ul class="feature-list">
+          <li><strong>Event Calendar:</strong> Discover upcoming campus and local events, workshops, concerts, game nights, and meetups. Filter by category (social, academic, cultural, sports), popularity, date range, and location. Sync with your personal calendar.</li>
+          <li><strong>Host an Event:</strong> Create and promote your own events to the student community. Set event details, upload photos/flyers, manage RSVPs, send updates and reminders to attendees, and track attendance.</li>
+          <li><strong>RSVP & Reminders:</strong> RSVP to events with one tap and get push notifications and email reminders before events start. Get directions, parking info, and last-minute updates directly.</li>
+          <li><strong>Interest Groups:</strong> Join or create groups based on hobbies (photography, hiking, gaming), causes (sustainability, mental health), or academic interests (coding club, debate team). Group chat, event planning tools, and shared resources included.</li>
+          <li><strong>Event Discovery:</strong> Get personalized event recommendations based on your interests and past attendance. See what your friends are attending and trending events on campus.</li>
+          <li><strong>Check-In & Rewards:</strong> Check in at events to earn points and badges. Unlock exclusive perks and early access to popular events.</li>
+        </ul>
+      `,
+      resources: `
+        <h2>📍 Local Resources</h2>
+        <ul class="feature-list">
+          <li><strong>Essential Services:</strong> Find comprehensive info on grocery stores, pharmacies, healthcare clinics, banks, post offices, gyms, and public transport near campus. See hours, reviews, distance from campus, and real-time availability.</li>
+          <li><strong>Student Discounts:</strong> Access an updated database of exclusive deals and discounts for students at local businesses (restaurants, retail, entertainment, services). Show your student ID to redeem. Save hundreds per semester.</li>
+          <li><strong>Moving Guides:</strong> Get detailed tips, checklists, and video tutorials for moving in/out, setting up utilities (internet, electricity, water), buying furniture on a budget, and settling into your new place. Download printable guides and access a moving day checklist.</li>
+          <li><strong>Transportation Hub:</strong> View bus routes, train schedules, bike-sharing locations, and ride-sharing options. Get real-time transit updates and plan your commute.</li>
+          <li><strong>Local Favorites:</strong> Discover hidden gems and student-favorite spots for food, coffee, study spaces, and entertainment recommended by the community.</li>
+        </ul>
+      `,
+      support: `
+        <h2>🛡️ Support & Safety</h2>
+        <ul class="feature-list">
+          <li><strong>Emergency Contacts:</strong> Quick one-tap access to campus security, health services, counseling center, Title IX office, and local emergency services. Tap to call, message, or share your location for immediate assistance.</li>
+          <li><strong>Report Issues:</strong> Anonymously report housing concerns, roommate conflicts, safety issues, or harassment for confidential mediation and support. Track the status of your report and receive updates.</li>
+          <li><strong>Safety Tips & Resources:</strong> Read up on best practices for safe renting, living alone, walking at night, recognizing scams, and protecting your personal information. Get notified of campus safety alerts and local crime reports.</li>
+          <li><strong>Support Groups:</strong> Connect with mental health resources, peer-led support groups (anxiety, depression, LGBTQ+, first-gen students), and confidential counseling services. Join chat groups and access crisis hotlines 24/7.</li>
+          <li><strong>Wellness Check-Ins:</strong> Use mood tracking tools, set wellness goals, and access self-care resources. Get reminders to take breaks and connect with support when needed.</li>
+          <li><strong>Community Guidelines:</strong> Review community standards, anti-harassment policies, and reporting procedures to foster a safe and inclusive environment for all students.</li>
+        </ul>
+      `
+    };
+
+    const tabHeader = document.getElementById('tabHeader');
+    const tabContent = document.getElementById('tabContent');
+    let activeTab = 'heatmap';
+
+    function renderTab(tab) {
+      tabContent.innerHTML = tabData[tab];
+      [...tabHeader.children].forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+      activeTab = tab;
+
+      // Initialize Leaflet map if heatmap tab is active
+      if (tab === 'heatmap') {
+        setTimeout(() => {
+          const mapContainer = document.getElementById('heatMapContainer');
+          if (mapContainer && !mapContainer._leaflet_id) {
+            // Generic university campus coordinates (using University of Toronto as example)
+            const map = L.map('heatMapContainer').setView([43.6629, -79.3957], 15);
+            
+            // Add tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© OpenStreetMap contributors',
+              maxZoom: 19
+            }).addTo(map);
+
+            // Sample heat map data points (lat, lng, intensity)
+            // Simulating various campus locations with different activity levels
+            const heatData = [
+              // Library - high activity
+              [43.6645, -79.3995, 1.0],
+              [43.6646, -79.3996, 0.9],
+              [43.6644, -79.3994, 0.8],
+              [43.6647, -79.3997, 0.7],
+              
+              // Student Center - high activity
+              [43.6620, -79.3950, 0.95],
+              [43.6621, -79.3951, 0.85],
+              [43.6619, -79.3949, 0.9],
+              
+              // Dining Hall - very high activity
+              [43.6635, -79.3980, 1.0],
+              [43.6636, -79.3981, 1.0],
+              [43.6634, -79.3979, 0.95],
+              [43.6637, -79.3982, 0.9],
+              [43.6633, -79.3978, 0.85],
+              
+              // Academic Quad - medium activity
+              [43.6650, -79.3970, 0.6],
+              [43.6651, -79.3971, 0.5],
+              [43.6649, -79.3969, 0.55],
+              
+              // Gym - medium activity
+              [43.6615, -79.3965, 0.7],
+              [43.6616, -79.3966, 0.65],
+              
+              // Residence Hall A - high activity
+              [43.6605, -79.3945, 0.85],
+              [43.6606, -79.3946, 0.8],
+              [43.6604, -79.3944, 0.75],
+              
+              // Coffee Shop - very high activity
+              [43.6658, -79.3940, 1.0],
+              [43.6659, -79.3941, 0.95],
+              [43.6657, -79.3939, 0.9],
+              [43.6660, -79.3942, 0.85],
+              
+              // Residence Hall B - medium-high activity
+              [43.6610, -79.3930, 0.75],
+              [43.6611, -79.3931, 0.7],
+              
+              // Park - low activity
+              [43.6625, -79.3920, 0.4],
+              [43.6626, -79.3921, 0.35],
+              
+              // Random scattered activity points
+              [43.6640, -79.3960, 0.5],
+              [43.6628, -79.3975, 0.6],
+              [43.6612, -79.3955, 0.45],
+              [43.6648, -79.3985, 0.55]
+            ];
+
+            // Add heat layer
+            L.heatLayer(heatData, {
+              radius: 25,
+              blur: 15,
+              maxZoom: 17,
+              max: 1.0,
+              gradient: {
+                0.0: '#3b82f6',
+                0.3: '#8b5cf6',
+                0.5: '#a855f7',
+                0.7: '#ec4899',
+                1.0: '#ef4444'
+              }
+            }).addTo(map);
+
+            // Add custom markers for key locations
+            const locations = [
+              { name: '📚 Library', coords: [43.6645, -79.3995] },
+              { name: '🏢 Student Center', coords: [43.6620, -79.3950] },
+              { name: '🍽️ Dining Hall', coords: [43.6635, -79.3980] },
+              { name: '☕ Coffee Shop', coords: [43.6658, -79.3940] },
+              { name: '🏋️ Gym', coords: [43.6615, -79.3965] }
+            ];
+
+            locations.forEach(loc => {
+              L.marker(loc.coords).addTo(map)
+                .bindPopup(`<b>${loc.name}</b>`);
+            });
+          }
+        }, 100);
+      }
+    }
+
+    tabHeader.addEventListener('click', e => {
+      if (e.target.tagName === 'BUTTON') {
+        const tab = e.target.dataset.tab;
+        if (tab && tab !== activeTab) {
+          renderTab(tab);
+        }
+      }
+    });
+
+    // Initial render
+    renderTab(activeTab);
+  </script>
+</body>
+</html>
