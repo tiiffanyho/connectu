@@ -418,7 +418,35 @@
         .school-banner::after {
           background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
         }
+      }
 
+      .university-logo-section {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.05));
+        border: 2px solid rgba(139, 92, 246, 0.3);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem 2rem 0 2rem;
+        text-align: center;
+      }
+
+      .university-logo {
+        max-width: 200px;
+        max-height: 200px;
+        width: auto;
+        height: auto;
+        display: inline-block;
+        filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.3));
+        margin-bottom: 1rem;
+      }
+
+      .university-name-display {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 900px) {
         .education-tabs {
           padding: 0.75rem 1rem;
         }
@@ -485,6 +513,12 @@
         <button class="tab-btn" data-tab="assignment-xray">
           Assignment Predictor
         </button>
+      </div>
+
+      <!-- University Logo Section -->
+      <div class="university-logo-section" id="logoSection" style="display: none;">
+        <img id="universityLogo" class="university-logo" alt="University Logo" />
+        <div class="university-name-display" id="universityNameDisplay"></div>
       </div>
 
       <!-- Content -->
@@ -1108,8 +1142,8 @@
     </div>
 
     <script>
-      // Load and display school image in banner
-      (async function loadSchoolImage() {
+      // Load and display university logo
+      (async function loadUniversityLogo() {
         try {
           const userData = sessionStorage.getItem('connectu_user');
           if (userData) {
@@ -1119,32 +1153,50 @@
             if (schoolName) {
               // Update page title to include school name
               document.querySelector('.education-title').textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
+              document.getElementById('universityNameDisplay').textContent = schoolName;
               
-              // Fetch school image from Unsplash
-              const query = encodeURIComponent(`${schoolName} campus university`);
-              const imageUrl = `https://source.unsplash.com/800x400/?${query}`;
+              // Use Google Custom Search for university logos
+              // Fallback: Try multiple search sources
+              const logoUrls = [
+                `https://www.google.com/search?q=${encodeURIComponent(schoolName + ' logo')}&tbm=isch`,
+                `https://logo.clearbit.com/${schoolName.toLowerCase().replace(/\s+/g, '')}.com`,
+                `https://logo.clearbit.com/${schoolName.toLowerCase().replace(/\s+/g, '')}.ca`,
+                `https://logo.clearbit.com/${schoolName.toLowerCase().replace(/\s+/g, '')}.edu`,
+                `https://upload.wikimedia.org/wikipedia/commons/thumb/search/${encodeURIComponent(schoolName)}/logo.png`
+              ];
+
+              // Try to fetch logo from Clearbit (works for many institutions)
+              const schoolNameFormatted = schoolName.toLowerCase().replace(/\s+/g, '');
+              const clearbitUrl = `https://logo.clearbit.com/${schoolNameFormatted}.com`;
               
-              // Create and load image
               const img = document.createElement('img');
-              img.alt = `${schoolName} campus`;
-              img.src = imageUrl;
+              img.alt = `${schoolName} logo`;
+              img.src = clearbitUrl;
               
               img.onload = () => {
-                const banner = document.getElementById('schoolBanner');
-                banner.appendChild(img);
-                // Small delay for smooth animation
-                setTimeout(() => {
-                  banner.classList.add('loaded');
-                }, 50);
+                const logoImg = document.getElementById('universityLogo');
+                logoImg.src = clearbitUrl;
+                document.getElementById('logoSection').style.display = 'block';
               };
               
               img.onerror = () => {
-                console.log('School image failed to load');
+                // Fallback: Try with .edu
+                const fallbackUrl = `https://logo.clearbit.com/${schoolNameFormatted}.edu`;
+                const fallbackImg = document.createElement('img');
+                fallbackImg.src = fallbackUrl;
+                fallbackImg.onload = () => {
+                  const logoImg = document.getElementById('universityLogo');
+                  logoImg.src = fallbackUrl;
+                  document.getElementById('logoSection').style.display = 'block';
+                };
+                fallbackImg.onerror = () => {
+                  console.log('University logo not found in database');
+                };
               };
             }
           }
         } catch (error) {
-          console.error('Error loading school image:', error);
+          console.error('Error loading university logo:', error);
         }
       })();
 
