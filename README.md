@@ -1,4 +1,4 @@
-ConnectU is a modern web app built with React that makes it easy to create fast, data-driven applications.
+ConnectU is a web app built with React that makes it easy to create fast, data-driven applications.
 
 ## Built with: HTML, React, TypeScript & JavaScript, React Router, Tailwind CSS, Vite, Node.js
 
