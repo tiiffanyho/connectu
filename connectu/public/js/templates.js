@@ -97,7 +97,7 @@ const renderWelcomeSection = () => `
   <section id="welcomeView" class="welcome-view" aria-live="polite">
     <div class="welcome-content">
       <h1 class="welcome-title">CONNECTU</h1>
-      <p class="welcome-subtitle">Connect with Your College Community</p>
+      <p class="welcome-subtitle">Connect with Your University Community</p>
       <p class="welcome-description">
         ConnectU is your all-in-one platform to explore education resources, discover opportunities, build your social network, and engage with your campus community. Join thousands of students already connecting today.
       </p>
