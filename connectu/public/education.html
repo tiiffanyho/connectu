@@ -71,7 +71,7 @@
       .header-content {
         flex: 1;
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: 1fr auto;
         align-items: center;
         gap: 1rem;
       }
@@ -83,7 +83,7 @@
         color: #fff;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         text-align: center;
-        grid-column: 2;
+        grid-column: 1;
         margin: 0;
         width: 100%;
       }
@@ -100,7 +100,7 @@
         transition:
           transform 0.15s ease,
           box-shadow 0.15s ease;
-        grid-column: 1;
+        grid-column: 2;
         white-space: nowrap;
       }
 
