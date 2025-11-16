@@ -62,9 +62,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        backdrop-filter: blur(16px);
-        position: relative;
-        z-index: 2;
       }
 
       .education-title {
@@ -382,6 +379,45 @@
           text-align: center;
         }
 
+        .school-banner {
+          width: 100%;
+          height: 120px;
+          border-radius: 0;
+          position: relative;
+        }
+
+        .school-banner::after {
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
+        }
+      }
+
+      .university-logo-section {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.05));
+        border: 2px solid rgba(139, 92, 246, 0.3);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem 2rem 0 2rem;
+        text-align: center;
+      }
+
+      .university-logo {
+        max-width: 200px;
+        max-height: 200px;
+        width: auto;
+        height: auto;
+        display: inline-block;
+        filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.3));
+        margin-bottom: 1rem;
+      }
+
+      .university-name-display {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 900px) {
         .education-tabs {
           padding: 0.75rem 1rem;
         }
@@ -423,10 +459,13 @@
     <div class="education-container">
       <!-- Header -->
       <div class="education-header">
-        <h1 class="education-title">EDUCATION</h1>
-        <button class="education-back" onclick="window.history.back();">
-          ← Back
-        </button>
+        <div id="schoolBanner" class="school-banner"></div>
+        <div class="header-content">
+          <h1 class="education-title">EDUCATION</h1>
+          <button class="education-back" onclick="window.history.back();">
+            ← Back
+          </button>
+        </div>
       </div>
 
       <!-- Tabs -->
@@ -445,6 +484,12 @@
         <button class="tab-btn" data-tab="assignment-xray">
           Assignment Predictor
         </button>
+      </div>
+
+      <!-- University Logo Section -->
+      <div class="university-logo-section" id="logoSection" style="display: none;">
+        <img id="universityLogo" class="university-logo" alt="University Logo" />
+        <div class="university-name-display" id="universityNameDisplay"></div>
       </div>
 
       <!-- Content -->
@@ -1068,7 +1113,61 @@
     </div>
 
     <script>
-      // Tab switching logic
+            // Load and display university logo
+      (function loadUniversityLogo() {
+        try {
+          const userData = sessionStorage.getItem('connectu_user');
+          if (userData) {
+            const user = JSON.parse(userData);
+            const schoolName = user.school;
+            
+            if (schoolName) {
+              // Update page title to include school name
+              document.querySelector('.education-title').textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
+              document.getElementById('universityNameDisplay').textContent = schoolName;
+              
+              // Comprehensive university logo mapping
+              const universityLogos = {
+                'Algoma University': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Algoma_University_Logo.png/220px-Algoma_University_Logo.png',
+                'Brock University': 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Brock_University_logo.svg/220px-Brock_University_logo.svg.png',
+                'Carleton University': 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Carleton_University_Logo.svg/220px-Carleton_University_Logo.svg.png',
+                "King's University College (Western)": 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Kings_University_College_logo.png/220px-Kings_University_College_logo.png',
+                'Lakehead University': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Lakehead_University_Logo.png/220px-Lakehead_University_Logo.png',
+                'Laurentian University': 'https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Laurentian_University_Logo.svg/220px-Laurentian_University_Logo.svg.png',
+                'McMaster University': 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a5/McMaster_University_Logo.svg/220px-McMaster_University_Logo.svg.png',
+                'Nipissing University': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/40/Nipissing_University_Logo.png/220px-Nipissing_University_Logo.png',
+                'OCAD University': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/38/OCAD_University_Logo.svg/220px-OCAD_University_Logo.svg.png',
+                'Ontario Tech University': 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Ontario_Tech_University_Logo.svg/220px-Ontario_Tech_University_Logo.svg.png',
+                "Queen's University": 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/Queens_University_Canada_logo.svg/220px-Queens_University_Canada_logo.svg.png',
+                'Royal Military College of Canada': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Royal_Military_College_of_Canada_emblem.svg/220px-Royal_Military_College_of_Canada_emblem.svg.png',
+                'Toronto Metropolitan University': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Toronto_Metropolitan_University_Logo.svg/220px-Toronto_Metropolitan_University_Logo.svg.png',
+                'Trent University': 'https://upload.wikimedia.org/wikipedia/en/thumb/8/83/Trent_University_Logo.svg/220px-Trent_University_Logo.svg.png',
+                'University of Guelph': 'https://upload.wikimedia.org/wikipedia/en/thumb/1/15/University_of_Guelph_Logo.svg/220px-University_of_Guelph_Logo.svg.png',
+                'University of Ottawa': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/36/University_of_Ottawa_Logo.svg/220px-University_of_Ottawa_Logo.svg.png',
+                'University of Sudbury': 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/University_of_Sudbury_Logo.png/220px-University_of_Sudbury_Logo.png',
+                'University of Toronto': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/University_of_Toronto_Logo.svg/220px-University_of_Toronto_Logo.svg.png',
+                'University of Waterloo': 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/University_of_Waterloo_Logo.svg/220px-University_of_Waterloo_Logo.svg.png',
+                'Western University': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Western_University_Logo.svg/220px-Western_University_Logo.svg.png',
+                'York University': 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/York_University_Logo.svg/220px-York_University_Logo.svg.png'
+              };
+              
+              // Get the logo URL for the selected school
+              const logoUrl = universityLogos[schoolName];
+              
+              if (logoUrl) {
+                const logoImg = document.getElementById('universityLogo');
+                logoImg.src = logoUrl;
+                logoImg.alt = `${schoolName} logo`;
+                document.getElementById('logoSection').style.display = 'block';
+              } else {
+                console.log('Logo not found for:', schoolName);
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Error loading university logo:', error);
+        }
+      })();      // Tab switching logic
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           // Remove active class from all buttons and panels
