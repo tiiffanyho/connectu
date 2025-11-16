@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ConnectU - Brochure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style>
+      .brochure-container {
+        width: 100%;
+        max-width: 960px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .brochure-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .brochure-title {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: 2px;
+        margin: 0;
+      }
+
+      .brochure-header-actions {
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .brochure-header-actions button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        font-family: inherit;
+        font-size: 0.95rem;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          opacity 0.15s ease;
+      }
+
+      .btn-back {
+        background: rgba(255, 255, 255, 0.1);
+        color: #e6eef8;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .btn-back:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .btn-signup-header {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.18);
+      }
+
+      .btn-signup-header:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(2, 6, 23, 0.35);
+        opacity: 0.98;
+      }
+
+      .brochure-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .brochure-intro h2 {
+        font-size: 2rem;
+        color: #fff;
+        margin: 0 0 1rem;
+        font-weight: 700;
+      }
+
+      .brochure-intro p {
+        color: #a7c1d9;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .perspectives-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .perspective-card {
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.9),
+          rgba(11, 18, 32, 0.95)
+        );
+        padding: 2rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+      }
+
+      .perspective-card h3 {
+        font-size: 1.4rem;
+        color: #fff;
+        margin: 0 0 1rem;
+        font-weight: 700;
+      }
+
+      .perspective-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .perspective-card p {
+        color: #a7c1d9;
+        line-height: 1.7;
+        margin: 0.5rem 0;
+        font-size: 0.95rem;
+      }
+
+      .perspective-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 0;
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+
+      .perspective-card li {
+        padding: 0.4rem 0 0.4rem 1.5rem;
+        position: relative;
+      }
+
+      .perspective-card li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #06b6d4;
+        font-weight: bold;
+      }
+
+      .brochure-cta {
+        text-align: center;
+        padding: 2.5rem 2rem;
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.15),
+          rgba(6, 182, 212, 0.1)
+        );
+        border-radius: 14px;
+        border: 1px solid rgba(139, 92, 246, 0.2);
+        margin-bottom: 2rem;
+      }
+
+      .brochure-cta h3 {
+        color: #fff;
+        font-size: 1.5rem;
+        margin: 0 0 0.75rem;
+      }
+
+      .brochure-cta p {
+        color: #a7c1d9;
+        font-size: 1rem;
+        margin: 0 0 1.5rem;
+      }
+
+      .brochure-cta button {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        padding: 0.9rem 2rem;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.18);
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          opacity 0.15s ease;
+      }
+
+      .brochure-cta button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(2, 6, 23, 0.35);
+        opacity: 0.98;
+      }
+
+      @media (max-width: 900px) {
+        .perspectives-grid {
+          grid-template-columns: 1fr;
+          gap: 1.2rem;
+        }
+
+        .brochure-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .brochure-title {
+          font-size: 2rem;
+        }
+
+        .brochure-header-actions {
+          width: 100%;
+        }
+
+        .brochure-header-actions button {
+          flex: 1;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .brochure-container {
+          padding: 0 0.5rem;
+        }
+
+        .perspective-card {
+          padding: 1.5rem;
+        }
+
+        .brochure-title {
+          font-size: 1.75rem;
+          letter-spacing: 1px;
+        }
+
+        .brochure-intro h2 {
+          font-size: 1.5rem;
+        }
+
+        .brochure-cta {
+          padding: 1.5rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this experience.</noscript>
+    <div class="card">
+      <div class="brochure-container">
+        <div class="brochure-header">
+          <h1 class="brochure-title">CONNECTU</h1>
+          <div class="brochure-header-actions">
+            <button id="backBtn" class="btn-back">← Back</button>
+            <button id="signUpBtn" class="btn-signup-header">Sign Up</button>
+          </div>
+        </div>
+
+        <div class="brochure-intro">
+          <h2>About ConnectU</h2>
+          <p>
+            ConnectU is a revolutionary platform designed to bridge the gap between students, educational institutions, and businesses. We connect you to opportunities, resources, and communities that matter most to your success.
+          </p>
+        </div>
+
+        <div class="perspectives-grid">
+          <!-- Student Perspective -->
+          <div class="perspective-card">
+            <div class="perspective-icon">🎓</div>
+            <h3>For Students</h3>
+            <p>
+              Your all-in-one platform to navigate college life with confidence and purpose.
+            </p>
+            <ul>
+              <li>Discover education resources and learning paths</li>
+              <li>Find jobs, internships, and scholarships</li>
+              <li>Join clubs, events, and social activities</li>
+              <li>Connect with peers and mentors</li>
+              <li>Access campus community forums</li>
+            </ul>
+          </div>
+
+          <!-- University Perspective -->
+          <div class="perspective-card">
+            <div class="perspective-icon">🏫</div>
+            <h3>For Universities</h3>
+            <p>
+              Enhance student engagement and institutional success with modern connectivity tools.
+            </p>
+            <ul>
+              <li>Increase student engagement and retention</li>
+              <li>Promote campus resources effectively</li>
+              <li>Track student community participation</li>
+              <li>Foster stronger institutional culture</li>
+              <li>Bridge campus departments and services</li>
+            </ul>
+          </div>
+
+          <!-- Business Perspective -->
+          <div class="perspective-card">
+            <div class="perspective-icon">💼</div>
+            <h3>For Businesses</h3>
+            <p>
+              Access a talented pool of students and build your employer brand on campus.
+            </p>
+            <ul>
+              <li>Post jobs and internship opportunities</li>
+              <li>Recruit top student talent directly</li>
+              <li>Sponsor scholarships and programs</li>
+              <li>Build employer brand awareness</li>
+              <li>Engage with next-generation workforce</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="brochure-cta">
+          <h3>Ready to Join ConnectU?</h3>
+          <p>Sign up today and start exploring opportunities, building connections, and making the most of your college experience.</p>
+          <button id="ctaSignUpBtn">Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/animated-background.js"></script>
+    <script>
+      document.getElementById('backBtn').addEventListener('click', () => {
+        window.history.back();
+      });
+
+      document.getElementById('signUpBtn').addEventListener('click', () => {
+        window.location.href = './index.html';
+      });
+
+      document.getElementById('ctaSignUpBtn').addEventListener('click', () => {
+        window.location.href = './index.html';
+      });
+    </script>
+  </body>
+</html>
