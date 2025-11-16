@@ -1,38 +1,42 @@
-import { useEffect, useRef } from "react";
+// Animated Map Background with Connection Dots
+(function() {
+  'use strict';
 
-export function AnimatedBackground() {
-  const canvasRef = useRef(null);
-  const dotsRef = useRef([]);
-  const mapOffsetRef = useRef({ x: 0, y: 0 });
-  const animationFrameRef = useRef();
+  function createAnimatedBackground() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'animated-map-background';
+    canvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;';
+    document.body.appendChild(canvas);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const resizeCanvas = () => {
+    let dots = [];
+    let mapOffset = { x: 0, y: 0 };
+    let animationFrame = null;
+
+    function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    };
+    }
 
     resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener('resize', resizeCanvas);
 
     // Initialize connection dots
     const dotCount = 25;
-    dotsRef.current = Array.from({ length: dotCount }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      radius: 3 + Math.random() * 2,
-    }));
+    for (let i = 0; i < dotCount; i++) {
+      dots.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: 3 + Math.random() * 2,
+      });
+    }
 
     // Create a map pattern (simplified world map continents)
-    const drawMapPattern = (ctx, offsetX, offsetY, width, height, mapColor) => {
+    function drawMapPattern(ctx, offsetX, offsetY, width, height, mapColor) {
       ctx.save();
       ctx.translate(offsetX, offsetY);
 
@@ -163,34 +167,34 @@ export function AnimatedBackground() {
       }
 
       ctx.restore();
-    };
+    }
 
-    const animate = () => {
+    function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Check dark mode dynamically
-      const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const mapColor = isDarkMode ? "147, 197, 253" : "59, 130, 246"; // blue-300 or blue-500
-      const primaryColor = isDarkMode ? "147, 197, 253" : "59, 130, 246";
-      const secondaryColor = isDarkMode ? "96, 165, 250" : "37, 99, 235";
+      const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const mapColor = isDarkMode ? '147, 197, 253' : '59, 130, 246'; // blue-300 or blue-500
+      const primaryColor = isDarkMode ? '147, 197, 253' : '59, 130, 246';
+      const secondaryColor = isDarkMode ? '96, 165, 250' : '37, 99, 235';
 
       // Slowly move the map background (slow speed - 0.1 pixels per frame)
-      mapOffsetRef.current.x += 0.1;
-      mapOffsetRef.current.y += 0.05;
+      mapOffset.x += 0.1;
+      mapOffset.y += 0.05;
 
       // Reset offset to create seamless scrolling
       const mapWidth = canvas.width * 1.5;
       const mapHeight = canvas.height * 1.5;
-      if (mapOffsetRef.current.x > mapWidth) mapOffsetRef.current.x = 0;
-      if (mapOffsetRef.current.y > mapHeight) mapOffsetRef.current.y = 0;
+      if (mapOffset.x > mapWidth) mapOffset.x = 0;
+      if (mapOffset.y > mapHeight) mapOffset.y = 0;
 
       // Draw the moving map background (draw multiple tiles for seamless scrolling)
       for (let x = -mapWidth; x < canvas.width + mapWidth; x += mapWidth) {
         for (let y = -mapHeight; y < canvas.height + mapHeight; y += mapHeight) {
           drawMapPattern(
             ctx,
-            x + (mapOffsetRef.current.x % mapWidth) - mapWidth,
-            y + (mapOffsetRef.current.y % mapHeight) - mapHeight,
+            x + (mapOffset.x % mapWidth) - mapWidth,
+            y + (mapOffset.y % mapHeight) - mapHeight,
             mapWidth,
             mapHeight,
             mapColor
@@ -199,7 +203,7 @@ export function AnimatedBackground() {
       }
 
       // Update and draw connection dots
-      dotsRef.current.forEach((dot) => {
+      dots.forEach((dot) => {
         dot.x += dot.vx;
         dot.y += dot.vy;
 
@@ -213,10 +217,10 @@ export function AnimatedBackground() {
       // Draw connections between nearby dots
       const connectionDistance = 150;
       const time = Date.now() * 0.001;
-      for (let i = 0; i < dotsRef.current.length; i++) {
-        for (let j = i + 1; j < dotsRef.current.length; j++) {
-          const dot1 = dotsRef.current[i];
-          const dot2 = dotsRef.current[j];
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dot1 = dots[i];
+          const dot2 = dots[j];
           const dx = dot2.x - dot1.x;
           const dy = dot2.y - dot1.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
@@ -235,7 +239,7 @@ export function AnimatedBackground() {
       }
 
       // Draw connection dots with pulsing effect
-      dotsRef.current.forEach((dot, index) => {
+      dots.forEach((dot, index) => {
         const pulse = (Math.sin(time * 3 + index) + 1) * 0.5;
         const glowRadius = dot.radius * 2 + pulse * 3;
         
@@ -261,25 +265,24 @@ export function AnimatedBackground() {
         ctx.fill();
       });
 
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
+      animationFrame = requestAnimationFrame(animate);
+    }
 
     animate();
 
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
       }
-    };
-  }, []);
+    });
+  }
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: -1 }}
-    />
-  );
-}
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createAnimatedBackground);
+  } else {
+    createAnimatedBackground();
+  }
+})();
 
