@@ -970,7 +970,7 @@
     <!-- Add Leaflet JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <script type="module">
-      import { getUniversityCoords } from './js/university-data.js';
+      import { getUniversityCoords } from "./js/university-data.js";
 
       let mapInstance = null;
 
@@ -1043,9 +1043,9 @@
 
       function initializeMap() {
         // Get stored university
-        const universityName = localStorage.getItem('connectu_university');
+        const universityName = localStorage.getItem("connectu_university");
         let coords = { lat: 43.6629, lng: -79.3957 }; // Default to UofT
-        let displayName = 'University of Toronto';
+        let displayName = "University of Toronto";
 
         if (universityName) {
           const univCoords = getUniversityCoords(universityName);
@@ -1056,7 +1056,7 @@
         }
 
         // Update university label
-        const universityLabel = document.getElementById('universityLabel');
+        const universityLabel = document.getElementById("universityLabel");
         if (universityLabel) {
           universityLabel.textContent = `📍 ${displayName}`;
         }
