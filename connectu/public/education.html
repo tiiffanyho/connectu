@@ -47,69 +47,33 @@
         width: 100%;
         height: 100vh;
         overflow: hidden;
+        position: relative;
+        z-index: 1;
       }
 
       .education-header {
         background: linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.01)
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
         );
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding: 1.5rem 2rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         position: relative;
       }
 
-      .school-banner {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 320px;
-        height: 100%;
-        overflow: hidden;
-        border-radius: 0 0 0 16px;
-        opacity: 1;
-        transform: translateX(0);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(6, 182, 212, 0.3));
-        border: 2px solid rgba(139, 92, 246, 0.5);
-        z-index: 0;
-      }
-
-      .school-banner.loaded {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      .school-banner img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: brightness(0.8) contrast(1.1);
-      }
-
-      .school-banner::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.3) 100%);
-        pointer-events: none;
-        z-index: 1;
+      .education-header .school-banner {
+        display: none;
       }
 
       .header-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        justify-content: space-between;
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr auto;
         align-items: center;
-        width: 100%;
+        gap: 1rem;
       }
 
       .education-title {
@@ -117,6 +81,11 @@
         font-weight: 900;
         letter-spacing: 2px;
         color: #fff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        grid-column: 1;
+        margin: 0;
+        width: 100%;
       }
 
       .education-back {
@@ -131,6 +100,8 @@
         transition:
           transform 0.15s ease,
           box-shadow 0.15s ease;
+        grid-column: 2;
+        white-space: nowrap;
       }
 
       .education-back:hover {
@@ -142,27 +113,32 @@
         display: flex;
         gap: 0.5rem;
         padding: 1rem 2rem;
-        background: rgba(255, 255, 255, 0.02);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(15, 23, 42, 0.98);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         overflow-x: auto;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 2;
       }
 
       .tab-btn {
         padding: 0.65rem 1rem;
-        background: rgba(255, 255, 255, 0.06);
-        color: #cbd5e1;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.85);
+        color: #e6eef8;
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
         font-size: 0.9rem;
         white-space: nowrap;
         transition: all 0.25s ease;
+        backdrop-filter: blur(8px);
       }
 
       .tab-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(15, 23, 42, 0.92);
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #fff;
       }
 
       .tab-btn.active {
@@ -175,6 +151,9 @@
         flex: 1;
         overflow-y: auto;
         padding: 2rem;
+        background: rgba(15, 23, 42, 0.95);
+        position: relative;
+        z-index: 1;
       }
 
       .tab-panel {
@@ -200,13 +179,16 @@
       .feature-box {
         background: linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.01)
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
         );
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
         padding: 1.5rem;
         margin-bottom: 1.5rem;
+        backdrop-filter: blur(16px);
+        position: relative;
+        z-index: 1;
       }
 
       .feature-title {
@@ -220,19 +202,22 @@
       }
 
       .feature-description {
-        color: #a7c1d9;
+        color: #e6eef8;
         line-height: 1.6;
         margin-bottom: 1rem;
       }
 
       .feature-highlight {
-        background: rgba(99, 102, 241, 0.1);
+        background: rgba(15, 23, 42, 0.98);
         border-left: 3px solid #6366f1;
         padding: 1rem;
         border-radius: 8px;
-        color: #cbd5e1;
+        color: #fff;
         font-size: 0.95rem;
         margin: 1rem 0;
+        backdrop-filter: blur(12px);
+        position: relative;
+        z-index: 1;
       }
 
       .metric-grid {
@@ -243,15 +228,16 @@
       }
 
       .metric-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(15, 23, 42, 0.92);
         padding: 1rem;
         border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
       }
 
       .metric-label {
         font-size: 0.85rem;
-        color: #94a3b8;
+        color: #cbd5e1;
         margin-bottom: 0.5rem;
       }
 
@@ -262,11 +248,12 @@
       }
 
       .course-combo {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(15, 23, 42, 0.92);
         padding: 1rem;
         border-radius: 10px;
         margin: 0.75rem 0;
         border-left: 4px solid #06b6d4;
+        backdrop-filter: blur(8px);
       }
 
       .combo-reaction {
@@ -309,7 +296,7 @@
       }
 
       .energy-bar {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(15, 23, 42, 0.95);
         height: 8px;
         border-radius: 4px;
         margin: 0.5rem 0;
@@ -323,17 +310,18 @@
       }
 
       .path-option {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(15, 23, 42, 0.92);
         padding: 1.25rem;
         border-radius: 12px;
         margin: 1rem 0;
         cursor: pointer;
         transition: all 0.25s ease;
         border: 2px solid transparent;
+        backdrop-filter: blur(8px);
       }
 
       .path-option:hover {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(15, 23, 42, 0.95);
         border-color: rgba(99, 102, 241, 0.4);
       }
 
@@ -349,19 +337,20 @@
       }
 
       .path-description {
-        color: #94a3b8;
+        color: #cbd5e1;
         font-size: 0.9rem;
       }
 
       .assignment-input {
         width: 100%;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 10px;
         padding: 1rem;
         color: #e6eef8;
         margin-bottom: 1rem;
         font-family: inherit;
+        backdrop-filter: blur(8px);
       }
 
       .assignment-input::placeholder {
@@ -1373,167 +1362,7 @@
     </div>
 
     <script>
-      // Course Tracker Functionality
-      const courseCountInput = document.getElementById('courseCount');
-      const generateCoursesBtn = document.getElementById('generateCoursesBtn');
-      const coursesContainer = document.getElementById('coursesContainer');
-      const saveTrackerBtn = document.getElementById('saveTrackerBtn');
-      const successMessage = document.getElementById('successMessage');
-      const programInput = document.getElementById('programInput');
-
-      // Generate course input fields
-      generateCoursesBtn.addEventListener('click', () => {
-        const count = parseInt(courseCountInput.value) || 0;
-        
-        if (count < 1 || count > 20) {
-          alert('Please enter a number between 1 and 20');
-          return;
-        }
-
-        // Clear existing courses
-        coursesContainer.innerHTML = '';
-
-        // Create course input fields
-        for (let i = 1; i <= count; i++) {
-          const courseItem = document.createElement('div');
-          courseItem.className = 'course-item';
-          courseItem.innerHTML = `
-            <div class="course-input-group">
-              <label>Course ${i} Name</label>
-              <input
-                type="text"
-                class="course-input course-name"
-                placeholder="e.g., CS 101, MATH 150"
-                data-course-index="${i - 1}"
-              />
-            </div>
-            <div class="course-input-group">
-              <label>Current Grade</label>
-              <input
-                type="text"
-                class="course-input course-grade"
-                placeholder="e.g., A-, 87%, N/A"
-                data-course-index="${i - 1}"
-              />
-            </div>
-            <button type="button" class="remove-course-btn" data-course-index="${i - 1}">
-              Remove
-            </button>
-          `;
-          coursesContainer.appendChild(courseItem);
-        }
-
-        // Add remove functionality
-        document.querySelectorAll('.remove-course-btn').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.target.closest('.course-item').remove();
-          });
-        });
-
-        // Show save button and container
-        coursesContainer.style.display = 'grid';
-        saveTrackerBtn.style.display = 'block';
-      });
-
-      // Save courses to session storage
-      saveTrackerBtn.addEventListener('click', () => {
-        const program = programInput.value.trim();
-        const courses = [];
-
-        document.querySelectorAll('.course-item').forEach((item, index) => {
-          const nameInput = item.querySelector('.course-name');
-          const gradeInput = item.querySelector('.course-grade');
-          
-          if (nameInput.value.trim() || gradeInput.value.trim()) {
-            courses.push({
-              name: nameInput.value.trim() || `Course ${index + 1}`,
-              grade: gradeInput.value.trim() || 'N/A'
-            });
-          }
-        });
-
-        // Update user session with course data
-        try {
-          const userData = sessionStorage.getItem('connectu_user');
-          const user = JSON.parse(userData) || {};
-          user.program = program || 'Not specified';
-          user.courses = courses;
-          sessionStorage.setItem('connectu_user', JSON.stringify(user));
-
-          // Show success message
-          successMessage.style.display = 'block';
-          setTimeout(() => {
-            successMessage.style.display = 'none';
-          }, 3000);
-        } catch (error) {
-          alert('Error saving courses. Please try again.');
-          console.error('Error:', error);
-        }
-      });
-
-      // Load existing data on page load
-      window.addEventListener('load', () => {
-        try {
-          const userData = sessionStorage.getItem('connectu_user');
-          if (userData) {
-            const user = JSON.parse(userData);
-            if (user.program) {
-              programInput.value = user.program;
-            }
-            if (user.courses && user.courses.length > 0) {
-              courseCountInput.value = user.courses.length;
-              // Trigger generation and populate
-              const count = user.courses.length;
-              coursesContainer.innerHTML = '';
-              
-              for (let i = 0; i < count; i++) {
-                const courseItem = document.createElement('div');
-                courseItem.className = 'course-item';
-                const course = user.courses[i];
-                courseItem.innerHTML = `
-                  <div class="course-input-group">
-                    <label>Course ${i + 1} Name</label>
-                    <input
-                      type="text"
-                      class="course-input course-name"
-                      placeholder="e.g., CS 101, MATH 150"
-                      value="${course.name}"
-                      data-course-index="${i}"
-                    />
-                  </div>
-                  <div class="course-input-group">
-                    <label>Current Grade</label>
-                    <input
-                      type="text"
-                      class="course-input course-grade"
-                      placeholder="e.g., A-, 87%, N/A"
-                      value="${course.grade}"
-                      data-course-index="${i}"
-                    />
-                  </div>
-                  <button type="button" class="remove-course-btn" data-course-index="${i}">
-                    Remove
-                  </button>
-                `;
-                coursesContainer.appendChild(courseItem);
-              }
-
-              // Add remove functionality
-              document.querySelectorAll('.remove-course-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                  e.target.closest('.course-item').remove();
-                });
-              });
-
-              coursesContainer.style.display = 'grid';
-              saveTrackerBtn.style.display = 'block';
-            }
-          }
-        } catch (error) {
-          console.error('Error loading course data:', error);
-        }
-      });
-    </script>
+            // Load and display university logo from local JSON
       (function loadUniversityLogo() {
         try {
           const userData = sessionStorage.getItem('connectu_user');
@@ -1543,27 +1372,266 @@
             
             if (schoolName) {
               // Update page title to include school name
-              document.querySelector('.education-title').textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
-              document.getElementById('universityNameDisplay').textContent = schoolName;
+              const titleElement = document.querySelector('.education-title');
+              if (titleElement) {
+                titleElement.textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
+              }
               
-              // Fetch logos from local JSON file
-              fetch('/university-logos.json')
-                .then(response => response.json())
-                .then(logos => {
-                  const logoUrl = logos[schoolName];
-                  if (logoUrl) {
-                    const logoImg = document.getElementById('universityLogo');
+              const nameDisplay = document.getElementById('universityNameDisplay');
+              if (nameDisplay) {
+                nameDisplay.textContent = schoolName;
+              }
+              
+              // Helper function to get university domain and logo URLs
+              function getUniversityLogoUrls(school) {
+                const logoMap = {
+                  'University of Toronto': [
+                    'https://logo.clearbit.com/utoronto.ca',
+                    'https://www.utoronto.ca/sites/default/files/uoft-logo.png',
+                    'https://www.utoronto.ca/sites/default/files/uoft-logo.svg'
+                  ],
+                  'University of Waterloo': [
+                    'https://logo.clearbit.com/uwaterloo.ca',
+                    'https://uwaterloo.ca/brand/sites/ca.brand/files/uploads/images/university-of-waterloo-vertical-logo.png'
+                  ],
+                  'McMaster University': [
+                    'https://logo.clearbit.com/mcmaster.ca',
+                    'https://www.mcmaster.ca/brand/images/mcmaster-logo.png'
+                  ],
+                  'Western University': [
+                    'https://logo.clearbit.com/uwo.ca',
+                    'https://communications.uwo.ca/img/logo_teasers/western_logo.png'
+                  ],
+                  'Queen\'s University': [
+                    'https://logo.clearbit.com/queensu.ca',
+                    'https://www.queensu.ca/sites/default/files/assets/pages/QueensLogo_colour.png'
+                  ],
+                  'University of Ottawa': [
+                    'https://logo.clearbit.com/uottawa.ca',
+                    'https://www.uottawa.ca/brand/sites/www.uottawa.ca.brand/files/uottawa-logo.png'
+                  ],
+                  'York University': [
+                    'https://logo.clearbit.com/yorku.ca',
+                    'https://www.yorku.ca/brand/wp-content/uploads/sites/4/2019/08/yorku-logo.png'
+                  ],
+                  'Carleton University': [
+                    'https://logo.clearbit.com/carleton.ca',
+                    'https://carleton.ca/brand/wp-content/uploads/cu-logo.png'
+                  ],
+                  'University of Guelph': [
+                    'https://logo.clearbit.com/uoguelph.ca',
+                    'https://www.uoguelph.ca/brand/sites/uoguelph.ca.brand/files/uog-logo.png'
+                  ],
+                  'Toronto Metropolitan University': [
+                    'https://logo.clearbit.com/torontomu.ca',
+                    'https://www.torontomu.ca/content/dam/brand/logo/tmu-logo.png'
+                  ],
+                  'Brock University': [
+                    'https://logo.clearbit.com/brocku.ca',
+                    'https://brocku.ca/brand/wp-content/uploads/sites/131/Brock-University-Logo.png'
+                  ],
+                  'Trent University': [
+                    'https://logo.clearbit.com/trentu.ca',
+                    'https://www.trentu.ca/brand/sites/www.trentu.ca.brand/files/trent-logo.png'
+                  ],
+                  'Lakehead University': [
+                    'https://logo.clearbit.com/lakeheadu.ca',
+                    'https://www.lakeheadu.ca/sites/default/files/lakehead-logo.png'
+                  ],
+                  'Laurentian University': [
+                    'https://logo.clearbit.com/laurentian.ca',
+                    'https://laurentian.ca/sites/default/files/laurentian-logo.png'
+                  ],
+                  'Nipissing University': [
+                    'https://logo.clearbit.com/nipissingu.ca',
+                    'https://www.nipissingu.ca/sites/default/files/nipissing-logo.png'
+                  ],
+                  'Algoma University': [
+                    'https://logo.clearbit.com/algomau.ca',
+                    'https://www.algomau.ca/sites/default/files/algoma-logo.png'
+                  ],
+                  'OCAD University': [
+                    'https://logo.clearbit.com/ocadu.ca',
+                    'https://www.ocadu.ca/sites/default/files/ocad-logo.png'
+                  ],
+                  'Ontario Tech University': [
+                    'https://logo.clearbit.com/ontariotechu.ca',
+                    'https://ontariotechu.ca/sites/default/files/ontariotech-logo.png'
+                  ],
+                  'King\'s University College (Western)': [
+                    'https://logo.clearbit.com/kings.uwo.ca',
+                    'https://www.kings.uwo.ca/sites/default/files/kings-logo.png'
+                  ],
+                  'Royal Military College of Canada': [
+                    'https://logo.clearbit.com/rmc-cmr.ca',
+                    'https://www.rmc-cmr.ca/sites/default/files/rmc-logo.png'
+                  ],
+                  'University of Sudbury': [
+                    'https://logo.clearbit.com/usudbury.ca',
+                    'https://usudbury.ca/sites/default/files/usudbury-logo.png'
+                  ],
+                };
+                
+                // Return array of URLs to try, or generate from domain
+                if (logoMap[school]) {
+                  return logoMap[school];
+                }
+                
+                // Try to construct domain-based URLs
+                const domainMap = {
+                  'University of Toronto': 'utoronto.ca',
+                  'University of Waterloo': 'uwaterloo.ca',
+                  'McMaster University': 'mcmaster.ca',
+                  'Western University': 'uwo.ca',
+                  'Queen\'s University': 'queensu.ca',
+                  'University of Ottawa': 'uottawa.ca',
+                  'York University': 'yorku.ca',
+                  'Carleton University': 'carleton.ca',
+                  'University of Guelph': 'uoguelph.ca',
+                  'Toronto Metropolitan University': 'torontomu.ca',
+                  'Brock University': 'brocku.ca',
+                  'Trent University': 'trentu.ca',
+                  'Lakehead University': 'lakeheadu.ca',
+                  'Laurentian University': 'laurentian.ca',
+                  'Nipissing University': 'nipissingu.ca',
+                  'Algoma University': 'algomau.ca',
+                  'OCAD University': 'ocadu.ca',
+                  'Ontario Tech University': 'ontariotechu.ca',
+                  'King\'s University College (Western)': 'kings.uwo.ca',
+                  'Royal Military College of Canada': 'rmc-cmr.ca',
+                  'University of Sudbury': 'usudbury.ca',
+                };
+                
+                const domain = domainMap[school];
+                if (domain) {
+                  return [`https://logo.clearbit.com/${domain}`];
+                }
+                
+                return [];
+              }
+              
+              // Function to test if an image URL is valid
+              function testImageUrl(url) {
+                return new Promise((resolve) => {
+                  const img = new Image();
+                  img.crossOrigin = 'anonymous';
+                  let resolved = false;
+                  
+                  const cleanup = () => {
+                    if (!resolved) {
+                      resolved = true;
+                    }
+                  };
+                  
+                  img.onload = () => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(true);
+                    }
+                  };
+                  
+                  img.onerror = () => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(false);
+                    }
+                  };
+                  
+                  // Set timeout to avoid hanging
+                  const timeout = setTimeout(() => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(false);
+                    }
+                  }, 3000);
+                  
+                  img.src = url;
+                });
+              }
+              
+              // Function to fetch university logo from online sources
+              async function fetchUniversityLogo(school) {
+                const logoUrls = getUniversityLogoUrls(school);
+                
+                // Try each URL in sequence until one works
+                for (const url of logoUrls) {
+                  try {
+                    const isValid = await testImageUrl(url);
+                    if (isValid) {
+                      return url;
+                    }
+                  } catch (error) {
+                    console.log(`Failed to load logo from ${url}`);
+                    continue;
+                  }
+                }
+                
+                // If all direct URLs fail, try using a CORS proxy with Google Images search
+                // This will get actual logos from the web
+                const searchQuery = encodeURIComponent(`${school} university logo official`);
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.google.com/search?q=${searchQuery}&tbm=isch&tbs=isz:m`)}`;
+                
+                // Return null if we can't find a logo - we'll handle this in the display logic
+                return null;
+              }
+              
+              // Fetch and display the logo
+              fetchUniversityLogo(schoolName)
+                .then(logoUrl => {
+                  const logoImg = document.getElementById('universityLogo');
+                  const logoSection = document.getElementById('logoSection');
+                  const schoolBanner = document.getElementById('schoolBanner');
+                  
+                  // Only display if we have a valid logo URL
+                  if (logoUrl && logoImg) {
                     logoImg.src = logoUrl;
                     logoImg.alt = `${schoolName} logo`;
-                    logoImg.onerror = function() {
-                      console.log('Logo failed to load for:', schoolName);
+                    logoImg.onload = function() {
+                      // Only show section if logo loaded successfully
+                      if (logoSection) {
+                        logoSection.style.display = 'block';
+                      }
+                      // Also add to banner if it exists
+                      if (schoolBanner) {
+                        // Clear any existing content
+                        schoolBanner.innerHTML = '';
+                        const bannerImg = document.createElement('img');
+                        bannerImg.src = logoUrl;
+                        bannerImg.alt = `${schoolName} banner`;
+                        bannerImg.style.width = '100%';
+                        bannerImg.style.height = '100%';
+                        bannerImg.style.objectFit = 'cover';
+                        bannerImg.onerror = function() {
+                          // If banner image fails, remove it
+                          schoolBanner.innerHTML = '';
+                        };
+                        schoolBanner.appendChild(bannerImg);
+                        schoolBanner.classList.add('loaded');
+                      }
                     };
-                    document.getElementById('logoSection').style.display = 'block';
+                    logoImg.onerror = function() {
+                      console.log('Logo failed to load from URL:', logoUrl);
+                      // Don't show section if logo fails to load
+                      if (logoSection) {
+                        logoSection.style.display = 'none';
+                      }
+                    };
                   } else {
-                    console.log('Logo not found for:', schoolName);
+                    console.log('No valid logo URL found for:', schoolName);
+                    // Don't show logo section if no valid URL
+                    if (logoSection) {
+                      logoSection.style.display = 'none';
+                    }
                   }
                 })
-                .catch(error => console.error('Error loading logos:', error));
+                .catch(error => {
+                  console.error('Error loading university logo:', error);
+                  // Don't show section if there's an error
+                  const logoSection = document.getElementById('logoSection');
+                  if (logoSection) {
+                    logoSection.style.display = 'none';
+                  }
+                });
             }
           }
         } catch (error) {
@@ -1601,5 +1669,6 @@
         }
       }
     </script>
+    <script src="./js/animated-background.js"></script>
   </body>
 </html>
