@@ -68,19 +68,19 @@ const renderWelcomeSection = () => `
       </p>
       <div class="welcome-features">
         <div class="feature-item">
-          <h3>📚 Education</h3>
+          <h3>Education</h3>
           <p>Access resources, classes, and learning paths</p>
         </div>
         <div class="feature-item">
-          <h3>💼 Opportunities</h3>
+          <h3>Opportunities</h3>
           <p>Find jobs, internships, and scholarships</p>
         </div>
         <div class="feature-item">
-          <h3>🎉 Social Life</h3>
+          <h3>Social Life</h3>
           <p>Discover events, clubs, and meetups</p>
         </div>
         <div class="feature-item">
-          <h3>🤝 Community</h3>
+          <h3>Community</h3>
           <p>Join forums, groups, and support networks</p>
         </div>
       </div>
