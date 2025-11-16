@@ -410,6 +410,7 @@
         padding: 1.25rem;
         margin-bottom: 1rem;
         transition: all 0.25s ease;
+        cursor: pointer;
       }
 
       .chat-card:hover {
@@ -540,6 +541,194 @@
         border-color: rgba(255,255,255,0.2);
       }
 
+      /* Chat Modal Styles */
+      .chat-modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .chat-modal-overlay.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .chat-modal {
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.99));
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 16px;
+        width: 90%;
+        max-width: 600px;
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        backdrop-filter: blur(16px);
+        overflow: hidden;
+      }
+
+      .chat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .chat-header-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .chat-close-btn {
+        background: rgba(255,255,255,0.1);
+        border: none;
+        color: #fff;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.25s ease;
+      }
+
+      .chat-close-btn:hover {
+        background: rgba(255,255,255,0.15);
+      }
+
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .message {
+        display: flex;
+        gap: 0.75rem;
+        animation: slideIn 0.3s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .message.own {
+        justify-content: flex-end;
+      }
+
+      .message-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+      }
+
+      .message-content {
+        max-width: 70%;
+      }
+
+      .message.own .message-content {
+        max-width: 70%;
+      }
+
+      .message-name {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        margin-bottom: 0.25rem;
+      }
+
+      .message-text {
+        background: rgba(99,102,241,0.2);
+        color: #e6eef8;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        word-wrap: break-word;
+      }
+
+      .message.own .message-text {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        border-radius: 12px 4px 12px 12px;
+      }
+
+      .message:not(.own) .message-text {
+        border-radius: 4px 12px 12px 12px;
+      }
+
+      .chat-input-area {
+        padding: 1.5rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .chat-input {
+        flex: 1;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 10px;
+        color: #e6eef8;
+        padding: 0.75rem 1rem;
+        font-family: inherit;
+        font-size: 0.9rem;
+        transition: all 0.25s ease;
+      }
+
+      .chat-input:focus {
+        outline: none;
+        background: rgba(255,255,255,0.1);
+        border-color: rgba(99,102,241,0.3);
+      }
+
+      .chat-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .chat-send-btn {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        border: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 0.9rem;
+        transition: transform 0.15s ease;
+      }
+
+      .chat-send-btn:hover {
+        transform: translateY(-2px);
+      }
+
       @media (max-width: 900px) {
         .social-header {
           flex-direction: column;
@@ -568,6 +757,11 @@
 
         .metric-grid {
           grid-template-columns: repeat(2, 1fr);
+        }
+
+        .chat-modal {
+          width: 95%;
+          height: 90vh;
         }
       }
 
@@ -601,6 +795,20 @@
         .cta-primary,
         .cta-secondary {
           width: 100%;
+        }
+
+        .chat-modal {
+          width: 100%;
+          height: 100vh;
+          border-radius: 0;
+        }
+
+        .message-content {
+          max-width: 85%;
+        }
+
+        .message.own .message-content {
+          max-width: 85%;
         }
       }
     </style>
@@ -917,46 +1125,40 @@
             </div>
           </div>
 
-          <div class="chat-card">
+          <div class="chat-card" data-chat="first-year">
             <div class="chat-name">First Year Students</div>
             <div class="chat-info"> 412 members</div>
             <span class="chat-vibe">Supportive & helpful</span>
-            <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
-          <div class="chat-card">
+          <div class="chat-card" data-chat="weekend-plans">
             <div class="chat-name">Weekend Plans</div>
             <div class="chat-info"> 187 members</div>
             <span class="chat-vibe">Chaotic & fun</span>
-            <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
-          <div class="chat-card">
+          <div class="chat-card" data-chat="study-accountability">
             <div class="chat-name">Study Accountability Group</div>
             <div class="chat-info"> 94 members</div>
             <span class="chat-vibe">Focused & motivating</span>
-            <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
-          <div class="chat-card">
+          <div class="chat-card" data-chat="intramural-sports">
             <div class="chat-name">Intramural Sports Squad</div>
             <div class="chat-info"> 23 members</div>
             <span class="chat-vibe">Competitive & friendly</span>
-            <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
-          <div class="chat-card">
+          <div class="chat-card" data-chat="dorm-friends">
             <div class="chat-name">Dorm Friends & Hangouts</div>
             <div class="chat-info"> 156 members</div>
             <span class="chat-vibe">Chaotic & chill</span>
-            <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
 
-          <div class="chat-card">
+          <div class="chat-card" data-chat="mental-health">
             <div class="chat-name">Mental Health & Wellness</div>
             <div class="chat-info"> 67 members</div>
             <span class="chat-vibe">Safe & supportive</span>
-            <button class="event-btn" style="margin-top:1rem;">Join Chat</button>
           </div>
         </div>
 
@@ -974,25 +1176,25 @@
 
           <div class="wellness-grid">
             <div class="wellness-card">
-              <div class="wellness-emoji"></div>
+              <div class="wellness-emoji">🎯</div>
               <div class="wellness-title">Social Streaks</div>
               <div class="wellness-desc">Track how many events you've attended this week. Build consistent, healthy social habits.</div>
             </div>
 
             <div class="wellness-card">
-              <div class="wellness-emoji"></div>
+              <div class="wellness-emoji">⚖️</div>
               <div class="wellness-title">Balance Matters</div>
               <div class="wellness-desc">Smart suggestions help you balance social time with study sessions, sleep, and personal time.</div>
             </div>
 
             <div class="wellness-card">
-              <div class="wellness-emoji"></div>
+              <div class="wellness-emoji">💎</div>
               <div class="wellness-title">Quality Over Quantity</div>
               <div class="wellness-desc">Meet people with shared goals & values. Build deep friendships, not just surface connections.</div>
             </div>
 
             <div class="wellness-card">
-              <div class="wellness-emoji"></div>
+              <div class="wellness-emoji">🛡️</div>
               <div class="wellness-title">Safe Spaces</div>
               <div class="wellness-desc">All communities have conduct guidelines to keep everyone safe, inclusive, and respected.</div>
             </div>
@@ -1030,18 +1232,214 @@
       </div>
     </div>
 
+    <!-- Chat Modal -->
+    <div class="chat-modal-overlay" id="chatModal">
+      <div class="chat-modal">
+        <div class="chat-header">
+          <div class="chat-header-title" id="chatTitle">Chat</div>
+          <button class="chat-close-btn" onclick="closeChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-area">
+          <input type="text" class="chat-input" id="chatInput" placeholder="Type a message...">
+          <button class="chat-send-btn" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
     <script>
+      // Chat data with AI-generated messages
+      const chatData = {
+        'first-year': {
+          name: 'First Year Students',
+          messages: [
+            { name: 'Alex Chen', message: 'Anyone else struggling with the amount of work? 😅' },
+            { name: 'Jordan Smith', message: 'Dude same! My calc assignment is killing me' },
+            { name: 'Morgan Lee', message: 'Study group at the library tomorrow? We can help each other out' },
+            { name: 'Casey Davis', message: 'YES! What time? I\'m free after 3pm' },
+            { name: 'Taylor Brown', message: 'Just found out about the late night café hours. Game changer.' }
+          ]
+        },
+        'weekend-plans': {
+          name: 'Weekend Plans',
+          messages: [
+            { name: 'Jordan Kim', message: '🎉 anyone down for some fun this Friday?' },
+            { name: 'Sam Wilson', message: 'Count me in! What are we doing?' },
+            { name: 'Riley Martinez', message: 'There\'s a party at the dorm! 10pm start' },
+            { name: 'Casey Park', message: 'I\'m in. Anyone need a ride?' },
+            { name: 'Morgan White', message: 'Let\'s grab food after! I know a sick taco place' }
+          ]
+        },
+        'study-accountability': {
+          name: 'Study Accountability Group',
+          messages: [
+            { name: 'Jamie Taylor', message: 'Starting my study session now. 2 hour goal. Who\'s with me?' },
+            { name: 'Alex Rodriguez', message: 'I\'m in! Doing organic chem. This is gonna be rough 💪' },
+            { name: 'Jordan Turner', message: 'Just finished my first hour! Feeling good' },
+            { name: 'Casey Chen', message: 'How\'s everyone doing? I\'m halfway through history notes' },
+            { name: 'Morgan Foster', message: 'Great work everyone! Let\'s keep this momentum going' }
+          ]
+        },
+        'intramural-sports': {
+          name: 'Intramural Sports Squad',
+          messages: [
+            { name: 'Alex Young', message: 'Game this Saturday at 6pm. Who\'s playing?' },
+            { name: 'Jordan Davis', message: 'I\'m in! Been training all week' },
+            { name: 'Riley Johnson', message: 'Let\'s GO!! We\'re taking the championship this year' },
+            { name: 'Casey Moore', message: 'See you there. Bringing my A game 🏆' }
+          ]
+        },
+        'dorm-friends': {
+          name: 'Dorm Friends & Hangouts',
+          messages: [
+            { name: 'Morgan Blake', message: 'Movie night in the common room? Got snacks!' },
+            { name: 'Taylor Scott', message: 'YES!! What are we watching?' },
+            { name: 'Casey Green', message: 'I\'ll bring popcorn. 8pm?' },
+            { name: 'Jordan Hall', message: 'Inviting the whole floor. This is gonna be fun' },
+            { name: 'Alex Murphy', message: 'Can\'t wait! See you all soon' }
+          ]
+        },
+        'mental-health': {
+          name: 'Mental Health & Wellness',
+          messages: [
+            { name: 'Riley Parker', message: 'Feeling stressed about exams. Anyone else?' },
+            { name: 'Morgan Santos', message: 'You\'re not alone. Here\'s what\'s been helping me...' },
+            { name: 'Casey Bell', message: 'Campus counseling is amazing. Highly recommend' },
+            { name: 'Jordan Wood', message: 'Remember to take breaks and breathe. You got this! 💙' },
+            { name: 'Alex Clark', message: 'Group yoga session tomorrow? Let\'s destress together' }
+          ]
+        }
+      };
+
+      let currentChat = null;
+      let userMessages = [];
+
+      function openChat(chatId) {
+        currentChat = chatId;
+        const chat = chatData[chatId];
+        const modal = document.getElementById('chatModal');
+        const title = document.getElementById('chatTitle');
+        const messagesContainer = document.getElementById('chatMessages');
+
+        title.textContent = chat.name;
+        messagesContainer.innerHTML = '';
+        userMessages = [];
+
+        // Display initial messages
+        chat.messages.forEach(msg => {
+          const messageEl = createMessageElement(msg.name, msg.message, false);
+          messagesContainer.appendChild(messageEl);
+        });
+
+        modal.classList.add('active');
+      }
+
+      function closeChat() {
+        const modal = document.getElementById('chatModal');
+        modal.classList.remove('active');
+        currentChat = null;
+      }
+
+      function createMessageElement(name, text, isOwn) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isOwn ? 'own' : ''}`;
+
+        if (!isOwn) {
+          const avatarDiv = document.createElement('div');
+          avatarDiv.className = 'message-avatar';
+          avatarDiv.textContent = name.charAt(0);
+          messageDiv.appendChild(avatarDiv);
+        }
+
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+
+        if (!isOwn) {
+          const nameEl = document.createElement('div');
+          nameEl.className = 'message-name';
+          nameEl.textContent = name;
+          contentDiv.appendChild(nameEl);
+        }
+
+        const textEl = document.createElement('div');
+        textEl.className = 'message-text';
+        textEl.textContent = text;
+        contentDiv.appendChild(textEl);
+
+        messageDiv.appendChild(contentDiv);
+        return messageDiv;
+      }
+
+      function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const message = input.value.trim();
+
+        if (!message) return;
+
+        const messagesContainer = document.getElementById('chatMessages');
+        const messageEl = createMessageElement('You', message, true);
+        messagesContainer.appendChild(messageEl);
+
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        input.value = '';
+        userMessages.push(message);
+
+        // Simulate AI response after a delay
+        setTimeout(() => {
+          const aiResponses = [
+            '😄 That\'s awesome!',
+            'Totally agree!',
+            'Count me in! 🙌',
+            'That\'s a great idea!',
+            'Let\'s do it! 💪',
+            'Haha true true',
+            'No cap! 🤔',
+            'For real for real',
+            'Let me know the details!',
+            'I\'m down! When though?'
+          ];
+          const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+          const randomName = ['Morgan', 'Casey', 'Jordan', 'Alex', 'Riley', 'Taylor'][Math.floor(Math.random() * 6)];
+          
+          const aiMessageEl = createMessageElement(randomName, randomResponse, false);
+          messagesContainer.appendChild(aiMessageEl);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 800);
+      }
+
+      // Allow sending message with Enter key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && document.getElementById('chatInput') === document.activeElement) {
+          sendMessage();
+        }
+      });
+
+      // Close chat modal when clicking overlay
+      document.getElementById('chatModal').addEventListener('click', (e) => {
+        if (e.target.id === 'chatModal') {
+          closeChat();
+        }
+      });
+
       // Tab switching logic
       document.querySelectorAll('.tab-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
-          // Remove active class from all buttons and panels
           document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
           document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
 
-          // Add active class to clicked button and corresponding panel
           btn.classList.add('active');
           const tabId = btn.dataset.tab;
           document.getElementById(tabId).classList.add('active');
+        });
+      });
+
+      // Add click listeners to chat cards
+      document.querySelectorAll('.chat-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          const chatId = card.dataset.chat;
+          openChat(chatId);
         });
       });
 
@@ -1050,7 +1448,6 @@
         btn.addEventListener('click', () => {
           document.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
-          // Add filtering logic here if needed
         });
       });
     </script>
