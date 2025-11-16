@@ -25,12 +25,12 @@
           linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
         color: #e6eef8;
         font-family:
-          'Inter',
+          "Inter",
           system-ui,
           -apple-system,
-          'Segoe UI',
+          "Segoe UI",
           Roboto,
-          'Helvetica Neue',
+          "Helvetica Neue",
           Arial,
           sans-serif;
         min-height: 100vh;
@@ -52,8 +52,12 @@
       }
 
       .social-header {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.99));
-        border-bottom: 1px solid rgba(255,255,255,0.2);
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding: 1.5rem 2rem;
         display: flex;
         justify-content: space-between;
@@ -80,12 +84,14 @@
         font-weight: 700;
         cursor: pointer;
         font-size: 0.95rem;
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
       }
 
       .social-back:hover {
         transform: translateY(-2px);
-        box-shadow: 0 14px 36px rgba(2,6,23,0.35);
+        box-shadow: 0 14px 36px rgba(2, 6, 23, 0.35);
       }
 
       .social-tabs {
@@ -93,7 +99,7 @@
         gap: 0.5rem;
         padding: 1rem 2rem;
         background: rgba(15, 23, 42, 0.98);
-        border-bottom: 1px solid rgba(255,255,255,0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         overflow-x: auto;
         backdrop-filter: blur(16px);
         position: relative;
@@ -104,7 +110,7 @@
         padding: 0.65rem 1rem;
         background: rgba(15, 23, 42, 0.85);
         color: #e6eef8;
-        border: 1px solid rgba(255,255,255,0.15);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
@@ -116,7 +122,7 @@
 
       .tab-btn:hover {
         background: rgba(15, 23, 42, 0.92);
-        border-color: rgba(255,255,255,0.25);
+        border-color: rgba(255, 255, 255, 0.25);
         color: #fff;
       }
 
@@ -145,13 +151,23 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .feature-box {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.99));
-        border: 1px solid rgba(255,255,255,0.2);
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
         padding: 1.5rem;
         margin-bottom: 1.5rem;
@@ -197,9 +213,13 @@
       }
 
       .event-card {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.95),
+          rgba(11, 18, 32, 0.98)
+        );
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 1.25rem;
         transition: all 0.25s ease;
@@ -207,9 +227,13 @@
       }
 
       .event-card:hover {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.95));
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.95)
+        );
         backdrop-filter: blur(12px);
-        border-color: rgba(99,102,241,0.3);
+        border-color: rgba(99, 102, 241, 0.3);
         transform: translateY(-4px);
       }
 
@@ -234,7 +258,7 @@
 
       .event-category {
         display: inline-block;
-        background: rgba(99,102,241,0.2);
+        background: rgba(99, 102, 241, 0.2);
         color: #e6eef8;
         font-size: 0.75rem;
         padding: 0.35rem 0.6rem;
@@ -279,9 +303,9 @@
 
       .filter-btn {
         padding: 0.5rem 1rem;
-        background: rgba(255,255,255,0.06);
+        background: rgba(255, 255, 255, 0.06);
         color: #cbd5e1;
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
@@ -290,8 +314,8 @@
       }
 
       .filter-btn:hover {
-        background: rgba(255,255,255,0.1);
-        border-color: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
       }
 
       .filter-btn.active {
@@ -308,9 +332,13 @@
       }
 
       .club-card {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.95),
+          rgba(11, 18, 32, 0.98)
+        );
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 1.25rem;
         transition: all 0.25s ease;
@@ -320,9 +348,13 @@
       }
 
       .club-card:hover {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.95));
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.95)
+        );
         backdrop-filter: blur(12px);
-        border-color: rgba(99,102,241,0.3);
+        border-color: rgba(99, 102, 241, 0.3);
         transform: translateY(-4px);
       }
 
@@ -345,7 +377,7 @@
       }
 
       .club-tag {
-        background: rgba(99,102,241,0.15);
+        background: rgba(99, 102, 241, 0.15);
         color: #cbd5e1;
         font-size: 0.75rem;
         padding: 0.3rem 0.6rem;
@@ -358,9 +390,13 @@
       }
 
       .meetup-card {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.95),
+          rgba(11, 18, 32, 0.98)
+        );
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 1.25rem;
         margin-bottom: 1rem;
@@ -368,9 +404,13 @@
       }
 
       .meetup-card:hover {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.95));
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.95)
+        );
         backdrop-filter: blur(12px);
-        border-color: rgba(99,102,241,0.3);
+        border-color: rgba(99, 102, 241, 0.3);
       }
 
       .meetup-title {
@@ -403,9 +443,13 @@
       }
 
       .chat-card {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.95),
+          rgba(11, 18, 32, 0.98)
+        );
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 1.25rem;
         margin-bottom: 1rem;
@@ -414,9 +458,13 @@
       }
 
       .chat-card:hover {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.95));
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.95)
+        );
         backdrop-filter: blur(12px);
-        border-color: rgba(99,102,241,0.3);
+        border-color: rgba(99, 102, 241, 0.3);
       }
 
       .chat-name {
@@ -434,7 +482,7 @@
 
       .chat-vibe {
         display: inline-block;
-        background: rgba(6,182,212,0.2);
+        background: rgba(6, 182, 212, 0.2);
         color: #e6eef8;
         font-size: 0.75rem;
         padding: 0.35rem 0.6rem;
@@ -449,9 +497,13 @@
       }
 
       .wellness-card {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(11, 18, 32, 0.98));
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.95),
+          rgba(11, 18, 32, 0.98)
+        );
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 1.5rem;
       }
@@ -486,7 +538,7 @@
         backdrop-filter: blur(8px);
         padding: 1rem;
         border-radius: 10px;
-        border: 1px solid rgba(255,255,255,0.05);
+        border: 1px solid rgba(255, 255, 255, 0.05);
       }
 
       .metric-label {
@@ -525,9 +577,9 @@
       }
 
       .cta-secondary {
-        background: rgba(255,255,255,0.06);
+        background: rgba(255, 255, 255, 0.06);
         color: #cbd5e1;
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 0.75rem 1.5rem;
         border-radius: 10px;
         cursor: pointer;
@@ -537,8 +589,8 @@
       }
 
       .cta-secondary:hover {
-        background: rgba(255,255,255,0.1);
-        border-color: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
       }
 
       /* Chat Modal Styles */
@@ -561,8 +613,12 @@
       }
 
       .chat-modal {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 18, 32, 0.99));
-        border: 1px solid rgba(255,255,255,0.2);
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.98),
+          rgba(11, 18, 32, 0.99)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
         width: 90%;
         max-width: 600px;
@@ -578,7 +634,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 1.5rem;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .chat-header-title {
@@ -588,7 +644,7 @@
       }
 
       .chat-close-btn {
-        background: rgba(255,255,255,0.1);
+        background: rgba(255, 255, 255, 0.1);
         border: none;
         color: #fff;
         width: 32px;
@@ -603,7 +659,7 @@
       }
 
       .chat-close-btn:hover {
-        background: rgba(255,255,255,0.15);
+        background: rgba(255, 255, 255, 0.15);
       }
 
       .chat-messages {
@@ -665,7 +721,7 @@
       }
 
       .message-text {
-        background: rgba(99,102,241,0.2);
+        background: rgba(99, 102, 241, 0.2);
         color: #e6eef8;
         padding: 0.75rem 1rem;
         border-radius: 12px;
@@ -686,15 +742,15 @@
 
       .chat-input-area {
         padding: 1.5rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
         gap: 0.75rem;
       }
 
       .chat-input {
         flex: 1;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.15);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 10px;
         color: #e6eef8;
         padding: 0.75rem 1rem;
@@ -705,8 +761,8 @@
 
       .chat-input:focus {
         outline: none;
-        background: rgba(255,255,255,0.1);
-        border-color: rgba(99,102,241,0.3);
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(99, 102, 241, 0.3);
       }
 
       .chat-input::placeholder {
@@ -818,16 +874,22 @@
       <!-- Header -->
       <div class="social-header">
         <h1 class="social-title">SOCIAL LIFE</h1>
-        <button class="social-back" onclick="window.history.back();">← Back</button>
+        <button class="social-back" onclick="window.history.back();">
+          ← Back
+        </button>
       </div>
 
       <!-- Tabs -->
       <div class="social-tabs">
-        <button class="tab-btn active" data-tab="smart-events"> Smart Events</button>
-        <button class="tab-btn" data-tab="clubs-communities"> Clubs & Communities</button>
-        <button class="tab-btn" data-tab="meetups"> Meetups & Hangouts</button>
-        <button class="tab-btn" data-tab="group-chats"> Group Chats</button>
-        <button class="tab-btn" data-tab="wellness"> Social Wellness</button>
+        <button class="tab-btn active" data-tab="smart-events">
+          Smart Events
+        </button>
+        <button class="tab-btn" data-tab="clubs-communities">
+          Clubs & Communities
+        </button>
+        <button class="tab-btn" data-tab="meetups">Meetups & Hangouts</button>
+        <button class="tab-btn" data-tab="group-chats">Group Chats</button>
+        <button class="tab-btn" data-tab="wellness">Social Wellness</button>
       </div>
 
       <!-- Content -->
@@ -835,33 +897,41 @@
         <!-- Smart Events Tab -->
         <div id="smart-events" class="tab-panel active">
           <div class="feature-box">
-            <div class="feature-title"> Smart Events — Personalized for You</div>
+            <div class="feature-title">Smart Events — Personalized for You</div>
             <div class="feature-description">
-              Discover events tailored to your interests. See what's trending, what your friends are attending, and what matches your vibe.
+              Discover events tailored to your interests. See what's trending,
+              what your friends are attending, and what matches your vibe.
             </div>
             <div class="feature-highlight">
-              Smart recommendations based on your interests, past attendance, and what's popular in your area.
+              Smart recommendations based on your interests, past attendance,
+              and what's popular in your area.
             </div>
           </div>
 
           <div class="filter-group">
-            <button class="filter-btn active" data-filter="all">All Events</button>
+            <button class="filter-btn active" data-filter="all">
+              All Events
+            </button>
             <button class="filter-btn" data-filter="today">Today</button>
-            <button class="filter-btn" data-filter="this-week">This Week</button>
+            <button class="filter-btn" data-filter="this-week">
+              This Week
+            </button>
             <button class="filter-btn" data-filter="parties">Parties</button>
-            <button class="filter-btn" data-filter="study">Study Sessions</button>
+            <button class="filter-btn" data-filter="study">
+              Study Sessions
+            </button>
             <button class="filter-btn" data-filter="social">Social</button>
           </div>
 
           <div class="event-grid">
             <div class="event-card">
-              <div class="event-badge"> For You</div>
+              <div class="event-badge">For You</div>
               <div class="event-title">Tech Meetup & Pizza Night</div>
               <span class="event-category">Social</span>
               <div class="event-details">
-                <div> Today at 7:00 PM</div>
-                <div> Student Center</div>
-                <div> 24 interested</div>
+                <div>Today at 7:00 PM</div>
+                <div>Student Center</div>
+                <div>24 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -870,21 +940,21 @@
               <div class="event-title">Study Group Session</div>
               <span class="event-category">Study</span>
               <div class="event-details">
-                <div> Today at 6:30 PM</div>
-                <div> Library</div>
-                <div> 18 interested</div>
+                <div>Today at 6:30 PM</div>
+                <div>Library</div>
+                <div>18 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
 
             <div class="event-card">
-              <div class="event-badge"> For You</div>
+              <div class="event-badge">For You</div>
               <div class="event-title">Weekend Social Hangout</div>
               <span class="event-category">Party</span>
               <div class="event-details">
-                <div> Friday at 10:00 PM</div>
-                <div> Campus Venue</div>
-                <div> 156 interested</div>
+                <div>Friday at 10:00 PM</div>
+                <div>Campus Venue</div>
+                <div>156 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -893,9 +963,9 @@
               <div class="event-title">Yoga & Wellness Circle</div>
               <span class="event-category">Wellness</span>
               <div class="event-details">
-                <div> Tomorrow at 5:30 PM</div>
-                <div> Gym Studio</div>
-                <div> 12 interested</div>
+                <div>Tomorrow at 5:30 PM</div>
+                <div>Gym Studio</div>
+                <div>12 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -904,9 +974,9 @@
               <div class="event-title">Cultural Potluck Dinner</div>
               <span class="event-category">Social</span>
               <div class="event-details">
-                <div> This Week at 6:00 PM</div>
-                <div> Community Space</div>
-                <div> 42 interested</div>
+                <div>This Week at 6:00 PM</div>
+                <div>Community Space</div>
+                <div>42 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -915,9 +985,9 @@
               <div class="event-title">Gaming Tournament</div>
               <span class="event-category">Gaming</span>
               <div class="event-details">
-                <div> Saturday at 8:00 PM</div>
-                <div> Online (Discord)</div>
-                <div> 87 interested</div>
+                <div>Saturday at 8:00 PM</div>
+                <div>Online (Discord)</div>
+                <div>87 interested</div>
               </div>
               <button class="event-btn">Learn More</button>
             </div>
@@ -934,7 +1004,7 @@
             </div>
             <div class="metric-card">
               <div class="metric-label">Popular Right Now</div>
-              <div class="metric-value"> Parties</div>
+              <div class="metric-value">Parties</div>
             </div>
             <div class="metric-card">
               <div class="metric-label">Your Attendance</div>
@@ -946,25 +1016,31 @@
         <!-- Clubs & Communities Tab -->
         <div id="clubs-communities" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title"> Clubs & Communities — Find Your People</div>
+            <div class="feature-title">
+              Clubs & Communities — Find Your People
+            </div>
             <div class="feature-description">
-              Join communities based on your interests. From tech to fitness to cultural exchanges, find where you belong.
+              Join communities based on your interests. From tech to fitness to
+              cultural exchanges, find where you belong.
             </div>
             <div class="feature-highlight">
-              Join group chats with hundreds of like-minded students. No member limits — grow your network.
+              Join group chats with hundreds of like-minded students. No member
+              limits — grow your network.
             </div>
           </div>
 
           <div class="club-grid">
             <div class="club-card">
               <div class="club-name">Developer Society</div>
-              <div class="club-desc">Build cool projects & learn tech together</div>
+              <div class="club-desc">
+                Build cool projects & learn tech together
+              </div>
               <div class="club-tags">
                 <span class="club-tag">#Tech</span>
                 <span class="club-tag">#Coding</span>
                 <span class="club-tag">#Startups</span>
               </div>
-              <div class="club-members"> 324 members</div>
+              <div class="club-members">324 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
@@ -976,19 +1052,21 @@
                 <span class="club-tag">#Casual</span>
                 <span class="club-tag">#Fun</span>
               </div>
-              <div class="club-members"> 89 members</div>
+              <div class="club-members">89 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
             <div class="club-card">
               <div class="club-name">Running Club</div>
-              <div class="club-desc">Early morning runs & fitness community</div>
+              <div class="club-desc">
+                Early morning runs & fitness community
+              </div>
               <div class="club-tags">
                 <span class="club-tag">#Fitness</span>
                 <span class="club-tag">#Wellness</span>
                 <span class="club-tag">#Morning</span>
               </div>
-              <div class="club-members"> 156 members</div>
+              <div class="club-members">156 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
@@ -1000,31 +1078,35 @@
                 <span class="club-tag">#Culture</span>
                 <span class="club-tag">#Food</span>
               </div>
-              <div class="club-members"> 203 members</div>
+              <div class="club-members">203 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
             <div class="club-card">
               <div class="club-name">Entrepreneurship Hub</div>
-              <div class="club-desc">Build businesses & network with founders</div>
+              <div class="club-desc">
+                Build businesses & network with founders
+              </div>
               <div class="club-tags">
                 <span class="club-tag">#Startups</span>
                 <span class="club-tag">#Business</span>
                 <span class="club-tag">#Mentorship</span>
               </div>
-              <div class="club-members"> 112 members</div>
+              <div class="club-members">112 members</div>
               <button class="event-btn">Join Chat</button>
             </div>
 
             <div class="club-card">
               <div class="club-name">First Year Student Community</div>
-              <div class="club-desc">Connect with fellow first-year students</div>
+              <div class="club-desc">
+                Connect with fellow first-year students
+              </div>
               <div class="club-tags">
                 <span class="club-tag">#FirstYears</span>
                 <span class="club-tag">#Support</span>
                 <span class="club-tag">#Friends</span>
               </div>
-              <div class="club-members"> 1.2K members</div>
+              <div class="club-members">1.2K members</div>
               <button class="event-btn">Join Chat</button>
             </div>
           </div>
@@ -1033,12 +1115,14 @@
         <!-- Meetups Tab -->
         <div id="meetups" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title"> Meetups & Hangouts — Casual Plans</div>
+            <div class="feature-title">Meetups & Hangouts — Casual Plans</div>
             <div class="feature-description">
-              Find casual plans: coffee runs, late-night food, study sessions, gym buddies, or just chilling with no agenda.
+              Find casual plans: coffee runs, late-night food, study sessions,
+              gym buddies, or just chilling with no agenda.
             </div>
             <div class="feature-highlight">
-              Create or join meetups in your area. See who's interested and fill those spots quickly.
+              Create or join meetups in your area. See who's interested and fill
+              those spots quickly.
             </div>
           </div>
 
@@ -1048,66 +1132,66 @@
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Late-night food run </div>
+            <div class="meetup-title">Late-night food run</div>
             <div class="meetup-details">
-              <div> Tonight, 11:30 PM</div>
-              <div> Campus Area</div>
-              <div> 4/8 joined</div>
+              <div>Tonight, 11:30 PM</div>
+              <div>Campus Area</div>
+              <div>4/8 joined</div>
             </div>
             <div class="progress-bar">
-              <div class="progress-fill" style="width:50%;"></div>
+              <div class="progress-fill" style="width: 50%"></div>
             </div>
             <button class="event-btn">Join Meetup</button>
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Study group session </div>
+            <div class="meetup-title">Study group session</div>
             <div class="meetup-details">
-              <div> Tomorrow, 7:00 PM</div>
-              <div> Library</div>
-              <div> 3/6 joined</div>
+              <div>Tomorrow, 7:00 PM</div>
+              <div>Library</div>
+              <div>3/6 joined</div>
             </div>
             <div class="progress-bar">
-              <div class="progress-fill" style="width:50%;"></div>
+              <div class="progress-fill" style="width: 50%"></div>
             </div>
             <button class="event-btn">Join Meetup</button>
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Pickup sports game </div>
+            <div class="meetup-title">Pickup sports game</div>
             <div class="meetup-details">
-              <div> Saturday, 6:00 PM</div>
-              <div> Athletic Center</div>
-              <div> 6/10 joined</div>
+              <div>Saturday, 6:00 PM</div>
+              <div>Athletic Center</div>
+              <div>6/10 joined</div>
             </div>
             <div class="progress-bar">
-              <div class="progress-fill" style="width:60%;"></div>
+              <div class="progress-fill" style="width: 60%"></div>
             </div>
             <button class="event-btn">Join Meetup</button>
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Coffee & chill (no agenda) </div>
+            <div class="meetup-title">Coffee & chill (no agenda)</div>
             <div class="meetup-details">
-              <div> Tomorrow, 3:00 PM</div>
-              <div> Campus Café</div>
-              <div> 2/5 joined</div>
+              <div>Tomorrow, 3:00 PM</div>
+              <div>Campus Café</div>
+              <div>2/5 joined</div>
             </div>
             <div class="progress-bar">
-              <div class="progress-fill" style="width:40%;"></div>
+              <div class="progress-fill" style="width: 40%"></div>
             </div>
             <button class="event-btn">Join Meetup</button>
           </div>
 
           <div class="meetup-card">
-            <div class="meetup-title">Movie night </div>
+            <div class="meetup-title">Movie night</div>
             <div class="meetup-details">
-              <div> Friday, 8:00 PM</div>
-              <div> Common Room</div>
-              <div> 7/12 joined</div>
+              <div>Friday, 8:00 PM</div>
+              <div>Common Room</div>
+              <div>7/12 joined</div>
             </div>
             <div class="progress-bar">
-              <div class="progress-fill" style="width:58%;"></div>
+              <div class="progress-fill" style="width: 58%"></div>
             </div>
             <button class="event-btn">Join Meetup</button>
           </div>
@@ -1116,48 +1200,52 @@
         <!-- Group Chats Tab -->
         <div id="group-chats" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title"> Group Chats — No Limits, Unlimited Growth</div>
+            <div class="feature-title">
+              Group Chats — No Limits, Unlimited Growth
+            </div>
             <div class="feature-description">
-              Join or create group chats for any interest. Courses, hobbies, events, wellness — all in one place with no member limits.
+              Join or create group chats for any interest. Courses, hobbies,
+              events, wellness — all in one place with no member limits.
             </div>
             <div class="feature-highlight">
-              Unlike other apps, our group chats can grow as big as you want. Start with 10, grow to 1,000+.
+              Unlike other apps, our group chats can grow as big as you want.
+              Start with 10, grow to 1,000+.
             </div>
           </div>
 
           <div class="chat-card" data-chat="first-year">
             <div class="chat-name">First Year Students</div>
-            <div class="chat-info"> 412 members</div>
+            <div class="chat-info">412 members</div>
             <span class="chat-vibe">Supportive & helpful</span>
           </div>
 
           <div class="chat-card" data-chat="weekend-plans">
             <div class="chat-name">Weekend Plans</div>
-            <div class="chat-info"> 187 members</div>
+            <div class="chat-info">187 members</div>
             <span class="chat-vibe">Chaotic & fun</span>
           </div>
 
           <div class="chat-card" data-chat="study-accountability">
             <div class="chat-name">Study Accountability Group</div>
-            <div class="chat-info"> 94 members</div>
+            <div class="chat-info">94 members</div>
             <span class="chat-vibe">Focused & motivating</span>
           </div>
 
           <div class="chat-card" data-chat="intramural-sports">
             <div class="chat-name">Intramural Sports Squad</div>
-            <div class="chat-info"> 23 members</div>
+            <div class="chat-info">23 members</div>
             <span class="chat-vibe">Competitive & friendly</span>
           </div>
 
           <div class="chat-card" data-chat="dorm-friends">
             <div class="chat-name">Dorm Friends & Hangouts</div>
-            <div class="chat-info"> 156 members</div>
+            <div class="chat-info">156 members</div>
             <span class="chat-vibe">Chaotic & chill</span>
           </div>
 
           <div class="chat-card" data-chat="mental-health">
             <div class="chat-name">Mental Health & Wellness</div>
-            <div class="chat-info"> 67 members</div>
+            <div class="chat-info">67 members</div>
             <span class="chat-vibe">Safe & supportive</span>
           </div>
         </div>
@@ -1165,42 +1253,58 @@
         <!-- Social Wellness Tab -->
         <div id="wellness" class="tab-panel">
           <div class="feature-box">
-            <div class="feature-title"> Social Wellness — Healthy Connections</div>
+            <div class="feature-title">
+              Social Wellness — Healthy Connections
+            </div>
             <div class="feature-description">
-              Build authentic friendships and balance your social life with self-care. We encourage quality connections over quantity.
+              Build authentic friendships and balance your social life with
+              self-care. We encourage quality connections over quantity.
             </div>
             <div class="feature-highlight">
-              Social life matters. But so does your mental health, studies, and personal growth.
+              Social life matters. But so does your mental health, studies, and
+              personal growth.
             </div>
           </div>
 
           <div class="wellness-grid">
             <div class="wellness-card">
-              <div class="wellness-emoji">🎯</div>
+              <div class="wellness-emoji"></div>
               <div class="wellness-title">Social Streaks</div>
-              <div class="wellness-desc">Track how many events you've attended this week. Build consistent, healthy social habits.</div>
+              <div class="wellness-desc">
+                Track how many events you've attended this week. Build
+                consistent, healthy social habits.
+              </div>
             </div>
 
             <div class="wellness-card">
-              <div class="wellness-emoji">⚖️</div>
+              <div class="wellness-emoji"></div>
               <div class="wellness-title">Balance Matters</div>
-              <div class="wellness-desc">Smart suggestions help you balance social time with study sessions, sleep, and personal time.</div>
+              <div class="wellness-desc">
+                Smart suggestions help you balance social time with study
+                sessions, sleep, and personal time.
+              </div>
             </div>
 
             <div class="wellness-card">
-              <div class="wellness-emoji">💎</div>
+              <div class="wellness-emoji"></div>
               <div class="wellness-title">Quality Over Quantity</div>
-              <div class="wellness-desc">Meet people with shared goals & values. Build deep friendships, not just surface connections.</div>
+              <div class="wellness-desc">
+                Meet people with shared goals & values. Build deep friendships,
+                not just surface connections.
+              </div>
             </div>
 
             <div class="wellness-card">
-              <div class="wellness-emoji">🛡️</div>
+              <div class="wellness-emoji"></div>
               <div class="wellness-title">Safe Spaces</div>
-              <div class="wellness-desc">All communities have conduct guidelines to keep everyone safe, inclusive, and respected.</div>
+              <div class="wellness-desc">
+                All communities have conduct guidelines to keep everyone safe,
+                inclusive, and respected.
+              </div>
             </div>
           </div>
 
-          <div class="feature-box" style="margin-top:2rem;">
+          <div class="feature-box" style="margin-top: 2rem">
             <div class="feature-title">Your Social Health Score</div>
             <div class="metric-grid">
               <div class="metric-card">
@@ -1225,7 +1329,10 @@
           <div class="feature-box">
             <div class="feature-title">This Month's Insights</div>
             <div class="feature-description">
-              You've been on a great social streak! You attended 8 events this month, joined 2 new communities, and made meaningful connections with 12 new people. Your balance between social activities and study time is excellent. Keep it up! 🎉
+              You've been on a great social streak! You attended 8 events this
+              month, joined 2 new communities, and made meaningful connections
+              with 12 new people. Your balance between social activities and
+              study time is excellent. Keep it up!
             </div>
           </div>
         </div>
@@ -1241,7 +1348,12 @@
         </div>
         <div class="chat-messages" id="chatMessages"></div>
         <div class="chat-input-area">
-          <input type="text" class="chat-input" id="chatInput" placeholder="Type a message...">
+          <input
+            type="text"
+            class="chat-input"
+            id="chatInput"
+            placeholder="Type a message..."
+          />
           <button class="chat-send-btn" onclick="sendMessage()">Send</button>
         </div>
       </div>
@@ -1250,65 +1362,138 @@
     <script>
       // Chat data with AI-generated messages
       const chatData = {
-        'first-year': {
-          name: 'First Year Students',
+        "first-year": {
+          name: "First Year Students",
           messages: [
-            { name: 'Alex Chen', message: 'Anyone else struggling with the amount of work? 😅' },
-            { name: 'Jordan Smith', message: 'Dude same! My calc assignment is killing me' },
-            { name: 'Morgan Lee', message: 'Study group at the library tomorrow? We can help each other out' },
-            { name: 'Casey Davis', message: 'YES! What time? I\'m free after 3pm' },
-            { name: 'Taylor Brown', message: 'Just found out about the late night café hours. Game changer.' }
-          ]
+            {
+              name: "Alex Chen",
+              message: "Anyone else struggling with the amount of work? 😅",
+            },
+            {
+              name: "Jordan Smith",
+              message: "Dude same! My calc assignment is killing me",
+            },
+            {
+              name: "Morgan Lee",
+              message:
+                "Study group at the library tomorrow? We can help each other out",
+            },
+            {
+              name: "Casey Davis",
+              message: "YES! What time? I'm free after 3pm",
+            },
+            {
+              name: "Taylor Brown",
+              message:
+                "Just found out about the late night café hours. Game changer.",
+            },
+          ],
         },
-        'weekend-plans': {
-          name: 'Weekend Plans',
+        "weekend-plans": {
+          name: "Weekend Plans",
           messages: [
-            { name: 'Jordan Kim', message: '🎉 anyone down for some fun this Friday?' },
-            { name: 'Sam Wilson', message: 'Count me in! What are we doing?' },
-            { name: 'Riley Martinez', message: 'There\'s a party at the dorm! 10pm start' },
-            { name: 'Casey Park', message: 'I\'m in. Anyone need a ride?' },
-            { name: 'Morgan White', message: 'Let\'s grab food after! I know a sick taco place' }
-          ]
+            {
+              name: "Jordan Kim",
+              message: "🎉 anyone down for some fun this Friday?",
+            },
+            { name: "Sam Wilson", message: "Count me in! What are we doing?" },
+            {
+              name: "Riley Martinez",
+              message: "There's a party at the dorm! 10pm start",
+            },
+            { name: "Casey Park", message: "I'm in. Anyone need a ride?" },
+            {
+              name: "Morgan White",
+              message: "Let's grab food after! I know a sick taco place",
+            },
+          ],
         },
-        'study-accountability': {
-          name: 'Study Accountability Group',
+        "study-accountability": {
+          name: "Study Accountability Group",
           messages: [
-            { name: 'Jamie Taylor', message: 'Starting my study session now. 2 hour goal. Who\'s with me?' },
-            { name: 'Alex Rodriguez', message: 'I\'m in! Doing organic chem. This is gonna be rough 💪' },
-            { name: 'Jordan Turner', message: 'Just finished my first hour! Feeling good' },
-            { name: 'Casey Chen', message: 'How\'s everyone doing? I\'m halfway through history notes' },
-            { name: 'Morgan Foster', message: 'Great work everyone! Let\'s keep this momentum going' }
-          ]
+            {
+              name: "Jamie Taylor",
+              message:
+                "Starting my study session now. 2 hour goal. Who's with me?",
+            },
+            {
+              name: "Alex Rodriguez",
+              message: "I'm in! Doing organic chem. This is gonna be rough ",
+            },
+            {
+              name: "Jordan Turner",
+              message: "Just finished my first hour! Feeling good",
+            },
+            {
+              name: "Casey Chen",
+              message:
+                "How's everyone doing? I'm halfway through history notes",
+            },
+            {
+              name: "Morgan Foster",
+              message: "Great work everyone! Let's keep this momentum going",
+            },
+          ],
         },
-        'intramural-sports': {
-          name: 'Intramural Sports Squad',
+        "intramural-sports": {
+          name: "Intramural Sports Squad",
           messages: [
-            { name: 'Alex Young', message: 'Game this Saturday at 6pm. Who\'s playing?' },
-            { name: 'Jordan Davis', message: 'I\'m in! Been training all week' },
-            { name: 'Riley Johnson', message: 'Let\'s GO!! We\'re taking the championship this year' },
-            { name: 'Casey Moore', message: 'See you there. Bringing my A game 🏆' }
-          ]
+            {
+              name: "Alex Young",
+              message: "Game this Saturday at 6pm. Who's playing?",
+            },
+            { name: "Jordan Davis", message: "I'm in! Been training all week" },
+            {
+              name: "Riley Johnson",
+              message: "Let's GO!! We're taking the championship this year",
+            },
+            {
+              name: "Casey Moore",
+              message: "See you there. Bringing my A game ",
+            },
+          ],
         },
-        'dorm-friends': {
-          name: 'Dorm Friends & Hangouts',
+        "dorm-friends": {
+          name: "Dorm Friends & Hangouts",
           messages: [
-            { name: 'Morgan Blake', message: 'Movie night in the common room? Got snacks!' },
-            { name: 'Taylor Scott', message: 'YES!! What are we watching?' },
-            { name: 'Casey Green', message: 'I\'ll bring popcorn. 8pm?' },
-            { name: 'Jordan Hall', message: 'Inviting the whole floor. This is gonna be fun' },
-            { name: 'Alex Murphy', message: 'Can\'t wait! See you all soon' }
-          ]
+            {
+              name: "Morgan Blake",
+              message: "Movie night in the common room? Got snacks!",
+            },
+            { name: "Taylor Scott", message: "YES!! What are we watching?" },
+            { name: "Casey Green", message: "I'll bring popcorn. 8pm?" },
+            {
+              name: "Jordan Hall",
+              message: "Inviting the whole floor. This is gonna be fun",
+            },
+            { name: "Alex Murphy", message: "Can't wait! See you all soon" },
+          ],
         },
-        'mental-health': {
-          name: 'Mental Health & Wellness',
+        "mental-health": {
+          name: "Mental Health & Wellness",
           messages: [
-            { name: 'Riley Parker', message: 'Feeling stressed about exams. Anyone else?' },
-            { name: 'Morgan Santos', message: 'You\'re not alone. Here\'s what\'s been helping me...' },
-            { name: 'Casey Bell', message: 'Campus counseling is amazing. Highly recommend' },
-            { name: 'Jordan Wood', message: 'Remember to take breaks and breathe. You got this! 💙' },
-            { name: 'Alex Clark', message: 'Group yoga session tomorrow? Let\'s destress together' }
-          ]
-        }
+            {
+              name: "Riley Parker",
+              message: "Feeling stressed about exams. Anyone else?",
+            },
+            {
+              name: "Morgan Santos",
+              message: "You're not alone. Here's what's been helping me...",
+            },
+            {
+              name: "Casey Bell",
+              message: "Campus counseling is amazing. Highly recommend",
+            },
+            {
+              name: "Jordan Wood",
+              message: "Remember to take breaks and breathe. You got this!",
+            },
+            {
+              name: "Alex Clark",
+              message: "Group yoga session tomorrow? Let's destress together",
+            },
+          ],
+        },
       };
 
       let currentChat = null;
@@ -1317,52 +1502,52 @@
       function openChat(chatId) {
         currentChat = chatId;
         const chat = chatData[chatId];
-        const modal = document.getElementById('chatModal');
-        const title = document.getElementById('chatTitle');
-        const messagesContainer = document.getElementById('chatMessages');
+        const modal = document.getElementById("chatModal");
+        const title = document.getElementById("chatTitle");
+        const messagesContainer = document.getElementById("chatMessages");
 
         title.textContent = chat.name;
-        messagesContainer.innerHTML = '';
+        messagesContainer.innerHTML = "";
         userMessages = [];
 
         // Display initial messages
-        chat.messages.forEach(msg => {
+        chat.messages.forEach((msg) => {
           const messageEl = createMessageElement(msg.name, msg.message, false);
           messagesContainer.appendChild(messageEl);
         });
 
-        modal.classList.add('active');
+        modal.classList.add("active");
       }
 
       function closeChat() {
-        const modal = document.getElementById('chatModal');
-        modal.classList.remove('active');
+        const modal = document.getElementById("chatModal");
+        modal.classList.remove("active");
         currentChat = null;
       }
 
       function createMessageElement(name, text, isOwn) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${isOwn ? 'own' : ''}`;
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `message ${isOwn ? "own" : ""}`;
 
         if (!isOwn) {
-          const avatarDiv = document.createElement('div');
-          avatarDiv.className = 'message-avatar';
+          const avatarDiv = document.createElement("div");
+          avatarDiv.className = "message-avatar";
           avatarDiv.textContent = name.charAt(0);
           messageDiv.appendChild(avatarDiv);
         }
 
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'message-content';
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "message-content";
 
         if (!isOwn) {
-          const nameEl = document.createElement('div');
-          nameEl.className = 'message-name';
+          const nameEl = document.createElement("div");
+          nameEl.className = "message-name";
           nameEl.textContent = name;
           contentDiv.appendChild(nameEl);
         }
 
-        const textEl = document.createElement('div');
-        textEl.className = 'message-text';
+        const textEl = document.createElement("div");
+        textEl.className = "message-text";
         textEl.textContent = text;
         contentDiv.appendChild(textEl);
 
@@ -1371,83 +1556,104 @@
       }
 
       function sendMessage() {
-        const input = document.getElementById('chatInput');
+        const input = document.getElementById("chatInput");
         const message = input.value.trim();
 
         if (!message) return;
 
-        const messagesContainer = document.getElementById('chatMessages');
-        const messageEl = createMessageElement('You', message, true);
+        const messagesContainer = document.getElementById("chatMessages");
+        const messageEl = createMessageElement("You", message, true);
         messagesContainer.appendChild(messageEl);
 
         // Scroll to bottom
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-        input.value = '';
+        input.value = "";
         userMessages.push(message);
 
         // Simulate AI response after a delay
         setTimeout(() => {
           const aiResponses = [
-            '😄 That\'s awesome!',
-            'Totally agree!',
-            'Count me in! 🙌',
-            'That\'s a great idea!',
-            'Let\'s do it! 💪',
-            'Haha true true',
-            'No cap! 🤔',
-            'For real for real',
-            'Let me know the details!',
-            'I\'m down! When though?'
+            "That's awesome!",
+            "Totally agree!",
+            "Count me in! 🙌",
+            "That's a great idea!",
+            "Let's do it! 💪",
+            "Haha true true",
+            "No cap! 🤔",
+            "For real for real",
+            "Let me know the details!",
+            "I'm down! When though?",
           ];
-          const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
-          const randomName = ['Morgan', 'Casey', 'Jordan', 'Alex', 'Riley', 'Taylor'][Math.floor(Math.random() * 6)];
-          
-          const aiMessageEl = createMessageElement(randomName, randomResponse, false);
+          const randomResponse =
+            aiResponses[Math.floor(Math.random() * aiResponses.length)];
+          const randomName = [
+            "Morgan",
+            "Casey",
+            "Jordan",
+            "Alex",
+            "Riley",
+            "Taylor",
+          ][Math.floor(Math.random() * 6)];
+
+          const aiMessageEl = createMessageElement(
+            randomName,
+            randomResponse,
+            false
+          );
           messagesContainer.appendChild(aiMessageEl);
           messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }, 800);
       }
 
       // Allow sending message with Enter key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && document.getElementById('chatInput') === document.activeElement) {
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Enter" &&
+          document.getElementById("chatInput") === document.activeElement
+        ) {
           sendMessage();
         }
       });
 
       // Close chat modal when clicking overlay
-      document.getElementById('chatModal').addEventListener('click', (e) => {
-        if (e.target.id === 'chatModal') {
+      document.getElementById("chatModal").addEventListener("click", (e) => {
+        if (e.target.id === "chatModal") {
           closeChat();
         }
       });
 
       // Tab switching logic
-      document.querySelectorAll('.tab-btn').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
-          document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-panel")
+            .forEach((p) => p.classList.remove("active"));
 
-          btn.classList.add('active');
+          btn.classList.add("active");
           const tabId = btn.dataset.tab;
-          document.getElementById(tabId).classList.add('active');
+          document.getElementById(tabId).classList.add("active");
         });
       });
 
       // Add click listeners to chat cards
-      document.querySelectorAll('.chat-card').forEach((card) => {
-        card.addEventListener('click', () => {
+      document.querySelectorAll(".chat-card").forEach((card) => {
+        card.addEventListener("click", () => {
           const chatId = card.dataset.chat;
           openChat(chatId);
         });
       });
 
       // Filter switching logic
-      document.querySelectorAll('.filter-btn').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
         });
       });
     </script>

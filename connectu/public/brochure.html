@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -225,7 +225,7 @@
           transform 0.15s ease,
           box-shadow 0.15s ease,
           opacity 0.15s ease;
-      
+
 
       .brochure-cta button:hover {
         transform: translateY(-2px);
@@ -287,7 +287,11 @@
     <div class="card">
       <div class="brochure-container">
         <div class="linkedin-profile-section" id="profileSection">
-          <img id="linkedinProfile" class="linkedin-profile" alt="LinkedIn Profile" />
+          <img
+            id="linkedinProfile"
+            class="linkedin-profile"
+            alt="LinkedIn Profile"
+          />
           <div class="profile-name-display" id="profileNameDisplay"></div>
         </div>
 
@@ -302,7 +306,10 @@
         <div class="brochure-intro">
           <h2>About ConnectU</h2>
           <p>
-            ConnectU is a revolutionary platform designed to bridge the gap between students, educational institutions, and businesses. We connect you to opportunities, resources, and communities that matter most to your success.
+            ConnectU is a revolutionary platform designed to bridge the gap
+            between students, educational institutions, and businesses. We
+            connect you to opportunities, resources, and communities that matter
+            most to your success.
           </p>
         </div>
 
@@ -312,7 +319,8 @@
             <div class="perspective-icon">🎓</div>
             <h3>For Students</h3>
             <p>
-              Your all-in-one platform to navigate college life with confidence and purpose.
+              Your all-in-one platform to navigate college life with confidence
+              and purpose.
             </p>
             <ul>
               <li>Discover education resources and learning paths</li>
@@ -328,7 +336,8 @@
             <div class="perspective-icon">🏫</div>
             <h3>For Universities</h3>
             <p>
-              Enhance student engagement and institutional success with modern connectivity tools.
+              Enhance student engagement and institutional success with modern
+              connectivity tools.
             </p>
             <ul>
               <li>Increase student engagement and retention</li>
@@ -344,7 +353,8 @@
             <div class="perspective-icon">💼</div>
             <h3>For Businesses</h3>
             <p>
-              Access a talented pool of students and build your employer brand on campus.
+              Access a talented pool of students and build your employer brand
+              on campus.
             </p>
             <ul>
               <li>Post jobs and internship opportunities</li>
@@ -358,7 +368,10 @@
 
         <div class="brochure-cta">
           <h3>Ready to Join ConnectU?</h3>
-          <p>Sign up today and start exploring opportunities, building connections, and making the most of your college experience.</p>
+          <p>
+            Sign up today and start exploring opportunities, building
+            connections, and making the most of your college experience.
+          </p>
           <button id="ctaSignUpBtn">Get Started</button>
         </div>
       </div>
@@ -366,26 +379,26 @@
 
     <script src="./js/animated-background.js"></script>
     <script>
-      document.getElementById('backBtn').addEventListener('click', () => {
+      document.getElementById("backBtn").addEventListener("click", () => {
         window.history.back();
       });
 
-      document.getElementById('signUpBtn').addEventListener('click', () => {
-        window.location.href = './index.html?action=signup';
+      document.getElementById("signUpBtn").addEventListener("click", () => {
+        window.location.href = "./index.html?action=signup";
       });
 
-      document.getElementById('ctaSignUpBtn').addEventListener('click', () => {
-        window.location.href = './index.html?action=signup';
+      document.getElementById("ctaSignUpBtn").addEventListener("click", () => {
+        window.location.href = "./index.html?action=signup";
       });
 
       // Load and display LinkedIn profile picture
       (function loadLinkedInProfile() {
         try {
-          const userData = sessionStorage.getItem('connectu_user');
+          const userData = sessionStorage.getItem("connectu_user");
           if (userData) {
             const user = JSON.parse(userData);
             const linkedinUrl = user.linkedinUrl;
-            
+
             if (linkedinUrl) {
               // Extract profile ID or username from LinkedIn URL
               function extractLinkedInProfileId(url) {
@@ -410,35 +423,43 @@
                   const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
                   const response = await fetch(proxyUrl);
                   const data = await response.json();
-                  
+
                   if (data.contents) {
                     // Try multiple patterns to extract profile picture
                     // Pattern 1: Look for og:image meta tag
-                    const ogImageMatch = data.contents.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+                    const ogImageMatch = data.contents.match(
+                      /<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i
+                    );
                     if (ogImageMatch && ogImageMatch[1]) {
                       return ogImageMatch[1];
                     }
 
                     // Pattern 2: Look for profile photo in img tags
-                    const imgMatch = data.contents.match(/<img[^>]*class="[^"]*profile-photo[^"]*"[^>]*src="([^"]+)"/i);
+                    const imgMatch = data.contents.match(
+                      /<img[^>]*class="[^"]*profile-photo[^"]*"[^>]*src="([^"]+)"/i
+                    );
                     if (imgMatch && imgMatch[1]) {
                       return imgMatch[1];
                     }
-                    
+
                     // Pattern 3: Look for any image with profile in alt or class
-                    const altMatch = data.contents.match(/<img[^>]*(?:alt|class)="[^"]*profile[^"]*"[^>]*src="([^"]+)"/i);
+                    const altMatch = data.contents.match(
+                      /<img[^>]*(?:alt|class)="[^"]*profile[^"]*"[^>]*src="([^"]+)"/i
+                    );
                     if (altMatch && altMatch[1]) {
                       return altMatch[1];
                     }
 
                     // Pattern 4: Look for LinkedIn CDN image URLs in the content
-                    const cdnMatch = data.contents.match(/https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s]+/i);
+                    const cdnMatch = data.contents.match(
+                      /https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s]+/i
+                    );
                     if (cdnMatch && cdnMatch[0]) {
                       return cdnMatch[0];
                     }
                   }
                 } catch (error) {
-                  console.log('Could not fetch via proxy:', error);
+                  console.log("Could not fetch via proxy:", error);
                 }
 
                 // Fallback: Try LinkedIn's public profile picture endpoint
@@ -455,16 +476,21 @@
               }
 
               const profileId = extractLinkedInProfileId(linkedinUrl);
-              
+
               if (profileId) {
                 fetchLinkedInProfilePicture(profileId)
-                  .then(profilePictureUrl => {
-                    const profileImg = document.getElementById('linkedinProfile');
-                    const profileSection = document.getElementById('profileSection');
-                    const nameDisplay = document.getElementById('profileNameDisplay');
+                  .then((profilePictureUrl) => {
+                    const profileImg =
+                      document.getElementById("linkedinProfile");
+                    const profileSection =
+                      document.getElementById("profileSection");
+                    const nameDisplay =
+                      document.getElementById("profileNameDisplay");
 
                     // Extract name from LinkedIn URL or use profile ID
-                    const displayName = profileId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    const displayName = profileId
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (l) => l.toUpperCase());
 
                     if (nameDisplay) {
                       nameDisplay.textContent = displayName;
@@ -473,50 +499,63 @@
                     if (profilePictureUrl && profileImg) {
                       profileImg.src = profilePictureUrl;
                       profileImg.alt = `${displayName} LinkedIn Profile`;
-                      profileImg.onload = function() {
+                      profileImg.onload = function () {
                         if (profileSection) {
-                          profileSection.style.display = 'block';
+                          profileSection.style.display = "block";
                         }
                       };
-                      profileImg.onerror = function() {
-                        console.log('Profile picture failed to load from URL:', profilePictureUrl);
+                      profileImg.onerror = function () {
+                        console.log(
+                          "Profile picture failed to load from URL:",
+                          profilePictureUrl
+                        );
                         // Try using a default LinkedIn icon or placeholder
                         if (profileSection) {
-                          profileSection.style.display = 'none';
+                          profileSection.style.display = "none";
                         }
                       };
                     } else {
                       // If we can't get the picture, try using LinkedIn's public profile image service
                       // This is a workaround - LinkedIn doesn't provide direct public access
-                      console.log('Could not fetch LinkedIn profile picture for:', profileId);
+                      console.log(
+                        "Could not fetch LinkedIn profile picture for:",
+                        profileId
+                      );
                       if (profileSection) {
-                        profileSection.style.display = 'none';
+                        profileSection.style.display = "none";
                       }
                     }
                   })
-                  .catch(error => {
-                    console.error('Error loading LinkedIn profile picture:', error);
-                    const profileSection = document.getElementById('profileSection');
+                  .catch((error) => {
+                    console.error(
+                      "Error loading LinkedIn profile picture:",
+                      error
+                    );
+                    const profileSection =
+                      document.getElementById("profileSection");
                     if (profileSection) {
-                      profileSection.style.display = 'none';
+                      profileSection.style.display = "none";
                     }
                   });
               } else {
-                console.log('Could not extract profile ID from LinkedIn URL:', linkedinUrl);
+                console.log(
+                  "Could not extract profile ID from LinkedIn URL:",
+                  linkedinUrl
+                );
               }
             } else {
               // No LinkedIn URL provided
-              const profileSection = document.getElementById('profileSection');
+              const profileSection = document.getElementById("profileSection");
               if (profileSection) {
-                profileSection.style.display = 'none';
+                profileSection.style.display = "none";
               }
             }
           }
         } catch (error) {
-          console.error('Error loading LinkedIn profile:', error);
-          const profileSection = document.getElementById('profileSection');
+          console.error("Error loading LinkedIn profile:", error);
+          const profileSection = document.getElementById("profileSection");
           if (profileSection) {
-            profileSection.style.display = 'none';
+            profileSection.style.display = "none";
           }
         }
       })();
