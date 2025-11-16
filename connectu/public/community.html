@@ -352,15 +352,27 @@
         </div>
       `,
       roommate: `
-        <h2> Roommate Finder</h2>
-        <ul class="feature-list">
-          <li><strong>Matchmaking Quiz:</strong> Fill out a detailed lifestyle and preferences quiz covering sleep schedule, study habits, cleanliness level, social preferences, pet allergies, and more. Get a compatibility score with every potential roommate.</li>
-          <li><strong>Profile Cards:</strong> View detailed profiles with bios, interests, major/year, social links, lifestyle photos, and mutual connections. See verified student status and background check options.</li>
-          <li><strong>Direct Messaging:</strong> Chat securely with potential roommates in-app before making a decision. Share documents like lease agreements, schedule video calls, and exchange references.</li>
-          <li><strong>Roommate Groups:</strong> Form or join groups for shared housing arrangements (2-4+ roommates). Group chat, shared calendar, chore rotation planner, and expense splitting tools included.</li>
-          <li><strong>Compatibility Insights:</strong> See detailed breakdowns of your compatibility with potential roommates based on habits, schedules, and values. Get tips for successful cohabitation.</li>
-          <li><strong>Safety Features:</strong> Report concerns anonymously, verify student status, and access mediation resources if conflicts arise.</li>
-        </ul>
+        <h2>Roommate Finder</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+          <button onclick="window.startRoommateQuiz()" style="padding: 1rem; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+            Take Quiz
+          </button>
+          <button onclick="window.viewRoommateMatches()" style="padding: 1rem; background: #ec4899; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+            View Matches
+          </button>
+          <button onclick="window.viewRoommateGroups()" style="padding: 1rem; background: #f59e0b; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+            View Groups
+          </button>
+          <button onclick="window.viewMessages()" style="padding: 1rem; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+            Messages
+          </button>
+        </div>
+        <div id="roommateContent" style="min-height: 400px;">
+          <div style="text-align: center; padding: 3rem; color: #94a3b8;">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">Find your perfect roommate match</p>
+            <p style="font-size: 0.9rem;">Start with the quiz, get matched, and connect</p>
+          </div>
+        </div>
       `,
       community: `
         <h2> Community Events</h2>
@@ -646,6 +658,376 @@
       }
       
       grid.innerHTML = html;
+    };
+
+    // Roommate Finder Database & Functions
+    const roommateDatabase = [
+      { id: 1, name: 'Alex Chen', major: 'Computer Science', year: 'Year 3', bio: 'Night owl programmer who loves coding projects and gaming', sleepSchedule: 'night', cleanliness: 'moderate', studyHabits: 'focused', socialPreference: 'moderate', petAllergy: 'none', interests: 'Coding, Gaming, Anime', verified: true, initial: 'AC' },
+      { id: 2, name: 'Jordan Smith', major: 'Business', year: 'Year 2', bio: 'Social butterfly looking for a fun, outgoing roommate', sleepSchedule: 'early', cleanliness: 'high', studyHabits: 'flexible', socialPreference: 'high', petAllergy: 'cats', interests: 'Networking, Events, Travel', verified: true, initial: 'JS' },
+      { id: 3, name: 'Maya Patel', major: 'Engineering', year: 'Year 4', bio: 'Quiet, focused student seeking like-minded roommate', sleepSchedule: 'early', cleanliness: 'high', studyHabits: 'very focused', socialPreference: 'low', petAllergy: 'none', interests: 'Research, Reading, Yoga', verified: true, initial: 'MP' },
+      { id: 4, name: 'Chris Williams', major: 'Music', year: 'Year 3', bio: 'Creative musician open to sharing music projects', sleepSchedule: 'variable', cleanliness: 'moderate', studyHabits: 'creative', socialPreference: 'moderate', petAllergy: 'dogs', interests: 'Music, Art, Film', verified: true, initial: 'CW' },
+      { id: 5, name: 'Sam Rodriguez', major: 'Biology', year: 'Year 2', bio: 'Health-conscious student who loves fitness and cooking', sleepSchedule: 'early', cleanliness: 'high', studyHabits: 'moderate', socialPreference: 'moderate', petAllergy: 'none', interests: 'Fitness, Cooking, Hiking', verified: true, initial: 'SR' },
+      { id: 6, name: 'Taylor Kim', major: 'Psychology', year: 'Year 3', bio: 'Empathetic listener interested in wellness and community', sleepSchedule: 'moderate', cleanliness: 'high', studyHabits: 'moderate', socialPreference: 'high', petAllergy: 'none', interests: 'Wellness, Volunteering, Coffee', verified: true, initial: 'TK' },
+    ];
+
+    const roommateGroups = [
+      { id: 1, name: '4BR House - Downtown', size: '3/4', budget: '$400-450/month', members: ['Alex', 'Jordan', 'Sam'], interests: 'Social, Close to Campus', created: '2 weeks ago' },
+      { id: 2, name: '2BR Apt - Quiet Study', size: '1/2', budget: '$600/month', members: ['Maya'], interests: 'Focused, Peaceful', created: '3 days ago' },
+      { id: 3, name: '3BR House - Creative', size: '2/3', budget: '$500/month', members: ['Chris', 'Taylor'], interests: 'Artistic, Supportive', created: '1 week ago' },
+    ];
+
+    window.startRoommateQuiz = function() {
+      const container = document.getElementById('roommateContent');
+      
+      const quizHTML = `
+        <div style="max-width: 700px; margin: 0 auto;">
+          <h3 style="color: #fff; margin-bottom: 1.5rem;">Compatibility Quiz</h3>
+          
+          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+            <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">1. What's your sleep schedule?</label>
+            <select id="sleepSchedule" style="width: 100%; padding: 0.5rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 6px;">
+              <option value="">Select an option</option>
+              <option value="early">Early bird (sleep by 11pm)</option>
+              <option value="moderate">Moderate (sleep around 12-1am)</option>
+              <option value="night">Night owl (sleep after 1am)</option>
+              <option value="variable">Variable/Flexible</option>
+            </select>
+          </div>
+
+          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+            <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">2. How clean/tidy do you prefer your space?</label>
+            <select id="cleanliness" style="width: 100%; padding: 0.5rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 6px;">
+              <option value="">Select an option</option>
+              <option value="low">Relaxed (things can be messy)</option>
+              <option value="moderate">Moderate (reasonably clean)</option>
+              <option value="high">High (very clean and organized)</option>
+            </select>
+          </div>
+
+          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+            <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">3. How do you approach studying/work?</label>
+            <select id="studyHabits" style="width: 100%; padding: 0.5rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 6px;">
+              <option value="">Select an option</option>
+              <option value="flexible">Flexible (can study anywhere)</option>
+              <option value="moderate">Moderate (need quiet sometimes)</option>
+              <option value="focused">Focused (need dedicated study time)</option>
+              <option value="very focused">Very focused (need strict quiet hours)</option>
+            </select>
+          </div>
+
+          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+            <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">4. How social do you prefer to be?</label>
+            <select id="socialPreference" style="width: 100%; padding: 0.5rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 6px;">
+              <option value="">Select an option</option>
+              <option value="low">Low (prefer solitude)</option>
+              <option value="moderate">Moderate (occasional hangouts)</option>
+              <option value="high">High (love having people over)</option>
+            </select>
+          </div>
+
+          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+            <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">5. Any pet allergies?</label>
+            <select id="petAllergy" style="width: 100%; padding: 0.5rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 6px;">
+              <option value="">Select an option</option>
+              <option value="none">No allergies</option>
+              <option value="cats">Cat allergy</option>
+              <option value="dogs">Dog allergy</option>
+              <option value="both">Both cat & dog allergies</option>
+            </select>
+          </div>
+
+          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+            <label style="display: block; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">6. Your interests/hobbies (comma-separated)</label>
+            <input id="interests" type="text" placeholder="e.g. Gaming, Coding, Sports" style="width: 100%; padding: 0.5rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 6px; box-sizing: border-box;">
+          </div>
+
+          <button onclick="window.submitQuiz()" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer;">
+            Submit Quiz & Get Matches
+          </button>
+        </div>
+      `;
+      
+      container.innerHTML = quizHTML;
+    };
+
+    window.submitQuiz = function() {
+      const answers = {
+        sleepSchedule: document.getElementById('sleepSchedule').value,
+        cleanliness: document.getElementById('cleanliness').value,
+        studyHabits: document.getElementById('studyHabits').value,
+        socialPreference: document.getElementById('socialPreference').value,
+        petAllergy: document.getElementById('petAllergy').value,
+        interests: document.getElementById('interests').value,
+      };
+
+      if (!answers.sleepSchedule || !answers.cleanliness || !answers.studyHabits || !answers.socialPreference || !answers.petAllergy) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      // Save to sessionStorage
+      const user = JSON.parse(sessionStorage.getItem('connectu_user') || '{}');
+      user.roommatePreferences = answers;
+      sessionStorage.setItem('connectu_user', JSON.stringify(user));
+
+      window.viewRoommateMatches();
+    };
+
+    window.calculateCompatibility = function(userAnswers, roommate) {
+      let score = 0;
+      
+      if (userAnswers.sleepSchedule === roommate.sleepSchedule) score += 25;
+      else if ((userAnswers.sleepSchedule === 'moderate' || roommate.sleepSchedule === 'moderate') ||
+               (userAnswers.sleepSchedule === 'variable' || roommate.sleepSchedule === 'variable')) score += 15;
+      
+      if (userAnswers.cleanliness === roommate.cleanliness) score += 25;
+      else if (Math.abs(['low', 'moderate', 'high'].indexOf(userAnswers.cleanliness) - 
+                         ['low', 'moderate', 'high'].indexOf(roommate.cleanliness)) === 1) score += 15;
+      
+      if (userAnswers.studyHabits === roommate.studyHabits) score += 20;
+      else score += 5;
+      
+      if (userAnswers.socialPreference === roommate.socialPreference) score += 20;
+      else score += 5;
+      
+      if (userAnswers.petAllergy === 'none' || userAnswers.petAllergy === roommate.petAllergy || roommate.petAllergy === 'none') score += 10;
+      
+      return Math.min(100, score);
+    };
+
+    window.viewRoommateMatches = function() {
+      const container = document.getElementById('roommateContent');
+      const user = JSON.parse(sessionStorage.getItem('connectu_user') || '{}');
+      
+      if (!user.roommatePreferences) {
+        container.innerHTML = '<div style="text-align: center; padding: 2rem; color: #94a3b8;"><p>Please take the quiz first to get matches!</p><button onclick="window.startRoommateQuiz()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">Take Quiz</button></div>';
+        return;
+      }
+
+      let html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">';
+      
+      roommateDatabase.forEach(roommate => {
+        const compatibility = window.calculateCompatibility(user.roommatePreferences, roommate);
+        const compatColor = compatibility > 75 ? '#10b981' : compatibility > 50 ? '#f59e0b' : '#ef4444';
+        
+        html += `
+          <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.05)); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; cursor: pointer;" onmouseover="this.style.boxShadow='0 12px 24px rgba(139, 92, 246, 0.3)'; this.style.transform='translateY(-5px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; color: white; font-weight: 700; font-size: 1.2rem;">${roommate.initial}</div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; text-align: center;">${roommate.name}</div>
+            <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem; text-align: center;">${roommate.major} • ${roommate.year}</div>
+            <div style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem; font-style: italic;">"${roommate.bio}"</div>
+            
+            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 0.75rem; margin-bottom: 1rem;">
+              <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Interests: ${roommate.interests}</div>
+              <div style="font-size: 0.8rem; color: #a7c1d9;">Sleep: ${roommate.sleepSchedule} • Clean: ${roommate.cleanliness}</div>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 0.75rem; margin-bottom: 1rem; text-align: center;">
+              <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.3rem;">Compatibility Score</div>
+              <div style="font-size: 1.8rem; font-weight: 800; color: ${compatColor};">${compatibility}%</div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+              <button onclick="window.viewRoommateProfile(${roommate.id})" style="padding: 0.5rem; background: rgba(99, 102, 241, 0.3); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;">Profile</button>
+              <button onclick="window.startChat(${roommate.id})" style="padding: 0.5rem; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;">Chat</button>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += '</div>';
+      container.innerHTML = html;
+    };
+
+    window.viewRoommateProfile = function(roommateId) {
+      const roommate = roommateDatabase.find(r => r.id === roommateId);
+      if (!roommate) return;
+      
+      const container = document.getElementById('roommateContent');
+      const compatibilityDetails = {
+        sleep: 'Moderate compatibility on sleep schedules - try setting quiet hours for consideration',
+        clean: 'Great match! You both prefer similar cleanliness levels',
+        study: 'Different study styles - clear boundaries recommended',
+        social: 'Perfect match for social compatibility',
+        pets: 'No pet conflicts',
+        shared: 'Both interested in gaming and movies'
+      };
+
+      const html = `
+        <div style="max-width: 600px; margin: 0 auto;">
+          <button onclick="window.viewRoommateMatches()" style="margin-bottom: 1rem; padding: 0.5rem 1rem; background: rgba(99, 102, 241, 0.3); color: #fff; border: none; border-radius: 6px; cursor: pointer;">← Back to Matches</button>
+          
+          <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.05)); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 2rem;">
+            <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-weight: 700; font-size: 2rem;">${roommate.initial}</div>
+            <div style="font-size: 1.8rem; font-weight: 700; color: #fff; text-align: center; margin-bottom: 0.5rem;">${roommate.name}</div>
+            <div style="font-size: 1rem; color: #94a3b8; text-align: center; margin-bottom: 2rem;">Verified Student | ${roommate.major} • ${roommate.year}</div>
+            
+            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+              <p style="color: #cbd5e1; font-size: 1rem; margin: 0;">"${roommate.bio}"</p>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+              <h4 style="color: #fff; margin-bottom: 1rem;">Lifestyle Preferences</h4>
+              <div style="display: grid; gap: 0.75rem;">
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 0.75rem; border-radius: 6px; color: #cbd5e1;">
+                  <strong>Sleep Schedule:</strong> ${roommate.sleepSchedule}
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 0.75rem; border-radius: 6px; color: #cbd5e1;">
+                  <strong>Cleanliness:</strong> ${roommate.cleanliness}
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 0.75rem; border-radius: 6px; color: #cbd5e1;">
+                  <strong>Study Habits:</strong> ${roommate.studyHabits}
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 0.75rem; border-radius: 6px; color: #cbd5e1;">
+                  <strong>Social Preference:</strong> ${roommate.socialPreference}
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 0.75rem; border-radius: 6px; color: #cbd5e1;">
+                  <strong>Pet Allergies:</strong> ${roommate.petAllergy}
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 0.75rem; border-radius: 6px; color: #cbd5e1;">
+                  <strong>Interests:</strong> ${roommate.interests}
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+              <h4 style="color: #fff; margin-bottom: 1rem;">Compatibility Insights</h4>
+              <div style="display: grid; gap: 0.75rem;">
+                <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 0.75rem; border-radius: 6px; color: #cbd5e1;">
+                  ${compatibilityDetails.sleep}
+                </div>
+                <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 0.75rem; border-radius: 6px; color: #cbd5e1;">
+                  ${compatibilityDetails.clean}
+                </div>
+                <div style="background: rgba(59, 130, 246, 0.1); border-left: 3px solid #3b82f6; padding: 0.75rem; border-radius: 6px; color: #cbd5e1;">
+                  ${compatibilityDetails.study}
+                </div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <button onclick="window.startChat(${roommate.id})" style="padding: 1rem; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Send Message</button>
+              <button onclick="alert('Video call feature coming soon!')" style="padding: 1rem; background: #06b6d4; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Schedule Call</button>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      container.innerHTML = html;
+    };
+
+    window.startChat = function(roommateId) {
+      const roommate = roommateDatabase.find(r => r.id === roommateId);
+      const container = document.getElementById('roommateContent');
+      
+      const html = `
+        <div style="max-width: 600px; margin: 0 auto;">
+          <button onclick="window.viewRoommateMatches()" style="margin-bottom: 1rem; padding: 0.5rem 1rem; background: rgba(99, 102, 241, 0.3); color: #fff; border: none; border-radius: 6px; cursor: pointer;">← Back to Matches</button>
+          
+          <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.05)); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem;">
+            <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 1rem;">Chat with ${roommate.name}</div>
+            
+            <div id="chatMessages" style="background: rgba(15, 23, 42, 0.5); border-radius: 8px; padding: 1rem; height: 300px; overflow-y: auto; margin-bottom: 1rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+              <div style="text-align: center; color: #94a3b8; padding: 1rem;">No messages yet. Start the conversation!</div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem;">
+              <input id="chatInput" type="text" placeholder="Type your message..." style="padding: 0.75rem; background: rgba(15, 23, 42, 0.8); color: #fff; border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 6px; box-sizing: border-box;">
+              <button onclick="window.sendChatMessage(${roommateId})" style="padding: 0.75rem 1rem; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer;">Send</button>
+            </div>
+
+            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(99, 102, 241, 0.2);">
+              <button onclick="alert('Share documents feature coming soon!')" style="padding: 0.5rem 1rem; background: rgba(59, 130, 246, 0.2); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; margin-right: 0.5rem;">Share Documents</button>
+              <button onclick="alert('Video call feature coming soon!')" style="padding: 0.5rem 1rem; background: rgba(59, 130, 246, 0.2); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;">Video Call</button>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      container.innerHTML = html;
+    };
+
+    window.sendChatMessage = function(roommateId) {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      if (!message) return;
+      
+      const messagesDiv = document.getElementById('chatMessages');
+      const messageHTML = `
+        <div style="margin-bottom: 0.75rem; text-align: right;">
+          <div style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.75rem 1rem; border-radius: 12px; max-width: 80%; word-wrap: break-word;">
+            ${message}
+          </div>
+          <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem;">Just now</div>
+        </div>
+      `;
+      
+      messagesDiv.innerHTML += messageHTML;
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      input.value = '';
+    };
+
+    window.viewRoommateGroups = function() {
+      const container = document.getElementById('roommateContent');
+      
+      let html = `
+        <div style="margin-bottom: 1.5rem;">
+          <button onclick="alert('Create group feature coming soon!')" style="padding: 0.75rem 1.5rem; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Create Group</button>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
+      `;
+      
+      roommateGroups.forEach(group => {
+        html += `
+          <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.05)); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; cursor: pointer;" onclick="alert('View group details coming soon!')">
+            <div style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">${group.name}</div>
+            <div style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">
+              <div>Members: ${group.size}</div>
+              <div>${group.budget}</div>
+              <div>Created ${group.created}</div>
+            </div>
+            <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 1rem;">
+              <strong>Members:</strong> ${group.members.join(', ')}
+            </div>
+            <div style="font-size: 0.85rem; color: #a7c1d9;">
+              <strong>Interests:</strong> ${group.interests}
+            </div>
+            <button onclick="event.stopPropagation(); alert('Join group feature coming soon!')" style="width: 100%; margin-top: 1rem; padding: 0.5rem; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Join Group</button>
+          </div>
+        `;
+      });
+      
+      html += '</div>';
+      container.innerHTML = html;
+    };
+
+    window.viewMessages = function() {
+      const container = document.getElementById('roommateContent');
+      
+      const html = `
+        <div style="max-width: 800px; margin: 0 auto;">
+          <div style="display: grid; grid-template-columns: 250px 1fr; gap: 1.5rem; min-height: 500px;">
+            <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1rem;">
+              <h3 style="color: #fff; margin-bottom: 1rem; font-size: 1rem;">Conversations</h3>
+              ${roommateDatabase.slice(0, 3).map(rm => `
+                <div onclick="window.startChat(${rm.id})" style="padding: 0.75rem; background: rgba(99, 102, 241, 0.2); border-radius: 6px; margin-bottom: 0.5rem; cursor: pointer; color: #cbd5e1; border-left: 3px solid #3b82f6;">
+                  ${rm.name}
+                  <div style="font-size: 0.75rem; color: #94a3b8;">Online now</div>
+                </div>
+              `).join('')}
+            </div>
+            
+            <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1rem;">
+              <div style="text-align: center; color: #94a3b8; padding: 5rem 1rem;">
+                <p>Select a conversation to start messaging</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      container.innerHTML = html;
     };
 
     // Initial render
