@@ -33,10 +33,20 @@ const renderTile = (key, title, copy) => {
   // Make the 'education' tile a real button so it can open a detailed education page
   if (key === 'education') {
     return `
-      <button id="educationBtn" class="tile" data-key="${key}" data-tile aria-label="Open Education">
+      <a href="./education.html" class="tile" data-key="${key}" data-tile aria-label="Open Education">
         <h3>${title}</h3>
         <p>${copy}</p>
-      </button>
+      </a>
+    `;
+  }
+
+  // Make the 'opportunities' tile a real link to open the Opportunities detail page
+  if (key === 'opportunities') {
+    return `
+      <a href="./opportunities.html" class="tile" data-key="${key}" data-tile aria-label="Open Opportunities">
+        <h3>${title}</h3>
+        <p>${copy}</p>
+      </a>
     `;
   }
 
@@ -207,6 +217,7 @@ const renderMainSection = () => `
   <section id="mainView" class="main-page" aria-hidden="true">
     <div class="brand">CONNECTU</div>
     <div class="subtitle">Choose a section to explore — these tiles will become full features inside the app.</div>
+
     <div class="tiles" id="tiles">
       ${renderTiles()}
     </div>
@@ -215,6 +226,8 @@ const renderMainSection = () => `
     </div>
   </section>
 `;
+
+/* Opportunity section removed; use opportunities.html page instead */
 
 export const renderConnectUApp = () => `
   <div class="card">
