@@ -444,24 +444,32 @@
         margin-bottom: 1rem;
         overflow: hidden;
       }
-      
+
       .profile-banner.loaded {
         display: block;
       }
 
       .profile-banner::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.85) 0%,
+          rgba(15, 23, 42, 0.4) 100%
+        );
         border-radius: inherit;
       }
 
       .linkedin-profile-section {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.05));
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.1),
+          rgba(6, 182, 212, 0.05)
+        );
         border: 2px solid rgba(139, 92, 246, 0.3);
         border-radius: 16px;
         padding: 2rem;
@@ -505,7 +513,11 @@
 
       <!-- LinkedIn Profile Picture Section -->
       <div class="linkedin-profile-section" id="profileSection">
-        <img id="linkedinProfile" class="linkedin-profile" alt="LinkedIn Profile" />
+        <img
+          id="linkedinProfile"
+          class="linkedin-profile"
+          alt="LinkedIn Profile"
+        />
         <div class="profile-name-display" id="profileNameDisplay"></div>
       </div>
 
@@ -1073,321 +1085,361 @@
       // Load and display LinkedIn profile picture
       function loadLinkedInProfile() {
         try {
-          console.log('Loading LinkedIn profile...');
-          const userData = sessionStorage.getItem('connectu_user');
+          console.log("Loading LinkedIn profile...");
+          const userData = sessionStorage.getItem("connectu_user");
           if (!userData) {
-            console.log('No user data found in sessionStorage');
+            console.log("No user data found in sessionStorage");
             return;
           }
-          
+
           const user = JSON.parse(userData);
           const linkedinUrl = user.linkedinUrl;
-          
-          console.log('LinkedIn URL from user data:', linkedinUrl);
-            
-            if (linkedinUrl) {
-              // Extract profile ID or username from LinkedIn URL
-              function extractLinkedInProfileId(url) {
-                // Handle various LinkedIn URL formats:
-                // https://www.linkedin.com/in/username/
-                // https://linkedin.com/in/username
-                // https://www.linkedin.com/in/username/?originalSubdomain=ca
-                const match = url.match(/linkedin\.com\/in\/([^\/\?]+)/i);
-                if (match && match[1]) {
-                  return match[1];
-                }
-                return null;
+
+          console.log("LinkedIn URL from user data:", linkedinUrl);
+
+          if (linkedinUrl) {
+            // Extract profile ID or username from LinkedIn URL
+            function extractLinkedInProfileId(url) {
+              // Handle various LinkedIn URL formats:
+              // https://www.linkedin.com/in/username/
+              // https://linkedin.com/in/username
+              // https://www.linkedin.com/in/username/?originalSubdomain=ca
+              const match = url.match(/linkedin\.com\/in\/([^\/\?]+)/i);
+              if (match && match[1]) {
+                return match[1];
               }
+              return null;
+            }
 
-              // Function to test if an image URL is valid
-              function testImageUrl(url) {
-                return new Promise((resolve) => {
-                  const img = new Image();
-                  img.crossOrigin = 'anonymous';
-                  let resolved = false;
-                  
-                  const cleanup = () => {
-                    if (!resolved) {
-                      resolved = true;
-                    }
-                  };
-                  
-                  img.onload = () => {
-                    if (!resolved) {
-                      resolved = true;
-                      resolve(true);
-                    }
-                  };
-                  
-                  img.onerror = () => {
-                    if (!resolved) {
-                      resolved = true;
-                      resolve(false);
-                    }
-                  };
-                  
-                  // Set timeout to avoid hanging
-                  const timeout = setTimeout(() => {
-                    if (!resolved) {
-                      resolved = true;
-                      resolve(false);
-                    }
-                  }, 3000);
-                  
-                  img.src = url;
-                });
-              }
+            // Function to test if an image URL is valid
+            function testImageUrl(url) {
+              return new Promise((resolve) => {
+                const img = new Image();
+                img.crossOrigin = "anonymous";
+                let resolved = false;
 
-              // Function to get LinkedIn profile picture URL
-              async function fetchLinkedInProfilePicture(profileId) {
-                if (!profileId) return null;
+                const cleanup = () => {
+                  if (!resolved) {
+                    resolved = true;
+                  }
+                };
 
-                // Try multiple methods to get the profile picture
-                const methods = [
-                  // Method 1: Try using CORS proxy to fetch og:image from LinkedIn page
-                  async () => {
-                    try {
-                      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
-                      const response = await fetch(proxyUrl);
-                      const data = await response.json();
-                      
-                      if (data.contents) {
-                        // Pattern 1: Look for og:image meta tag (most reliable)
-                        const ogImageMatch = data.contents.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
-                        if (ogImageMatch && ogImageMatch[1]) {
-                          const imageUrl = ogImageMatch[1].replace(/&amp;/g, '&');
-                          const isValid = await testImageUrl(imageUrl);
-                          if (isValid) return imageUrl;
+                img.onload = () => {
+                  if (!resolved) {
+                    resolved = true;
+                    resolve(true);
+                  }
+                };
+
+                img.onerror = () => {
+                  if (!resolved) {
+                    resolved = true;
+                    resolve(false);
+                  }
+                };
+
+                // Set timeout to avoid hanging
+                const timeout = setTimeout(() => {
+                  if (!resolved) {
+                    resolved = true;
+                    resolve(false);
+                  }
+                }, 3000);
+
+                img.src = url;
+              });
+            }
+
+            // Function to get LinkedIn profile picture URL
+            async function fetchLinkedInProfilePicture(profileId) {
+              if (!profileId) return null;
+
+              // Try multiple methods to get the profile picture
+              const methods = [
+                // Method 1: Try using CORS proxy to fetch og:image from LinkedIn page
+                async () => {
+                  try {
+                    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
+                    const response = await fetch(proxyUrl);
+                    const data = await response.json();
+
+                    if (data.contents) {
+                      // Pattern 1: Look for og:image meta tag (most reliable)
+                      const ogImageMatch = data.contents.match(
+                        /<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i
+                      );
+                      if (ogImageMatch && ogImageMatch[1]) {
+                        const imageUrl = ogImageMatch[1].replace(/&amp;/g, "&");
+                        const isValid = await testImageUrl(imageUrl);
+                        if (isValid) return imageUrl;
+                      }
+
+                      // Pattern 2: Look for LinkedIn CDN image URLs
+                      const cdnMatches = data.contents.match(
+                        /https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s<>]+/gi
+                      );
+                      if (cdnMatches && cdnMatches.length > 0) {
+                        // Try the first few CDN URLs
+                        for (const url of cdnMatches.slice(0, 3)) {
+                          const cleanUrl = url
+                            .replace(/[<>"']/g, "")
+                            .split("?")[0];
+                          const isValid = await testImageUrl(cleanUrl);
+                          if (isValid) return cleanUrl;
                         }
+                      }
+                    }
+                  } catch (error) {
+                    console.log("Method 1 failed:", error);
+                  }
+                  return null;
+                },
 
-                        // Pattern 2: Look for LinkedIn CDN image URLs
-                        const cdnMatches = data.contents.match(/https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s<>]+/gi);
-                        if (cdnMatches && cdnMatches.length > 0) {
-                          // Try the first few CDN URLs
-                          for (const url of cdnMatches.slice(0, 3)) {
-                            const cleanUrl = url.replace(/[<>"']/g, '').split('?')[0];
+                // Method 2: Try alternative proxy services
+                async () => {
+                  try {
+                    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
+                    const response = await fetch(proxyUrl);
+                    const html = await response.text();
+
+                    if (html) {
+                      const ogImageMatch = html.match(
+                        /<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i
+                      );
+                      if (ogImageMatch && ogImageMatch[1]) {
+                        const imageUrl = ogImageMatch[1].replace(/&amp;/g, "&");
+                        const isValid = await testImageUrl(imageUrl);
+                        if (isValid) return imageUrl;
+                      }
+                    }
+                  } catch (error) {
+                    console.log("Method 2 failed:", error);
+                  }
+                  return null;
+                },
+
+                // Method 3: Try using LinkedIn's public profile image endpoint pattern
+                async () => {
+                  try {
+                    // Try to construct a potential profile image URL
+                    // This is a fallback that might work for some profiles
+                    const potentialUrls = [
+                      `https://media.licdn.com/dms/image/C4E03AQ${profileId}/profile-displayphoto-shrink_200_200/0/1234567890?e=1234567890&v=beta&t=abc123`,
+                    ];
+
+                    // This method is less reliable, so we'll skip it for now
+                    // and rely on the proxy methods above
+                  } catch (error) {
+                    console.log("Method 3 failed:", error);
+                  }
+                  return null;
+                },
+
+                // Method 4: Try using another CORS proxy
+                async () => {
+                  try {
+                    const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
+                    const response = await fetch(proxyUrl);
+                    const html = await response.text();
+
+                    if (html) {
+                      // Look for og:image
+                      const ogImageMatch = html.match(
+                        /<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i
+                      );
+                      if (ogImageMatch && ogImageMatch[1]) {
+                        const imageUrl = ogImageMatch[1].replace(/&amp;/g, "&");
+                        const isValid = await testImageUrl(imageUrl);
+                        if (isValid) {
+                          console.log("Method 4 succeeded with URL:", imageUrl);
+                          return imageUrl;
+                        }
+                      }
+
+                      // Also try to find any LinkedIn CDN images
+                      const cdnMatches = html.match(
+                        /https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s<>]+/gi
+                      );
+                      if (cdnMatches && cdnMatches.length > 0) {
+                        for (const url of cdnMatches.slice(0, 5)) {
+                          const cleanUrl = url
+                            .replace(/[<>"']/g, "")
+                            .split("?")[0];
+                          // Check if it looks like a profile picture (contains profile-displayphoto)
+                          if (
+                            cleanUrl.includes("profile-displayphoto") ||
+                            cleanUrl.includes("profile")
+                          ) {
                             const isValid = await testImageUrl(cleanUrl);
-                            if (isValid) return cleanUrl;
-                          }
-                        }
-                      }
-                    } catch (error) {
-                      console.log('Method 1 failed:', error);
-                    }
-                    return null;
-                  },
-                  
-                  // Method 2: Try alternative proxy services
-                  async () => {
-                    try {
-                      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
-                      const response = await fetch(proxyUrl);
-                      const html = await response.text();
-                      
-                      if (html) {
-                        const ogImageMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
-                        if (ogImageMatch && ogImageMatch[1]) {
-                          const imageUrl = ogImageMatch[1].replace(/&amp;/g, '&');
-                          const isValid = await testImageUrl(imageUrl);
-                          if (isValid) return imageUrl;
-                        }
-                      }
-                    } catch (error) {
-                      console.log('Method 2 failed:', error);
-                    }
-                    return null;
-                  },
-                  
-                  // Method 3: Try using LinkedIn's public profile image endpoint pattern
-                  async () => {
-                    try {
-                      // Try to construct a potential profile image URL
-                      // This is a fallback that might work for some profiles
-                      const potentialUrls = [
-                        `https://media.licdn.com/dms/image/C4E03AQ${profileId}/profile-displayphoto-shrink_200_200/0/1234567890?e=1234567890&v=beta&t=abc123`,
-                      ];
-                      
-                      // This method is less reliable, so we'll skip it for now
-                      // and rely on the proxy methods above
-                    } catch (error) {
-                      console.log('Method 3 failed:', error);
-                    }
-                    return null;
-                  },
-                  
-                  // Method 4: Try using another CORS proxy
-                  async () => {
-                    try {
-                      const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
-                      const response = await fetch(proxyUrl);
-                      const html = await response.text();
-                      
-                      if (html) {
-                        // Look for og:image
-                        const ogImageMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
-                        if (ogImageMatch && ogImageMatch[1]) {
-                          const imageUrl = ogImageMatch[1].replace(/&amp;/g, '&');
-                          const isValid = await testImageUrl(imageUrl);
-                          if (isValid) {
-                            console.log('Method 4 succeeded with URL:', imageUrl);
-                            return imageUrl;
-                          }
-                        }
-                        
-                        // Also try to find any LinkedIn CDN images
-                        const cdnMatches = html.match(/https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s<>]+/gi);
-                        if (cdnMatches && cdnMatches.length > 0) {
-                          for (const url of cdnMatches.slice(0, 5)) {
-                            const cleanUrl = url.replace(/[<>"']/g, '').split('?')[0];
-                            // Check if it looks like a profile picture (contains profile-displayphoto)
-                            if (cleanUrl.includes('profile-displayphoto') || cleanUrl.includes('profile')) {
-                              const isValid = await testImageUrl(cleanUrl);
-                              if (isValid) {
-                                console.log('Method 4 found profile image:', cleanUrl);
-                                return cleanUrl;
-                              }
+                            if (isValid) {
+                              console.log(
+                                "Method 4 found profile image:",
+                                cleanUrl
+                              );
+                              return cleanUrl;
                             }
                           }
                         }
                       }
-                    } catch (error) {
-                      console.log('Method 4 failed:', error);
-                    }
-                    return null;
-                  }
-                ];
-
-                // Try each method in sequence
-                for (const method of methods) {
-                  try {
-                    const result = await method();
-                    if (result) {
-                      return result;
                     }
                   } catch (error) {
-                    console.log('Method failed:', error);
-                    continue;
+                    console.log("Method 4 failed:", error);
                   }
-                }
+                  return null;
+                },
+              ];
 
-                return null;
+              // Try each method in sequence
+              for (const method of methods) {
+                try {
+                  const result = await method();
+                  if (result) {
+                    return result;
+                  }
+                } catch (error) {
+                  console.log("Method failed:", error);
+                  continue;
+                }
               }
 
-              const profileId = extractLinkedInProfileId(linkedinUrl);
-              
-              console.log('Extracted profile ID:', profileId);
-              
-              if (profileId) {
-                // Extract name from LinkedIn URL or use profile ID
-                const displayName = profileId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                
-                console.log('Fetching profile picture for:', profileId);
-                
-                fetchLinkedInProfilePicture(profileId)
-                  .then(profilePictureUrl => {
-                    const profileImg = document.getElementById('linkedinProfile');
-                    const profileSection = document.getElementById('profileSection');
-                    const profileBanner = document.getElementById('profileBanner');
-                    const nameDisplay = document.getElementById('profileNameDisplay');
+              return null;
+            }
 
-                    if (nameDisplay) {
-                      nameDisplay.textContent = displayName;
+            const profileId = extractLinkedInProfileId(linkedinUrl);
+
+            console.log("Extracted profile ID:", profileId);
+
+            if (profileId) {
+              // Extract name from LinkedIn URL or use profile ID
+              const displayName = profileId
+                .replace(/-/g, " ")
+                .replace(/\b\w/g, (l) => l.toUpperCase());
+
+              console.log("Fetching profile picture for:", profileId);
+
+              fetchLinkedInProfilePicture(profileId)
+                .then((profilePictureUrl) => {
+                  const profileImg = document.getElementById("linkedinProfile");
+                  const profileSection =
+                    document.getElementById("profileSection");
+                  const profileBanner =
+                    document.getElementById("profileBanner");
+                  const nameDisplay =
+                    document.getElementById("profileNameDisplay");
+
+                  if (nameDisplay) {
+                    nameDisplay.textContent = displayName;
+                  }
+
+                  // Only display if we have a valid profile picture URL
+                  if (profilePictureUrl) {
+                    console.log(
+                      "Found profile picture URL:",
+                      profilePictureUrl
+                    );
+
+                    // Set up the profile image in the section
+                    if (profileImg) {
+                      profileImg.src = profilePictureUrl;
+                      profileImg.alt = `${displayName} LinkedIn Profile`;
+                      profileImg.onload = function () {
+                        console.log("Profile image loaded successfully");
+                        // Only show section if profile picture loaded successfully
+                        if (profileSection) {
+                          profileSection.style.display = "block";
+                        }
+                      };
+                      profileImg.onerror = function () {
+                        console.log(
+                          "Profile picture failed to load from URL:",
+                          profilePictureUrl
+                        );
+                        // Don't show section if profile picture fails to load
+                        if (profileSection) {
+                          profileSection.style.display = "none";
+                        }
+                      };
                     }
 
-                    // Only display if we have a valid profile picture URL
-                    if (profilePictureUrl) {
-                      console.log('Found profile picture URL:', profilePictureUrl);
-                      
-                      // Set up the profile image in the section
-                      if (profileImg) {
-                        profileImg.src = profilePictureUrl;
-                        profileImg.alt = `${displayName} LinkedIn Profile`;
-                        profileImg.onload = function() {
-                          console.log('Profile image loaded successfully');
-                          // Only show section if profile picture loaded successfully
-                          if (profileSection) {
-                            profileSection.style.display = 'block';
-                          }
-                        };
-                        profileImg.onerror = function() {
-                          console.log('Profile picture failed to load from URL:', profilePictureUrl);
-                          // Don't show section if profile picture fails to load
-                          if (profileSection) {
-                            profileSection.style.display = 'none';
-                          }
-                        };
-                      }
-                      
-                      // Also add to banner if it exists
-                      if (profileBanner) {
-                        // Clear any existing content
-                        profileBanner.innerHTML = '';
-                        const bannerImg = document.createElement('img');
-                        bannerImg.src = profilePictureUrl;
-                        bannerImg.alt = `${displayName} banner`;
-                        bannerImg.style.width = '100%';
-                        bannerImg.style.height = '100%';
-                        bannerImg.style.objectFit = 'cover';
-                        bannerImg.style.borderRadius = '0';
-                        bannerImg.onload = function() {
-                          console.log('Banner image loaded successfully');
-                          profileBanner.style.display = 'block';
-                          profileBanner.classList.add('loaded');
-                        };
-                        bannerImg.onerror = function() {
-                          console.log('Banner image failed to load');
-                          // If banner image fails, remove it
-                          profileBanner.innerHTML = '';
-                          profileBanner.style.display = 'none';
-                        };
-                        profileBanner.appendChild(bannerImg);
-                      }
-                    } else {
-                      console.log('No valid profile picture URL found for:', profileId);
-                      // Don't show profile section if no valid URL
-                      if (profileSection) {
-                        profileSection.style.display = 'none';
-                      }
-                      if (profileBanner) {
-                        profileBanner.style.display = 'none';
-                      }
+                    // Also add to banner if it exists
+                    if (profileBanner) {
+                      // Clear any existing content
+                      profileBanner.innerHTML = "";
+                      const bannerImg = document.createElement("img");
+                      bannerImg.src = profilePictureUrl;
+                      bannerImg.alt = `${displayName} banner`;
+                      bannerImg.style.width = "100%";
+                      bannerImg.style.height = "100%";
+                      bannerImg.style.objectFit = "cover";
+                      bannerImg.style.borderRadius = "0";
+                      bannerImg.onload = function () {
+                        console.log("Banner image loaded successfully");
+                        profileBanner.style.display = "block";
+                        profileBanner.classList.add("loaded");
+                      };
+                      bannerImg.onerror = function () {
+                        console.log("Banner image failed to load");
+                        // If banner image fails, remove it
+                        profileBanner.innerHTML = "";
+                        profileBanner.style.display = "none";
+                      };
+                      profileBanner.appendChild(bannerImg);
                     }
-                  })
-                  .catch(error => {
-                    console.error('Error loading LinkedIn profile picture:', error);
-                    // Don't show section if there's an error
-                    const profileSection = document.getElementById('profileSection');
+                  } else {
+                    console.log(
+                      "No valid profile picture URL found for:",
+                      profileId
+                    );
+                    // Don't show profile section if no valid URL
                     if (profileSection) {
-                      profileSection.style.display = 'none';
+                      profileSection.style.display = "none";
                     }
-                  });
-              } else {
-                console.log('Could not extract profile ID from LinkedIn URL:', linkedinUrl);
-                const profileSection = document.getElementById('profileSection');
-                if (profileSection) {
-                  profileSection.style.display = 'none';
-                }
-              }
+                    if (profileBanner) {
+                      profileBanner.style.display = "none";
+                    }
+                  }
+                })
+                .catch((error) => {
+                  console.error(
+                    "Error loading LinkedIn profile picture:",
+                    error
+                  );
+                  // Don't show section if there's an error
+                  const profileSection =
+                    document.getElementById("profileSection");
+                  if (profileSection) {
+                    profileSection.style.display = "none";
+                  }
+                });
             } else {
-              // No LinkedIn URL provided
-              const profileSection = document.getElementById('profileSection');
+              console.log(
+                "Could not extract profile ID from LinkedIn URL:",
+                linkedinUrl
+              );
+              const profileSection = document.getElementById("profileSection");
               if (profileSection) {
-                profileSection.style.display = 'none';
+                profileSection.style.display = "none";
               }
+            }
+          } else {
+            // No LinkedIn URL provided
+            const profileSection = document.getElementById("profileSection");
+            if (profileSection) {
+              profileSection.style.display = "none";
             }
           }
         } catch (error) {
-          console.error('Error loading LinkedIn profile:', error);
-          const profileSection = document.getElementById('profileSection');
+          console.error("Error loading LinkedIn profile:", error);
+          const profileSection = document.getElementById("profileSection");
           if (profileSection) {
-            profileSection.style.display = 'none';
+            profileSection.style.display = "none";
           }
         }
       }
-      
+
       // Run when DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadLinkedInProfile);
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadLinkedInProfile);
       } else {
         // DOM is already ready
         loadLinkedInProfile();
