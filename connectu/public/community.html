@@ -354,16 +354,16 @@
       roommate: `
         <h2>Roommate Finder</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-          <button onclick="window.startRoommateQuiz()" style="padding: 1rem; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+          <button onclick="window.startRoommateQuiz()" style="padding: 1rem; background: #8b5cf6; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
             Take Quiz
           </button>
-          <button onclick="window.viewRoommateMatches()" style="padding: 1rem; background: #ec4899; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+          <button onclick="window.viewRoommateMatches()" style="padding: 1rem; background: #d946ef; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
             View Matches
           </button>
-          <button onclick="window.viewRoommateGroups()" style="padding: 1rem; background: #f59e0b; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+          <button onclick="window.viewRoommateGroups()" style="padding: 1rem; background: #0891b2; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
             View Groups
           </button>
-          <button onclick="window.viewMessages()" style="padding: 1rem; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+          <button onclick="window.viewMessages()" style="padding: 1rem; background: #6366f1; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
             Messages
           </button>
         </div>
@@ -828,8 +828,8 @@
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-              <button onclick="window.viewRoommateProfile(${roommate.id})" style="padding: 0.5rem; background: rgba(99, 102, 241, 0.3); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;">Profile</button>
-              <button onclick="window.startChat(${roommate.id})" style="padding: 0.5rem; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;">Chat</button>
+              <button onclick="window.viewRoommateProfile(${roommate.id})" style="padding: 0.5rem; background: rgba(139, 92, 246, 0.3); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;">Profile</button>
+              <button onclick="window.startChat(${roommate.id})" style="padding: 0.5rem; background: #d946ef; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;">Chat</button>
             </div>
           </div>
         `;
@@ -906,8 +906,8 @@
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-              <button onclick="window.startChat(${roommate.id})" style="padding: 1rem; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Send Message</button>
-              <button onclick="alert('Video call feature coming soon!')" style="padding: 1rem; background: #06b6d4; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Schedule Call</button>
+              <button onclick="window.startChat(${roommate.id})" style="padding: 1rem; background: #d946ef; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Send Message</button>
+              <button onclick="alert('Video call feature coming soon!')" style="padding: 1rem; background: #0891b2; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Schedule Call</button>
             </div>
           </div>
         </div>
@@ -972,7 +972,7 @@
       
       let html = `
         <div style="margin-bottom: 1.5rem;">
-          <button onclick="alert('Create group feature coming soon!')" style="padding: 0.75rem 1.5rem; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Create Group</button>
+          <button onclick="alert('Create group feature coming soon!')" style="padding: 0.75rem 1.5rem; background: #8b5cf6; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Create Group</button>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
@@ -993,7 +993,7 @@
             <div style="font-size: 0.85rem; color: #a7c1d9;">
               <strong>Interests:</strong> ${group.interests}
             </div>
-            <button onclick="event.stopPropagation(); alert('Join group feature coming soon!')" style="width: 100%; margin-top: 1rem; padding: 0.5rem; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Join Group</button>
+            <button onclick="event.stopPropagation(); alert('Join group feature coming soon!')" style="width: 100%; margin-top: 1rem; padding: 0.5rem; background: #8b5cf6; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Join Group</button>
           </div>
         `;
       });
