@@ -53,9 +53,9 @@ function renderEvents(filter = 'all') {
       <h4 class="card-title">${event.name}</h4>
       <span class="badge">${event.category}</span>
       <div style="font-size: 0.85rem; color: #475569;">
-        <div>📅 ${event.date} at ${event.time}</div>
-        <div>📍 ${event.location} ${event.isOnline ? '(Online)' : ''}</div>
-        <div>👥 ${event.interested} interested</div>
+        <div> ${event.date} at ${event.time}</div>
+        <div> ${event.location} ${event.isOnline ? '(Online)' : ''}</div>
+        <div> ${event.interested} interested</div>
       </div>
       <button class="btn btn-primary" style="margin-top: auto;">Learn More</button>
     `;
@@ -96,8 +96,8 @@ function renderMeetups() {
     card.innerHTML = `
       <h4 class="card-title">${meetup.title}</h4>
       <div style="font-size: 0.85rem; color: #475569;">
-        <div>⏰ ${meetup.time}</div>
-        <div>📍 ${meetup.location}</div>
+        <div> ${meetup.time}</div>
+        <div> ${meetup.location}</div>
       </div>
       <div style="font-size: 0.85rem;">
         <div style="margin-bottom: 4px;">👥 ${meetup.peopleJoined}/${meetup.capacity} joined</div>
@@ -122,7 +122,7 @@ function renderGroupChats() {
     card.innerHTML = `
       <h4 class="card-title">${chat.name}</h4>
       <div style="font-size: 0.85rem; color: #475569;">
-        <div>👥 ${chat.members} members</div>
+        <div> ${chat.members} members</div>
         <div style="display: inline-block; background: #3b82f6; color: #fff; font-size: 0.75rem; padding: 3px 8px; border-radius: 4px; margin-top: 6px;">${chat.vibe}</div>
       </div>
       <button class="btn btn-primary" style="margin-top: auto;">Join Chat</button>
