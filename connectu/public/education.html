@@ -472,6 +472,172 @@
           padding: 0.75rem;
         }
       }
+
+      /* Course Tracker Styles */
+      .program-section {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .program-input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0.75rem;
+        color: #e6eef8;
+        font-family: inherit;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+      }
+
+      .program-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .course-count-section {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .course-count-input {
+        width: 100px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0.75rem;
+        color: #e6eef8;
+        font-family: inherit;
+        font-size: 0.95rem;
+      }
+
+      .course-count-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .courses-grid {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .course-item {
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 1rem;
+        align-items: end;
+      }
+
+      .course-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .course-input-group label {
+        font-size: 0.8rem;
+        color: #94a3b8;
+        font-weight: 600;
+      }
+
+      .course-input {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 0.6rem 0.75rem;
+        color: #e6eef8;
+        font-family: inherit;
+        font-size: 0.9rem;
+      }
+
+      .course-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .remove-course-btn {
+        background: rgba(239, 68, 68, 0.2);
+        border: 1px solid rgba(239, 68, 68, 0.4);
+        color: #fca5a5;
+        padding: 0.6rem 0.9rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
+      }
+
+      .remove-course-btn:hover {
+        background: rgba(239, 68, 68, 0.3);
+        border-color: rgba(239, 68, 68, 0.6);
+      }
+
+      .add-course-btn {
+        background: rgba(34, 197, 94, 0.2);
+        border: 1px solid rgba(34, 197, 94, 0.4);
+        color: #86efac;
+        padding: 0.75rem 1.25rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        margin-top: 1rem;
+      }
+
+      .add-course-btn:hover {
+        background: rgba(34, 197, 94, 0.3);
+        border-color: rgba(34, 197, 94, 0.6);
+      }
+
+      .save-tracker-btn {
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+        color: #021124;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 0.95rem;
+        margin-top: 1.5rem;
+        transition: all 0.2s ease;
+      }
+
+      .save-tracker-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+      }
+
+      .success-message {
+        background: rgba(34, 197, 94, 0.15);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        color: #86efac;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+        display: none;
+        animation: slideIn 0.3s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
   <body>
@@ -495,7 +661,10 @@
 
       <!-- Tabs -->
       <div class="education-tabs">
-        <button class="tab-btn active" data-tab="academic-gps">
+        <button class="tab-btn active" data-tab="course-tracker">
+          Course Tracker
+        </button>
+        <button class="tab-btn" data-tab="academic-gps">
           Academic Planner
         </button>
         <button class="tab-btn" data-tab="course-chemistry">
@@ -513,7 +682,68 @@
 
       <!-- Content -->
       <div class="education-content">
-        <!-- Academic GPS Tab -->
+        <!-- Course Tracker Tab -->
+        <div id="course-tracker" class="tab-panel active">
+          <div class="feature-box">
+            <div class="feature-title">📚 Course Tracker</div>
+            <div class="feature-description">
+              Track your current courses, their grades, and keep everything organized in one place.
+            </div>
+          </div>
+
+          <!-- Program Section -->
+          <div class="program-section">
+            <div class="feature-title" style="font-size: 1.1rem; margin-bottom: 1rem">
+              Your Program
+            </div>
+            <input
+              type="text"
+              id="programInput"
+              class="program-input"
+              placeholder="e.g., Computer Science, Business Administration, Mechanical Engineering"
+            />
+          </div>
+
+          <!-- Course Count Section -->
+          <div class="course-count-section">
+            <div class="feature-title" style="font-size: 1.1rem; margin-bottom: 1rem">
+              Number of Current Courses
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: end">
+              <div>
+                <label style="color: #94a3b8; font-size: 0.8rem; display: block; margin-bottom: 0.5rem">
+                  How many courses are you taking?
+                </label>
+                <input
+                  type="number"
+                  id="courseCount"
+                  class="course-count-input"
+                  min="1"
+                  max="20"
+                  placeholder="0"
+                />
+              </div>
+              <button id="generateCoursesBtn" class="add-course-btn" style="margin-top: 0">
+                Generate
+              </button>
+            </div>
+          </div>
+
+          <!-- Courses Grid -->
+          <div id="coursesContainer" class="courses-grid" style="display: none">
+            <!-- Course items will be dynamically added here -->
+          </div>
+
+          <!-- Save Button -->
+          <button id="saveTrackerBtn" class="save-tracker-btn" style="display: none">
+            Save Course Information
+          </button>
+
+          <!-- Success Message -->
+          <div id="successMessage" class="success-message">
+            ✓ Your courses have been saved successfully!
+          </div>
+        </div>
         <div id="academic-gps" class="tab-panel active">
           <div class="feature-box">
             <div class="feature-title">Academic GPS — Your Degree Roadmap</div>
@@ -1132,7 +1362,7 @@
     </div>
 
     <script>
-      // Load and display university logo from online source
+            // Load and display university logo from local JSON
       (function loadUniversityLogo() {
         try {
           const userData = sessionStorage.getItem('connectu_user');
