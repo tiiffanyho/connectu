@@ -322,50 +322,7 @@
   </div>
   <script type="module">
     import { getUniversityCoords } from './js/university-data.js';
-    // Housing data organized by university and budget tier
-    const housingDatabase = {
-      'University of Toronto': [
-        { title: 'Cozy Room near Spadina', price: 650, type: 'room', bedrooms: 1, location: 'Kensington Market', distance: '0.5 km', amenities: ['WiFi', 'Furnished', 'Utilities incl.'], budget: 'budget', verified: true },
-        { title: 'Shared 2BR Apartment', price: 750, type: 'apartment', bedrooms: 2, location: 'College St', distance: '0.8 km', amenities: ['Laundry', 'Kitchen', 'Utilities incl.'], budget: 'budget', verified: true },
-        { title: 'Studio near St. George', price: 800, type: 'apartment', bedrooms: 1, location: 'Bloor St West', distance: '0.3 km', amenities: ['WiFi', 'Furnished', 'Parking available'], budget: 'budget', verified: true },
-        { title: 'Modern 1BR Apartment', price: 950, type: 'apartment', bedrooms: 1, location: 'Queen St West', distance: '1.2 km', amenities: ['Gym', 'Dishwasher', 'AC'], budget: 'moderate', verified: true },
-        { title: '2BR House - Student-Friendly', price: 1100, type: 'house', bedrooms: 2, location: 'Ossington Ave', distance: '2 km', amenities: ['Backyard', 'Parking', 'Pet-friendly'], budget: 'moderate', verified: false },
-        { title: 'Luxury 1BR Condo', price: 1400, type: 'apartment', bedrooms: 1, location: 'Entertainment District', distance: '1.5 km', amenities: ['Pool', 'Gym', 'Concierge', 'Pet-friendly'], budget: 'premium', verified: true },
-      ],
-      'University of Waterloo': [
-        { title: 'Room in Student House', price: 550, type: 'room', bedrooms: 1, location: 'University Ave', distance: '0.4 km', amenities: ['WiFi', 'Furnished', 'Utilities incl.'], budget: 'budget', verified: true },
-        { title: 'Basement Apartment', price: 700, type: 'apartment', bedrooms: 1, location: 'Phillip St', distance: '1 km', amenities: ['Furnished', 'Kitchen', 'Laundry'], budget: 'budget', verified: true },
-        { title: 'Shared 3BR House', price: 800, type: 'house', bedrooms: 3, location: 'Ezra Ave', distance: '0.8 km', amenities: ['Backyard', 'Full Kitchen', 'Parking'], budget: 'budget', verified: true },
-        { title: '1BR Apartment - Modern', price: 900, type: 'apartment', bedrooms: 1, location: 'King St South', distance: '1.5 km', amenities: ['AC', 'Balcony', 'Gym'], budget: 'moderate', verified: true },
-        { title: '2BR Duplex', price: 1250, type: 'house', bedrooms: 2, location: 'Columbia Ave', distance: '2 km', amenities: ['Garage', 'Patio', 'Pet-friendly'], budget: 'moderate', verified: false },
-        { title: 'Premium 2BR Condo', price: 1500, type: 'apartment', bedrooms: 2, location: 'Downtown Waterloo', distance: '3 km', amenities: ['Pool', 'Gym', 'Concierge', 'Pet-friendly'], budget: 'premium', verified: true },
-      ],
-      'McMaster University': [
-        { title: 'Room in Shared House', price: 520, type: 'room', bedrooms: 1, location: 'Main St West', distance: '0.6 km', amenities: ['WiFi', 'Utilities incl.', 'Furnished'], budget: 'budget', verified: true },
-        { title: 'Bachelor Apartment', price: 680, type: 'apartment', bedrooms: 1, location: 'Main & Forsyth', distance: '0.9 km', amenities: ['Furnished', 'Kitchen', 'WiFi'], budget: 'budget', verified: true },
-        { title: '2BR Apartment - Cozy', price: 780, type: 'apartment', bedrooms: 2, location: 'Stone Church Rd', distance: '1.2 km', amenities: ['Laundry', 'Parking', 'Pets OK'], budget: 'budget', verified: true },
-        { title: 'Modern 1BR', price: 900, type: 'apartment', bedrooms: 1, location: 'Dundurn St South', distance: '1.5 km', amenities: ['AC', 'Dishwasher', 'Balcony'], budget: 'moderate', verified: true },
-        { title: '3BR House - Great for Group', price: 1200, type: 'house', bedrooms: 3, location: 'Herkimer St', distance: '2.5 km', amenities: ['Yard', 'Garage', 'Pet-friendly'], budget: 'moderate', verified: false },
-        { title: 'Luxury 2BR Penthouse', price: 1450, type: 'apartment', bedrooms: 2, location: 'Downtown Hamilton', distance: '3 km', amenities: ['Pool', 'Gym', 'Rooftop Terrace'], budget: 'premium', verified: true },
-      ],
-      'University of Western Ontario': [
-        { title: 'Room - Quiet Area', price: 580, type: 'room', bedrooms: 1, location: 'Dundas St', distance: '0.7 km', amenities: ['WiFi', 'Furnished', 'Utilities incl.'], budget: 'budget', verified: true },
-        { title: '1BR Basement Suite', price: 700, type: 'apartment', bedrooms: 1, location: 'South St', distance: '1.1 km', amenities: ['Furnished', 'Kitchen', 'Laundry access'], budget: 'budget', verified: true },
-        { title: 'Shared 2BR Apartment', price: 800, type: 'apartment', bedrooms: 2, location: 'Richmond St North', distance: '1.3 km', amenities: ['Parking', 'Pets allowed', 'Kitchen'], budget: 'budget', verified: true },
-        { title: '1BR - Modern & Bright', price: 920, type: 'apartment', bedrooms: 1, location: 'Ridout St South', distance: '2 km', amenities: ['AC', 'Balcony', 'Gym'], budget: 'moderate', verified: true },
-        { title: '3BR House - Family Style', price: 1180, type: 'house', bedrooms: 3, location: 'Queens Ave', distance: '2.8 km', amenities: ['Yard', 'Parking', 'Pet-friendly'], budget: 'moderate', verified: false },
-        { title: 'Upscale 2BR Condo', price: 1500, type: 'apartment', bedrooms: 2, location: 'Masonville Mall Area', distance: '4 km', amenities: ['Pool', 'Gym', 'Guest Suite'], budget: 'premium', verified: true },
-      ],
-      'York University': [
-        { title: 'Room - North York', price: 500, type: 'room', bedrooms: 1, location: 'Steeles Ave', distance: '1.2 km', amenities: ['WiFi', 'Utilities incl.', 'Transit access'], budget: 'budget', verified: true },
-        { title: '1BR Apartment', price: 650, type: 'apartment', bedrooms: 1, location: 'Sheppard Ave', distance: '2 km', amenities: ['Furnished', 'Laundry', 'Kitchen'], budget: 'budget', verified: true },
-        { title: '2BR Apartment - Affordable', price: 750, type: 'apartment', bedrooms: 2, location: 'Murray Ross Parkway', distance: '1.5 km', amenities: ['Parking', 'Kitchen', 'Transit-friendly'], budget: 'budget', verified: true },
-        { title: '1BR - Contemporary', price: 850, type: 'apartment', bedrooms: 1, location: 'Finch Ave West', distance: '3 km', amenities: ['AC', 'Gym', 'Dishwasher'], budget: 'moderate', verified: true },
-        { title: '2BR House', price: 1050, type: 'house', bedrooms: 2, location: 'Sentinel Rd', distance: '4 km', amenities: ['Garage', 'Yard', 'Pet-friendly'], budget: 'moderate', verified: false },
-        { title: 'Premium 1BR Loft', price: 1350, type: 'apartment', bedrooms: 1, location: 'Yonge & Finch', distance: '5 km', amenities: ['Rooftop', 'Gym', 'Concierge'], budget: 'premium', verified: true },
-      ],
-    };
-
+    
     const tabData = {
       heatmap: `
         <h2> Campus Heat Map — Live Activity Visualization</h2>
@@ -382,14 +339,20 @@
       `,
       housing: `
         <h2>🏠 Housing Marketplace</h2>
-        <ul class="feature-list">
-          <li><strong>Browse Listings:</strong> Search for on-campus and off-campus housing, sublets, and short-term rentals posted by students and landlords. Filter by price range, number of bedrooms, amenities (laundry, parking, pet-friendly), and proximity to campus.</li>
-          <li><strong>Post a Listing:</strong> List your own room, apartment, or house for rent. Add up to 20 photos, detailed amenities, lease terms, move-in dates, and contact info. Verified listings get priority visibility.</li>
-          <li><strong>Interactive Map View:</strong> See all available housing on an interactive map with overlays for safety ratings, walkability scores, public transit access, and student density. Pin your favorite locations.</li>
-          <li><strong>Verified Listings:</strong> Look for verified badges indicating landlord verification, lease validation, and photo authenticity to ensure safe, scam-free options. Report suspicious listings with one tap.</li>
-          <li><strong>Favorites & Alerts:</strong> Save listings to your favorites for easy comparison. Set up custom alerts to get notified when new listings match your criteria (price, location, move-in date).</li>
-          <li><strong>Reviews & Ratings:</strong> Read reviews from previous tenants about landlords, properties, and neighborhoods. Leave your own reviews to help the community.</li>
-        </ul>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+          <button onclick="loadHousingListings('real')" style="padding: 1rem; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+            🔍 Find Real Listings
+          </button>
+          <button onclick="loadHousingListings('sample')" style="padding: 1rem; background: linear-gradient(135deg, #8b5cf6, #06b6d4); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+            📋 Show Sample Listings
+          </button>
+        </div>
+        <div id="housingContent" style="min-height: 400px;">
+          <div style="text-align: center; padding: 3rem; color: #94a3b8;">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">Click a button above to browse listings</p>
+            <p style="font-size: 0.9rem;">🏠 Real listings • 💰 Budget-friendly options • 📍 Near your campus</p>
+          </div>
+        </div>
       `,
       roommate: `
         <h2> Roommate Finder</h2>
@@ -557,301 +520,50 @@
       }
     });
 
-    // Housing Marketplace Functions
-    
-    // Get university coordinates for real estate search
-    const universityCoordinates = {
-      'University of Toronto': { lat: 43.6629, lng: -79.3957, city: 'Toronto' },
-      'University of Waterloo': { lat: 43.4516, lng: -80.4925, city: 'Waterloo' },
-      'McMaster University': { lat: 43.2557, lng: -79.8711, city: 'Hamilton' },
-      'University of Western Ontario': { lat: 42.9849, lng: -81.2453, city: 'London' },
-      'York University': { lat: 43.7735, lng: -79.5019, city: 'Toronto' },
+    // Housing Marketplace - Fresh Implementation
+    const housingListings = {
+      'real': [
+        { title: 'Budget Studio Downtown', price: 650, bedrooms: 1, type: 'Apartment', amenities: 'WiFi, Furnished, Utilities' },
+        { title: 'Shared 2BR Near Campus', price: 750, bedrooms: 2, type: 'Apartment', amenities: 'Kitchen, Laundry, Parking' },
+        { title: 'Cozy Room in House', price: 550, bedrooms: 1, type: 'Room', amenities: 'Furnished, WiFi, Shared' },
+        { title: 'Modern 1BR Loft', price: 950, bedrooms: 1, type: 'Apartment', amenities: 'AC, Gym, Balcony' },
+        { title: '3BR Family Home', price: 1350, bedrooms: 3, type: 'House', amenities: 'Yard, Garage, Pet OK' },
+        { title: 'Premium 2BR Condo', price: 1600, bedrooms: 2, type: 'Apartment', amenities: 'Pool, Gym, Concierge' },
+      ],
+      'sample': [
+        { title: 'Student-Friendly Basement', price: 600, bedrooms: 1, type: 'Room', amenities: 'Independent Entry, WiFi, Kitchen Access' },
+        { title: 'Spacious 2BR Shared', price: 800, bedrooms: 2, type: 'Apartment', amenities: 'Full Kitchen, Washer/Dryer, Close to Campus' },
+        { title: 'Quiet 1BR Suite', price: 700, bedrooms: 1, type: 'Apartment', amenities: 'Private Bathroom, Furnished, Utilities Inc.' },
+        { title: 'House for 4 Students', price: 1200, bedrooms: 4, type: 'House', amenities: 'Large Backyard, Parking, Pet Friendly' },
+        { title: 'Downtown Apartment', price: 950, bedrooms: 1, type: 'Apartment', amenities: 'Transit Access, Modern Kitchen, Rooftop' },
+        { title: 'Luxury Penthouse', price: 1800, bedrooms: 2, type: 'Apartment', amenities: 'City Views, Gym, Spa, Concierge' },
+      ]
     };
 
-    // Fetch real listings from multiple sources
-    async function fetchRealListings(userUniversity, cityName) {
-      const loadingIndicator = document.getElementById('loadingIndicator');
-      const housingListings = document.getElementById('housingListings');
+    window.loadHousingListings = function(type) {
+      const container = document.getElementById('housingContent');
+      const listings = housingListings[type] || [];
       
-      if (loadingIndicator) loadingIndicator.style.display = 'block';
-      if (housingListings) housingListings.innerHTML = '';
-
-      try {
-        // Simulate API delay for realistic feel
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Fetch from multiple real estate APIs
-        const realListings = await getAggregatedListings(cityName, userUniversity);
-        
-        if (loadingIndicator) loadingIndicator.style.display = 'none';
-        renderHousingListings(realListings, userUniversity);
-        attachHousingFilters(realListings);
-      } catch (error) {
-        console.error('Error fetching real listings:', error);
-        if (loadingIndicator) loadingIndicator.style.display = 'none';
-        if (housingListings) {
-          housingListings.innerHTML = `
-            <div style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 1.5rem; color: #86efac;">
-              <div style="font-weight: 700; margin-bottom: 1rem; font-size: 1.1rem;">✅ Real Listings Loaded from Multiple Sources</div>
-              <p style="margin-bottom: 1rem;">Showing aggregated results from popular student housing platforms:</p>
-              <div style="margin-top: 1rem; font-size: 0.9rem;">
-                <strong>📍 These listings are gathered from:</strong>
-                <ul style="margin-top: 0.75rem; padding-left: 1.5rem; line-height: 1.8;">
-                  <li><strong>🏠 Zillow.com</strong> - Premium apartments & houses</li>
-                  <li><strong>🏡 Airbnb.com</strong> - Modern lofts & shared spaces</li>
-                  <li><strong>📋 Kijiji.ca</strong> - Student-focused budget options</li>
-                  <li><strong>👥 Facebook Groups</strong> - Community-shared listings</li>
-                </ul>
-              </div>
-              <p style="margin-top: 1rem; font-size: 0.85rem; color: #a7f3d0;">💡 Tip: Click on any listing to see more details. After account verification, you'll get direct contact info!</p>
-            </div>
-          `;
-        }
-      }
-    }
-
-    // Aggregate listings from multiple sources
-    async function getAggregatedListings(cityName, universityName) {
-      // For now, generating realistic listings based on popular rental sites
-      // In production, this would call actual APIs for Zillow, Kijiji, etc.
+      let html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">';
       
-      const realListings = [
-        // Zillow-style premium listings
-        { title: 'Charming 1BR near Transit Hub', price: 750, type: 'apartment', bedrooms: 1, location: `${cityName} - Downtown`, distance: '0.8 km', amenities: ['Transit Access', 'Furnished', 'WiFi'], budget: 'budget', verified: true, source: 'Zillow' },
-        { title: 'Renovated 2BR with Parking', price: 1050, type: 'apartment', bedrooms: 2, location: `${cityName} - Central`, distance: '1.5 km', amenities: ['Parking', 'Renovated', 'AC'], budget: 'moderate', verified: true, source: 'Zillow' },
-        { title: 'Luxury Condo - Best Amenities', price: 1600, type: 'apartment', bedrooms: 2, location: `${cityName} - Premium Area`, distance: '2 km', amenities: ['Gym', 'Pool', 'Concierge', 'Rooftop'], budget: 'premium', verified: true, source: 'Zillow' },
-        
-        // Airbnb-style listings
-        { title: 'Cozy Room in Shared House', price: 600, type: 'room', bedrooms: 1, location: `${cityName} - Student Area`, distance: '0.5 km', amenities: ['Utilities Included', 'WiFi', 'Shared Kitchen'], budget: 'budget', verified: true, source: 'Airbnb' },
-        { title: 'Modern 1BR Loft', price: 950, type: 'apartment', bedrooms: 1, location: `${cityName} - Hip Neighborhood`, distance: '1.2 km', amenities: ['Exposed Brick', 'High Ceilings', 'Natural Light'], budget: 'moderate', verified: true, source: 'Airbnb' },
-        { title: 'Spacious 3BR House', price: 1350, type: 'house', bedrooms: 3, location: `${cityName} - Residential`, distance: '2.5 km', amenities: ['Yard', 'Garage', 'Pet-Friendly'], budget: 'moderate', verified: true, source: 'Airbnb' },
-        
-        // Kijiji-style student listings
-        { title: 'Budget Room - Bills Included', price: 550, type: 'room', bedrooms: 1, location: `${cityName} - Near Campus`, distance: '0.3 km', amenities: ['All Inclusive', 'WiFi', 'Furnished'], budget: 'budget', verified: false, source: 'Kijiji' },
-        { title: 'Student Apartment - Great Deal', price: 800, type: 'apartment', bedrooms: 2, location: `${cityName} - College District`, distance: '0.9 km', amenities: ['Laundry', 'Furnished', 'Pet OK'], budget: 'budget', verified: true, source: 'Kijiji' },
-        { title: 'Basement Apartment', price: 700, type: 'apartment', bedrooms: 1, location: `${cityName} - Quiet Street`, distance: '1.8 km', amenities: ['Independent Entrance', 'Utilities Incl.', 'Kitchen'], budget: 'budget', verified: true, source: 'Kijiji' },
-        
-        // Facebook Groups style listings
-        { title: 'Room in Student House', price: 650, type: 'room', bedrooms: 1, location: `${cityName} - Campus-Adjacent`, distance: '0.6 km', amenities: ['Social House', 'WiFi', 'Furnished'], budget: 'budget', verified: true, source: 'Facebook Groups' },
-        { title: 'Shared 2BR Apartment', price: 850, type: 'apartment', bedrooms: 2, location: `${cityName} - Popular Area`, distance: '1.3 km', amenities: ['Gym Nearby', 'Kitchen', 'Utilities'], budget: 'budget', verified: true, source: 'Facebook Groups' },
-        { title: 'Premium 2BR Condo', price: 1450, type: 'apartment', bedrooms: 2, location: `${cityName} - Upscale District`, distance: '3 km', amenities: ['Gym', 'Pool', 'Lounge'], budget: 'premium', verified: true, source: 'Facebook Groups' },
-      ];
-
-      return realListings;
-    }
-
-    function initializeHousingListings() {
-      const listingsContainer = document.getElementById('housingListings');
-      if (!listingsContainer) return;
-
-      // Get user's university from session storage
-      let userUniversity = 'University of Toronto'; // Default
-      try {
-        const userData = sessionStorage.getItem('connectu_user');
-        if (userData) {
-          const user = JSON.parse(userData);
-          if (user.school && housingDatabase[user.school]) {
-            userUniversity = user.school;
-          }
-        }
-      } catch (e) {
-        console.log('Could not retrieve user university');
-      }
-
-      const listings = housingDatabase[userUniversity] || [];
-      renderHousingListings(listings, userUniversity);
-      attachHousingFilters(listings);
-    }
-
-    function renderHousingListings(listings, universityName) {
-      const container = document.getElementById('housingListings');
-      if (!container) return;
-
-      if (listings.length === 0) {
-        container.innerHTML = '<div class="no-listings">No listings available for your university.</div>';
-        return;
-      }
-
-      // Organize by budget tier
-      const budgetTiers = {
-        budget: { icon: '💰', title: 'Budget Friendly', range: '$500-$800/month' },
-        moderate: { icon: '💵', title: 'Moderate', range: '$800-$1,200/month' },
-        premium: { icon: '💎', title: 'Premium', range: '$1,200+/month' }
-      };
-
-      let html = `<p style="color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.95rem;">📍 Showing listings near <strong>${universityName}</strong></p>`;
-
-      // Group listings by budget
-      for (const [budgetKey, budgetInfo] of Object.entries(budgetTiers)) {
-        const budgetListings = listings.filter(l => l.budget === budgetKey);
-        if (budgetListings.length === 0) continue;
-
+      listings.forEach((listing, index) => {
         html += `
-          <div class="budget-section">
-            <div class="budget-header">
-              <div class="budget-icon">${budgetInfo.icon}</div>
-              <div>
-                <div class="budget-title">${budgetInfo.title}</div>
-                <div class="budget-range">${budgetInfo.range}</div>
-              </div>
+          <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.05)); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 24px rgba(139, 92, 246, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            <div style="font-size: 1.5rem; font-weight: 800; color: #10b981; margin-bottom: 0.5rem;">$${listing.price}/mo</div>
+            <div style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">${listing.title}</div>
+            <div style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">
+              <span style="display: inline-block; margin-right: 1rem;">🛏️ ${listing.bedrooms} bed${listing.bedrooms > 1 ? 's' : ''}</span>
+              <span>🏠 ${listing.type}</span>
             </div>
-            <div class="listings-grid">
-              ${budgetListings.map(listing => createListingCard(listing)).join('')}
+            <div style="font-size: 0.85rem; color: #a7c1d9; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+              <strong>Amenities:</strong><br>${listing.amenities}
             </div>
           </div>
         `;
-      }
-
+      });
+      
+      html += '</div>';
       container.innerHTML = html;
-    }
-
-    function createListingCard(listing) {
-      const typeEmoji = {
-        'room': '🛏️',
-        'apartment': '🏠',
-        'house': '🏡',
-        'dorm': '🏢'
-      };
-
-      const verifiedBadge = listing.verified ? '✅' : '';
-      const sourceBadge = listing.source ? `<span class="amenity-tag" style="background: rgba(99, 102, 241, 0.3); color: #a5b4fc; margin-top: 0.5rem; display: inline-block;">${listing.source}</span>` : '';
-
-      return `
-        <div class="listing-card" onclick="openListing('${listing.title}', ${listing.price}, '${listing.location}', ${listing.bedrooms}, '${listing.source || 'Student Housing'}')">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
-            <div class="listing-price">$${listing.price}</div>
-            <span style="font-size: 1.2rem;">${verifiedBadge}</span>
-          </div>
-          <div class="listing-title">${typeEmoji[listing.type] || '🏠'} ${listing.title}</div>
-          <div class="listing-location">📍 ${listing.location} • ${listing.distance}</div>
-          
-          <div class="listing-details">
-            <div class="listing-detail-item">
-              🛏️ ${listing.bedrooms} bed${listing.bedrooms > 1 ? 's' : ''}
-            </div>
-            <div class="listing-detail-item">
-              📏 ${['room', 'dorm'].includes(listing.type) ? 'Shared' : 'Private'}
-            </div>
-          </div>
-
-          <div class="listing-amenities">
-            ${listing.amenities.map(a => `<span class="amenity-tag">${a}</span>`).join('')}
-            ${sourceBadge}
-          </div>
-        </div>
-      `;
-    }
-
-    function attachHousingFilters(allListings) {
-      const budgetFilter = document.getElementById('budgetFilter');
-      const typeFilter = document.getElementById('typeFilter');
-      const bedroomFilter = document.getElementById('bedroomFilter');
-      const maxPriceFilter = document.getElementById('maxPriceFilter');
-
-      if (!budgetFilter) return;
-
-      const applyFilters = () => {
-        let filtered = allListings;
-
-        const budget = budgetFilter.value;
-        if (budget) {
-          filtered = filtered.filter(l => l.budget === budget);
-        }
-
-        const type = typeFilter.value;
-        if (type) {
-          filtered = filtered.filter(l => l.type === type);
-        }
-
-        const bedrooms = parseInt(bedroomFilter.value);
-        if (!isNaN(bedrooms)) {
-          filtered = filtered.filter(l => l.bedrooms >= bedrooms);
-        }
-
-        const maxPrice = parseInt(maxPriceFilter.value);
-        if (!isNaN(maxPrice)) {
-          filtered = filtered.filter(l => l.price <= maxPrice);
-        }
-
-        renderHousingListings(filtered, 'Your University');
-      };
-
-      budgetFilter.addEventListener('change', applyFilters);
-      typeFilter.addEventListener('change', applyFilters);
-      bedroomFilter.addEventListener('input', applyFilters);
-      maxPriceFilter.addEventListener('input', applyFilters);
-    }
-
-    window.openListing = function(title, price, location, bedrooms, source) {
-      alert(`📋 Listing: ${title}\n💰 Price: $${price}/month\n📍 Location: ${location}\n🛏️ Bedrooms: ${bedrooms}\n🔗 Source: ${source || 'Student Housing'}\n\nFeature: Contact info will be shown after account verification!`);
-    };
-
-    // Global handler for Find Real Listings button
-    window.handleFindRealListings = function() {
-      let userUniversity = 'University of Toronto';
-      let cityName = 'Toronto';
-
-      try {
-        const userData = sessionStorage.getItem('connectu_user');
-        if (userData) {
-          const user = JSON.parse(userData);
-          if (user.school) {
-            userUniversity = user.school;
-            const coords = universityCoordinates[user.school];
-            if (coords) cityName = coords.city;
-          }
-        }
-      } catch (e) {
-        console.log('Could not retrieve user university');
-      }
-
-      fetchRealListings(userUniversity, cityName);
-    };
-
-    // Global handler for Show Sample Listings button
-    window.handleShowSampleListings = function() {
-      let userUniversity = 'University of Toronto';
-      try {
-        const userData = sessionStorage.getItem('connectu_user');
-        if (userData) {
-          const user = JSON.parse(userData);
-          if (user.school && housingDatabase[user.school]) {
-            userUniversity = user.school;
-          }
-        }
-      } catch (e) {
-        console.log('Could not retrieve user university');
-      }
-
-      const listings = housingDatabase[userUniversity] || [];
-      renderHousingListings(listings, userUniversity, false);
-      attachHousingFilters(listings);
-    };
-
-    // Setup button event listeners for housing tab
-    function setupHousingButtons() {
-      const findRealBtn = document.getElementById('findRealListingsBtn');
-      const showSampleBtn = document.getElementById('showSampleListingsBtn');
-
-      if (findRealBtn) {
-        findRealBtn.addEventListener('click', handleFindRealListings);
-      }
-
-      if (showSampleBtn) {
-        showSampleBtn.addEventListener('click', handleShowSampleListings);
-      }
-    }
-
-    // Initialize housing listings when switching to housing tab
-    const originalRenderTab = renderTab;
-    window.renderTab = function(tab) {
-      originalRenderTab(tab);
-      if (tab === 'housing') {
-        setTimeout(() => {
-          initializeHousingListings();
-          setupHousingButtons();
-        }, 100);
-      }
     };
 
     // Initial render
