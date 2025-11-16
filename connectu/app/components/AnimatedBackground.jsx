@@ -36,11 +36,15 @@ export function AnimatedBackground() {
       ctx.save();
       ctx.translate(offsetX, offsetY);
 
-      // Draw grid lines for map structure
-      ctx.strokeStyle = `rgba(${mapColor}, 0.15)`;
-      ctx.lineWidth = 0.5;
+      // Draw ocean/water background with subtle pattern
+      ctx.fillStyle = `rgba(${mapColor}, 0.08)`;
+      ctx.fillRect(0, 0, width, height);
+
+      // Draw grid lines for map structure (more visible)
+      ctx.strokeStyle = `rgba(${mapColor}, 0.4)`;
+      ctx.lineWidth = 1.5;
       
-      const gridSize = 100;
+      const gridSize = 80;
       for (let x = 0; x < width; x += gridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
@@ -54,14 +58,19 @@ export function AnimatedBackground() {
         ctx.stroke();
       }
 
-      // Draw simplified continent shapes (blob-like shapes that look like landmasses)
-      ctx.fillStyle = `rgba(${mapColor}, 0.08)`;
-      ctx.strokeStyle = `rgba(${mapColor}, 0.2)`;
-      ctx.lineWidth = 1;
+      // Draw simplified continent shapes (much more visible)
+      ctx.fillStyle = `rgba(${mapColor}, 0.4)`;
+      ctx.strokeStyle = `rgba(${mapColor}, 0.7)`;
+      ctx.lineWidth = 2.5;
 
-      // Continent 1 (North America-like)
+      // Continent 1 (North America-like) - more detailed shape
       ctx.beginPath();
       ctx.ellipse(width * 0.15, height * 0.25, width * 0.12, height * 0.18, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      // Add detail to North America
+      ctx.beginPath();
+      ctx.ellipse(width * 0.12, height * 0.2, width * 0.05, height * 0.08, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
 
@@ -76,44 +85,56 @@ export function AnimatedBackground() {
       ctx.ellipse(width * 0.5, height * 0.3, width * 0.1, height * 0.25, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
+      // Add Europe detail
+      ctx.beginPath();
+      ctx.ellipse(width * 0.48, height * 0.25, width * 0.04, height * 0.1, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
 
       // Continent 4 (Asia-like)
       ctx.beginPath();
       ctx.ellipse(width * 0.7, height * 0.25, width * 0.15, height * 0.2, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
-
-      // Continent 5 (Australia-like)
+      // Add China/India detail
       ctx.beginPath();
-      ctx.ellipse(width * 0.75, height * 0.7, width * 0.06, height * 0.08, 0, 0, Math.PI * 2);
+      ctx.ellipse(width * 0.68, height * 0.35, width * 0.08, height * 0.12, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
 
-      // Add some islands (fixed positions for consistency)
+      // Continent 5 (Australia-like)
+      ctx.beginPath();
+      ctx.ellipse(width * 0.75, height * 0.7, width * 0.08, height * 0.1, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Add some islands (more visible)
       const islands = [
-        { x: width * 0.1, y: height * 0.15, size: 8 },
-        { x: width * 0.3, y: height * 0.5, size: 6 },
-        { x: width * 0.6, y: height * 0.2, size: 7 },
-        { x: width * 0.4, y: height * 0.75, size: 9 },
-        { x: width * 0.8, y: height * 0.4, size: 6 },
-        { x: width * 0.25, y: height * 0.85, size: 7 },
-        { x: width * 0.65, y: height * 0.6, size: 8 },
-        { x: width * 0.9, y: height * 0.8, size: 5 },
+        { x: width * 0.1, y: height * 0.15, size: 12 },
+        { x: width * 0.3, y: height * 0.5, size: 10 },
+        { x: width * 0.6, y: height * 0.2, size: 11 },
+        { x: width * 0.4, y: height * 0.75, size: 13 },
+        { x: width * 0.8, y: height * 0.4, size: 9 },
+        { x: width * 0.25, y: height * 0.85, size: 10 },
+        { x: width * 0.65, y: height * 0.6, size: 12 },
+        { x: width * 0.9, y: height * 0.8, size: 8 },
       ];
       islands.forEach((island) => {
+        ctx.fillStyle = `rgba(${mapColor}, 0.45)`;
+        ctx.strokeStyle = `rgba(${mapColor}, 0.7)`;
         ctx.beginPath();
         ctx.arc(island.x, island.y, island.size, 0, Math.PI * 2);
         ctx.fill();
         ctx.stroke();
       });
 
-      // Draw longitude/latitude lines
-      ctx.strokeStyle = `rgba(${mapColor}, 0.1)`;
-      ctx.lineWidth = 0.5;
+      // Draw longitude/latitude lines (more visible)
+      ctx.strokeStyle = `rgba(${mapColor}, 0.35)`;
+      ctx.lineWidth = 1.5;
       
       // Latitude lines
-      for (let i = 0; i < 5; i++) {
-        const latY = (height / 5) * i;
+      for (let i = 0; i < 6; i++) {
+        const latY = (height / 6) * i;
         ctx.beginPath();
         ctx.moveTo(0, latY);
         ctx.lineTo(width, latY);
@@ -121,11 +142,23 @@ export function AnimatedBackground() {
       }
 
       // Longitude lines
-      for (let i = 0; i < 8; i++) {
-        const lonX = (width / 8) * i;
+      for (let i = 0; i < 10; i++) {
+        const lonX = (width / 10) * i;
         ctx.beginPath();
         ctx.moveTo(lonX, 0);
         ctx.lineTo(lonX, height);
+        ctx.stroke();
+      }
+
+      // Add country borders/coastlines (more detail)
+      ctx.strokeStyle = `rgba(${mapColor}, 0.5)`;
+      ctx.lineWidth = 2;
+      // Add some curved coastlines
+      for (let i = 0; i < 15; i++) {
+        const coastX = (width / 15) * i;
+        const coastY = height * 0.3 + Math.sin(coastX * 0.01) * 50;
+        ctx.beginPath();
+        ctx.arc(coastX, coastY, 20, 0, Math.PI * 2);
         ctx.stroke();
       }
 
@@ -245,7 +278,6 @@ export function AnimatedBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none z-0"
-      style={{ background: "transparent" }}
     />
   );
 }
