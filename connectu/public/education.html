@@ -1155,52 +1155,39 @@
               document.querySelector('.education-title').textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
               document.getElementById('universityNameDisplay').textContent = schoolName;
               
-              // Use Google Custom Search for university logos
-              // Fallback: Try multiple search sources
-              const logoUrls = [
-                `https://www.google.com/search?q=${encodeURIComponent(schoolName + ' logo')}&tbm=isch`,
-                `https://logo.clearbit.com/${schoolName.toLowerCase().replace(/\s+/g, '')}.com`,
-                `https://logo.clearbit.com/${schoolName.toLowerCase().replace(/\s+/g, '')}.ca`,
-                `https://logo.clearbit.com/${schoolName.toLowerCase().replace(/\s+/g, '')}.edu`,
-                `https://upload.wikimedia.org/wikipedia/commons/thumb/search/${encodeURIComponent(schoolName)}/logo.png`
-              ];
-
-              // Try to fetch logo from Clearbit (works for many institutions)
+              // Try to fetch logo from Clearbit first
               const schoolNameFormatted = schoolName.toLowerCase().replace(/\s+/g, '');
-              const clearbitUrl = `https://logo.clearbit.com/${schoolNameFormatted}.com`;
+              const clearbitUrl = `https://logo.clearbit.com/${schoolNameFormatted}.com?size=200`;
               
-              const img = document.createElement('img');
-              img.alt = `${schoolName} logo`;
-              img.src = clearbitUrl;
-              
-              img.onload = () => {
-                const logoImg = document.getElementById('universityLogo');
-                logoImg.src = clearbitUrl;
+              // Set the image source directly - Clearbit will return a 404 if not found
+              const logoImg = document.getElementById('universityLogo');
+              logoImg.src = clearbitUrl;
+              logoImg.onload = () => {
                 document.getElementById('logoSection').style.display = 'block';
               };
               
-              img.onerror = () => {
-                // Fallback: Try with .edu
-                const fallbackUrl = `https://logo.clearbit.com/${schoolNameFormatted}.edu`;
-                const fallbackImg = document.createElement('img');
-                fallbackImg.src = fallbackUrl;
-                fallbackImg.onload = () => {
-                  const logoImg = document.getElementById('universityLogo');
-                  logoImg.src = fallbackUrl;
+              // Fallback after 2 seconds if Clearbit doesn't respond
+              setTimeout(() => {
+                if (logoImg.complete && logoImg.naturalHeight === 0) {
+                  // Try .edu domain
+                  logoImg.src = `https://logo.clearbit.com/${schoolNameFormatted}.edu?size=200`;
+                  logoImg.onload = () => {
+                    document.getElementById('logoSection').style.display = 'block';
+                  };
+                  logoImg.onerror = () => {
+                    // Final fallback - show Wikipedia search
+                    logoImg.src = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(schoolName)}&prop=pageimages&format=json&pithumbsize=200`;
+                  };
+                } else if (logoImg.complete) {
                   document.getElementById('logoSection').style.display = 'block';
-                };
-                fallbackImg.onerror = () => {
-                  console.log('University logo not found in database');
-                };
-              };
+                }
+              }, 2000);
             }
           }
         } catch (error) {
           console.error('Error loading university logo:', error);
         }
-      })();
-
-      // Tab switching logic
+      })();      // Tab switching logic
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           // Remove active class from all buttons and panels
