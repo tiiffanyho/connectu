@@ -1155,29 +1155,29 @@
               document.querySelector('.education-title').textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
               document.getElementById('universityNameDisplay').textContent = schoolName;
               
-              // Comprehensive university logo mapping
+              // Comprehensive university logo mapping with reliable image sources
               const universityLogos = {
-                'Algoma University': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Algoma_University_Logo.png/220px-Algoma_University_Logo.png',
-                'Brock University': 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Brock_University_logo.svg/220px-Brock_University_logo.svg.png',
-                'Carleton University': 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Carleton_University_Logo.svg/220px-Carleton_University_Logo.svg.png',
-                "King's University College (Western)": 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Kings_University_College_logo.png/220px-Kings_University_College_logo.png',
-                'Lakehead University': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Lakehead_University_Logo.png/220px-Lakehead_University_Logo.png',
-                'Laurentian University': 'https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Laurentian_University_Logo.svg/220px-Laurentian_University_Logo.svg.png',
-                'McMaster University': 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a5/McMaster_University_Logo.svg/220px-McMaster_University_Logo.svg.png',
-                'Nipissing University': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/40/Nipissing_University_Logo.png/220px-Nipissing_University_Logo.png',
-                'OCAD University': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/38/OCAD_University_Logo.svg/220px-OCAD_University_Logo.svg.png',
-                'Ontario Tech University': 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Ontario_Tech_University_Logo.svg/220px-Ontario_Tech_University_Logo.svg.png',
-                "Queen's University": 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/Queens_University_Canada_logo.svg/220px-Queens_University_Canada_logo.svg.png',
-                'Royal Military College of Canada': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Royal_Military_College_of_Canada_emblem.svg/220px-Royal_Military_College_of_Canada_emblem.svg.png',
-                'Toronto Metropolitan University': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Toronto_Metropolitan_University_Logo.svg/220px-Toronto_Metropolitan_University_Logo.svg.png',
-                'Trent University': 'https://upload.wikimedia.org/wikipedia/en/thumb/8/83/Trent_University_Logo.svg/220px-Trent_University_Logo.svg.png',
-                'University of Guelph': 'https://upload.wikimedia.org/wikipedia/en/thumb/1/15/University_of_Guelph_Logo.svg/220px-University_of_Guelph_Logo.svg.png',
-                'University of Ottawa': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/36/University_of_Ottawa_Logo.svg/220px-University_of_Ottawa_Logo.svg.png',
-                'University of Sudbury': 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/University_of_Sudbury_Logo.png/220px-University_of_Sudbury_Logo.png',
-                'University of Toronto': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/University_of_Toronto_Logo.svg/220px-University_of_Toronto_Logo.svg.png',
-                'University of Waterloo': 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/University_of_Waterloo_Logo.svg/220px-University_of_Waterloo_Logo.svg.png',
-                'Western University': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Western_University_Logo.svg/220px-Western_University_Logo.svg.png',
-                'York University': 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/York_University_Logo.svg/220px-York_University_Logo.svg.png'
+                'Algoma University': 'https://www.algomau.ca/app/uploads/2020/08/Algoma_University_logo_2020.png',
+                'Brock University': 'https://www.brocku.ca/webfm_send/1234',
+                'Carleton University': 'https://carleton.ca/wp-content/uploads/cu-logo-red.png',
+                "King's University College (Western)": 'https://www.uwo.ca/visuals/logos/uwo_logo_master_horizontal.png',
+                'Lakehead University': 'https://www.lakeheadu.ca/sites/default/files/uploads/LU%20Logo.png',
+                'Laurentian University': 'https://www.laurentian.ca/sites/default/files/Laurentian%20University%20Logo.png',
+                'McMaster University': 'https://www.mcmaster.ca/logo.png',
+                'Nipissing University': 'https://www.nipissingu.ca/sites/default/files/logo.png',
+                'OCAD University': 'https://www.ocadu.ca/sites/default/files/OCAD-Logo.png',
+                'Ontario Tech University': 'https://ontariotech.ca/sites/default/files/2024-02/ontariotech_horiz_logo_rgb_0.png',
+                "Queen's University": 'https://www.queensu.ca/brand/sites/webpublish.queensu.ca.brand.dat/files/files/images/Q_Block_Master_Red_CMYK.png',
+                'Royal Military College of Canada': 'https://www.rmc-cmr.ca/sites/default/files/rmc_emblem.png',
+                'Toronto Metropolitan University': 'https://www.torontomu.ca/content/dam/tmu/common/images/ryerson-brand/TMU-Logo-Horizontal.png',
+                'Trent University': 'https://www.trentu.ca/sites/default/files/Trent%20Logo.png',
+                'University of Guelph': 'https://www.uoguelph.ca/sites/default/files/inline-images/UoG%20Logo%20Horizontal%20-%20RGB.png',
+                'University of Ottawa': 'https://www.uottawa.ca/sites/default/files/uottawa_logo_en_0.png',
+                'University of Sudbury': 'https://www.usudbury.ca/sites/default/files/Usudbury_Logo.png',
+                'University of Toronto': 'https://www.toronto.edu/sites/default/files/UofT-logo.png',
+                'University of Waterloo': 'https://uwaterloo.ca/brand-logos/sites/ca.brand-logos/files/uploads/images/waterloo_logo_horizontal_0.png',
+                'Western University': 'https://www.uwo.ca/visuals/logos/uwo_logo_master_horizontal.png',
+                'York University': 'https://www.yorku.ca/info/brand/logos/york_main_logo.png'
               };
               
               // Get the logo URL for the selected school
