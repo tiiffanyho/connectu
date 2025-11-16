@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 export function AnimatedBackground() {
   const canvasRef = useRef(null);
   const dotsRef = useRef([]);
-  const mapsRef = useRef([]);
+  const mapOffsetRef = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef();
 
   useEffect(() => {
@@ -21,50 +21,113 @@ export function AnimatedBackground() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Initialize dots
-    const dotCount = 30;
+    // Initialize connection dots
+    const dotCount = 25;
     dotsRef.current = Array.from({ length: dotCount }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      radius: 3 + Math.random() * 2,
-    }));
-
-    // Initialize map icons
-    const mapCount = 8;
-    mapsRef.current = Array.from({ length: mapCount }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.3,
-      rotation: Math.random() * Math.PI * 2,
-      rotationSpeed: (Math.random() - 0.5) * 0.02,
+      radius: 3 + Math.random() * 2,
     }));
 
-    const drawMapIcon = (ctx, x, y, rotation, size, primaryColor) => {
+    // Create a map pattern (simplified world map continents)
+    const drawMapPattern = (ctx, offsetX, offsetY, width, height, mapColor) => {
       ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rotation);
-      ctx.strokeStyle = `rgba(${primaryColor}, 0.4)`;
-      ctx.lineWidth = 1.5;
-      ctx.fillStyle = `rgba(${primaryColor}, 0.15)`;
+      ctx.translate(offsetX, offsetY);
 
-      // Draw a simplified map pin shape
+      // Draw grid lines for map structure
+      ctx.strokeStyle = `rgba(${mapColor}, 0.15)`;
+      ctx.lineWidth = 0.5;
+      
+      const gridSize = 100;
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Draw simplified continent shapes (blob-like shapes that look like landmasses)
+      ctx.fillStyle = `rgba(${mapColor}, 0.08)`;
+      ctx.strokeStyle = `rgba(${mapColor}, 0.2)`;
+      ctx.lineWidth = 1;
+
+      // Continent 1 (North America-like)
       ctx.beginPath();
-      ctx.moveTo(0, -size);
-      ctx.lineTo(-size * 0.6, size * 0.3);
-      ctx.lineTo(0, size * 0.1);
-      ctx.lineTo(size * 0.6, size * 0.3);
-      ctx.closePath();
+      ctx.ellipse(width * 0.15, height * 0.25, width * 0.12, height * 0.18, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
 
-      // Add a small circle at the top
+      // Continent 2 (South America-like)
       ctx.beginPath();
-      ctx.arc(0, -size * 0.8, size * 0.3, 0, Math.PI * 2);
+      ctx.ellipse(width * 0.2, height * 0.6, width * 0.08, height * 0.15, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
+
+      // Continent 3 (Europe/Africa-like)
+      ctx.beginPath();
+      ctx.ellipse(width * 0.5, height * 0.3, width * 0.1, height * 0.25, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Continent 4 (Asia-like)
+      ctx.beginPath();
+      ctx.ellipse(width * 0.7, height * 0.25, width * 0.15, height * 0.2, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Continent 5 (Australia-like)
+      ctx.beginPath();
+      ctx.ellipse(width * 0.75, height * 0.7, width * 0.06, height * 0.08, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Add some islands (fixed positions for consistency)
+      const islands = [
+        { x: width * 0.1, y: height * 0.15, size: 8 },
+        { x: width * 0.3, y: height * 0.5, size: 6 },
+        { x: width * 0.6, y: height * 0.2, size: 7 },
+        { x: width * 0.4, y: height * 0.75, size: 9 },
+        { x: width * 0.8, y: height * 0.4, size: 6 },
+        { x: width * 0.25, y: height * 0.85, size: 7 },
+        { x: width * 0.65, y: height * 0.6, size: 8 },
+        { x: width * 0.9, y: height * 0.8, size: 5 },
+      ];
+      islands.forEach((island) => {
+        ctx.beginPath();
+        ctx.arc(island.x, island.y, island.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      });
+
+      // Draw longitude/latitude lines
+      ctx.strokeStyle = `rgba(${mapColor}, 0.1)`;
+      ctx.lineWidth = 0.5;
+      
+      // Latitude lines
+      for (let i = 0; i < 5; i++) {
+        const latY = (height / 5) * i;
+        ctx.beginPath();
+        ctx.moveTo(0, latY);
+        ctx.lineTo(width, latY);
+        ctx.stroke();
+      }
+
+      // Longitude lines
+      for (let i = 0; i < 8; i++) {
+        const lonX = (width / 8) * i;
+        ctx.beginPath();
+        ctx.moveTo(lonX, 0);
+        ctx.lineTo(lonX, height);
+        ctx.stroke();
+      }
 
       ctx.restore();
     };
@@ -74,36 +137,44 @@ export function AnimatedBackground() {
 
       // Check dark mode dynamically
       const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const primaryColor = isDarkMode ? "147, 197, 253" : "59, 130, 246"; // blue-300 or blue-500
-      const secondaryColor = isDarkMode ? "96, 165, 250" : "37, 99, 235"; // blue-400 or blue-600
+      const mapColor = isDarkMode ? "147, 197, 253" : "59, 130, 246"; // blue-300 or blue-500
+      const primaryColor = isDarkMode ? "147, 197, 253" : "59, 130, 246";
+      const secondaryColor = isDarkMode ? "96, 165, 250" : "37, 99, 235";
 
-      // Update and draw dots
+      // Slowly move the map background (slow speed - 0.1 pixels per frame)
+      mapOffsetRef.current.x += 0.1;
+      mapOffsetRef.current.y += 0.05;
+
+      // Reset offset to create seamless scrolling
+      const mapWidth = canvas.width * 1.5;
+      const mapHeight = canvas.height * 1.5;
+      if (mapOffsetRef.current.x > mapWidth) mapOffsetRef.current.x = 0;
+      if (mapOffsetRef.current.y > mapHeight) mapOffsetRef.current.y = 0;
+
+      // Draw the moving map background (draw multiple tiles for seamless scrolling)
+      for (let x = -mapWidth; x < canvas.width + mapWidth; x += mapWidth) {
+        for (let y = -mapHeight; y < canvas.height + mapHeight; y += mapHeight) {
+          drawMapPattern(
+            ctx,
+            x + (mapOffsetRef.current.x % mapWidth) - mapWidth,
+            y + (mapOffsetRef.current.y % mapHeight) - mapHeight,
+            mapWidth,
+            mapHeight,
+            mapColor
+          );
+        }
+      }
+
+      // Update and draw connection dots
       dotsRef.current.forEach((dot) => {
         dot.x += dot.vx;
         dot.y += dot.vy;
 
-        // Bounce off edges
-        if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
-        if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
-
-        // Keep in bounds
-        dot.x = Math.max(0, Math.min(canvas.width, dot.x));
-        dot.y = Math.max(0, Math.min(canvas.height, dot.y));
-      });
-
-      // Update and draw map icons
-      mapsRef.current.forEach((map) => {
-        map.x += map.vx;
-        map.y += map.vy;
-        map.rotation += map.rotationSpeed;
-
-        // Bounce off edges
-        if (map.x < 50 || map.x > canvas.width - 50) map.vx *= -1;
-        if (map.y < 50 || map.y > canvas.height - 50) map.vy *= -1;
-
-        // Keep in bounds
-        map.x = Math.max(50, Math.min(canvas.width - 50, map.x));
-        map.y = Math.max(50, Math.min(canvas.height - 50, map.y));
+        // Wrap around edges
+        if (dot.x < 0) dot.x = canvas.width;
+        if (dot.x > canvas.width) dot.x = 0;
+        if (dot.y < 0) dot.y = canvas.height;
+        if (dot.y > canvas.height) dot.y = 0;
       });
 
       // Draw connections between nearby dots
@@ -118,9 +189,9 @@ export function AnimatedBackground() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < connectionDistance) {
-            const opacity = (1 - distance / connectionDistance) * 0.4;
+            const opacity = (1 - distance / connectionDistance) * 0.5;
             const pulse = (Math.sin(time * 2 + distance * 0.1) + 1) * 0.5;
-            ctx.strokeStyle = `rgba(${primaryColor}, ${opacity * (0.5 + pulse * 0.5)})`;
+            ctx.strokeStyle = `rgba(${primaryColor}, ${opacity * (0.6 + pulse * 0.4)})`;
             ctx.lineWidth = 0.5 + pulse * 0.5;
             ctx.beginPath();
             ctx.moveTo(dot1.x, dot1.y);
@@ -130,7 +201,7 @@ export function AnimatedBackground() {
         }
       }
 
-      // Draw dots with pulsing effect
+      // Draw connection dots with pulsing effect
       dotsRef.current.forEach((dot, index) => {
         const pulse = (Math.sin(time * 3 + index) + 1) * 0.5;
         const glowRadius = dot.radius * 2 + pulse * 3;
@@ -143,7 +214,7 @@ export function AnimatedBackground() {
           dot.y,
           glowRadius
         );
-        gradient.addColorStop(0, `rgba(${primaryColor}, ${0.6 + pulse * 0.3})`);
+        gradient.addColorStop(0, `rgba(${primaryColor}, ${0.7 + pulse * 0.3})`);
         gradient.addColorStop(1, `rgba(${primaryColor}, 0)`);
 
         ctx.fillStyle = gradient;
@@ -151,15 +222,10 @@ export function AnimatedBackground() {
         ctx.arc(dot.x, dot.y, glowRadius, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.fillStyle = `rgba(${secondaryColor}, ${0.9 + pulse * 0.1})`;
+        ctx.fillStyle = `rgba(${secondaryColor}, ${0.95 + pulse * 0.05})`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
-      });
-
-      // Draw map icons
-      mapsRef.current.forEach((map) => {
-        drawMapIcon(ctx, map.x, map.y, map.rotation, 20, primaryColor);
       });
 
       animationFrameRef.current = requestAnimationFrame(animate);
