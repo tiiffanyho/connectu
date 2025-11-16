@@ -60,8 +60,20 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding: 1.5rem 2rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        position: relative;
+      }
+
+      .education-header .school-banner {
+        display: none;
+      }
+
+      .header-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 1rem;
       }
 
       .education-title {
@@ -70,6 +82,10 @@
         letter-spacing: 2px;
         color: #fff;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        grid-column: 2;
+        margin: 0;
+        width: 100%;
       }
 
       .education-back {
@@ -84,6 +100,8 @@
         transition:
           transform 0.15s ease,
           box-shadow 0.15s ease;
+        grid-column: 1;
+        white-space: nowrap;
       }
 
       .education-back:hover {
