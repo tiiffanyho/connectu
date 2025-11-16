@@ -499,6 +499,11 @@ export const initSignupFlow = () => {
     }
 
     saveUserToSession(data);
+    
+    // Save university to localStorage for map access
+    if (data.school) {
+      localStorage.setItem('connectu_university', data.school);
+    }
 
     showPage('main');
   });
