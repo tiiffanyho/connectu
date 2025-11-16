@@ -244,6 +244,15 @@ const renderSignupSection = () => `
 
 const renderMainSection = () => `
   <section id="mainView" class="main-page" aria-hidden="true">
+    <!-- Profile Banner Section -->
+    <div id="profileBanner" class="profile-banner" style="display: none;"></div>
+    
+    <!-- LinkedIn Profile Picture Section -->
+    <div class="linkedin-profile-section" id="profileSection" style="display: none;">
+      <img id="linkedinProfile" class="linkedin-profile" alt="LinkedIn Profile" />
+      <div class="profile-name-display" id="profileNameDisplay"></div>
+    </div>
+    
     <div class="brand">CONNECTU</div>
     <div class="subtitle">Choose a section to explore — these tiles will become full features inside the app.</div>
 
