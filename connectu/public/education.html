@@ -1142,8 +1142,8 @@
     </div>
 
     <script>
-      // Load and display university logo
-      (async function loadUniversityLogo() {
+            // Load and display university logo
+      (function loadUniversityLogo() {
         try {
           const userData = sessionStorage.getItem('connectu_user');
           if (userData) {
@@ -1155,33 +1155,42 @@
               document.querySelector('.education-title').textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
               document.getElementById('universityNameDisplay').textContent = schoolName;
               
-              // Try to fetch logo from Clearbit first
-              const schoolNameFormatted = schoolName.toLowerCase().replace(/\s+/g, '');
-              const clearbitUrl = `https://logo.clearbit.com/${schoolNameFormatted}.com?size=200`;
-              
-              // Set the image source directly - Clearbit will return a 404 if not found
-              const logoImg = document.getElementById('universityLogo');
-              logoImg.src = clearbitUrl;
-              logoImg.onload = () => {
-                document.getElementById('logoSection').style.display = 'block';
+              // Comprehensive university logo mapping
+              const universityLogos = {
+                'Algoma University': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Algoma_University_Logo.png/220px-Algoma_University_Logo.png',
+                'Brock University': 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Brock_University_logo.svg/220px-Brock_University_logo.svg.png',
+                'Carleton University': 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Carleton_University_Logo.svg/220px-Carleton_University_Logo.svg.png',
+                "King's University College (Western)": 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Kings_University_College_logo.png/220px-Kings_University_College_logo.png',
+                'Lakehead University': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Lakehead_University_Logo.png/220px-Lakehead_University_Logo.png',
+                'Laurentian University': 'https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Laurentian_University_Logo.svg/220px-Laurentian_University_Logo.svg.png',
+                'McMaster University': 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a5/McMaster_University_Logo.svg/220px-McMaster_University_Logo.svg.png',
+                'Nipissing University': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/40/Nipissing_University_Logo.png/220px-Nipissing_University_Logo.png',
+                'OCAD University': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/38/OCAD_University_Logo.svg/220px-OCAD_University_Logo.svg.png',
+                'Ontario Tech University': 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Ontario_Tech_University_Logo.svg/220px-Ontario_Tech_University_Logo.svg.png',
+                "Queen's University": 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/Queens_University_Canada_logo.svg/220px-Queens_University_Canada_logo.svg.png',
+                'Royal Military College of Canada': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Royal_Military_College_of_Canada_emblem.svg/220px-Royal_Military_College_of_Canada_emblem.svg.png',
+                'Toronto Metropolitan University': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Toronto_Metropolitan_University_Logo.svg/220px-Toronto_Metropolitan_University_Logo.svg.png',
+                'Trent University': 'https://upload.wikimedia.org/wikipedia/en/thumb/8/83/Trent_University_Logo.svg/220px-Trent_University_Logo.svg.png',
+                'University of Guelph': 'https://upload.wikimedia.org/wikipedia/en/thumb/1/15/University_of_Guelph_Logo.svg/220px-University_of_Guelph_Logo.svg.png',
+                'University of Ottawa': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/36/University_of_Ottawa_Logo.svg/220px-University_of_Ottawa_Logo.svg.png',
+                'University of Sudbury': 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/University_of_Sudbury_Logo.png/220px-University_of_Sudbury_Logo.png',
+                'University of Toronto': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/University_of_Toronto_Logo.svg/220px-University_of_Toronto_Logo.svg.png',
+                'University of Waterloo': 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/University_of_Waterloo_Logo.svg/220px-University_of_Waterloo_Logo.svg.png',
+                'Western University': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Western_University_Logo.svg/220px-Western_University_Logo.svg.png',
+                'York University': 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/York_University_Logo.svg/220px-York_University_Logo.svg.png'
               };
               
-              // Fallback after 2 seconds if Clearbit doesn't respond
-              setTimeout(() => {
-                if (logoImg.complete && logoImg.naturalHeight === 0) {
-                  // Try .edu domain
-                  logoImg.src = `https://logo.clearbit.com/${schoolNameFormatted}.edu?size=200`;
-                  logoImg.onload = () => {
-                    document.getElementById('logoSection').style.display = 'block';
-                  };
-                  logoImg.onerror = () => {
-                    // Final fallback - show Wikipedia search
-                    logoImg.src = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(schoolName)}&prop=pageimages&format=json&pithumbsize=200`;
-                  };
-                } else if (logoImg.complete) {
-                  document.getElementById('logoSection').style.display = 'block';
-                }
-              }, 2000);
+              // Get the logo URL for the selected school
+              const logoUrl = universityLogos[schoolName];
+              
+              if (logoUrl) {
+                const logoImg = document.getElementById('universityLogo');
+                logoImg.src = logoUrl;
+                logoImg.alt = `${schoolName} logo`;
+                document.getElementById('logoSection').style.display = 'block';
+              } else {
+                console.log('Logo not found for:', schoolName);
+              }
             }
           }
         } catch (error) {
