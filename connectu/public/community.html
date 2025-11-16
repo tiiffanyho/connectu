@@ -156,6 +156,13 @@
       border: 1px solid rgba(255,255,255,0.08);
     }
 
+    .university-label {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
     .housing-filters {
       display: flex;
       gap: 1rem;
@@ -314,6 +321,7 @@
     </div>
   </div>
   <script type="module">
+    import { getUniversityCoords } from './js/university-data.js';
     // Housing data organized by university and budget tier
     const housingDatabase = {
       'University of Toronto': [
@@ -361,6 +369,7 @@
     const tabData = {
       heatmap: `
         <h2> Campus Heat Map — Live Activity Visualization</h2>
+        <div class="university-label" id="universityLabel"></div>
         <div id="heatMapContainer"></div>
         <p style="margin-top: 1rem; color: #94a3b8; font-size: 0.95rem; text-align: center;">Real-time campus activity visualization — darker/denser areas indicate higher student presence</p>
         <ul class="feature-list">
@@ -431,6 +440,98 @@
     const tabContent = document.getElementById('tabContent');
     let activeTab = 'heatmap';
 
+    /**
+     * Generate realistic heatmap data points around campus coordinates
+     */
+    function generateCampusHeatData(centerLat, centerLng) {
+      const data = [];
+      const hotspots = [
+        { offset: [0, 0], intensity: 0.9, name: 'Main Library' },
+        { offset: [0.005, 0.005], intensity: 0.7, name: 'Student Center' },
+        { offset: [-0.004, 0.006], intensity: 0.65, name: 'Dining Hall' },
+        { offset: [0.006, -0.003], intensity: 0.6, name: 'Sports Complex' },
+        { offset: [-0.003, -0.005], intensity: 0.55, name: 'Science Building' },
+      ];
+
+      // Add hotspot clusters
+      hotspots.forEach(spot => {
+        const lat = centerLat + spot.offset[0];
+        const lng = centerLng + spot.offset[1];
+
+        // Generate multiple points around each hotspot
+        for (let i = 0; i < 15; i++) {
+          const variance = 0.002;
+          data.push([
+            lat + (Math.random() - 0.5) * variance,
+            lng + (Math.random() - 0.5) * variance,
+            spot.intensity + (Math.random() - 0.5) * 0.2,
+          ]);
+        }
+      });
+
+      // Add scattered activity points
+      for (let i = 0; i < 20; i++) {
+        data.push([
+          centerLat + (Math.random() - 0.5) * 0.015,
+          centerLng + (Math.random() - 0.5) * 0.015,
+          Math.random() * 0.5,
+        ]);
+      }
+
+      return data;
+    }
+
+    /**
+     * Initialize heatmap with university-specific coordinates
+     */
+    function initializeHeatMap() {
+      // Get stored university
+      const universityName = localStorage.getItem('connectu_university');
+      let coords = { lat: 43.6629, lng: -79.3957 }; // Default to UofT
+      let displayName = 'University of Toronto';
+
+      if (universityName) {
+        const univCoords = getUniversityCoords(universityName);
+        if (univCoords) {
+          coords = { lat: univCoords.lat, lng: univCoords.lng };
+          displayName = univCoords.name;
+        }
+      }
+
+      // Update university label
+      const universityLabel = document.getElementById('universityLabel');
+      if (universityLabel) {
+        universityLabel.textContent = `📍 ${displayName}`;
+      }
+
+      // Initialize map
+      const map = L.map('heatMapContainer').setView([coords.lat, coords.lng], 15);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19,
+      }).addTo(map);
+
+      // Generate realistic heatmap data around campus
+      const heatData = generateCampusHeatData(coords.lat, coords.lng);
+
+      // Add heatmap layer
+      L.heatLayer(heatData, {
+        radius: 25,
+        blur: 15,
+        maxZoom: 1,
+        gradient: { 0.4: 'blue', 0.65: 'cyan', 0.8: 'yellow', 1.0: 'red' },
+      }).addTo(map);
+
+      // Add campus marker
+      L.marker([coords.lat, coords.lng], {
+        title: displayName,
+      })
+        .addTo(map)
+        .bindPopup(`<b>${displayName}</b><br>Active Study Zone`)
+        .openPopup();
+    }
+
     function renderTab(tab) {
       tabContent.innerHTML = tabData[tab];
       [...tabHeader.children].forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
@@ -441,99 +542,7 @@
         setTimeout(() => {
           const mapContainer = document.getElementById('heatMapContainer');
           if (mapContainer && !mapContainer._leaflet_id) {
-            // Generic university campus coordinates (using University of Toronto as example)
-            const map = L.map('heatMapContainer').setView([43.6629, -79.3957], 15);
-            
-            // Add tile layer
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '© OpenStreetMap contributors',
-              maxZoom: 19
-            }).addTo(map);
-
-            // Sample heat map data points (lat, lng, intensity)
-            // Simulating various campus locations with different activity levels
-            const heatData = [
-              // Library - high activity
-              [43.6645, -79.3995, 1.0],
-              [43.6646, -79.3996, 0.9],
-              [43.6644, -79.3994, 0.8],
-              [43.6647, -79.3997, 0.7],
-              
-              // Student Center - high activity
-              [43.6620, -79.3950, 0.95],
-              [43.6621, -79.3951, 0.85],
-              [43.6619, -79.3949, 0.9],
-              
-              // Dining Hall - very high activity
-              [43.6635, -79.3980, 1.0],
-              [43.6636, -79.3981, 1.0],
-              [43.6634, -79.3979, 0.95],
-              [43.6637, -79.3982, 0.9],
-              [43.6633, -79.3978, 0.85],
-              
-              // Academic Quad - medium activity
-              [43.6650, -79.3970, 0.6],
-              [43.6651, -79.3971, 0.5],
-              [43.6649, -79.3969, 0.55],
-              
-              // Gym - medium activity
-              [43.6615, -79.3965, 0.7],
-              [43.6616, -79.3966, 0.65],
-              
-              // Residence Hall A - high activity
-              [43.6605, -79.3945, 0.85],
-              [43.6606, -79.3946, 0.8],
-              [43.6604, -79.3944, 0.75],
-              
-              // Coffee Shop - very high activity
-              [43.6658, -79.3940, 1.0],
-              [43.6659, -79.3941, 0.95],
-              [43.6657, -79.3939, 0.9],
-              [43.6660, -79.3942, 0.85],
-              
-              // Residence Hall B - medium-high activity
-              [43.6610, -79.3930, 0.75],
-              [43.6611, -79.3931, 0.7],
-              
-              // Park - low activity
-              [43.6625, -79.3920, 0.4],
-              [43.6626, -79.3921, 0.35],
-              
-              // Random scattered activity points
-              [43.6640, -79.3960, 0.5],
-              [43.6628, -79.3975, 0.6],
-              [43.6612, -79.3955, 0.45],
-              [43.6648, -79.3985, 0.55]
-            ];
-
-            // Add heat layer
-            L.heatLayer(heatData, {
-              radius: 25,
-              blur: 15,
-              maxZoom: 17,
-              max: 1.0,
-              gradient: {
-                0.0: '#3b82f6',
-                0.3: '#8b5cf6',
-                0.5: '#a855f7',
-                0.7: '#ec4899',
-                1.0: '#ef4444'
-              }
-            }).addTo(map);
-
-            // Add custom markers for key locations
-            const locations = [
-              { name: 'Library', coords: [43.6645, -79.3995] },
-              { name: 'Student Center', coords: [43.6620, -79.3950] },
-              { name: 'Dining Hall', coords: [43.6635, -79.3980] },
-              { name: 'Coffee Shop', coords: [43.6658, -79.3940] },
-              { name: ' Gym', coords: [43.6615, -79.3965] }
-            ];
-
-            locations.forEach(loc => {
-              L.marker(loc.coords).addTo(map)
-                .bindPopup(`<b>${loc.name}</b>`);
-            });
+            initializeHeatMap();
           }
         }, 100);
       }
