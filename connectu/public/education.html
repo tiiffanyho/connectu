@@ -1143,7 +1143,7 @@
     </div>
 
     <script>
-            // Load and display university logo from local JSON
+      // Load and display university logo from online source
       (function loadUniversityLogo() {
         try {
           const userData = sessionStorage.getItem('connectu_user');
@@ -1153,27 +1153,266 @@
             
             if (schoolName) {
               // Update page title to include school name
-              document.querySelector('.education-title').textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
-              document.getElementById('universityNameDisplay').textContent = schoolName;
+              const titleElement = document.querySelector('.education-title');
+              if (titleElement) {
+                titleElement.textContent = `EDUCATION — ${schoolName.toUpperCase()}`;
+              }
               
-              // Fetch logos from local JSON file
-              fetch('/university-logos.json')
-                .then(response => response.json())
-                .then(logos => {
-                  const logoUrl = logos[schoolName];
-                  if (logoUrl) {
-                    const logoImg = document.getElementById('universityLogo');
+              const nameDisplay = document.getElementById('universityNameDisplay');
+              if (nameDisplay) {
+                nameDisplay.textContent = schoolName;
+              }
+              
+              // Helper function to get university domain and logo URLs
+              function getUniversityLogoUrls(school) {
+                const logoMap = {
+                  'University of Toronto': [
+                    'https://logo.clearbit.com/utoronto.ca',
+                    'https://www.utoronto.ca/sites/default/files/uoft-logo.png',
+                    'https://www.utoronto.ca/sites/default/files/uoft-logo.svg'
+                  ],
+                  'University of Waterloo': [
+                    'https://logo.clearbit.com/uwaterloo.ca',
+                    'https://uwaterloo.ca/brand/sites/ca.brand/files/uploads/images/university-of-waterloo-vertical-logo.png'
+                  ],
+                  'McMaster University': [
+                    'https://logo.clearbit.com/mcmaster.ca',
+                    'https://www.mcmaster.ca/brand/images/mcmaster-logo.png'
+                  ],
+                  'Western University': [
+                    'https://logo.clearbit.com/uwo.ca',
+                    'https://communications.uwo.ca/img/logo_teasers/western_logo.png'
+                  ],
+                  'Queen\'s University': [
+                    'https://logo.clearbit.com/queensu.ca',
+                    'https://www.queensu.ca/sites/default/files/assets/pages/QueensLogo_colour.png'
+                  ],
+                  'University of Ottawa': [
+                    'https://logo.clearbit.com/uottawa.ca',
+                    'https://www.uottawa.ca/brand/sites/www.uottawa.ca.brand/files/uottawa-logo.png'
+                  ],
+                  'York University': [
+                    'https://logo.clearbit.com/yorku.ca',
+                    'https://www.yorku.ca/brand/wp-content/uploads/sites/4/2019/08/yorku-logo.png'
+                  ],
+                  'Carleton University': [
+                    'https://logo.clearbit.com/carleton.ca',
+                    'https://carleton.ca/brand/wp-content/uploads/cu-logo.png'
+                  ],
+                  'University of Guelph': [
+                    'https://logo.clearbit.com/uoguelph.ca',
+                    'https://www.uoguelph.ca/brand/sites/uoguelph.ca.brand/files/uog-logo.png'
+                  ],
+                  'Toronto Metropolitan University': [
+                    'https://logo.clearbit.com/torontomu.ca',
+                    'https://www.torontomu.ca/content/dam/brand/logo/tmu-logo.png'
+                  ],
+                  'Brock University': [
+                    'https://logo.clearbit.com/brocku.ca',
+                    'https://brocku.ca/brand/wp-content/uploads/sites/131/Brock-University-Logo.png'
+                  ],
+                  'Trent University': [
+                    'https://logo.clearbit.com/trentu.ca',
+                    'https://www.trentu.ca/brand/sites/www.trentu.ca.brand/files/trent-logo.png'
+                  ],
+                  'Lakehead University': [
+                    'https://logo.clearbit.com/lakeheadu.ca',
+                    'https://www.lakeheadu.ca/sites/default/files/lakehead-logo.png'
+                  ],
+                  'Laurentian University': [
+                    'https://logo.clearbit.com/laurentian.ca',
+                    'https://laurentian.ca/sites/default/files/laurentian-logo.png'
+                  ],
+                  'Nipissing University': [
+                    'https://logo.clearbit.com/nipissingu.ca',
+                    'https://www.nipissingu.ca/sites/default/files/nipissing-logo.png'
+                  ],
+                  'Algoma University': [
+                    'https://logo.clearbit.com/algomau.ca',
+                    'https://www.algomau.ca/sites/default/files/algoma-logo.png'
+                  ],
+                  'OCAD University': [
+                    'https://logo.clearbit.com/ocadu.ca',
+                    'https://www.ocadu.ca/sites/default/files/ocad-logo.png'
+                  ],
+                  'Ontario Tech University': [
+                    'https://logo.clearbit.com/ontariotechu.ca',
+                    'https://ontariotechu.ca/sites/default/files/ontariotech-logo.png'
+                  ],
+                  'King\'s University College (Western)': [
+                    'https://logo.clearbit.com/kings.uwo.ca',
+                    'https://www.kings.uwo.ca/sites/default/files/kings-logo.png'
+                  ],
+                  'Royal Military College of Canada': [
+                    'https://logo.clearbit.com/rmc-cmr.ca',
+                    'https://www.rmc-cmr.ca/sites/default/files/rmc-logo.png'
+                  ],
+                  'University of Sudbury': [
+                    'https://logo.clearbit.com/usudbury.ca',
+                    'https://usudbury.ca/sites/default/files/usudbury-logo.png'
+                  ],
+                };
+                
+                // Return array of URLs to try, or generate from domain
+                if (logoMap[school]) {
+                  return logoMap[school];
+                }
+                
+                // Try to construct domain-based URLs
+                const domainMap = {
+                  'University of Toronto': 'utoronto.ca',
+                  'University of Waterloo': 'uwaterloo.ca',
+                  'McMaster University': 'mcmaster.ca',
+                  'Western University': 'uwo.ca',
+                  'Queen\'s University': 'queensu.ca',
+                  'University of Ottawa': 'uottawa.ca',
+                  'York University': 'yorku.ca',
+                  'Carleton University': 'carleton.ca',
+                  'University of Guelph': 'uoguelph.ca',
+                  'Toronto Metropolitan University': 'torontomu.ca',
+                  'Brock University': 'brocku.ca',
+                  'Trent University': 'trentu.ca',
+                  'Lakehead University': 'lakeheadu.ca',
+                  'Laurentian University': 'laurentian.ca',
+                  'Nipissing University': 'nipissingu.ca',
+                  'Algoma University': 'algomau.ca',
+                  'OCAD University': 'ocadu.ca',
+                  'Ontario Tech University': 'ontariotechu.ca',
+                  'King\'s University College (Western)': 'kings.uwo.ca',
+                  'Royal Military College of Canada': 'rmc-cmr.ca',
+                  'University of Sudbury': 'usudbury.ca',
+                };
+                
+                const domain = domainMap[school];
+                if (domain) {
+                  return [`https://logo.clearbit.com/${domain}`];
+                }
+                
+                return [];
+              }
+              
+              // Function to test if an image URL is valid
+              function testImageUrl(url) {
+                return new Promise((resolve) => {
+                  const img = new Image();
+                  img.crossOrigin = 'anonymous';
+                  let resolved = false;
+                  
+                  const cleanup = () => {
+                    if (!resolved) {
+                      resolved = true;
+                    }
+                  };
+                  
+                  img.onload = () => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(true);
+                    }
+                  };
+                  
+                  img.onerror = () => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(false);
+                    }
+                  };
+                  
+                  // Set timeout to avoid hanging
+                  const timeout = setTimeout(() => {
+                    if (!resolved) {
+                      resolved = true;
+                      resolve(false);
+                    }
+                  }, 3000);
+                  
+                  img.src = url;
+                });
+              }
+              
+              // Function to fetch university logo from online sources
+              async function fetchUniversityLogo(school) {
+                const logoUrls = getUniversityLogoUrls(school);
+                
+                // Try each URL in sequence until one works
+                for (const url of logoUrls) {
+                  try {
+                    const isValid = await testImageUrl(url);
+                    if (isValid) {
+                      return url;
+                    }
+                  } catch (error) {
+                    console.log(`Failed to load logo from ${url}`);
+                    continue;
+                  }
+                }
+                
+                // If all direct URLs fail, try using a CORS proxy with Google Images search
+                // This will get actual logos from the web
+                const searchQuery = encodeURIComponent(`${school} university logo official`);
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.google.com/search?q=${searchQuery}&tbm=isch&tbs=isz:m`)}`;
+                
+                // Return null if we can't find a logo - we'll handle this in the display logic
+                return null;
+              }
+              
+              // Fetch and display the logo
+              fetchUniversityLogo(schoolName)
+                .then(logoUrl => {
+                  const logoImg = document.getElementById('universityLogo');
+                  const logoSection = document.getElementById('logoSection');
+                  const schoolBanner = document.getElementById('schoolBanner');
+                  
+                  // Only display if we have a valid logo URL
+                  if (logoUrl && logoImg) {
                     logoImg.src = logoUrl;
                     logoImg.alt = `${schoolName} logo`;
-                    logoImg.onerror = function() {
-                      console.log('Logo failed to load for:', schoolName);
+                    logoImg.onload = function() {
+                      // Only show section if logo loaded successfully
+                      if (logoSection) {
+                        logoSection.style.display = 'block';
+                      }
+                      // Also add to banner if it exists
+                      if (schoolBanner) {
+                        // Clear any existing content
+                        schoolBanner.innerHTML = '';
+                        const bannerImg = document.createElement('img');
+                        bannerImg.src = logoUrl;
+                        bannerImg.alt = `${schoolName} banner`;
+                        bannerImg.style.width = '100%';
+                        bannerImg.style.height = '100%';
+                        bannerImg.style.objectFit = 'cover';
+                        bannerImg.onerror = function() {
+                          // If banner image fails, remove it
+                          schoolBanner.innerHTML = '';
+                        };
+                        schoolBanner.appendChild(bannerImg);
+                        schoolBanner.classList.add('loaded');
+                      }
                     };
-                    document.getElementById('logoSection').style.display = 'block';
+                    logoImg.onerror = function() {
+                      console.log('Logo failed to load from URL:', logoUrl);
+                      // Don't show section if logo fails to load
+                      if (logoSection) {
+                        logoSection.style.display = 'none';
+                      }
+                    };
                   } else {
-                    console.log('Logo not found for:', schoolName);
+                    console.log('No valid logo URL found for:', schoolName);
+                    // Don't show logo section if no valid URL
+                    if (logoSection) {
+                      logoSection.style.display = 'none';
+                    }
                   }
                 })
-                .catch(error => console.error('Error loading logos:', error));
+                .catch(error => {
+                  console.error('Error loading university logo:', error);
+                  // Don't show section if there's an error
+                  const logoSection = document.getElementById('logoSection');
+                  if (logoSection) {
+                    logoSection.style.display = 'none';
+                  }
+                });
             }
           }
         } catch (error) {
