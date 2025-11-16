@@ -65,11 +65,22 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding: 1.5rem 2rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         backdrop-filter: blur(16px);
         position: relative;
         z-index: 2;
+      }
+
+      .opportunities-header .profile-banner {
+        display: none;
+      }
+
+      .header-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 1rem;
       }
 
       .opportunities-title {
@@ -78,6 +89,10 @@
         letter-spacing: 2px;
         color: #fff;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        grid-column: 1;
+        margin: 0;
+        width: 100%;
       }
 
       .opportunities-back {
@@ -92,6 +107,8 @@
         transition:
           transform 0.15s ease,
           box-shadow 0.15s ease;
+        grid-column: 2;
+        white-space: nowrap;
       }
 
       .opportunities-back:hover {
@@ -414,16 +431,75 @@
           padding: 0.75rem;
         }
       }
+
+      .profile-banner {
+        width: 100%;
+        height: 120px;
+        border-radius: 0;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .profile-banner::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
+        border-radius: inherit;
+      }
+
+      .linkedin-profile-section {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.05));
+        border: 2px solid rgba(139, 92, 246, 0.3);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 0 2rem 2rem 2rem;
+        text-align: center;
+        display: none;
+      }
+
+      .linkedin-profile {
+        max-width: 200px;
+        max-height: 200px;
+        width: auto;
+        height: auto;
+        display: inline-block;
+        border-radius: 50%;
+        filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.3));
+        margin-bottom: 1rem;
+        border: 4px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .profile-name-display {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 1rem;
+      }
     </style>
   </head>
   <body>
     <div class="opportunities-container">
       <!-- Header -->
       <div class="opportunities-header">
-        <h1 class="opportunities-title">OPPORTUNITIES</h1>
-        <button class="opportunities-back" onclick="window.history.back();">
-          ← Back
-        </button>
+        <div id="profileBanner" class="profile-banner"></div>
+        <div class="header-content">
+          <h1 class="opportunities-title">OPPORTUNITIES</h1>
+          <button class="opportunities-back" onclick="window.history.back();">
+            ← Back
+          </button>
+        </div>
+      </div>
+
+      <!-- LinkedIn Profile Picture Section -->
+      <div class="linkedin-profile-section" id="profileSection">
+        <img id="linkedinProfile" class="linkedin-profile" alt="LinkedIn Profile" />
+        <div class="profile-name-display" id="profileNameDisplay"></div>
       </div>
 
       <!-- Tabs -->
@@ -984,6 +1060,167 @@
       setTimeout(() => {
         map.invalidateSize();
       }, 100);
+    </script>
+
+    <script>
+      // Load and display LinkedIn profile picture
+      (function loadLinkedInProfile() {
+        try {
+          const userData = sessionStorage.getItem('connectu_user');
+          if (userData) {
+            const user = JSON.parse(userData);
+            const linkedinUrl = user.linkedinUrl;
+            
+            if (linkedinUrl) {
+              // Extract profile ID or username from LinkedIn URL
+              function extractLinkedInProfileId(url) {
+                // Handle various LinkedIn URL formats:
+                // https://www.linkedin.com/in/username/
+                // https://linkedin.com/in/username
+                // https://www.linkedin.com/in/username/?originalSubdomain=ca
+                const match = url.match(/linkedin\.com\/in\/([^\/\?]+)/i);
+                if (match && match[1]) {
+                  return match[1];
+                }
+                return null;
+              }
+
+              // Function to get LinkedIn profile picture URL
+              async function fetchLinkedInProfilePicture(profileId) {
+                if (!profileId) return null;
+
+                // Try using a CORS proxy to fetch the profile page and extract image
+                try {
+                  // Use a public CORS proxy service to fetch LinkedIn profile
+                  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.linkedin.com/in/${profileId}/`)}`;
+                  const response = await fetch(proxyUrl);
+                  const data = await response.json();
+                  
+                  if (data.contents) {
+                    // Try multiple patterns to extract profile picture
+                    // Pattern 1: Look for og:image meta tag
+                    const ogImageMatch = data.contents.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+                    if (ogImageMatch && ogImageMatch[1]) {
+                      return ogImageMatch[1];
+                    }
+
+                    // Pattern 2: Look for profile photo in img tags
+                    const imgMatch = data.contents.match(/<img[^>]*class="[^"]*profile-photo[^"]*"[^>]*src="([^"]+)"/i);
+                    if (imgMatch && imgMatch[1]) {
+                      return imgMatch[1];
+                    }
+                    
+                    // Pattern 3: Look for any image with profile in alt or class
+                    const altMatch = data.contents.match(/<img[^>]*(?:alt|class)="[^"]*profile[^"]*"[^>]*src="([^"]+)"/i);
+                    if (altMatch && altMatch[1]) {
+                      return altMatch[1];
+                    }
+
+                    // Pattern 4: Look for LinkedIn CDN image URLs in the content
+                    const cdnMatch = data.contents.match(/https:\/\/media\.licdn\.com\/dms\/image\/[^"'\s]+/i);
+                    if (cdnMatch && cdnMatch[0]) {
+                      return cdnMatch[0];
+                    }
+                  }
+                } catch (error) {
+                  console.log('Could not fetch via proxy:', error);
+                }
+
+                // Fallback: Try LinkedIn's public profile picture endpoint
+                // Note: This may not work for all profiles due to privacy settings
+                try {
+                  const publicUrl = `https://www.linkedin.com/in/${profileId}/overlay/photo/`;
+                  // This is a fallback - LinkedIn doesn't provide direct public access
+                } catch (error) {
+                  // Continue
+                }
+
+                // Return null if we can't find the picture
+                return null;
+              }
+
+              const profileId = extractLinkedInProfileId(linkedinUrl);
+              
+              if (profileId) {
+                fetchLinkedInProfilePicture(profileId)
+                  .then(profilePictureUrl => {
+                    const profileImg = document.getElementById('linkedinProfile');
+                    const profileSection = document.getElementById('profileSection');
+                    const profileBanner = document.getElementById('profileBanner');
+                    const nameDisplay = document.getElementById('profileNameDisplay');
+
+                    // Extract name from LinkedIn URL or use profile ID
+                    const displayName = profileId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+                    if (nameDisplay) {
+                      nameDisplay.textContent = displayName;
+                    }
+
+                    if (profilePictureUrl && profileImg) {
+                      profileImg.src = profilePictureUrl;
+                      profileImg.alt = `${displayName} LinkedIn Profile`;
+                      profileImg.onload = function() {
+                        if (profileSection) {
+                          profileSection.style.display = 'block';
+                        }
+                        if (profileBanner) {
+                          profileBanner.innerHTML = '';
+                          const bannerImg = document.createElement('img');
+                          bannerImg.src = profilePictureUrl;
+                          bannerImg.style.width = '100%';
+                          bannerImg.style.height = '100%';
+                          bannerImg.style.objectFit = 'cover';
+                          bannerImg.onerror = function() {
+                            profileBanner.innerHTML = '';
+                            profileBanner.style.display = 'none';
+                          };
+                          profileBanner.appendChild(bannerImg);
+                          profileBanner.style.display = 'block';
+                          profileBanner.classList.add('loaded');
+                        }
+                      };
+                      profileImg.onerror = function() {
+                        console.log('Profile picture failed to load from URL:', profilePictureUrl);
+                        // Try using a default LinkedIn icon or placeholder
+                        if (profileSection) {
+                          profileSection.style.display = 'none';
+                        }
+                      };
+                    } else {
+                      // If we can't get the picture, try using LinkedIn's public profile image service
+                      // This is a workaround - LinkedIn doesn't provide direct public access
+                      console.log('Could not fetch LinkedIn profile picture for:', profileId);
+                      if (profileSection) {
+                        profileSection.style.display = 'none';
+                      }
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error loading LinkedIn profile picture:', error);
+                    const profileSection = document.getElementById('profileSection');
+                    if (profileSection) {
+                      profileSection.style.display = 'none';
+                    }
+                  });
+              } else {
+                console.log('Could not extract profile ID from LinkedIn URL:', linkedinUrl);
+              }
+            } else {
+              // No LinkedIn URL provided
+              const profileSection = document.getElementById('profileSection');
+              if (profileSection) {
+                profileSection.style.display = 'none';
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Error loading LinkedIn profile:', error);
+          const profileSection = document.getElementById('profileSection');
+          if (profileSection) {
+            profileSection.style.display = 'none';
+          }
+        }
+      })();
     </script>
     <script src="./js/animated-background.js"></script>
   </body>
